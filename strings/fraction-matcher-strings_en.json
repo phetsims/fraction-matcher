@@ -1,0 +1,20 @@
+{
+  "simTitle": "Fraction Matcher",
+  "matchingGameTitle": "Matching Game",
+  "mixedNumbersTitle": "Mixed Numbers",
+  "matchingGameHeader": "Fraction Matcher",
+  "mixedNumbersHeader": "Fraction Matcher: Mixed Numbers",
+  "patternLevel": "Level {0}",
+  "patternScore": "Score {0}",
+  "myMatches": "My Matches",
+  "buttonCheck": "Check",
+  "buttonOk": "Ok",
+  "buttonTryAgain": "Try Again",
+  "buttonShowAnswer": "Show Answer",
+  "equallyAnswerSymbol": "=",
+  "gameOver": "Game Over",
+  "patternGameOverLevel": "Level: {0}",
+  "patternGameOverScore": "Score: {0} out  of 12",
+  "patternGameOverScorePrefect": "Score: {0} out  of 12 (Prefect!)",
+  "buttonNewGame": "New game"
+}
