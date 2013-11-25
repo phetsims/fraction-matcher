@@ -97,7 +97,21 @@ define( function( require ) {
       new LevelButtonNode( model, {
         x: 250,
         y: 450,
-        label: StringUtils.format( patternLevelString, 5 )} ),
+        label: StringUtils.format( patternLevelString, 5 ),
+        shape:new ShapeNode( {
+          type: 'POLYGON',
+          x: 0,
+          y: -10,
+          width: 90,
+          height: 90,
+          numerator: 5,
+          denominator: 5,
+          undivided: 0,
+          fill: model.CONSTANTS.COLORS.LIGHT_PINK
+        } ),
+        callback: function() {model.setLevel( 5 );}
+      } ),
+
       new LevelButtonNode( model, {x: 450, y: 450, label: StringUtils.format( patternLevelString, 6 )} ),
       new LevelButtonNode( model, {x: 650, y: 450, label: StringUtils.format( patternLevelString, 7 )} ),
       new LevelButtonNode( model, {x: 850, y: 450, label: StringUtils.format( patternLevelString, 8 )} )

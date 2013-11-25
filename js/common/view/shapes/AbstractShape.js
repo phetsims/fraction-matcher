@@ -42,6 +42,27 @@ define( function( require ) {
     // function for shuffling arrays
     shuffle: function( arr ) {
       return arr.sort( function() {return Math.random() - 0.5;} );
+    },
+    arrayToShapes: function( array, offset ) {
+      var self = this, filled = 0;
+      for ( var i = 0, nodes = [], j; i < array.length; i++ ) {
+        nodes[i] = new Node( {x: (i ? i * nodes[i - 1].getWidth() : 0) + i * offset} );
+        if ( this.options.fillType === 'RANDOM' || (this.options.fillType === 'MIXED' && i >= 1) ) {
+          this.shuffle( array[i] );
+        }
+        for ( j = 0; j < array[i].length; j++ ) {
+          if ( filled++ < this.options.numerator ) {
+            array[i][j].fill = this.options.fill;
+          }
+          nodes[i].addChild( array[i][j] );
+        }
+      }
+
+      nodes.forEach( function( node ) {
+        self.addChild( node );
+      } );
+
+      this.scale( 1 / nodes.length, 1 / nodes.length );
     }
   } );
 } );

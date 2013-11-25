@@ -9,13 +9,14 @@ define( function( require ) {
   "use strict";
 
   // imports
+  var Node = require( "SCENERY/nodes/Node" );
   var inherit = require( "PHET_CORE/inherit" );
   var AbstractShape = require( 'common/view/shapes/AbstractShape' );
   var Path = require( 'SCENERY/nodes/Path' );
   var Shape = require( 'KITE/Shape' );
 
   function LetterLShape( options ) {
-    var self = this,
+    var num,
       max,
       size,
       denominator,
@@ -28,41 +29,30 @@ define( function( require ) {
     denominator = options.denominator;
     numerator = options.numerator;
 
-
-    if ( numerator <= 8 && denominator <= 8 ) {
-      max = Math.max( denominator, numerator );
-    }
-    else {
-      max = Math.ceil( Math.max( denominator, numerator ) / 8 ) * 8;
-    }
+    max = denominator * Math.ceil( numerator / denominator ); // round max value
 
     // determine size of shape
     dimension = this.findDimension( max );
     size = Math.min( options.width / dimension.x, options.height / dimension.y );
 
+    for ( var i = 0, len = max / 8; i < len; i++ ) {
+      letters[i] = [];
+    }
+
     // create letter L and add them to temporary array
-    for ( var i = 0, len = max / 2; i < len; i++ ) {
+    for ( i = 0, len = max / 2; i < len; i++ ) {
+      num = Math.floor( 2 * i / denominator );
       // TODO: stroke
-      letters.push( new Path( this.getLetterL( size, 'top' ), {
-        x: (i * 2 + Math.floor( i / 4 )) * size, y: i % 4 * size, fill: 'white', stroke: options.stroke, lineWidth: 1
+      letters[num].push( new Path( this.getLetterL( size, 'top' ), {
+        x: i % 4 * 2 * size, y: i % 4 * size, fill: 'white', stroke: options.stroke, lineWidth: 1
       } ) );
-      letters.push( new Path( this.getLetterL( size, 'bottom' ), {
-        x: (i * 2 + Math.floor( i / 4 )) * size, y: i % 4 * size, fill: 'white', stroke: options.stroke, lineWidth: 1
+      letters[num].push( new Path( this.getLetterL( size, 'bottom' ), {
+        x: i % 4 * 2 * size, y: i % 4 * size, fill: 'white', stroke: options.stroke, lineWidth: 1
       } ) );
     }
 
-    // TODO: MIXED type support
-    if ( options.fillType === 'RANDOM' ) {
-      this.shuffle( letters );
-    }
-
-    // add letter to node
-    letters.forEach( function( letter, i ) {
-      if ( i < numerator ) {
-        letter.fill = options.fill;
-      }
-      self.addChild( letter );
-    } );
+    // add letters to node
+    this.arrayToShapes( letters, size );
 
     this.setTranslation( -this.getWidth() / 2, -this.getHeight() / 2 );
   }
@@ -94,7 +84,7 @@ define( function( require ) {
     },
     findDimension: function( d ) {
       return {
-        x: d + Math.floor( (d - 1) / 8 ),
+        x: Math.floor( (d - 1) / 8 ),
         y: d >= 7 ? 7 :
            d >= 5 ? 6 :
            d >= 3 ? 5 : 4
