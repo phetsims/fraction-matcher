@@ -9,7 +9,6 @@ define( function( require ) {
   "use strict";
 
   // imports
-  var Node = require( "SCENERY/nodes/Node" );
   var inherit = require( "PHET_CORE/inherit" );
   var AbstractShape = require( 'common/view/shapes/AbstractShape' );
   var Path = require( 'SCENERY/nodes/Path' );
