@@ -17,6 +17,7 @@ define( function( require ) {
     VERTICAL_BARS: require( 'FRACTION_MATCHER/common/view/shapes/VRectangleShape' ),
     HORIZONTAL_BARS: require( 'FRACTION_MATCHER/common/view/shapes/HRectangleShape' ),
     POLYGON: require( 'FRACTION_MATCHER/common/view/shapes/PolygonShape' ),
+    FLOWER: require( 'FRACTION_MATCHER/common/view/shapes/FlowerShape' ),
     LETTER_L_SHAPES: require( 'FRACTION_MATCHER/common/view/shapes/LetterLShape' ),
     NUMBER: require( 'FRACTION_MATCHER/common/view/shapes/NumericShape' )
   };
