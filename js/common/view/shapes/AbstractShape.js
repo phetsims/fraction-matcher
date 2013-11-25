@@ -22,6 +22,7 @@ define( function( require ) {
         denominator: 1, // numerator <= denominator
         fill: "#F00",
         freeFill: "#FFF",
+        fillType: 'SEQUENTIAL',
         stroke: "#000"
       },
       options );
@@ -29,5 +30,18 @@ define( function( require ) {
     this.options = options;
   }
 
-  return inherit( Node, AbstractShape );
+  return inherit( Node, AbstractShape, {
+    // function for painting shapes
+    pointsToShape: function( s, array, size ) {
+      size = size || 1;
+      for ( var i = 0; i < array.length; i++ ) {
+        s.lineTo( array[i].x * size, array[i].y * size );
+      }
+      return s;
+    },
+    // function for shuffling arrays
+    shuffle: function( arr ) {
+      return arr.sort( function() {return Math.random() - 0.5;} );
+    }
+  } );
 } );

@@ -41,8 +41,8 @@ define( function( require ) {
           undivided: 0,
           fill: "#E94646"
         } ),
-        callback: function setLevel( x ) {model.setLevel( x );},
-        value: 1 } ),
+        callback: function() {model.setLevel( 1 );}
+      } ),
       new LevelButtonNode( model, {
         x: 450,
         y: 200,
@@ -58,8 +58,8 @@ define( function( require ) {
           undivided: 0,
           fill: "#8CC640"
         } ),
-        callback: function setLevel( x ) {model.setLevel( x );},
-        value: 2} ),
+        callback: function() {model.setLevel( 2 );}
+      } ),
       new LevelButtonNode( model, {
         x: 650,
         y: 200,
@@ -75,25 +75,25 @@ define( function( require ) {
           undivided: 0,
           fill: "#58B6DD"
         } ),
-        callback: function setLevel( x ) {model.setLevel( x );},
-        value: 3} ),
+        callback: function() {model.setLevel( 3 );}
+      } ),
       new LevelButtonNode( model, {
         x: 850,
         y: 200,
-        label: StringUtils.format( patternLevelString, 4 )/*,
-         shape: new ShapeNode( {
-         type: 'TETRIS',
-         x: 0,
-         y: -10,
-         width: 90,
-         height: 90,
-         numerator: 4,
-         denominator: 4,
-         undivided: 0,
-         fill: model.CONSTANTS.COLORS.ORANGE
-         } ),
-         callback: function setLevel( x ) {model.setLevel( x );},
-         value: 4*/} ),
+        label: StringUtils.format( patternLevelString, 4 ),
+        shape: new ShapeNode( {
+          type: 'LETTER_L_SHAPES',
+          x: 0,
+          y: -10,
+          width: 90,
+          height: 90,
+          numerator: 4,
+          denominator: 4,
+          undivided: 0,
+          fill: model.CONSTANTS.COLORS.ORANGE
+        } ),
+        callback: function() {model.setLevel( 4 );}
+      } ),
       new LevelButtonNode( model, {
         x: 250,
         y: 450,

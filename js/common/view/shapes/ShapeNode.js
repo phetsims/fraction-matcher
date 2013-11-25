@@ -16,8 +16,8 @@ define( function( require ) {
     PIES: require( 'FRACTION_MATCHER/common/view/shapes/CircleShape' ),
     VERTICAL_BARS: require( 'FRACTION_MATCHER/common/view/shapes/VRectangleShape' ),
     HORIZONTAL_BARS: require( 'FRACTION_MATCHER/common/view/shapes/HRectangleShape' ),
-    /*PLUSES: require( 'FRACTION_MATCHER/common/view/shapes/PlusSignsShape' ),
-     TETRIS: require( 'FRACTION_MATCHER/common/view/shapes/TetrisShape' ),*/
+    /*PLUSES: require( 'FRACTION_MATCHER/common/view/shapes/PlusSignsShape' ),*/
+    LETTER_L_SHAPES: require( 'FRACTION_MATCHER/common/view/shapes/LetterLShape' ),
     NUMBER: require( 'FRACTION_MATCHER/common/view/shapes/NumericShape' )
   };
 

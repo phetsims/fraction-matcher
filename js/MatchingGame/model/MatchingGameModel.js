@@ -88,11 +88,6 @@ define( function( require ) {
     } );
   }
 
-  // function for shuffling arrays
-  var shuffle = function( arr ) {
-    return arr.sort( function() {return Math.random() - 0.5;} );
-  };
-
   // shapes constructor (name chosen in order not to confuse with the library component)
   var ShapeGame = function ShapeGame( type, fraction, fill ) {
     this.x = 0;
@@ -188,8 +183,8 @@ define( function( require ) {
 
       shapesAll.push( 'NUMBER' ); // add fractions to possible shapes
 
-      var max = 6,
-        fractions = shuffle( levelDescription.fractions.slice( 0 ) ).splice( 0, max ),
+      var max = 6, // number of shapes to add
+        fractions = this.shuffle( levelDescription.fractions.slice( 0 ) ).splice( 0, max ),
         newLevel = [],
         shapes,
         color,
@@ -211,7 +206,7 @@ define( function( require ) {
         color = (type === 'NUMBER') ? 'rgb(0,0,0)' : colorScheme[(i + 1) % 3];
         newLevel.push( new ShapeGame( type, fraction, color ) );
       }
-      newLevel = shuffle( newLevel );
+      newLevel = this.shuffle( newLevel );
       for ( i = 0; i < newLevel.length; i++ ) {
         newLevel[i].dropZone = i;
       }
@@ -227,6 +222,10 @@ define( function( require ) {
         step: 0,
         answer: []
       };
+    },
+    // function for shuffling arrays
+    shuffle: function( arr ) {
+      return arr.sort( function() {return Math.random() - 0.5;} );
     },
     randomInt: function( range ) {
       return Math.floor( Math.random() * (range.max - range.min + 1) ) + range.min;
