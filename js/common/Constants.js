@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * general constants for games
+ * General constants for games.
  *
  * @author Andrey Zelenkov (Mlearner)
  */
@@ -14,8 +14,11 @@ define( function() {
       LIGHT_GREEN: 'rgb(140,198,63)',
       LIGHT_BLUE: 'rgb(87,182,221)',
       LIGHT_RED: 'rgb(233,69,69)',
-      LIGHT_PINK: 'rgb(255,112,213)',
-      ORANGE: 'rgb(255,200,0)'
+      LIGHT_PINK: 'rgb(255,175,175)',
+      ORANGE: 'rgb(255,200,0)',
+      YELLOW: 'rgb(255,255,0)',
+      GREEN: 'rgb(0,255,0)',
+      PINK: 'rgb(255,0,255)'
     };
 
     this.COLORS.CIRCLE_COLOR = this.COLORS.LIGHT_GREEN;
