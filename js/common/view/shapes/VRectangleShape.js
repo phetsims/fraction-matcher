@@ -1,9 +1,9 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * Circle shape graph for the 'Fraction Matcher' screen.
+ * Rectangle with vertical lines shape graph for the 'Fraction Matcher' screen.
  *
- * @author Anton Ulyanov (Mlearner)
+ * @author Anton Ulyanov, Andrey Zelenkov (Mlearner)
  */
 define( function( require ) {
   "use strict";
@@ -15,27 +15,42 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
 
   function VRectangleShape( options ) {
-    var thisNode = this,
-      side = Math.min( options.width, options.height );
+    var pieces = [],
+      denominator,
+      numerator,
+      size;
 
     AbstractShape.call( this, options );
     options = this.options;
+    denominator = options.denominator;
+    numerator = options.numerator;
 
-    thisNode.addChild( new Path( Shape.rect( -side / 2, -side / 2, side, side ), {fill: options.freeFill, stroke: options.stroke, lineWidth: 4} ) );
+    size = Math.min( options.width, options.height );
 
-    if ( options.numerator / options.denominator === 1 && options.denominator === 1 ) {
-      thisNode.addChild( new Path( Shape.rect( -side / 2, -side / 2, side, side ), {fill: options.fill, stroke: options.stroke, lineWidth: 1} ) );
+    // init arrays for shapes
+    for ( var i = 0, j; i < Math.ceil( numerator / denominator ); i++ ) {
+      pieces[i] = [];
     }
-    else {
-      var s, h = side / options.denominator, f;
 
-      for ( var i = 0; i < options.denominator; i++ ) {
-        s = side / 2 - h * (i + 1);
-        f = (i < options.numerator) ? options.fill : options.freeFill;
-        thisNode.addChild( new Path( Shape.rect( -side / 2, s, side, h ), {fill: f, stroke: options.stroke, lineWidth: 1} ) );
+    // TODO: stroke
+    // create pieces and add them to created array
+    for ( i = 0; i < pieces.length; i++ ) {
+      for ( j = 0; j < denominator; j++ ) {
+        pieces[i].push( new Path( this.getPiece( size, size / denominator ), {
+          y: j / denominator * size, fill: 'white', stroke: options.stroke, lineWidth: 1
+        } ) );
       }
     }
+
+    // add shapes to node
+    this.arrayToShapes( pieces, size / 4 );
+    this.setTranslation( -options.width / 2, -options.height / (2 * pieces.length) );
+
   }
 
-  return inherit( AbstractShape, VRectangleShape );
+  return inherit( AbstractShape, VRectangleShape, {
+    getPiece: function( width, height ) {
+      return new Shape.rect( 0, 0, width, height );
+    }
+  } );
 } );

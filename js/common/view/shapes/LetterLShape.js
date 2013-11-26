@@ -15,45 +15,48 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
 
   function LetterLShape( options ) {
-    var num,
+    var w,
+      h,
       max,
       size,
       denominator,
       numerator,
-      dimension,
-      letters = [];
+      diameter,
+      pieces = [];
 
     AbstractShape.call( this, options );
     options = this.options;
     denominator = options.denominator;
     numerator = options.numerator;
 
-    max = denominator * Math.ceil( numerator / denominator ); // round max value
-
     // determine size of shape
-    dimension = this.findDimension( max );
-    size = Math.min( options.width / dimension.x, options.height / dimension.y );
+    max = denominator * Math.ceil( numerator / denominator );
+    w = options.width * 4 / max;
+    h = options.height / this.getYCoeff( denominator );
+    diameter = Math.min( w, h );
+    size = diameter * Math.ceil( numerator / denominator ) / 4;
 
-    for ( var i = 0, len = max / 8; i < len; i++ ) {
-      letters[i] = [];
+    // init arrays for shapes
+    for ( var i = 0, j; i < Math.ceil( numerator / denominator ); i++ ) {
+      pieces[i] = [];
     }
 
+    // TODO: stroke
     // create letter L and add them to temporary array
-    for ( i = 0, len = max / 2; i < len; i++ ) {
-      num = Math.floor( 2 * i / denominator );
-      // TODO: stroke
-      letters[num].push( new Path( this.getLetterL( size, 'top' ), {
-        x: i % 4 * 2 * size, y: i % 4 * size, fill: 'white', stroke: options.stroke, lineWidth: 1
-      } ) );
-      letters[num].push( new Path( this.getLetterL( size, 'bottom' ), {
-        x: i % 4 * 2 * size, y: i % 4 * size, fill: 'white', stroke: options.stroke, lineWidth: 1
-      } ) );
+    for ( i = 0; i < pieces.length; i++ ) {
+      for ( j = 0; j < denominator / 2; j++ ) {
+        pieces[i].push( new Path( this.getPiece( size, 'top' ), {
+          x: j * 2 * size, y: j * size, fill: 'white', stroke: options.stroke, lineWidth: 1
+        } ) );
+        pieces[i].push( new Path( this.getPiece( size, 'bottom' ), {
+          x: j * 2 * size, y: j * size, fill: 'white', stroke: options.stroke, lineWidth: 1
+        } ) );
+      }
     }
 
     // add letters to node
-    this.arrayToShapes( letters, size );
-
-    this.setTranslation( -this.getWidth() / 2, -this.getHeight() / 2 );
+    this.arrayToShapes( pieces, size / 2 );
+    this.setTranslation( (Math.max( 0, w - h ) - options.width) / 2, (Math.max( 0, h - w ) - options.height) / 2 );
   }
 
   var shapeDefinition = {
@@ -78,16 +81,13 @@ define( function( require ) {
   };
 
   return inherit( AbstractShape, LetterLShape, {
-    getLetterL: function( size, orientation ) {
+    getPiece: function( size, orientation ) {
       return this.pointsToShape( new Shape(), shapeDefinition[orientation], size );
     },
-    findDimension: function( d ) {
-      return {
-        x: Math.floor( (d - 1) / 8 ),
-        y: d >= 7 ? 7 :
-           d >= 5 ? 6 :
-           d >= 3 ? 5 : 4
-      };
+    getYCoeff: function( d ) {
+      return (d >= 7 ? 7 / 4 :
+              d >= 5 ? 6 / 4 :
+              d >= 3 ? 5 / 4 : 1);
     }
   } );
 } );

@@ -18,7 +18,14 @@ define( function( require ) {
     HORIZONTAL_BARS: require( 'FRACTION_MATCHER/common/view/shapes/HRectangleShape' ),
     POLYGON: require( 'FRACTION_MATCHER/common/view/shapes/PolygonShape' ),
     FLOWER: require( 'FRACTION_MATCHER/common/view/shapes/FlowerShape' ),
+    RING_OF_HEXAGONS: require( 'FRACTION_MATCHER/common/view/shapes/RingOfHexagonsShape' ),
     LETTER_L_SHAPES: require( 'FRACTION_MATCHER/common/view/shapes/LetterLShape' ),
+    //PLUSSES: require( 'FRACTION_MATCHER/common/view/shapes/PlusSignsShape' ),
+    //PYRAMID: require( 'FRACTION_MATCHER/common/view/shapes/PyramidShape' ),
+    GRID: require( 'FRACTION_MATCHER/common/view/shapes/GridShape' ),
+    INTERLEAVED_L_SHAPES: require( 'FRACTION_MATCHER/common/view/shapes/InterleavedLShape' ),
+    TETRIS: require( 'FRACTION_MATCHER/common/view/shapes/TetrisPieceShape' ),
+    NINJA_STAR: require( 'FRACTION_MATCHER/common/view/shapes/NinjaStarShape' ),
     NUMBER: require( 'FRACTION_MATCHER/common/view/shapes/NumericShape' )
   };
 

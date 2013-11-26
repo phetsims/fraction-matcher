@@ -15,7 +15,7 @@ define( function( require ) {
   var Path = require( 'SCENERY/nodes/Path' );
   var Shape = require( 'KITE/Shape' );
 
-  function Polygon( options ) {
+  function FlowerShape( options ) {
     var max,
       diameter,
       angle,
@@ -51,7 +51,7 @@ define( function( require ) {
     this.setTranslation( -options.width / 4 * (pieces.length > 1 ? 1 : 0), 0 );
   }
 
-  return inherit( AbstractShape, Polygon, {
+  return inherit( AbstractShape, FlowerShape, {
     getPiece: function( size, angle, i ) {
       return this.pointsToShape( new Shape(), [
         {x: 0, y: 0},

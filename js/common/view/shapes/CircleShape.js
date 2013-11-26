@@ -10,37 +10,70 @@ define( function( require ) {
 
   // imports
   var inherit = require( "PHET_CORE/inherit" );
+  var Node = require( "SCENERY/nodes/Node" );
   var AbstractShape = require( 'common/view/shapes/AbstractShape' );
   var Path = require( 'SCENERY/nodes/Path' );
   var Shape = require( 'KITE/Shape' );
 
   function CircleShape( options ) {
-    var self = this,
-      radius = Math.min( options.width / 2, options.height / 2 );
+    var radius,
+      numerator,
+      denominator,
+      filled = 0,
+      temp = [],
+      nodes = [];
 
     AbstractShape.call( this, options );
     options = this.options;
+    numerator = options.numerator;
+    denominator = options.denominator;
 
-    self.addChild( new Path( Shape.circle( 0, 0, radius ), {fill: options.freeFill, stroke: options.stroke, lineWidth: 4} ) );
+    radius = Math.min( options.width / 2, options.height / 2 );
 
-    if ( options.numerator / options.denominator === 1 && options.denominator === 1 ) {
-      self.addChild( new Path( Shape.circle( 0, 0, radius ), {fill: options.fill, stroke: options.stroke, lineWidth: 1} ) );
+    // init arrays for shapes
+    for ( var i = 0, j; i < Math.ceil( numerator / denominator ); i++ ) {
+      nodes[i] = new Node();
+      temp[i] = [];
     }
-    else {
-      var s, e, f, shape;
-      for ( var i = 0; i < options.denominator; i++ ) {
-        s = ((Math.PI * 2) / options.denominator) * i;
-        e = ((Math.PI * 2) / options.denominator) * (i + 1);
-        f = (i < options.numerator) ? options.fill : options.freeFill;
-        shape = new Shape();
+
+    // TODO: add stroke
+    // create pieces and add them to created array
+    for ( i = 0; i < nodes.length; i++ ) {
+      for ( j = 0; j < denominator; j++ ) {
+        temp[i].push( new Path( this.getPiece( radius, ((Math.PI * 2) / denominator) * j, ((Math.PI * 2) / denominator) * (j + 1) ), {
+          fill: 'white', stroke: options.stroke, lineWidth: 1
+        } ) );
+      }
+    }
+
+    // fill shapes
+    this.fillShapes( temp );
+
+    // add nodes
+    temp.forEach( function( pieces, i ) {
+      pieces.forEach( function( piece ) {
+        nodes[i].addChild( piece );
+      } );
+    } );
+
+    // add shapes to node
+    this.addNodes( nodes, radius / 2 );
+    this.setX( -(nodes.length - 1) * radius / 2 );
+  }
+
+  return inherit( AbstractShape, CircleShape, {
+    getPiece: function( radius, s, e ) {
+      var shape = new Shape();
+      if ( (s / 2) % Math.PI !== (e / 2) % Math.PI ) {
         shape.moveTo( 0, 0 );
         shape.lineTo( Math.cos( s ) * radius, Math.sin( s ) * radius );
         shape.arc( 0, 0, radius, s, e, false );
         shape.close();
-        self.addChild( new Path( shape, {fill: f, stroke: options.stroke, lineWidth: 1} ) );
       }
+      else {
+        shape.circle( 0, 0, radius );
+      }
+      return shape;
     }
-  }
-
-  return inherit( AbstractShape, CircleShape );
+  } );
 } );
