@@ -89,7 +89,7 @@ define( function( require ) {
   }
 
   // shapes constructor (name chosen in order not to confuse with the library component)
-  var ShapeGame = function ShapeGame( type, fraction, scaleFactor, fill ) {
+  var ShapeGame = function ShapeGame( type, fraction, scaleFactor, fill, fillType ) {
     this.x = 0;
     this.y = 0;
     this.type = type;
@@ -97,6 +97,7 @@ define( function( require ) {
     this.denominator = fraction[1];
     this.scaleFactor = scaleFactor;
     this.fill = fill;
+    this.fillType = fillType;
     this.answerZone = -1;
     this.dropZone = -1;
 
@@ -181,9 +182,10 @@ define( function( require ) {
         shapesAll = levelDescription.shapes.slice( 0 ), // get possible shaped for selected level
         colorScheme = this.colorScheme, // get possible color scheme for selected level
         max = 6, // number of shapes to add
-        fractions = this.shuffle( levelDescription.fractions.slice( 0 ) ).splice( 0, max ),
+        fractions = _.shuffle( levelDescription.fractions.slice( 0 ) ).splice( 0, max ),
         newLevel = [],
         scaleFactor,
+        fillType,
         fraction,
         shapes,
         color,
@@ -196,20 +198,21 @@ define( function( require ) {
       for ( i = 0; i < max; i++ ) {
         fraction = fractions[i];
         shapes = this.filterShapes( shapesAll, fraction[1] );
-        scaleFactor = numericScaleFactors[this.randomInt( new Range( 0, numericScaleFactors.length - 1 ) )];
+        scaleFactor = numericScaleFactors[_.random( numericScaleFactors.length - 1 )];
+        fillType = levelDescription.fillType[_.random( levelDescription.fillType.length - 1 )];
 
         // first 3 fractions - number, last 3 fractions - shapes with different colors (3 numbers and 3 shapes at least)
         type = (i < max / 2) ? 'NUMBER' : shapes[ i % (shapes.length - 1) ];
         color = (type === 'NUMBER') ? 'rgb(0,0,0)' : colorScheme[i % 3];
-        newLevel.push( new ShapeGame( type, fraction, scaleFactor, color ) );
+        newLevel.push( new ShapeGame( type, fraction, scaleFactor, color, fillType ) );
 
         // add partner: if was number - add shape, if was shape - add number or shape with another color
-        type = shapes[this.randomInt( new Range( 0, shapes.length - (type === 'NUMBER' ? 2 : 1) ) )];
+        type = shapes[_.random( shapes.length - (type === 'NUMBER' ? 2 : 1) )];
         color = (type === 'NUMBER') ? 'rgb(0,0,0)' : colorScheme[(i + 1) % 3];
-        newLevel.push( new ShapeGame( type, fraction, scaleFactor, color ) );
+        newLevel.push( new ShapeGame( type, fraction, scaleFactor, color, fillType ) );
       }
 
-      newLevel = this.shuffle( newLevel );
+      newLevel = _.shuffle( newLevel );
       for ( i = 0; i < newLevel.length; i++ ) {
         newLevel[i].dropZone = i;
       }
@@ -225,13 +228,6 @@ define( function( require ) {
         step: 0,
         answer: []
       };
-    },
-    // function for shuffling arrays
-    shuffle: function( arr ) {
-      return arr.sort( function() {return Math.random() - 0.5;} );
-    },
-    randomInt: function( range ) {
-      return Math.floor( Math.random() * (range.max - range.min + 1) ) + range.min;
     },
     resetLevel: function() {
       var hiScore = this.levelStatus[this.selectLevel].hiScore;
