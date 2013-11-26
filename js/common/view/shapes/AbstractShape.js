@@ -31,7 +31,7 @@ define( function( require ) {
   }
 
   return inherit( Node, AbstractShape, {
-    // function for painting shapes
+    // function for drawing shapes
     pointsToShape: function( s, array, size ) {
       size = size || 1;
       for ( var i = 0; i < array.length; i++ ) {
@@ -39,30 +39,65 @@ define( function( require ) {
       }
       return s;
     },
-    // function for shuffling arrays
-    shuffle: function( arr ) {
-      return arr.sort( function() {return Math.random() - 0.5;} );
-    },
-    arrayToShapes: function( array, offset ) {
-      var self = this, filled = 0;
-      for ( var i = 0, nodes = [], j; i < array.length; i++ ) {
-        nodes[i] = new Node( {x: (i ? i * nodes[i - 1].getWidth() : 0) + i * offset} );
-        if ( this.options.fillType === 'RANDOM' || (this.options.fillType === 'MIXED' && i >= 1) ) {
-          this.shuffle( array[i] );
+    // fill shapes depending on fillType value
+    fillShapes: function( arrays ) {
+      var filled = 0, i = 0, j = 0, len1 = arrays.length, len2 = arrays[0].length;
+
+      while ( filled < this.options.numerator ) {
+        if ( this.options.fillType === 'SEQUENTIAL' ) {
+          arrays[Math.floor( i / len2 ) % len1][i++ % len2].fill = this.options.fill;
+          filled++;
         }
-        for ( j = 0; j < array[i].length; j++ ) {
-          if ( filled++ < this.options.numerator ) {
-            array[i][j].fill = this.options.fill;
+        else if ( this.options.fillType === 'MIXED' ) {
+          if ( filled < len2 ) {
+            arrays[Math.floor( i / len2 ) % len1][i++ % len2].fill = this.options.fill;
+            filled++;
           }
-          nodes[i].addChild( array[i][j] );
+          else {
+            i = _.random( 1, len1 - 1 );
+            j = _.random( len2 - 1 );
+            if ( arrays[i][j].fill === 'white' ) {
+              arrays[i][j].fill = this.options.fill;
+              filled++;
+            }
+          }
+        }
+        else if ( this.options.fillType === 'RANDOM' ) {
+          i = _.random( len1 - 1 );
+          j = _.random( len2 - 1 );
+          if ( arrays[i][j].fill === 'white' ) {
+            arrays[i][j].fill = this.options.fill;
+            filled++;
+          }
         }
       }
-
-      nodes.forEach( function( node ) {
+    },
+    // convert array to shapes and add them to main container
+    arrayToShapes: function( array, offset ) {
+      var nodes = this.getNodesFromArray( array );
+      this.fillShapes( array );
+      this.addNodes( nodes, offset );
+    },
+    // add nodes to main container
+    addNodes: function( nodes, offset ) {
+      var self = this;
+      nodes.forEach( function( node, i ) {
+        node.setX( (i ? i * nodes[i - 1].getWidth() : 0) + (nodes.length === 2 ? (i - 0.5) * offset : 0) );
         self.addChild( node );
       } );
 
       this.scale( 1 / nodes.length, 1 / nodes.length );
+    },
+    // convert array to nodes
+    getNodesFromArray: function( array ) {
+      var nodes = [];
+      for ( var i = 0, j; i < array.length; i++ ) {
+        nodes[i] = new Node();
+        for ( j = 0; j < array[i].length; j++ ) {
+          nodes[i].addChild( array[i][j] );
+        }
+      }
+      return nodes;
     }
   } );
 } );
