@@ -27,8 +27,8 @@ define( function( require ) {
     options = this.options;
 
     self.addChild( new Path( Shape.rect( -side / 2, -side / 2, side, side ), {/*fill: options.freeFill, stroke: options.stroke, lineWidth: 4*/} ) );
-    self.addChild( numeratorLabel = new Text( options.numerator, { font: new PhetFont( { size: 44, weight: "normal"} ), centerX: 0, centerY: -side / 4  } ) );
-    self.addChild( denominatorLabel = new Text( options.denominator, { font: new PhetFont( { size: 44, weight: "normal"} ), centerX: 0, centerY: +side / 4  } ) );
+    self.addChild( numeratorLabel = new Text( options.numerator * options.scaleFactor, { font: new PhetFont( { size: 44, weight: "normal"} ), centerX: 0, centerY: -side / 4  } ) );
+    self.addChild( denominatorLabel = new Text( options.denominator * options.scaleFactor, { font: new PhetFont( { size: 44, weight: "normal"} ), centerX: 0, centerY: +side / 4  } ) );
     shape.moveTo( Math.min( numeratorLabel.left, denominatorLabel.left ) - 10, 0 );
     shape.lineTo( Math.max( numeratorLabel.right, denominatorLabel.right ) + 10, 0 );
     self.addChild( new Path( shape, {stroke: options.stroke, lineWidth: 3} ) );

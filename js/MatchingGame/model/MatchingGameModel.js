@@ -89,19 +89,19 @@ define( function( require ) {
   }
 
   // shapes constructor (name chosen in order not to confuse with the library component)
-  var ShapeGame = function ShapeGame( type, fraction, fill ) {
+  var ShapeGame = function ShapeGame( type, fraction, scaleFactor, fill ) {
     this.x = 0;
     this.y = 0;
     this.type = type;
     this.numerator = fraction[0];
     this.denominator = fraction[1];
-    this.undivided = 0;
+    this.scaleFactor = scaleFactor;
     this.fill = fill;
     this.answerZone = -1;
     this.dropZone = -1;
 
     this.getAnswer = function() {
-      return this.undivided + this.numerator / this.denominator;
+      return this.numerator / this.denominator;
     };
   };
 
@@ -177,35 +177,38 @@ define( function( require ) {
       if ( !level ) {return;} // if (level === 0) - it's menu page, and we don't have to generate new level
 
       var levelDescription = this.CONSTANTS.LEVEL_DESCRIPTION[level - 1], // get description for selected level
+        numericScaleFactors = levelDescription.numericScaleFactors.slice( 0 ),
         shapesAll = levelDescription.shapes.slice( 0 ), // get possible shaped for selected level
         colorScheme = this.colorScheme, // get possible color scheme for selected level
+        max = 6, // number of shapes to add
+        fractions = this.shuffle( levelDescription.fractions.slice( 0 ) ).splice( 0, max ),
+        newLevel = [],
+        scaleFactor,
+        fraction,
+        shapes,
+        color,
+        type,
         i;
 
       shapesAll.push( 'NUMBER' ); // add fractions to possible shapes
-
-      var max = 6, // number of shapes to add
-        fractions = this.shuffle( levelDescription.fractions.slice( 0 ) ).splice( 0, max ),
-        newLevel = [],
-        shapes,
-        color,
-        fraction,
-        type;
 
       // add shapes
       for ( i = 0; i < max; i++ ) {
         fraction = fractions[i];
         shapes = this.filterShapes( shapesAll, fraction[1] );
+        scaleFactor = numericScaleFactors[this.randomInt( new Range( 0, numericScaleFactors.length - 1 ) )];
 
         // first 3 fractions - number, last 3 fractions - shapes with different colors (3 numbers and 3 shapes at least)
         type = (i < max / 2) ? 'NUMBER' : shapes[ i % (shapes.length - 1) ];
         color = (type === 'NUMBER') ? 'rgb(0,0,0)' : colorScheme[i % 3];
-        newLevel.push( new ShapeGame( type, fraction, color ) );
+        newLevel.push( new ShapeGame( type, fraction, scaleFactor, color ) );
 
         // add partner: if was number - add shape, if was shape - add number or shape with another color
         type = shapes[this.randomInt( new Range( 0, shapes.length - (type === 'NUMBER' ? 2 : 1) ) )];
         color = (type === 'NUMBER') ? 'rgb(0,0,0)' : colorScheme[(i + 1) % 3];
-        newLevel.push( new ShapeGame( type, fraction, color ) );
+        newLevel.push( new ShapeGame( type, fraction, scaleFactor, color ) );
       }
+
       newLevel = this.shuffle( newLevel );
       for ( i = 0; i < newLevel.length; i++ ) {
         newLevel[i].dropZone = i;
