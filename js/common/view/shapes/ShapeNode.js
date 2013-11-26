@@ -39,7 +39,6 @@ define( function( require ) {
         height: 100,
         numerator: 1,
         denominator: 1,
-        undivided: 0,
         fill: "#F00"
       },
       options );

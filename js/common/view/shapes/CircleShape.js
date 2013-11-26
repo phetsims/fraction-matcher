@@ -19,7 +19,6 @@ define( function( require ) {
     var radius,
       numerator,
       denominator,
-      filled = 0,
       temp = [],
       nodes = [];
 
