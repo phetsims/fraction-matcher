@@ -46,12 +46,7 @@ define( function( require ) {
     options.x = 0;
     options.y = 0;
 
-    if ( map[options.type] ) {
-      thisNode.addChild( new map[options.type]( options ) );
-    }
-    else {
-      thisNode.addChild( new map.PIES( options ) );
-    }
+    thisNode.addChild( new map[options.type]( options ) );
   }
 
   return inherit( Node, ShapeNode );

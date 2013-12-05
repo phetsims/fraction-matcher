@@ -35,7 +35,6 @@ define( function( require ) {
       temp[i] = [];
     }
 
-    // TODO: add stroke
     // create pieces and add them to created array
     for ( i = 0; i < nodes.length; i++ ) {
       for ( j = 0; j < denominator; j++ ) {
@@ -43,6 +42,11 @@ define( function( require ) {
           fill: 'white', stroke: options.stroke, lineWidth: 1
         } ) );
       }
+
+      // TODO: add stroke
+      /*temp[i].push( new Path( this.getPiece( radius, 0, Math.PI * 2 ), {
+        fill: 'none', stroke: options.stroke, lineWidth: 3
+      } ) );*/
     }
 
     // fill shapes

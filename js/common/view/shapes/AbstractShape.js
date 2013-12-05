@@ -37,6 +37,7 @@ define( function( require ) {
       for ( var i = 0; i < array.length; i++ ) {
         s.lineTo( array[i].x * size, array[i].y * size );
       }
+      s.close();
       return s;
     },
     // fill shapes depending on fillType value
