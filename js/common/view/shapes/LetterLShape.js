@@ -56,7 +56,7 @@ define( function( require ) {
 
     // add letters to node
     this.arrayToShapes( pieces, size / 2 );
-    this.setTranslation( (Math.max( 0, w - h ) - options.width) / 2, (Math.max( 0, h - w ) - options.height) / 2 );
+    this.setTranslation( (Math.max( 0, w - h ) - options.width * ((denominator === 2 && denominator >= numerator) ? 1.5 : 1)) / 2, (Math.max( 0, h - w ) - options.height) / 2 );
   }
 
   var shapeDefinition = {

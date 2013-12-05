@@ -53,7 +53,7 @@ define( function( require ) {
 
     // add shapes to node
     this.arrayToShapes( pieces, size / 4 );
-    this.setTranslation( -options.width / 2, -options.height / (2 * Math.ceil( Math.sqrt( pieces.length ) )) );
+    this.setTranslation( -options.width / 2, -options.height / denominator );
   }
 
   var map = {

@@ -27,8 +27,8 @@ define( function( require ) {
     // icon for each level button
     var levelButtonIcon = [
       {type: 'PIES', fill: model.CONSTANTS.COLORS.LIGHT_RED},
-      {type: 'VERTICAL_BARS', fill: model.CONSTANTS.COLORS.LIGHT_GREEN},
-      {type: 'HORIZONTAL_BARS', fill: model.CONSTANTS.COLORS.LIGHT_BLUE},
+      {type: 'HORIZONTAL_BARS', fill: model.CONSTANTS.COLORS.LIGHT_GREEN},
+      {type: 'VERTICAL_BARS', fill: model.CONSTANTS.COLORS.LIGHT_BLUE},
       {type: 'LETTER_L_SHAPES', fill: model.CONSTANTS.COLORS.ORANGE},
       {type: 'POLYGON', fill: model.CONSTANTS.COLORS.PINK},
       {type: 'FLOWER', fill: model.CONSTANTS.COLORS.YELLOW},

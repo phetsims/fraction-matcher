@@ -9,8 +9,8 @@ define( function( require ) {
   "use strict";
 
   // imports
-  var inherit = require( "PHET_CORE/inherit" );
-  var AbstractShape = require( "common/view/shapes/AbstractShape" );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var AbstractShape = require( 'common/view/shapes/AbstractShape' );
   var Path = require( 'SCENERY/nodes/Path' );
   var Shape = require( 'KITE/Shape' );
 
@@ -36,8 +36,8 @@ define( function( require ) {
     // create pieces and add them to created array
     for ( i = 0; i < pieces.length; i++ ) {
       for ( j = 0; j < denominator; j++ ) {
-        pieces[i].push( new Path( this.getPiece( size, size / denominator ), {
-          y: j / denominator * size, fill: 'white', stroke: options.stroke, lineWidth: 1
+        pieces[i].push( new Path( this.getPiece( size / denominator, size ), {
+          x: j / denominator * size, fill: 'white', stroke: options.stroke, lineWidth: 1
         } ) );
       }
     }
@@ -45,7 +45,6 @@ define( function( require ) {
     // add shapes to node
     this.arrayToShapes( pieces, size / 4 );
     this.setTranslation( -options.width / 2, -options.height / (2 * pieces.length) );
-
   }
 
   return inherit( AbstractShape, VRectangleShape, {
