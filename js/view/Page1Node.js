@@ -14,6 +14,7 @@ define( function( require ) {
     Node = require( "SCENERY/nodes/Node" ),
     Text = require( 'SCENERY/nodes/Text' ),
     matchingGameHeaderString = require( 'string!FRACTION_MATCHER/matchingGameHeader' ),
+    mixedNumbersHeaderString = require( 'string!FRACTION_MATCHER/mixedNumbersHeader' ),
     mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' ),
     patternLevelString = require( 'string!FRACTION_MATCHER/patternLevel' ),
     PhetFont = require( 'SCENERY_PHET/PhetFont' ),
@@ -37,7 +38,7 @@ define( function( require ) {
     ];
 
     // add header
-    this.addChild( new Text( matchingGameHeaderString, { font: new PhetFont( { size: 40, weight: "bold"} ), centerX: 1140 / 2, centerY: 40  } ) );
+    this.addChild( new Text( (model.game === mixedNumbersTitleString ? mixedNumbersHeaderString : matchingGameHeaderString), { font: new PhetFont( { size: 40, weight: "bold"} ), centerX: 1140 / 2, centerY: 40  } ) );
 
     // add level buttons
     for ( var i = 0, levelBt = []; i < 8; i++ ) {
