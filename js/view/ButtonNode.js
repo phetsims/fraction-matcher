@@ -25,7 +25,6 @@ define( function( require ) {
         lineWidth: 1,
         shadowOffset: {x: 2, y: 3},
         shadowFill: "rgba(0,0,0,0.2)",
-
         font: new PhetFont( { size: 19, weight: "bold"} ),
         rectangleFillUp: "#FFD63F",
         rectangleFillDown: "#FFD63F",
@@ -63,7 +62,8 @@ define( function( require ) {
       new Node( {children: [shadowBt, baseOverBt]} ),
       new Node( {children: [baseDownBt], x: options.shadowOffset.x, y: options.shadowOffset.y} ),
       new Node( {children: [baseUpBt]} ),
-      {listener: function() {callback();}} ) );
+      {listener: function() {callback();}} )
+    );
   }
 
   return inherit( Node, ButtonNode );

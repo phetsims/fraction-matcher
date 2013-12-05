@@ -45,6 +45,8 @@ define( function( require ) {
       levelBt.push( new LevelButtonNode( model, {
         x: 250 + 200 * (i % 4),
         y: 200 + 250 * Math.floor( i / 4 ),
+        width: 130,
+        height: ( model.game === mixedNumbersTitleString ? 150 : 200 ),
         label: StringUtils.format( patternLevelString, i + 1 ),
         shape: new ShapeNode( {
           type: levelButtonIcon[i].type,

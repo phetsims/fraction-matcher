@@ -48,7 +48,6 @@ define( function( require ) {
     baseBt.addChild( new Node( {children: [options.shape], x: 0, y: 0} ) );
     baseBt.addChild( starBox = new StarBoxNode( {x: 0, y: options.height / 2 - 25, width: options.width, starCount: options.starCount} ) );
 
-
     var shadowBt = new Rectangle( -(options.width / 2) + options.shadowOffset.x, -(options.height / 2) + options.shadowOffset.y, options.width, options.height, options.round, options.round, {fill: options.stroke, stroke: options.stroke, lineWidth: options.lineWidth} );
 
     thisNode.addChild( new PushButton(
@@ -56,7 +55,8 @@ define( function( require ) {
       new Node( {children: [shadowBt, baseBt]} ),
       new Node( {children: [baseBt], x: options.shadowOffset.x, y: options.shadowOffset.y} ),
       new Node( {children: [baseBt]} ),
-      {listener: function() {options.callback( options.value );}} ) );
+      {listener: function() {options.callback( options.value );}} )
+    );
 
     thisNode.setScore = function( score ) {
       starBox.setScore( score );
