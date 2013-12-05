@@ -53,7 +53,7 @@ define( function( require ) {
     // create pieces and add them to temporary array
     for ( i = 0, len = max; i < len; i++ ) {
       // TODO: stroke
-      pieces[Math.floor( i / denominator )].push( new Path( this.getPiece( size, map[i % 8], map[(i + 1) % 8] ), {
+      pieces[Math.floor( i / denominator )].unshift( new Path( this.getPiece( size, map[i % 8], map[(i + 1) % 8] ), {
         fill: 'white', stroke: options.stroke, lineWidth: 1
       } ) );
     }

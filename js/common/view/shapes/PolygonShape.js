@@ -34,14 +34,15 @@ define( function( require ) {
 
     max = denominator * Math.ceil( numerator / denominator );
 
-    for ( var i = 0, len = max / denominator; i < len; i++ ) {
+    for ( var i = 0, len = max / denominator, j; i < len; i++ ) {
       pieces[i] = [];
     }
 
     // create pieces and add them to temporary array
     for ( i = 0, len = max; i < len; i++ ) {
       // TODO: stroke
-      pieces[Math.floor( i / denominator )].push( new Path( this.getPiece( diameter / 2, triAngle * i, triAngle * (i + 1) ), {
+      j = i + Math.floor( len / (2 * pieces.length) );
+      pieces[Math.floor( i / denominator )].push( new Path( this.getPiece( diameter / 2, triAngle * j, triAngle * (j + 1) ), {
         fill: 'white', stroke: options.stroke, lineWidth: 1
       } ) );
     }

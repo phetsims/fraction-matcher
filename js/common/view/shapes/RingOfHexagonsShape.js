@@ -51,9 +51,9 @@ define( function( require ) {
     ];
 
     // create pieces and add them to temporary array
-    for ( i = 0, len = max; i < len; i++ ) {
+    for ( i = 1, len = max; i < len + 1; i++ ) {
       // TODO: stroke
-      pieces[Math.floor( i / denominator )].push( new Path( this.getPiece( size, angle ), {
+      pieces[Math.floor( (i - 1) / denominator )].push( new Path( this.getPiece( size, angle ), {
         x: map[i % 7].x * Math.sqrt( 3 ) * size, y: map[i % 7].y * Math.sqrt( 3 ) * size, fill: 'white', stroke: options.stroke, lineWidth: 1
       } ) );
     }

@@ -53,6 +53,7 @@ define( function( require ) {
 
   return inherit( AbstractShape, FlowerShape, {
     getPiece: function( size, angle, i ) {
+      i = i + 3;
       return this.pointsToShape( new Shape(), [
         {x: 0, y: 0},
         {x: -Math.sin( angle * (i - 1 / 2) ) / 2, y: -Math.cos( angle * (i - 1 / 2) ) / 2},
