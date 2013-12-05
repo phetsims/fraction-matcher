@@ -14,9 +14,8 @@ define( function( require ) {
   var Range = require( 'DOT/Range' );
   var Constants = require( 'common/Constants' );
 
-  var CONSTANTS = new Constants( 'matchingGame' );
-
-  function MatchingGameModel( width, height ) {
+  function MatchingGameModel( width, height, game ) {
+    var CONSTANTS = new Constants( game );
 
     // dimensions of the model's space
     this.width = width;

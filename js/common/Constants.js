@@ -5,8 +5,10 @@
  *
  * @author Andrey Zelenkov (Mlearner)
  */
-define( function() {
+define( function( require ) {
   "use strict";
+
+  var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
 
   function Constants( game ) {
     // color constants
@@ -237,7 +239,7 @@ define( function() {
         shapes: this.SHAPES.slice( 0 )
       }
     ];
-    if ( game === 'mixedNumbers' ) {
+    if ( game === mixedNumbersTitleString ) {
       // level 1
       this.LEVEL_DESCRIPTION[0].fractions.pop(); // remove fraction 1/1
       this.LEVEL_DESCRIPTION[0].fractions.push(  // add mixed fractions
