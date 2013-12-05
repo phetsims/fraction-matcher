@@ -16,6 +16,7 @@ define( function( require ) {
   var PaginationNode = require( 'FRACTION_MATCHER/common/view/PaginationNode' );
   var Page1Node = require( 'FRACTION_MATCHER/MatchingGame/view/Page1Node' );
   var ActionNode = require( 'FRACTION_MATCHER/MatchingGame/view/ActionNode' );
+  var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
 
   /**
    * @param {BeersLawModel} model
@@ -29,6 +30,9 @@ define( function( require ) {
     ScreenView.call( thisView, { renderer: 'svg' } );
     thisView.addChild( pagination = new PaginationNode( model, [new Page1Node( model )], {} ) );
     thisView.addChild( action = new ActionNode( model ) );
+
+    // add reset button
+    this.addChild( new ResetAllButton( function() { model.reset(); }, { x: 1.4 * model.width, y: 1.3 * model.height} ) );
 
     model.actionProperty.link( function selectAction( value ) {
       pagination.setVisible( value === 0 );

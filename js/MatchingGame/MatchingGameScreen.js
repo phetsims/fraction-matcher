@@ -15,7 +15,8 @@ define( function( require ) {
     matchingGameTitleString = require( 'string!FRACTION_MATCHER/matchingGameTitle' ),
     ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' ),
     Screen = require( 'JOIST/Screen' ),
-    inherit = require( 'PHET_CORE/inherit' );
+    inherit = require( 'PHET_CORE/inherit' ),
+    ScreenView = require( 'JOIST/ScreenView' );
 
   function MatchingGameScreen() {
 
@@ -24,7 +25,7 @@ define( function( require ) {
     Screen.call( this,
       matchingGameTitleString,
       new Image( require( 'image!FRACTION_MATCHER/../images/MatchingGame-icon.png' ) ),
-      function() { return new MatchingGameModel(); },
+      function() { return new MatchingGameModel( ScreenView.LAYOUT_BOUNDS.width, ScreenView.LAYOUT_BOUNDS.height ); },
       function( model ) { return new MatchingGameView( model, mvt ); }
     );
   }

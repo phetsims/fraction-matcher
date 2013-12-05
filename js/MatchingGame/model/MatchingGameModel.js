@@ -16,11 +16,11 @@ define( function( require ) {
 
   var CONSTANTS = new Constants( 'matchingGame' );
 
-  /**
-   * @param {ModelViewTransform2} mvt
-   * @constructor
-   */
-  function MatchingGameModel( mvt ) {
+  function MatchingGameModel( width, height ) {
+
+    // dimensions of the model's space
+    this.width = width;
+    this.height = height;
 
     this.CONSTANTS = CONSTANTS;
     this.colorScheme = [CONSTANTS.COLORS.LIGHT_BLUE, CONSTANTS.COLORS.LIGHT_GREEN, CONSTANTS.COLORS.LIGHT_RED];
@@ -76,11 +76,13 @@ define( function( require ) {
       {x: 995, y: 70, scale: 0.5, radius: 50, indexShape: -1},
       {x: 1065, y: 70, scale: 0.5, radius: 50, indexShape: -1}
     ];
+
     this.buttonStatusProperty.link( function updateButtonStatus() {
       if ( thisModel.selectLevel > 0 ) {
         thisModel.levelStatus[thisModel.selectLevel].buttonStatus = thisModel.buttonStatus;
       }
     } );
+
     this.canDragProperty.link( function updateCanDragStatus() {
       if ( thisModel.selectLevel > 0 ) {
         thisModel.levelStatus[thisModel.selectLevel].canDrag = thisModel.canDrag;
@@ -109,7 +111,9 @@ define( function( require ) {
   inherit( PropertySet, MatchingGameModel, {
 
     // Resets all model elements
-    reset: function() {},
+    reset: function() {
+      PropertySet.prototype.reset.call( this );
+    },
     step: function() {},
     nearDropZone: function( coord, onlyFree ) {
       var near = -1;
