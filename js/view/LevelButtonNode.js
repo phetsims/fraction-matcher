@@ -16,7 +16,7 @@ define( function( require ) {
     PhetFont = require( 'SCENERY_PHET/PhetFont' ),
     Rectangle = require( 'SCENERY/nodes/Rectangle' ),
     PushButton = require( 'SUN/PushButton' ),
-    StarBoxNode = require( 'FRACTION_MATCHER/MatchingGame/view/StarBoxNode' );
+    StarBoxNode = require( 'FRACTION_MATCHER/view/StarBoxNode' );
 
   function LevelButtonNode( model, options ) {
     options = _.extend( {

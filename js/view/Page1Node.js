@@ -14,10 +14,11 @@ define( function( require ) {
     Node = require( "SCENERY/nodes/Node" ),
     Text = require( 'SCENERY/nodes/Text' ),
     matchingGameHeaderString = require( 'string!FRACTION_MATCHER/matchingGameHeader' ),
+    mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' ),
     patternLevelString = require( 'string!FRACTION_MATCHER/patternLevel' ),
     PhetFont = require( 'SCENERY_PHET/PhetFont' ),
     StringUtils = require( 'PHETCOMMON/util/StringUtils' ),
-    LevelButtonNode = require( 'FRACTION_MATCHER/MatchingGame/view/LevelButtonNode' ),
+    LevelButtonNode = require( 'FRACTION_MATCHER/view/LevelButtonNode' ),
     ShapeNode = require( 'FRACTION_MATCHER/common/view/shapes/ShapeNode' );
 
   function Page1Node( model ) {
@@ -26,8 +27,8 @@ define( function( require ) {
     // icon for each level button
     var levelButtonIcon = [
       {type: 'PIES', fill: model.CONSTANTS.COLORS.LIGHT_RED},
-      {type: 'HORIZONTAL_BARS', fill: model.CONSTANTS.COLORS.LIGHT_GREEN},
-      {type: 'VERTICAL_BARS', fill: model.CONSTANTS.COLORS.LIGHT_BLUE},
+      {type: 'VERTICAL_BARS', fill: model.CONSTANTS.COLORS.LIGHT_GREEN},
+      {type: 'HORIZONTAL_BARS', fill: model.CONSTANTS.COLORS.LIGHT_BLUE},
       {type: 'LETTER_L_SHAPES', fill: model.CONSTANTS.COLORS.ORANGE},
       {type: 'POLYGON', fill: model.CONSTANTS.COLORS.PINK},
       {type: 'FLOWER', fill: model.CONSTANTS.COLORS.YELLOW},
@@ -50,7 +51,7 @@ define( function( require ) {
           y: -10,
           width: 90,
           height: 90,
-          numerator: i + 1,
+          numerator: i + ( model.game === mixedNumbersTitleString ? 2 : 1 ),
           denominator: i + 1,
           fill: levelButtonIcon[i].fill
         } ),

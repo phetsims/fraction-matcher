@@ -14,8 +14,8 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var PaginationNode = require( 'FRACTION_MATCHER/common/view/PaginationNode' );
-  var Page1Node = require( 'FRACTION_MATCHER/MatchingGame/view/Page1Node' );
-  var ActionNode = require( 'FRACTION_MATCHER/MatchingGame/view/ActionNode' );
+  var Page1Node = require( 'FRACTION_MATCHER/view/Page1Node' );
+  var ActionNode = require( 'FRACTION_MATCHER/view/ActionNode' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
 
   /**

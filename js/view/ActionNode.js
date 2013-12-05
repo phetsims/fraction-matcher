@@ -21,13 +21,13 @@ define( function( require ) {
     Rectangle = require( 'SCENERY/nodes/Rectangle' ),
     StringUtils = require( 'PHETCOMMON/util/StringUtils' ),
 
-    ButtonBackNode = require( 'FRACTION_MATCHER/MatchingGame/view/ButtonBackNode' ),
-    ButtonResetLevelNode = require( 'FRACTION_MATCHER/MatchingGame/view/ButtonResetLevelNode' ),
-    ButtonNode = require( 'FRACTION_MATCHER/MatchingGame/view/ButtonNode' ),
-    LevelNode = require( 'FRACTION_MATCHER/MatchingGame/view/LevelNode' ),
-    GameOverNode = require( 'FRACTION_MATCHER/MatchingGame/view/GameOverNode' ),
-    SmileNode = require( 'FRACTION_MATCHER/MatchingGame/view/SmileNode' ),
-    ComparisonChartNode = require( 'FRACTION_MATCHER/MatchingGame/view/ComparisonChartNode' ),
+    ButtonBackNode = require( 'FRACTION_MATCHER/view/ButtonBackNode' ),
+    ButtonResetLevelNode = require( 'FRACTION_MATCHER/view/ButtonResetLevelNode' ),
+    ButtonNode = require( 'FRACTION_MATCHER/view/ButtonNode' ),
+    LevelNode = require( 'FRACTION_MATCHER/view/LevelNode' ),
+    GameOverNode = require( 'FRACTION_MATCHER/view/GameOverNode' ),
+    SmileNode = require( 'FRACTION_MATCHER/view/SmileNode' ),
+    ComparisonChartNode = require( 'FRACTION_MATCHER/view/ComparisonChartNode' ),
 
   // strings
     patternLevelString = require( 'string!FRACTION_MATCHER/patternLevel' ),

@@ -13,7 +13,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' ),
     Node = require( "SCENERY/nodes/Node" ),
     Rectangle = require( 'SCENERY/nodes/Rectangle' ),
-    StarNode = require( 'FRACTION_MATCHER/MatchingGame/view/StarNode' );
+    StarNode = require( 'FRACTION_MATCHER/view/StarNode' );
 
   var Image = require( 'SCENERY/nodes/Image' );
 

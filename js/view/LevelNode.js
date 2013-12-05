@@ -16,15 +16,15 @@ define( function( require ) {
     Matrix3 = require( 'DOT/Matrix3' ),
     PhetFont = require( 'SCENERY_PHET/PhetFont' ),
     equallyAnswerSymbolString = require( 'string!FRACTION_MATCHER/equallyAnswerSymbol' ),
-    ButtonBackNode = require( 'FRACTION_MATCHER/MatchingGame/view/ButtonBackNode' ),
-    ButtonResetLevelNode = require( 'FRACTION_MATCHER/MatchingGame/view/ButtonResetLevelNode' ),
+    ButtonBackNode = require( 'FRACTION_MATCHER/view/ButtonBackNode' ),
+    ButtonResetLevelNode = require( 'FRACTION_MATCHER/view/ButtonResetLevelNode' ),
     ShapeNode = require( 'FRACTION_MATCHER/common/view/shapes/ShapeNode' ),
     Image = require( 'SCENERY/nodes/Image' ),
     SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' ),
     Path = require( 'SCENERY/nodes/Path' ),
     Shape = require( 'KITE/Shape' ),
     TextPushButton = require( 'SUN/TextPushButton' ),
-    ButtonNode = require( 'FRACTION_MATCHER/MatchingGame/view/ButtonNode' );
+    ButtonNode = require( 'FRACTION_MATCHER/view/ButtonNode' );
 
   function LevelNode( model, options ) {
 

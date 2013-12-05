@@ -22,7 +22,7 @@ define( function( require ) {
     PhetFont = require( 'SCENERY_PHET/PhetFont' ),
     Rectangle = require( 'SCENERY/nodes/Rectangle' ),
     Line = require( 'SCENERY/nodes/Line' ),
-    ButtonNode = require( 'FRACTION_MATCHER/MatchingGame/view/ButtonNode' ),
+    ButtonNode = require( 'FRACTION_MATCHER/view/ButtonNode' ),
 
     Image = require( 'SCENERY/nodes/Image' );
 

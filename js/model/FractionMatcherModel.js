@@ -21,6 +21,7 @@ define( function( require ) {
     this.width = width;
     this.height = height;
 
+    this.game = game;
     this.CONSTANTS = CONSTANTS;
     this.colorScheme = [CONSTANTS.COLORS.LIGHT_BLUE, CONSTANTS.COLORS.LIGHT_GREEN, CONSTANTS.COLORS.LIGHT_RED];
 
