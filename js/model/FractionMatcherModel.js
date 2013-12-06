@@ -9,10 +9,11 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var inherit = require( 'PHET_CORE/inherit' );
-  var PropertySet = require( 'AXON/PropertySet' );
-  var Range = require( 'DOT/Range' );
-  var Constants = require( 'common/Constants' );
+  var inherit = require( 'PHET_CORE/inherit' ),
+    PropertySet = require( 'AXON/PropertySet' ),
+    Range = require( 'DOT/Range' ),
+    Constants = require( 'common/Constants' ),
+    mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
 
   function MatchingGameModel( width, height, game ) {
     var CONSTANTS = new Constants( game );
@@ -187,6 +188,7 @@ define( function( require ) {
         colorScheme = this.colorScheme, // get possible color scheme for selected level
         max = 6, // number of shapes to add
         fractions = _.shuffle( levelDescription.fractions.slice( 0 ) ).splice( 0, max ),
+        numberType = (this.game === mixedNumbersTitleString ? 'NUMBERSIMPLE' : 'NUMBER' ),
         newLevel = [],
         scaleFactor,
         fillType,
@@ -196,7 +198,7 @@ define( function( require ) {
         type,
         i;
 
-      shapesAll.push( 'NUMBER' ); // add fractions to possible shapes
+      shapesAll.push( numberType ); // add fractions to possible shapes
 
       // add shapes
       for ( i = 0; i < max; i++ ) {
@@ -206,13 +208,13 @@ define( function( require ) {
         fillType = levelDescription.fillType[_.random( levelDescription.fillType.length - 1 )];
 
         // first 3 fractions - number, last 3 fractions - shapes with different colors (3 numbers and 3 shapes at least)
-        type = (i < max / 2) ? 'NUMBER' : shapes[ i % (shapes.length - 1) ];
-        color = (type === 'NUMBER') ? 'rgb(0,0,0)' : colorScheme[i % 3];
+        type = (i < max / 2) ? numberType : shapes[ i % (shapes.length - 1) ];
+        color = (type === numberType) ? 'rgb(0,0,0)' : colorScheme[i % 3];
         newLevel.push( new ShapeGame( type, fraction, scaleFactor, color, fillType ) );
 
         // add partner: if was number - add shape, if was shape - add number or shape with another color
-        type = shapes[_.random( shapes.length - (type === 'NUMBER' ? 2 : 1) )];
-        color = (type === 'NUMBER') ? 'rgb(0,0,0)' : colorScheme[(i + 1) % 3];
+        type = shapes[_.random( shapes.length - (type === numberType ? 2 : 1) )];
+        color = (type === numberType) ? 'rgb(0,0,0)' : colorScheme[(i + 1) % 3];
         newLevel.push( new ShapeGame( type, fraction, scaleFactor, color, fillType ) );
       }
 

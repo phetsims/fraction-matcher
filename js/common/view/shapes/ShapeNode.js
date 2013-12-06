@@ -9,8 +9,8 @@ define( function( require ) {
   "use strict";
 
   // imports
-  var inherit = require( "PHET_CORE/inherit" ),
-    Node = require( "SCENERY/nodes/Node" );
+  var inherit = require( 'PHET_CORE/inherit' ),
+    Node = require( 'SCENERY/nodes/Node' );
 
   var map = {
     PIES: require( 'FRACTION_MATCHER/common/view/shapes/CircleShape' ),
@@ -26,7 +26,8 @@ define( function( require ) {
     INTERLEAVED_L_SHAPES: require( 'FRACTION_MATCHER/common/view/shapes/InterleavedLShape' ),
     TETRIS: require( 'FRACTION_MATCHER/common/view/shapes/TetrisPieceShape' ),
     NINJA_STAR: require( 'FRACTION_MATCHER/common/view/shapes/NinjaStarShape' ),
-    NUMBER: require( 'FRACTION_MATCHER/common/view/shapes/NumericShape' )
+    NUMBER: require( 'FRACTION_MATCHER/common/view/shapes/NumericShape' ),
+    NUMBERSIMPLE: require( 'FRACTION_MATCHER/common/view/shapes/NumericSimplifiedShape' )
   };
 
   function ShapeNode( options ) {
