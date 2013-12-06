@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * Main page for the 'Fraction Matcher' screen.
+ * View for a single star. Have 5 different states depends on score.
  *
  * @author Anton Ulyanov (Mlearner)
  */
@@ -15,34 +15,31 @@ define( function( require ) {
     Image = require( 'SCENERY/nodes/Image' );
 
   function StarNode( options ) {
-    options = _.extend( {
-        x: 0,
-        y: 0,
-        score: 0
-      },
-      options
-    );
-    var thisNode = this;
-    Node.call( thisNode, {x: options.x, y: options.y} );
-    thisNode.score = options.score;
-    var star = [
+    var thisNode = this, star = [ // view for different score
       new Image( require( 'image!FRACTION_MATCHER/../images/star-0.png' ) ),
       new Image( require( 'image!FRACTION_MATCHER/../images/star-1.png' ) ),
       new Image( require( 'image!FRACTION_MATCHER/../images/star-2.png' ) ),
       new Image( require( 'image!FRACTION_MATCHER/../images/star-3.png' ) ),
       new Image( require( 'image!FRACTION_MATCHER/../images/star-4.png' ) )
     ];
+
+    options = _.extend( {
+        x: 0,
+        y: 0
+      },
+      options
+    );
+    Node.call( thisNode, {x: options.x, y: options.y} );
+
+    // add images to node
     thisNode.children = star;
+
+    // set new score and update view according to score value
     thisNode.setScore = function( score ) {
-      thisNode.score = score;
-      thisNode.update();
+      star.forEach( function( view, i ) {
+        view.setVisible( i === score );
+      } );
     };
-    thisNode.update = function() {
-      for ( var i = 0; i < star.length; i++ ) {
-        star[i].setVisible( i === thisNode.score );
-      }
-    };
-    thisNode.update();
   }
 
   return inherit( Node, StarNode );

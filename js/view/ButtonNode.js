@@ -18,6 +18,14 @@ define( function( require ) {
     PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
   function ButtonNode( text, callback, options ) {
+    var thisNode = this,
+      textNode = new Text( text, { font: options.font } ),
+      width, height,
+      baseUpBt = new Node(),
+      baseDownBt = new Node(),
+      baseOverBt = new Node(),
+      shadowBt;
+
     options = _.extend( {
         x: 0,
         y: 0,
@@ -35,27 +43,24 @@ define( function( require ) {
       },
       options
     );
-    var thisNode = this;
+
     Node.call( thisNode, {x: options.x, y: options.y} );
 
-    var textNode = new Text( text, { font: options.font } );
     textNode.centerX = 0;
     textNode.centerY = 0;
-    var width = textNode.width + options.rectangleXMargin * 2;
-    var height = textNode.height + options.rectangleYMargin * 2;
+    width = textNode.width + options.rectangleXMargin * 2;
+    height = textNode.height + options.rectangleYMargin * 2;
 
-    var baseUpBt = new Node();
     baseUpBt.addChild( new Rectangle( -(width / 2), -(height / 2), width, height, options.rectangleCornerRadius, options.rectangleCornerRadius, {fill: options.rectangleFillUp, stroke: options.stroke, lineWidth: options.lineWidth} ) );
     baseUpBt.addChild( textNode );
 
-    var baseDownBt = new Node();
     baseDownBt.addChild( new Rectangle( -(width / 2), -(height / 2), width, height, options.rectangleCornerRadius, options.rectangleCornerRadius, {fill: options.rectangleFillDown, stroke: options.stroke, lineWidth: options.lineWidth} ) );
     baseDownBt.addChild( textNode );
-    var baseOverBt = new Node();
+
     baseOverBt.addChild( new Rectangle( -(width / 2), -(height / 2), width, height, options.rectangleCornerRadius, options.rectangleCornerRadius, {fill: options.rectangleFillOver, stroke: options.stroke, lineWidth: options.lineWidth} ) );
     baseOverBt.addChild( textNode );
 
-    var shadowBt = new Rectangle( -(width / 2) + options.shadowOffset.x, -(height / 2) + options.shadowOffset.y, width, height, options.rectangleCornerRadius, options.rectangleCornerRadius, {fill: options.shadowFill, stroke: options.shadowFill, lineWidth: options.lineWidth} );
+    shadowBt = new Rectangle( -(width / 2) + options.shadowOffset.x, -(height / 2) + options.shadowOffset.y, width, height, options.rectangleCornerRadius, options.rectangleCornerRadius, {fill: options.shadowFill, stroke: options.shadowFill, lineWidth: options.lineWidth} );
 
     thisNode.addChild( new PushButton(
       new Node( {children: [shadowBt, baseUpBt]} ),

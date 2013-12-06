@@ -2,6 +2,7 @@
 
 /**
  * Comparison chart for the 'Fraction Matcher'.
+ * Contains signs shapes (more, equal, less), scale, indicators.
  *
  * @author Anton Ulyanov (Mlearner)
  */
@@ -19,9 +20,12 @@ define( function( require ) {
     Image = require( 'SCENERY/nodes/Image' );
 
   function ComparisonChartNode( options ) {
+    var thisNode = this,
+      lessShape = new Shape(),
+      eqShape = new Shape();
+
     options = _.extend( {
         radius: 70,
-
         symbolFill: "#FFFF00",
         symbolWidth: 2,
         stroke: "#000",
@@ -31,9 +35,8 @@ define( function( require ) {
         lineHeight: 200
       },
       options );
-    var thisNode = this;
 
-    var lessShape = new Shape();
+    // create less shape
     lessShape.moveTo( -options.lineWeight / 8, 0 );
     lessShape.lineTo( options.lineWeight / 4, -options.lineWeight / 8 );
     lessShape.lineTo( options.lineWeight / 4, -options.lineWeight / 4 );
@@ -42,7 +45,8 @@ define( function( require ) {
     lessShape.lineTo( options.lineWeight / 4, options.lineWeight / 4 );
     lessShape.lineTo( options.lineWeight / 4, options.lineWeight / 8 );
     lessShape.close();
-    var eqShape = new Shape();
+
+    // create equal shape
     eqShape.moveTo( -3 * options.lineWeight / 8, -3 * options.lineWeight / 16 );
     eqShape.lineTo( 3 * options.lineWeight / 8, -3 * options.lineWeight / 16 );
     eqShape.lineTo( 3 * options.lineWeight / 8, -options.lineWeight / 16 );
@@ -55,8 +59,13 @@ define( function( require ) {
     eqShape.lineTo( -3 * options.lineWeight / 8, options.lineWeight / 16 );
     eqShape.lineTo( -3 * options.lineWeight / 8, 3 * options.lineWeight / 16 );
 
-    var rectLeft = new Path( null, {stroke: options.stroke, lineWidth: options.lineOtherWidth} ), rectRight = new Path( null, {stroke: options.stroke, lineWidth: options.lineOtherWidth} ),
-      less = new Path( lessShape, {y: options.lineWeight / 4 + 10, stroke: options.stroke, lineWidth: options.symbolWidth, fill: options.symbolFill} ), eq = new Path( eqShape, {y: options.lineWeight / 4 + 10, stroke: options.stroke, lineWidth: options.symbolWidth, fill: options.symbolFill} ), more = new Node();
+    var rectLeft = new Path( null, {stroke: options.stroke, lineWidth: options.lineOtherWidth} ),
+      rectRight = new Path( null, {stroke: options.stroke, lineWidth: options.lineOtherWidth} ),
+      less = new Path( lessShape, {visible: false, y: options.lineWeight / 4 + 10, stroke: options.stroke, lineWidth: options.symbolWidth, fill: options.symbolFill} ),
+      eq = new Path( eqShape, {visible: false, y: options.lineWeight / 4 + 10, stroke: options.stroke, lineWidth: options.symbolWidth, fill: options.symbolFill} ),
+      more = new Node( {visible: false} );
+
+    // create more shape
     more.addChild( new Path( lessShape, {y: options.lineWeight / 4 + 10, stroke: options.stroke, lineWidth: options.symbolWidth, fill: options.symbolFill} ) );
     more.scale( -1, 1 );
 
@@ -97,19 +106,20 @@ define( function( require ) {
     rectRight.shape = Shape.rectangle( options.lineWeight / 8 - widthRect / 2, 0, widthRect, -100 );
     rectRight.fill = "#0F0";
 
-    less.setVisible( false );
-    eq.setVisible( false );
-    more.setVisible( false );
+    // function for comparing shapes on scales
     this.compare = function( left, right ) {
+      // set indicator's height and color
       rectLeft.shape = Shape.rectangle( -options.lineWeight / 8 - widthRect / 2, 0, widthRect, -left.getAnswer() * 100 );
       rectLeft.fill = left.fill;
       rectRight.shape = Shape.rectangle( options.lineWeight / 8 - widthRect / 2, 0, widthRect, -right.getAnswer() * 100 );
       rectRight.fill = right.fill;
 
+      // show appropriate sign shape
       less.setVisible( left.getAnswer() < right.getAnswer() );
       eq.setVisible( left.getAnswer() === right.getAnswer() );
       more.setVisible( left.getAnswer() > right.getAnswer() );
     };
+    // reset all nodes
     this.reset = function() {
       this.setVisible( true );
       less.setVisible( false );
@@ -118,6 +128,7 @@ define( function( require ) {
       rectLeft.shape = Shape.rectangle( -options.lineWeight / 8 - widthRect / 2, 0, widthRect, 0 );
       rectRight.shape = Shape.rectangle( options.lineWeight / 8 - widthRect / 2, 0, widthRect, 0 );
     };
+    // hide all nodes
     this.hide = function() {
       this.setVisible( false );
       less.setVisible( false );

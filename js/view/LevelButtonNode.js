@@ -19,6 +19,11 @@ define( function( require ) {
     StarBoxNode = require( 'FRACTION_MATCHER/view/StarBoxNode' );
 
   function LevelButtonNode( model, options ) {
+    var thisNode = this,
+      shadowBt,
+      starBox,
+      baseBt = new Node();
+
     options = _.extend( {
         x: 0,
         y: 0,
@@ -34,22 +39,24 @@ define( function( require ) {
         round: 10,
         shadowOffset: {x: 3, y: 4},
         score: 0,
-        callback: function noFunction() {}
+        callback: function() {}
       },
       options
     );
-    var thisNode = this;
+
     Node.call( thisNode, {x: options.x, y: options.y} );
     thisNode.score = 0;
-    var starBox;
-    var baseBt = new Node();
+
+    // create base template
     baseBt.addChild( new Rectangle( -(options.width / 2), -(options.height / 2), options.width, options.height, options.round, options.round, {fill: options.fill, stroke: options.stroke, lineWidth: options.lineWidth} ) );
     baseBt.addChild( new Text( options.label, { font: new PhetFont( { size: 18, weight: "bold"} ), centerX: 0, centerY: -(options.height / 2) + 15 } ) );
     baseBt.addChild( new Node( {children: [options.shape], x: 0, y: 0} ) );
     baseBt.addChild( starBox = new StarBoxNode( {x: 0, y: options.height / 2 - 25, width: options.width, starCount: options.starCount} ) );
 
-    var shadowBt = new Rectangle( -(options.width / 2) + options.shadowOffset.x, -(options.height / 2) + options.shadowOffset.y, options.width, options.height, options.round, options.round, {fill: options.stroke, stroke: options.stroke, lineWidth: options.lineWidth} );
+    // create shadow
+    shadowBt = new Rectangle( -(options.width / 2) + options.shadowOffset.x, -(options.height / 2) + options.shadowOffset.y, options.width, options.height, options.round, options.round, {fill: options.stroke, stroke: options.stroke, lineWidth: options.lineWidth} );
 
+    // create push button
     thisNode.addChild( new PushButton(
       new Node( {children: [shadowBt, baseBt]} ),
       new Node( {children: [shadowBt, baseBt]} ),

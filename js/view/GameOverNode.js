@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * Main page for the 'Fraction Matcher' screen.
+ * Game over node for the 'Fraction Matcher' screen.
  *
  * @author Anton Ulyanov (Mlearner)
  */
@@ -23,22 +23,21 @@ define( function( require ) {
     Rectangle = require( 'SCENERY/nodes/Rectangle' ),
     Line = require( 'SCENERY/nodes/Line' ),
     ButtonNode = require( 'FRACTION_MATCHER/view/ButtonNode' ),
-
     Image = require( 'SCENERY/nodes/Image' );
 
   function GameOverNode( model ) {
-    var thisNode = this;
+    var thisNode = this,
+      gameOverScore,
+      gameOverLevel,
+      background = new Node();
+
     Node.call( thisNode );
-    var gameOverScore, gameOverLevel, background = new Node();//, patternLongtext;
 
+    // add components
     this.addChild( background );
-
     this.addChild( new Text( gameOverString, { font: new PhetFont( { size: 36, weight: "normal"} ), centerX: 575, centerY: 215  } ) );
-
     this.addChild( gameOverLevel = new Text( StringUtils.format( patternGameOverLevelString, 1 ), { font: new PhetFont( { size: 28, weight: "normal"} ), x: 400, centerY: 300  } ) );
-
     this.addChild( gameOverScore = new Text( StringUtils.format( patternGameOverScoreString, 1 ), { font: new PhetFont( { size: 28, weight: "normal"} ), x: 400, centerY: 360  } ) );
-
     this.addChild( new ButtonNode( buttonNewGameString, function() {model.setLevel( 0 );}, {font: new PhetFont( { size: 22, weight: "normal"} ), rectangleFillUp: "#F1F1F1", rectangleFillDown: "#F1F1F1", rectangleFillOver: "#F8F8F8", x: 575, y: 470, rectangleCornerRadius: 5, rectangleXMargin: 10, rectangleYMargin: 5} ) );
 
     model.changeStatusProperty.link( function updateGameOverNode() {

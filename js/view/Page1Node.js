@@ -63,12 +63,13 @@ define( function( require ) {
     }
 
     // high score observer
-    model.selectLevelProperty.link( function updateSelectLevel() {
-      for ( var i = 0; i < levelBt.length; i++ ) {
+    model.selectLevelProperty.link( function() {
+      // set high score for each level
+      levelBt.forEach( function( button, i ) {
         if ( model.levelStatus[i + 1] ) {
-          levelBt[i].setScore( model.levelStatus[i + 1].hiScore );
+          button.setScore( model.levelStatus[i + 1].hiScore );
         }
-      }
+      } );
     } );
   }
 

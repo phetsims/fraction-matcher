@@ -17,6 +17,11 @@ define( function( require ) {
     Image = require( 'SCENERY/nodes/Image' );
 
   function ButtonResetLevelNode( options ) {
+    var thisNode = this,
+      image = new Image( require( 'image!FRACTION_MATCHER/../images/view-refresh.png' ), {scale: 0.27} ),
+      baseBt = new Node(),
+      shadowBt;
+
     options = _.extend( {
         x: 0,
         y: 0,
@@ -33,29 +38,26 @@ define( function( require ) {
         shadowOffset: {x: 2, y: 3},
         shadowFill: "#CCCCCC",
         score: 0,
-        callback: function noFunction() {}
+        callback: function() {}
       },
       options
     );
-    var thisNode = this;
+
     Node.call( thisNode, {x: options.x, y: options.y} );
 
-    var image = new Image( require( 'image!FRACTION_MATCHER/../images/view-refresh.png' ), {scale: 0.27} );
-
-    var baseBt = new Node();
     baseBt.addChild( new Rectangle( -(options.width / 2), -(options.height / 2), options.width, options.height, options.round, options.round, {fill: options.fill, stroke: options.stroke, lineWidth: options.lineWidth} ) );
     baseBt.addChild( image );
-    image.x = -Math.round( image.width / 2 ) + 0.5;
-    image.y = -Math.round( image.height / 2 ) + 0.5;
+    image.setTranslation( -Math.round( image.width / 2 ) + 0.5, -Math.round( image.height / 2 ) + 0.5 );
 
-    var shadowBt = new Rectangle( -(options.width / 2) + options.shadowOffset.x, -(options.height / 2) + options.shadowOffset.y, options.width, options.height, options.round, options.round, {fill: options.shadowFill, stroke: options.shadowFill, lineWidth: options.lineWidth} );
+    shadowBt = new Rectangle( -(options.width / 2) + options.shadowOffset.x, -(options.height / 2) + options.shadowOffset.y, options.width, options.height, options.round, options.round, {fill: options.shadowFill, stroke: options.shadowFill, lineWidth: options.lineWidth} );
 
     thisNode.addChild( new PushButton(
       new Node( {children: [shadowBt, baseBt]} ),
       new Node( {children: [shadowBt, baseBt]} ),
       new Node( {children: [baseBt], x: options.shadowOffset.x, y: options.shadowOffset.y} ),
       new Node( {children: [baseBt]} ),
-      {listener: function() {options.callback( options.value );}} ) );
+      {listener: function() {options.callback( options.value );}} )
+    );
   }
 
   return inherit( Node, ButtonResetLevelNode );
