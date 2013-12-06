@@ -25,6 +25,7 @@ define( function( require ) {
     this.game = game;
     this.CONSTANTS = CONSTANTS;
     this.colorScheme = [CONSTANTS.COLORS.LIGHT_BLUE, CONSTANTS.COLORS.LIGHT_GREEN, CONSTANTS.COLORS.LIGHT_RED];
+    this.toSimplify = (this.game === mixedNumbersTitleString); // flag for simplifying number shapes
 
     var thisModel = this;
     PropertySet.call( this, {
@@ -92,12 +93,13 @@ define( function( require ) {
   }
 
   // shapes constructor (name chosen in order not to confuse with the library component)
-  var ShapeGame = function ShapeGame( type, fraction, scaleFactor, fill, fillType ) {
+  var ShapeGame = function ShapeGame( type, fraction, scaleFactor, fill, fillType, toSimplify ) {
     this.x = 0;
     this.y = 0;
     this.type = type;
     this.numerator = fraction[0];
     this.denominator = fraction[1];
+    this.toSimplify = toSimplify;
     this.scaleFactor = scaleFactor;
     this.fill = fill;
     this.fillType = fillType;
@@ -188,7 +190,8 @@ define( function( require ) {
         colorScheme = this.colorScheme, // get possible color scheme for selected level
         max = 6, // number of shapes to add
         fractions = _.shuffle( levelDescription.fractions.slice( 0 ) ).splice( 0, max ),
-        numberType = (this.game === mixedNumbersTitleString ? 'NUMBERSIMPLE' : 'NUMBER' ),
+        toSimplify = this.toSimplify,
+        numberType = 'NUMBER',
         newLevel = [],
         scaleFactor,
         fillType,
@@ -210,12 +213,12 @@ define( function( require ) {
         // first 3 fractions - number, last 3 fractions - shapes with different colors (3 numbers and 3 shapes at least)
         type = (i < max / 2) ? numberType : shapes[ i % (shapes.length - 1) ];
         color = (type === numberType) ? 'rgb(0,0,0)' : colorScheme[i % 3];
-        newLevel.push( new ShapeGame( type, fraction, scaleFactor, color, fillType ) );
+        newLevel.push( new ShapeGame( type, fraction, scaleFactor, color, fillType, toSimplify ) );
 
         // add partner: if was number - add shape, if was shape - add number or shape with another color
         type = shapes[_.random( shapes.length - (type === numberType ? 2 : 1) )];
         color = (type === numberType) ? 'rgb(0,0,0)' : colorScheme[(i + 1) % 3];
-        newLevel.push( new ShapeGame( type, fraction, scaleFactor, color, fillType ) );
+        newLevel.push( new ShapeGame( type, fraction, scaleFactor, color, fillType, toSimplify ) );
       }
 
       newLevel = _.shuffle( newLevel );

@@ -26,8 +26,7 @@ define( function( require ) {
     INTERLEAVED_L_SHAPES: require( 'FRACTION_MATCHER/common/view/shapes/InterleavedLShape' ),
     TETRIS: require( 'FRACTION_MATCHER/common/view/shapes/TetrisPieceShape' ),
     NINJA_STAR: require( 'FRACTION_MATCHER/common/view/shapes/NinjaStarShape' ),
-    NUMBER: require( 'FRACTION_MATCHER/common/view/shapes/NumericShape' ),
-    NUMBERSIMPLE: require( 'FRACTION_MATCHER/common/view/shapes/NumericSimplifiedShape' )
+    NUMBER: require( 'FRACTION_MATCHER/common/view/shapes/NumericShape' )
   };
 
   function ShapeNode( options ) {
@@ -40,6 +39,7 @@ define( function( require ) {
         height: 100,
         numerator: 1,
         denominator: 1,
+        toSimplify: false,
         fill: "#F00"
       },
       options );
