@@ -2,6 +2,7 @@
 
 /**
  * Main page for the 'Fraction Matcher' screen.
+ * Contains buttons for choosing different levels.
  *
  * @author Anton Ulyanov, Andrey Zelenkov (Mlearner)
  */

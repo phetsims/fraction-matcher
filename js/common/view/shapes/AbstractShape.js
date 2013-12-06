@@ -9,8 +9,8 @@ define( function( require ) {
   "use strict";
 
   // imports
-  var inherit = require( "PHET_CORE/inherit" );
-  var Node = require( "SCENERY/nodes/Node" );
+  var inherit = require( 'PHET_CORE/inherit' ),
+    Node = require( 'SCENERY/nodes/Node' );
 
   function AbstractShape( options ) {
     options = _.extend( {
