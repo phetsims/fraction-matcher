@@ -1,4 +1,4 @@
-fractions-common
+fraction-common
 ================
 
 Common libraries used across PhET fractions sims.
