@@ -67,7 +67,7 @@ define( function( require ) {
       fractionNode.addChild( denominatorLabel = new Text( denominator, { font: FONTSMALL, centerX: 0, centerY: +side / 4  } ) );
       shape.moveTo( Math.min( numeratorLabel.left, denominatorLabel.left ) - 7, 0 );
       shape.lineTo( Math.max( numeratorLabel.right, denominatorLabel.right ) + 7, 0 );
-      fractionNode.addChild( new Path( shape, {stroke: 'black', lineWidth: 1} ) );
+      fractionNode.addChild( new Path( shape, {stroke: 'black', lineWidth: 2, lineCap: "round"} ) );
 
       fractionNode.shapeWidth = shape.bounds.width;
       return fractionNode;

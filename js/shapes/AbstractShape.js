@@ -16,6 +16,7 @@ define( function( require ) {
     options = _.extend( {
         x: 0,
         y: 0,
+        scale: 1,
         width: 100,
         height: 100,
         numerator: 1,  // numerator / denominator
@@ -26,7 +27,7 @@ define( function( require ) {
         stroke: "#000"
       },
       options );
-    Node.call( this, {x: options.x, y: options.y} );
+    Node.call( this, {x: options.x, y: options.y, scale: options.scale} );
     this.options = options;
   }
 

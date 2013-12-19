@@ -40,6 +40,7 @@ define( function( require ) {
         numerator: 1,
         denominator: 1,
         toSimplify: false,
+        onlyPiece: false,
         fill: "#F00"
       },
       options );
