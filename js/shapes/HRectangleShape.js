@@ -25,8 +25,6 @@ define( function( require ) {
     denominator = options.denominator;
     numerator = options.numerator;
 
-    size = Math.min( options.width, options.height );
-
     // init arrays for shapes
     for ( var i = 0, j; i < Math.ceil( numerator / denominator ); i++ ) {
       pieces[i] = [];
@@ -36,14 +34,14 @@ define( function( require ) {
     // create pieces and add them to created array
     for ( i = 0; i < pieces.length; i++ ) {
       for ( j = 0; j < denominator; j++ ) {
-        pieces[i].push( new Path( this.getPiece( size, size / denominator ), {
-          y: (denominator - j - 1) / denominator * size, fill: 'white', stroke: options.stroke, lineWidth: 1
+        pieces[i].push( new Path( this.getPiece( options.width, options.height/ denominator ), {
+          y: (denominator - j - 1) / denominator * options.height, fill: 'white', stroke: options.stroke, lineWidth: 1
         } ) );
       }
     }
 
     // add shapes to node
-    this.arrayToShapes( pieces, size / 4 );
+    this.arrayToShapes( pieces, options.height / 4 );
     this.setTranslation( -options.width / 2, -options.height / (2 * pieces.length) );
   }
 
