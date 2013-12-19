@@ -42,7 +42,7 @@ require.config( {
 
     //Sim code
     FRACTION_MATCHER: '.',
-    FRACTION_COMMON: '../../fraction-common'
+    FRACTION_COMMON: '../../fraction-common/js'
   },
   // Configure the dependencies and exports for older, traditional 'browser globals' scripts
   // that do not use define() to declare the dependencies and set a module value.
