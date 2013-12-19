@@ -16,7 +16,8 @@ define( function( require ) {
     mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
 
   function MatchingGameModel( width, height, game ) {
-    var CONSTANTS = new Constants( game );
+    var self = this,
+      CONSTANTS = new Constants( game );
 
     // dimensions of the model's space
     this.width = width;
@@ -27,16 +28,15 @@ define( function( require ) {
     this.colorScheme = [CONSTANTS.COLORS.LIGHT_BLUE, CONSTANTS.COLORS.LIGHT_GREEN, CONSTANTS.COLORS.LIGHT_RED];
     this.toSimplify = (this.game === mixedNumbersTitleString); // flag for simplifying number shapes
 
-    var thisModel = this;
     PropertySet.call( this, {
-      "pagination": 0,
-      "action": 0,
-      "selectLevel": 0,
-      "buttonStatus": "none", // ['none','ok','check','tryAgain','showAnswer']
-      "changeStatus": false,
-      "drag": false,
-      "canDrag": true,
-      "animateShow": false
+      level: 0,
+      action: 0,
+      selectLevel: 0,
+      buttonStatus: "none", // ['none','ok','check','tryAgain','showAnswer']
+      changeStatus: false,
+      drag: false,
+      canDrag: true,
+      animateShow: false
     } );
     this.levelStatus = [];
 
@@ -80,15 +80,19 @@ define( function( require ) {
     ];
 
     this.buttonStatusProperty.link( function updateButtonStatus() {
-      if ( thisModel.selectLevel > 0 ) {
-        thisModel.levelStatus[thisModel.selectLevel].buttonStatus = thisModel.buttonStatus;
+      if ( self.selectLevel > 0 ) {
+        self.levelStatus[self.selectLevel].buttonStatus = self.buttonStatus;
       }
     } );
 
     this.canDragProperty.link( function updateCanDragStatus() {
-      if ( thisModel.selectLevel > 0 ) {
-        thisModel.levelStatus[thisModel.selectLevel].canDrag = thisModel.canDrag;
+      if ( self.selectLevel > 0 ) {
+        self.levelStatus[self.selectLevel].canDrag = self.canDrag;
       }
+    } );
+
+    this.levelProperty.link( function( level ) {
+      self.setLevel( level );
     } );
   }
 

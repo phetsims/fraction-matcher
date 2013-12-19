@@ -20,9 +20,7 @@ define( function( require ) {
     Image = require( 'SCENERY/nodes/Image' ),
     SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' ),
     Path = require( 'SCENERY/nodes/Path' ),
-    Shape = require( 'KITE/Shape' ),
-    TextPushButton = require( 'SUN/TextPushButton' ),
-    ButtonNode = require( 'FRACTION_MATCHER/view/ButtonNode' );
+    Shape = require( 'KITE/Shape' );
 
   function LevelNode( model, options ) {
 
