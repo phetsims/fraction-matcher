@@ -10,26 +10,19 @@ define( function( require ) {
   "use strict";
 
   // imports
-  var Bounds2 = require( 'DOT/Bounds2' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var ScreenView = require( 'JOIST/ScreenView' );
-  var PaginationNode = require( 'FRACTION_MATCHER/common/view/PaginationNode' );
-  var Page1Node = require( 'FRACTION_MATCHER/view/Page1Node' );
-  var ActionNode = require( 'FRACTION_MATCHER/view/ActionNode' );
-  var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
+  var Bounds2 = require( 'DOT/Bounds2' ),
+    inherit = require( 'PHET_CORE/inherit' ),
+    ScreenView = require( 'JOIST/ScreenView' ),
+    PaginationNode = require( 'FRACTION_MATCHER/common/view/PaginationNode' ),
+    Page1Node = require( 'FRACTION_MATCHER/view/Page1Node' ),
+    ActionNode = require( 'FRACTION_MATCHER/view/ActionNode' ),
+    ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
 
-  /**
-   * @param {BeersLawModel} model
-   * @param {ModelViewTransform2} mvt
-   * @constructor
-   */
-  function MatchingGameView( model, mvt ) {
-
-    var thisView = this;
+  function MatchingGameView( model ) {
     var pagination, action;
-    ScreenView.call( thisView, { renderer: 'svg' } );
-    thisView.addChild( pagination = new PaginationNode( model, [new Page1Node( model )], {} ) );
-    thisView.addChild( action = new ActionNode( model ) );
+    ScreenView.call( this, { renderer: 'svg' } );
+    this.addChild( pagination = new PaginationNode( model, [new Page1Node( model )], {} ) );
+    this.addChild( action = new ActionNode( model ) );
 
     // add reset button
     this.addChild( new ResetAllButton( function() { model.reset(); }, { x: 1.4 * model.width, y: 1.3 * model.height} ) );

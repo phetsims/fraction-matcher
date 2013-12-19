@@ -119,8 +119,8 @@ define( function( require ) {
     },
     step: function() {},
     nearDropZone: function( coord, onlyFree ) {
-      var near = -1;
-      var min = 9999;
+      var near = -1,
+        min = 9999;
       for ( var i = 0; i < this.dropZone.length; i++ ) {
         if ( min > this.distance( coord, this.dropZone[i] ) && (this.dropZone[i].indexShape < 0 || (!onlyFree && (i === 12 || i === 13))) && (!onlyFree || i < 12) ) {
           min = this.distance( coord, this.dropZone[i] );

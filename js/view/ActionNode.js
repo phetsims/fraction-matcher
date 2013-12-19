@@ -50,8 +50,8 @@ define( function( require ) {
     thisNode.addChild( levelLabel );
     thisNode.addChild( scoreLabel );
     thisNode.addChild( new Text( myMatchesString, { font: new PhetFont( { size: 19, weight: "bold"} ), x: 20, centerY: 135  } ) );
-    thisNode.addChild( new ButtonBackNode( {x: 1080, y: 215, callback: function setLevel() {model.setLevel( 0 );}} ) );
-    thisNode.addChild( new ButtonResetLevelNode( {x: 1080, y: 265, callback: function resetLevel() {
+    thisNode.addChild( new ButtonBackNode( {x: 1080, y: 215, callback: function() {model.setLevel( 0 );}} ) );
+    thisNode.addChild( new ButtonResetLevelNode( {x: 1080, y: 265, callback: function() {
       model.resetLevel();
     }} ) );
 

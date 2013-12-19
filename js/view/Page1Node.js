@@ -12,7 +12,7 @@ define( function( require ) {
 
   // imports
   var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( "SCENERY/nodes/Node" ),
+    Node = require( 'SCENERY/nodes/Node' ),
     Text = require( 'SCENERY/nodes/Text' ),
     matchingGameHeaderString = require( 'string!FRACTION_MATCHER/matchingGameHeader' ),
     mixedNumbersHeaderString = require( 'string!FRACTION_MATCHER/mixedNumbersHeader' ),
@@ -21,7 +21,7 @@ define( function( require ) {
     PhetFont = require( 'SCENERY_PHET/PhetFont' ),
     StringUtils = require( 'PHETCOMMON/util/StringUtils' ),
     LevelButtonNode = require( 'FRACTION_MATCHER/view/LevelButtonNode' ),
-    ShapeNode = require( 'FRACTION_MATCHER/common/view/shapes/ShapeNode' );
+    ShapeNode = require( 'FRACTION_COMMON/shapes/ShapeNode' );
 
   function Page1Node( model ) {
     Node.call( this );
