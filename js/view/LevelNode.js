@@ -16,7 +16,6 @@ define( function( require ) {
     Matrix3 = require( 'DOT/Matrix3' ),
     PhetFont = require( 'SCENERY_PHET/PhetFont' ),
     equallyAnswerSymbolString = require( 'string!FRACTION_MATCHER/equallyAnswerSymbol' ),
-    ButtonBackNode = require( 'FRACTION_MATCHER/view/ButtonBackNode' ),
     ShapeNode = require( 'FRACTION_COMMON/shapes/ShapeNode' ),
     Image = require( 'SCENERY/nodes/Image' ),
     SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' ),

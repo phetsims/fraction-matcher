@@ -21,8 +21,8 @@ define( function( require ) {
     Rectangle = require( 'SCENERY/nodes/Rectangle' ),
     StringUtils = require( 'PHETCOMMON/util/StringUtils' ),
 
-    ButtonBackNode = require( 'FRACTION_MATCHER/view/ButtonBackNode' ),
-    ButtonResetLevelNode = require( 'FRACTION_MATCHER/view/ButtonResetLevelNode' ),
+    BackButton = require( 'FRACTION_COMMON/yellow-buttons/BackButton' ),
+    RefreshButton = require( 'FRACTION_COMMON/yellow-buttons/RefreshButton' ),
     ButtonNode = require( 'FRACTION_MATCHER/view/ButtonNode' ),
     LevelNode = require( 'FRACTION_MATCHER/view/LevelNode' ),
     GameOverNode = require( 'FRACTION_MATCHER/view/GameOverNode' ),
@@ -50,10 +50,8 @@ define( function( require ) {
     thisNode.addChild( levelLabel );
     thisNode.addChild( scoreLabel );
     thisNode.addChild( new Text( myMatchesString, { font: new PhetFont( { size: 19, weight: "bold"} ), x: 20, centerY: 135  } ) );
-    thisNode.addChild( new ButtonBackNode( {x: 1080, y: 215, callback: function() {model.setLevel( 0 );}} ) );
-    thisNode.addChild( new ButtonResetLevelNode( {x: 1080, y: 265, callback: function() {
-      model.resetLevel();
-    }} ) );
+    thisNode.addChild( new BackButton( {x: 1045, y: 200, scale: 1.4}, function() {model.setLevel( 0 );} ) );
+    thisNode.addChild( new RefreshButton( {x: 1045, y: 255, scale: 1.4}, function() {model.resetLevel();} ) );
 
     var scaleLeft = new Image( require( 'image!FRACTION_MATCHER/../images/scale.png' ), {x: 300, y: 320, scale: 0.5} );
     var scaleRight = new Image( require( 'image!FRACTION_MATCHER/../images/scale.png' ), {x: 655, y: 320, scale: 0.5} );
