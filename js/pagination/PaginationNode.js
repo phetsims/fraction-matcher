@@ -15,6 +15,7 @@ define( function( require ) {
     NavigationBar = require( 'FRACTION_COMMON/pagination/NavigationBar' );
 
   function PaginationNode( options, pages, levelProperty, pageProperty ) {
+    var navBar;
     Node.call( this, options );
 
     // add pages
@@ -24,7 +25,8 @@ define( function( require ) {
 
     // add navigation bar
     if ( pages.length > 1 ) {
-      this.addChild( new NavigationBar( pages, { x: this.getWidth() / 2, y: this.getHeight() + 30}, pageProperty ) );
+      this.addChild( navBar = new NavigationBar( pages, { x: this.getWidth() / 2, y: this.getHeight() + 30}, pageProperty ) );
+      navBar.setX( (this.getWidth() - navBar.getWidth()) / 2 );
     }
   }
 

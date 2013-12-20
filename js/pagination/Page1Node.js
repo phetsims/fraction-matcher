@@ -23,7 +23,7 @@ define( function( require ) {
   function Page1Node( pages, number, targetProperty, pageProperty ) {
     var self = this, hBoxTop = new HBox( {spacing: 20} ),
       hBoxBottom = new HBox( {spacing: 20} ),
-      vBox = new VBox( {spacing: 20, children: [hBoxTop, hBoxBottom]} );
+      vBox = new VBox( {x: -25, spacing: 20, children: [hBoxTop, hBoxBottom]} );
 
     Node.call( this );
     this.addChild( vBox );
