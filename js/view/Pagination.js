@@ -32,7 +32,7 @@ define( function( require ) {
         {type: 'RING_OF_HEXAGONS', height: (mixedNumber ? 100 : null), numerator: mixedNumber ? 8 : 7, denominator: 7, value: 7, fill: model.CONSTANTS.COLORS.LIGHT_PINK, label: StringUtils.format( patternLevelString, 7 )},
         {type: 'NINJA_STAR', height: (mixedNumber ? 100 : null), numerator: mixedNumber ? 9 : 8, denominator: 8, value: 8, fill: model.CONSTANTS.COLORS.GREEN, label: StringUtils.format( patternLevelString, 8 )}
       ]
-    ], model.levelProperty ) );
+    ], model.levelProperty, model.score ) );
 
     this.scale( 1.4 );
   }

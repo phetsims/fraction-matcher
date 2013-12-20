@@ -67,7 +67,7 @@ define( function( require ) {
       new Node( {children: [shadowBt, baseOverBt]} ),
       new Node( {children: [baseDownBt], x: options.shadowOffset.x, y: options.shadowOffset.y} ),
       new Node( {children: [baseUpBt]} ),
-      {listener: function() {callback();}} )
+      {listener: callback} )
     );
   }
 

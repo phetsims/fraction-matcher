@@ -11,6 +11,7 @@ define( function( require ) {
   // imports
   var inherit = require( 'PHET_CORE/inherit' ),
     PropertySet = require( 'AXON/PropertySet' ),
+    ObservableArray = require( 'AXON/ObservableArray' ),
     Range = require( 'DOT/Range' ),
     Constants = require( 'FRACTION_MATCHER/model/Constants' ),
     mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
@@ -30,6 +31,7 @@ define( function( require ) {
 
     PropertySet.call( this, {
       level: 0,
+      currentScore: 0,
       action: 0,
       selectLevel: 0,
       buttonStatus: "none", // ['none','ok','check','tryAgain','showAnswer']
@@ -38,6 +40,7 @@ define( function( require ) {
       canDrag: true,
       animateShow: false
     } );
+    this.score = new ObservableArray( [0, 0, 0, 0, 0, 0, 0, 0] );
     this.levelStatus = [];
 
     this.dropZone = [
