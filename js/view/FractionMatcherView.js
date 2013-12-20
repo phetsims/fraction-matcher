@@ -13,6 +13,7 @@ define( function( require ) {
   var Bounds2 = require( 'DOT/Bounds2' ),
     inherit = require( 'PHET_CORE/inherit' ),
     ScreenView = require( 'JOIST/ScreenView' ),
+    VBox = require( 'SCENERY/nodes/VBox' ),
     Text = require( 'SCENERY/nodes/Text' ),
     PhetFont = require( 'SCENERY_PHET/PhetFont' ),
     matchingGameHeaderString = require( 'string!FRACTION_MATCHER/matchingGameHeader' ),
@@ -23,20 +24,22 @@ define( function( require ) {
     ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
 
   function MatchingGameView( model ) {
-    var pagination, action, header;
+    var action, vBox;
     ScreenView.call( this, { renderer: 'svg' } );
-    this.addChild( pagination = new Pagination( model ) );
     this.addChild( action = new ActionNode( model ) );
 
-    // add header
-    this.addChild( header = new Text( (model.game === mixedNumbersTitleString ? mixedNumbersHeaderString : matchingGameHeaderString), { font: new PhetFont( { size: 40, weight: "bold"} ), centerX: 1140 / 2, centerY: 40  } ) );
+    this.addChild( vBox = new VBox( {x: 150, y: 25, spacing: 20, children: [
+      // add header
+      new Text( (model.game === mixedNumbersTitleString ? mixedNumbersHeaderString : matchingGameHeaderString), { font: new PhetFont( { size: 36, weight: 'bold'} )  } ),
+      // add pagination
+      new Pagination( model )
+    ]} ) );
 
     // add reset button
     this.addChild( new ResetAllButton( function() { model.reset(); }, { x: 1.4 * model.width, y: 1.3 * model.height} ) );
 
     model.actionProperty.link( function selectAction( value ) {
-      pagination.setVisible( value === 0 );
-      header.setVisible( value === 0 );
+      vBox.setVisible( value === 0 );
       action.setVisible( value === 1 );
     } );
   }
