@@ -14,13 +14,13 @@ define( function( require ) {
     Page1Node = require( 'FRACTION_COMMON/pagination/Page1Node' ),
     NavigationBar = require( 'FRACTION_COMMON/pagination/NavigationBar' );
 
-  function PaginationNode( options, pages, levelProperty, pageProperty ) {
+  function PaginationNode( options, pages, levelProperty, scoreArray, pageProperty ) {
     var navBar;
     Node.call( this, options );
 
     // add pages
     for ( var i = 0; i < pages.length; i++ ) {
-      this.addChild( new Page1Node( pages[i], i, levelProperty, pageProperty ) );
+      this.addChild( new Page1Node( pages[i], i, levelProperty, pageProperty, scoreArray ) );
     }
 
     // add navigation bar

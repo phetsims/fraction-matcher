@@ -19,7 +19,7 @@ define( function( require ) {
     StarBoxNode = require( 'FRACTION_COMMON/pagination/StarBoxNode' ),
     FONT = new PhetFont( { size: 14, weight: 'bold'} );
 
-  function LevelButtonNode( options ) {
+  function LevelButtonNode( options, scoreArray, level ) {
     var shadowBt,
       starBox,
       baseBt = new Node(),
@@ -65,6 +65,10 @@ define( function( require ) {
       new Node( {children: [baseBt]} ),
       {listener: options.callback} )
     );
+
+    scoreArray.addItemAddedListener( function( scoreSet ) {
+      starBox.setScore( scoreSet[level] );
+    } );
   }
 
   return inherit( Node, LevelButtonNode );

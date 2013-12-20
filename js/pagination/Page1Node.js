@@ -20,7 +20,7 @@ define( function( require ) {
     LevelButtonNode = require( 'FRACTION_COMMON/pagination/LevelButtonNode' ),
     ShapeNode = require( 'FRACTION_COMMON/shapes/ShapeNode' );
 
-  function Page1Node( pages, number, targetProperty, pageProperty ) {
+  function Page1Node( pages, number, targetProperty, pageProperty, scoreArray ) {
     var self = this, hBoxTop = new HBox( {spacing: 20} ),
       hBoxBottom = new HBox( {spacing: 20} ),
       vBox = new VBox( {x: -25, spacing: 20, children: [hBoxTop, hBoxBottom]} );
@@ -47,7 +47,7 @@ define( function( require ) {
           deck: pages[i].deck
         } ),
         callback: getCallback( targetProperty, pages[i].value )
-      } ) );
+      }, scoreArray, number * (pages.length - 1) + i ) );
       (i >= pages.length / 2 ? hBoxBottom : hBoxTop).updateLayout();
       vBox.updateLayout();
     }
