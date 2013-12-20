@@ -11,7 +11,7 @@ define( function( require ) {
 
   // imports
   var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( "SCENERY/nodes/Node" ),
+    Node = require( 'SCENERY/nodes/Node' ),
     Text = require( 'SCENERY/nodes/Text' ),
     Matrix3 = require( 'DOT/Matrix3' ),
     PhetFont = require( 'SCENERY_PHET/PhetFont' ),

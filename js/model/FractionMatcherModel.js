@@ -12,7 +12,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' ),
     PropertySet = require( 'AXON/PropertySet' ),
     Range = require( 'DOT/Range' ),
-    Constants = require( 'FRACTION_MATCHER/common/Constants' ),
+    Constants = require( 'FRACTION_MATCHER/model/Constants' ),
     mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
 
   function MatchingGameModel( width, height, game ) {
