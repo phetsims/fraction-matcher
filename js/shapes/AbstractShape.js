@@ -42,33 +42,35 @@ define( function( require ) {
     },
     // fill shapes depending on fillType value
     fillShapes: function( arrays ) {
-      var filled = 0, i = 0, j = 0, len1 = arrays.length, len2 = arrays[0].length;
+      if ( arrays.length ) {
+        var filled = 0, i = 0, j = 0, len1 = arrays.length, len2 = arrays[0].length;
 
-      while ( filled < this.options.numerator ) {
-        if ( this.options.fillType === 'SEQUENTIAL' ) {
-          arrays[Math.floor( i / len2 ) % len1][i++ % len2].fill = this.options.fill;
-          filled++;
-        }
-        else if ( this.options.fillType === 'MIXED' ) {
-          if ( filled < len2 ) {
+        while ( filled < this.options.numerator ) {
+          if ( this.options.fillType === 'SEQUENTIAL' ) {
             arrays[Math.floor( i / len2 ) % len1][i++ % len2].fill = this.options.fill;
             filled++;
           }
-          else {
-            i = _.random( 1, len1 - 1 );
+          else if ( this.options.fillType === 'MIXED' ) {
+            if ( filled < len2 ) {
+              arrays[Math.floor( i / len2 ) % len1][i++ % len2].fill = this.options.fill;
+              filled++;
+            }
+            else {
+              i = _.random( 1, len1 - 1 );
+              j = _.random( len2 - 1 );
+              if ( arrays[i][j].fill === 'white' ) {
+                arrays[i][j].fill = this.options.fill;
+                filled++;
+              }
+            }
+          }
+          else if ( this.options.fillType === 'RANDOM' ) {
+            i = _.random( len1 - 1 );
             j = _.random( len2 - 1 );
             if ( arrays[i][j].fill === 'white' ) {
               arrays[i][j].fill = this.options.fill;
               filled++;
             }
-          }
-        }
-        else if ( this.options.fillType === 'RANDOM' ) {
-          i = _.random( len1 - 1 );
-          j = _.random( len2 - 1 );
-          if ( arrays[i][j].fill === 'white' ) {
-            arrays[i][j].fill = this.options.fill;
-            filled++;
           }
         }
       }

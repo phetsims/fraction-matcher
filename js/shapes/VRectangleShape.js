@@ -26,7 +26,8 @@ define( function( require ) {
     numerator = options.numerator;
 
     // init arrays for shapes
-    for ( var i = 0, j, len; i < Math.ceil( numerator / denominator ); i++ ) {
+    //if numerator 0, we still want shape, but not filled
+    for ( var i = 0, j, len; i < ( Math.ceil( Math.max( numerator, 1 ) / denominator ) ); i++ ) {
       pieces[i] = [];
     }
 
@@ -34,7 +35,7 @@ define( function( require ) {
     len = (options.onlyPiece ? numerator : denominator);
     for ( i = 0; i < pieces.length; i++ ) {
       for ( j = 0; j < len; j++ ) {
-        pieces[i].push( new Path( this.getPiece( options.width / denominator,  options.height ), {
+        pieces[i].push( new Path( this.getPiece( options.width / denominator, options.height ), {
           x: j / denominator * options.width, fill: 'white', stroke: options.stroke, lineWidth: 1
         } ) );
       }
