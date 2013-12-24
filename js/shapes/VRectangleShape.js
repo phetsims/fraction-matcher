@@ -23,11 +23,10 @@ define( function( require ) {
     AbstractShape.call( this, options );
     options = this.options;
     denominator = options.denominator;
-    numerator = options.numerator;
+    numerator = Math.max( 1, options.numerator ); //if numerator 0, we still want shape, but not filled
 
     // init arrays for shapes
-    //if numerator 0, we still want shape, but not filled
-    for ( var i = 0, j, len; i < ( Math.ceil( Math.max( numerator, 1 ) / denominator ) ); i++ ) {
+    for ( var i = 0, j, len; i < ( Math.ceil( denominator / denominator ) ); i++ ) {
       pieces[i] = [];
     }
 
