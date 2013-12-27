@@ -23,7 +23,8 @@ define( function( require ) {
     AbstractShape.call( this, options );
     options = this.options;
     denominator = options.denominator;
-    numerator = options.numerator;
+    numerator = Math.max( 1, options.numerator ); //if numerator 0, we still want shape, but not filled
+
 
     // init arrays for shapes
     for ( var i = 0, j; i < Math.ceil( numerator / denominator ); i++ ) {
@@ -32,8 +33,9 @@ define( function( require ) {
 
     // TODO: stroke
     // create pieces and add them to created array
+    var len = (options.onlyPiece ? numerator : denominator);
     for ( i = 0; i < pieces.length; i++ ) {
-      for ( j = 0; j < denominator; j++ ) {
+      for ( j = 0; j < len; j++ ) {
         pieces[i].push( new Path( this.getPiece( options.width, options.height/ denominator ), {
           y: (denominator - j - 1) / denominator * options.height, fill: 'white', stroke: options.stroke, lineWidth: 1
         } ) );
