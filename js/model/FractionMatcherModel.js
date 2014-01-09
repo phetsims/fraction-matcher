@@ -12,7 +12,6 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' ),
     PropertySet = require( 'AXON/PropertySet' ),
     ObservableArray = require( 'AXON/ObservableArray' ),
-    Range = require( 'DOT/Range' ),
     Constants = require( 'FRACTION_MATCHER/model/Constants' ),
     mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
 

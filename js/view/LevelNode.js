@@ -17,10 +17,7 @@ define( function( require ) {
     PhetFont = require( 'SCENERY_PHET/PhetFont' ),
     equallyAnswerSymbolString = require( 'string!FRACTION_MATCHER/equallyAnswerSymbol' ),
     ShapeNode = require( 'FRACTION_COMMON/shapes/ShapeNode' ),
-    Image = require( 'SCENERY/nodes/Image' ),
-    SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' ),
-    Path = require( 'SCENERY/nodes/Path' ),
-    Shape = require( 'KITE/Shape' );
+    SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
 
   function LevelNode( model, options ) {
 

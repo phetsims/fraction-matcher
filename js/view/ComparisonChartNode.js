@@ -12,12 +12,11 @@ define( function( require ) {
 
   // imports
   var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( "SCENERY/nodes/Node" ),
+    Node = require( 'SCENERY/nodes/Node' ),
     Path = require( 'SCENERY/nodes/Path' ),
     Shape = require( 'KITE/Shape' ),
     Text = require( 'SCENERY/nodes/Text' ),
-    PhetFont = require( 'SCENERY_PHET/PhetFont' ),
-    Image = require( 'SCENERY/nodes/Image' );
+    PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
   function ComparisonChartNode( options ) {
     var thisNode = this,
