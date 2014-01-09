@@ -17,8 +17,7 @@ define( function( require ) {
   function VRectangleShape( options ) {
     var pieces = [],
       denominator,
-      numerator,
-      size;
+      numerator;
 
     AbstractShape.call( this, options );
     options = this.options;

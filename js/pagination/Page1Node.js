@@ -13,10 +13,8 @@ define( function( require ) {
   // imports
   var inherit = require( 'PHET_CORE/inherit' ),
     Node = require( 'SCENERY/nodes/Node' ),
-    Text = require( 'SCENERY/nodes/Text' ),
     HBox = require( 'SCENERY/nodes/HBox' ),
     VBox = require( 'SCENERY/nodes/VBox' ),
-    PhetFont = require( 'SCENERY_PHET/PhetFont' ),
     LevelButtonNode = require( 'FRACTION_COMMON/pagination/LevelButtonNode' ),
     ShapeNode = require( 'FRACTION_COMMON/shapes/ShapeNode' );
 

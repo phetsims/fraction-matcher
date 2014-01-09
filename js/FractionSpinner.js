@@ -10,7 +10,6 @@ define( function( require ) {
   "use strict";
 
   var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( "SCENERY/nodes/Node" ),
     PushButton = require( 'SUN/PushButton' ),
     Image = require( 'SCENERY/nodes/Image' ),
     HBox = require( 'SCENERY/nodes/HBox' );
