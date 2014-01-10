@@ -23,8 +23,8 @@ define( function( require ) {
   function NumericShape( options ) {
     var side,
       fractionNode,
-      spaceX,
-      offsetX,
+      spaceX = 0,
+      offsetX = 0,
       numerator,
       denominator,
       integralPart;
@@ -37,14 +37,16 @@ define( function( require ) {
     side = Math.min( options.width, options.height ); // define size of fraction
 
     if ( integralPart && options.toSimplify ) {
-      // add simplified fraction node
-      fractionNode = this.getFractionNode( numerator % denominator, denominator, side );
-      this.addChild( fractionNode );
+      if ( numerator % denominator ) {
+        // add simplified fraction node
+        fractionNode = this.getFractionNode( numerator % denominator, denominator, side );
+        this.addChild( fractionNode );
 
-      // correct it's position
-      spaceX = Math.min( fractionNode.shapeWidth / 2, 26 ); // space between fraction node and integral node
-      offsetX = -Math.max( 0, fractionNode.shapeWidth / 2 - 26 ); // offset left
-      fractionNode.setX( offsetX + spaceX );
+        // correct it's position
+        spaceX = Math.min( fractionNode.shapeWidth / 2, 26 ); // space between fraction node and integral node
+        offsetX = -Math.max( 0, fractionNode.shapeWidth / 2 - 26 ); // offset left
+        fractionNode.setX( offsetX + spaceX );
+      }
 
       // add integral part
       this.addChild( new Text( integralPart, {font: FONTBIG, centerY: 0, centerX: offsetX - spaceX } ) );

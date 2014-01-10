@@ -42,7 +42,8 @@ define( function( require ) {
           numerator: pages[i].numerator,
           denominator: pages[i].denominator,
           fill: pages[i].fill,
-          deck: pages[i].deck
+          deck: pages[i].deck,
+          toSimplify: pages[i].toSimplify
         } ),
         callback: getCallback( targetProperty, pages[i].value )
       }, scoreArray, number * (pages.length - 1) + i ) );
