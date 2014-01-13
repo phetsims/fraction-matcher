@@ -2,6 +2,7 @@
 
 /**
  * Ninja star shape graph for the 'Build a Fraction' sim.
+ * Denominator should be 8 or 10.
  *
  * @author Andrey Zelenkov (Mlearner)
  */
@@ -12,13 +13,40 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' ),
     AbstractShape = require( 'FRACTION_COMMON/shapes/AbstractShape' ),
     Path = require( 'SCENERY/nodes/Path' ),
-    Shape = require( 'KITE/Shape' );
+    Shape = require( 'KITE/Shape' ),
+    angle8 = Math.PI * 2 / 8,
+    angle10 = Math.PI * 2 / 10;
+
+  var patterns = {
+    fourPoint: [
+      {x: -Math.sin( 0 ), y: -Math.cos( 0 )},
+      {x: -Math.sin( angle8 ) / 2, y: -Math.cos( angle8 ) / 2},
+      {x: -Math.sin( 2 * angle8 ), y: -Math.cos( 2 * angle8 )},
+      {x: -Math.sin( 3 * angle8 ) / 2, y: -Math.cos( 3 * angle8 ) / 2},
+      {x: -Math.sin( 4 * angle8 ), y: -Math.cos( 4 * angle8 )},
+      {x: -Math.sin( 5 * angle8 ) / 2, y: -Math.cos( 5 * angle8 ) / 2},
+      {x: -Math.sin( 6 * angle8 ), y: -Math.cos( 6 * angle8 )},
+      {x: -Math.sin( 7 * angle8 ) / 2, y: -Math.cos( 7 * angle8 ) / 2}
+    ],
+    fivePoint: [
+      {x: -Math.sin( angle10 ) / 2, y: -Math.cos( angle10 ) / 2},
+      {x: -Math.sin( 2 * angle10 ), y: -Math.cos( 2 * angle10 )},
+      {x: -Math.sin( 3 * angle10 ) / 2, y: -Math.cos( 3 * angle10 ) / 2},
+      {x: -Math.sin( 4 * angle10 ), y: -Math.cos( 4 * angle10 )},
+      {x: -Math.sin( 5 * angle10 ) / 2, y: -Math.cos( 5 * angle10 ) / 2},
+      {x: -Math.sin( 6 * angle10 ), y: -Math.cos( 6 * angle10 )},
+      {x: -Math.sin( 7 * angle10 ) / 2, y: -Math.cos( 7 * angle10 ) / 2},
+      {x: -Math.sin( 8 * angle10 ), y: -Math.cos( 8 * angle10 )},
+      {x: -Math.sin( 9 * angle10 ) / 2, y: -Math.cos( 9 * angle10 ) / 2},
+      {x: -Math.sin( 0 ), y: -Math.cos( 0 )}
+    ]
+  };
 
   function NinjaStarShape( options ) {
     var max,
       diameter,
       size,
-      angle,
+      pattern,
       denominator,
       numerator,
       pieces = [];
@@ -28,32 +56,27 @@ define( function( require ) {
     denominator = options.denominator;
     numerator = options.numerator;
 
+    // determine pattern
+    if ( denominator === 8 ) {
+      pattern = patterns.fourPoint;
+    }
+    else if ( denominator === 10 ) {
+      pattern = patterns.fivePoint;
+    }
+
     // determine diameter of shape
     diameter = Math.min( options.width, options.height );
-    angle = Math.PI * 2 / 8;
-
+    size = diameter / 2;
     max = denominator * Math.ceil( numerator / denominator );
 
     for ( var i = 0, len = max / denominator; i < len; i++ ) {
       pieces[i] = [];
     }
 
-    size = diameter / 2;
-    var map = [
-      {x: -Math.sin( 0 ), y: -Math.cos( 0 )},
-      {x: -Math.sin( angle ) / 2, y: -Math.cos( angle ) / 2},
-      {x: -Math.sin( 2 * angle ), y: -Math.cos( 2 * angle )},
-      {x: -Math.sin( 3 * angle ) / 2, y: -Math.cos( 3 * angle ) / 2},
-      {x: -Math.sin( 4 * angle ), y: -Math.cos( 4 * angle )},
-      {x: -Math.sin( 5 * angle ) / 2, y: -Math.cos( 5 * angle ) / 2},
-      {x: -Math.sin( 6 * angle ), y: -Math.cos( 6 * angle )},
-      {x: -Math.sin( 7 * angle ) / 2, y: -Math.cos( 7 * angle ) / 2}
-    ];
-
     // create pieces and add them to temporary array
     for ( i = 0, len = max; i < len; i++ ) {
       // TODO: stroke
-      pieces[Math.floor( i / denominator )].unshift( new Path( this.getPiece( size, map[i % 8], map[(i + 1) % 8] ), {
+      pieces[Math.floor( i / denominator )].unshift( new Path( this.getPiece( size, pattern[i % denominator], pattern[(i + 1) % denominator] ), {
         fill: 'white', stroke: options.stroke, lineWidth: 1
       } ) );
     }
