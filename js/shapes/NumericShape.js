@@ -21,20 +21,22 @@ define( function( require ) {
     FONTBIG = new PhetFont( 70 );
 
   function NumericShape( options ) {
-    var side,
-      fractionNode,
+    var side = 70,// define fixed size of fraction
+      fractionNode = new Node(),
       spaceX = 0,
       offsetX = 0,
       numerator,
       denominator,
-      integralPart;
+      integralPart,
+      integralPartNode,
+      integralPartWidth,
+      integralPartLength;
 
     AbstractShape.call( this, options );
     options = this.options;
     numerator = options.numerator;
     denominator = options.denominator;
     integralPart = Math.floor( numerator / denominator );
-    side = Math.min( options.width, options.height ); // define size of fraction
 
     if ( integralPart && options.toSimplify ) {
       if ( numerator % denominator ) {
@@ -43,13 +45,23 @@ define( function( require ) {
         this.addChild( fractionNode );
 
         // correct it's position
-        spaceX = Math.min( fractionNode.shapeWidth / 2, 26 ); // space between fraction node and integral node
-        offsetX = -Math.max( 0, fractionNode.shapeWidth / 2 - 26 ); // offset left
-        fractionNode.setX( offsetX + spaceX );
+        spaceX = fractionNode.shapeWidth / 2 + 3; // space between fraction node and integral node
       }
 
       // add integral part
-      this.addChild( new Text( integralPart, {font: FONTBIG, centerY: 0, centerX: offsetX - spaceX } ) );
+      this.addChild( integralPartNode = new Text( integralPart, {font: FONTBIG, centerY: 0 } ) );
+
+      // add additional offset taking into account whole part width
+      integralPartWidth = integralPartNode.getWidth();
+      integralPartLength = integralPart.toString().length;
+      offsetX = (integralPartWidth - integralPartWidth / integralPartLength) / 4;
+      integralPartNode.centerX = -offsetX - spaceX;
+      fractionNode.centerX = spaceX + offsetX;
+
+      // common alignment
+      if ( isFinite( fractionNode.getWidth() ) ) {
+        this.setX( -(fractionNode.getWidth() - integralPartWidth) / 8 );
+      }
     }
     else {
       // add fraction node
@@ -59,19 +71,14 @@ define( function( require ) {
 
   return inherit( AbstractShape, NumericShape, {
     getFractionNode: function( numerator, denominator, side ) {
-      var fractionNode = new Node(),
-        shape = new Shape(),
-        numeratorLabel,
-        denominatorLabel;
+      var line = new Shape().moveTo( -16, 0 ).lineTo( 16, 0 ),
+        fractionNode = new Node( {children: [
+          new Text( numerator, { font: FONTSMALL, centerX: 0, centerY: -side / 4  } ),
+          new Text( denominator, { font: FONTSMALL, centerX: 0, centerY: +side / 4  } ),
+          new Path( line, {stroke: 'black', lineWidth: 2, lineCap: 'round'} )
+        ]} );
 
-      fractionNode.addChild( new Path( Shape.rect( -side / 2, -side / 2, side, side ) ) );
-      fractionNode.addChild( numeratorLabel = new Text( numerator, { font: FONTSMALL, centerX: 0, centerY: -side / 4  } ) );
-      fractionNode.addChild( denominatorLabel = new Text( denominator, { font: FONTSMALL, centerX: 0, centerY: +side / 4  } ) );
-      shape.moveTo( Math.min( numeratorLabel.left, denominatorLabel.left ) - 7, 0 );
-      shape.lineTo( Math.max( numeratorLabel.right, denominatorLabel.right ) + 7, 0 );
-      fractionNode.addChild( new Path( shape, {stroke: 'black', lineWidth: 2, lineCap: "round"} ) );
-
-      fractionNode.shapeWidth = shape.bounds.width;
+      fractionNode.shapeWidth = line.bounds.width;
       return fractionNode;
     }
   } );
