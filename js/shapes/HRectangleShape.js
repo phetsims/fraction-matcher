@@ -17,8 +17,7 @@ define( function( require ) {
   function HRectangleShape( options ) {
     var pieces = [],
       denominator,
-      numerator,
-      size;
+      numerator;
 
     AbstractShape.call( this, options );
     options = this.options;

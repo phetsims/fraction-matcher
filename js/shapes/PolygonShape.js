@@ -41,8 +41,8 @@ define( function( require ) {
     // create pieces and add them to temporary array
     for ( i = 0, len = max; i < len; i++ ) {
       // TODO: stroke
-      j = i + Math.floor( len / (2 * pieces.length) );
-      pieces[Math.floor( i / denominator )].push( new Path( this.getPiece( diameter / 2, triAngle * j, triAngle * (j + 1) ), {
+      j = i + max / (2 * pieces.length);
+      pieces[Math.floor( i / denominator )].push( new Path( this.getPiece( diameter / 2, triAngle * (j - 0.5), triAngle * (j + 0.5) ), {
         fill: 'white', stroke: options.stroke, lineWidth: 1
       } ) );
     }

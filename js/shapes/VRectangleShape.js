@@ -17,8 +17,7 @@ define( function( require ) {
   function VRectangleShape( options ) {
     var pieces = [],
       denominator,
-      numerator,
-      size;
+      numerator;
 
     AbstractShape.call( this, options );
     options = this.options;
@@ -26,7 +25,7 @@ define( function( require ) {
     numerator = Math.max( 1, options.numerator ); //if numerator 0, we still want shape, but not filled
 
     // init arrays for shapes
-    for ( var i = 0, j, len; i < ( Math.ceil( denominator / denominator ) ); i++ ) {
+    for ( var i = 0, j, len; i < ( Math.ceil( numerator / denominator ) ); i++ ) {
       pieces[i] = [];
     }
 

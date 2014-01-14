@@ -32,7 +32,7 @@ define( function( require ) {
     options = this.options;
     numerator = options.numerator;
     width = options.width;
-    height = width * 1.3;
+    height = width * 1.43;
 
     // create top card with number
     cardTop = this.getCardNode( width, height );
@@ -58,7 +58,7 @@ define( function( require ) {
 
   return inherit( AbstractShape, NumericSimplifiedShape, {
     getCardNode: function( width, height ) {
-      return new Node( {children: [new Rectangle( -width / 2, -height / 2, width, height, 5, 5, {fill: '#F2F2F2', stroke: 'black', lineWidth: 1} )]} );
+      return new Node( {children: [new Rectangle( -width / 2, -height / 2, width, height, 5, 5, {fill: 'white', stroke: 'black', lineWidth: 1} )]} );
     }
   } );
 } );

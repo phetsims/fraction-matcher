@@ -13,10 +13,8 @@ define( function( require ) {
   // imports
   var inherit = require( 'PHET_CORE/inherit' ),
     Node = require( 'SCENERY/nodes/Node' ),
-    Text = require( 'SCENERY/nodes/Text' ),
     HBox = require( 'SCENERY/nodes/HBox' ),
     VBox = require( 'SCENERY/nodes/VBox' ),
-    PhetFont = require( 'SCENERY_PHET/PhetFont' ),
     LevelButtonNode = require( 'FRACTION_COMMON/pagination/LevelButtonNode' ),
     ShapeNode = require( 'FRACTION_COMMON/shapes/ShapeNode' );
 
@@ -35,17 +33,14 @@ define( function( require ) {
         height: pages[i].height || 150,
         starCount: number > 0 ? 4 : 3,
         label: pages[i].label,
-        shape: new ShapeNode( {
-          type: pages[i].type,
+        shape: new ShapeNode( _.assign( {
+          numerator: 1,
+          denominator: 1,
           x: 0,
           y: -5,
           width: 50,
-          height: 50,
-          numerator: pages[i].numerator,
-          denominator: pages[i].denominator,
-          fill: pages[i].fill,
-          deck: pages[i].deck
-        } ),
+          height: 50
+        }, pages[i].shape ) ),
         callback: getCallback( targetProperty, pages[i].value )
       }, scoreArray, number * (pages.length - 1) + i ) );
       (i >= pages.length / 2 ? hBoxBottom : hBoxTop).updateLayout();

@@ -15,19 +15,28 @@ define( function( require ) {
     NavigationBar = require( 'FRACTION_COMMON/pagination/NavigationBar' );
 
   function PaginationNode( options, pages, levelProperty, scoreArray, pageProperty ) {
-    var navBar;
+    var self = this,
+      navBar,
+      linksToPages = [];
     Node.call( this, options );
 
     // add pages
     for ( var i = 0; i < pages.length; i++ ) {
-      this.addChild( new Page1Node( pages[i], i, levelProperty, pageProperty, scoreArray ) );
+      this.addChild( linksToPages[i] = new Page1Node( pages[i], i, levelProperty, pageProperty, scoreArray ) );
     }
 
     // add navigation bar
     if ( pages.length > 1 ) {
       this.addChild( navBar = new NavigationBar( pages, { x: this.getWidth() / 2, y: this.getHeight() + 30}, pageProperty ) );
-      navBar.setX( (this.getWidth() - navBar.getWidth()) / 2 );
+      navBar.setX( (linksToPages[0].getWidth() - navBar.getWidth()) / 2 );
     }
+
+    // tune position of page
+    pageProperty.link( function( page ) {
+      var offsetX = (self.getWidth() - linksToPages[page].getWidth()) / 2;
+      linksToPages[page].setX( offsetX );
+      navBar.setX( offsetX + (linksToPages[page].getWidth() - navBar.getWidth()) / 2 );
+    } );
   }
 
   return inherit( Node, PaginationNode );
