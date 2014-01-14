@@ -33,18 +33,14 @@ define( function( require ) {
         height: pages[i].height || 150,
         starCount: number > 0 ? 4 : 3,
         label: pages[i].label,
-        shape: new ShapeNode( {
-          type: pages[i].type,
+        shape: new ShapeNode( _.assign( {
+          numerator: 1,
+          denominator: 1,
           x: 0,
           y: -5,
-          width: pages[i].shapeWidth || 50,
-          height: pages[i].shapeHeight || 50,
-          numerator: pages[i].numerator,
-          denominator: pages[i].denominator,
-          fill: pages[i].fill,
-          deck: pages[i].deck,
-          toSimplify: pages[i].toSimplify
-        } ),
+          width: 50,
+          height: 50
+        }, pages[i].shape ) ),
         callback: getCallback( targetProperty, pages[i].value )
       }, scoreArray, number * (pages.length - 1) + i ) );
       (i >= pages.length / 2 ? hBoxBottom : hBoxTop).updateLayout();
