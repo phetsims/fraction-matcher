@@ -24,7 +24,7 @@ define( function( require ) {
 
     AbstractShape.call( this, options );
     options = this.options;
-    numerator = options.numerator;
+    numerator = Math.max( 1, options.numerator ); //if numerator 0, we still want shape, but not filled
     denominator = options.denominator;
 
     radius = Math.min( options.width / 2, options.height / 2 );

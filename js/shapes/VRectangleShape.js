@@ -41,7 +41,7 @@ define( function( require ) {
 
     // add shapes to node
     this.arrayToShapes( pieces, options.width / 4 );
-    this.setTranslation( -options.width / 2, -options.height / (2 * pieces.length) );
+    this.setTranslation( -this.width / 2, -this.height / (2 * pieces.length) );
   }
 
   return inherit( AbstractShape, VRectangleShape, {
