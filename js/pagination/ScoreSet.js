@@ -18,11 +18,11 @@ define( function( require ) {
 
   return inherit( ObservableArray, ScoreSet, {
     // get score of given level
-    getScore: function( level ) {
+    get: function( level ) {
       return this._array[level];
     },
     // set score of given level
-    setScore: function( level, score ) {
+    set: function( level, score ) {
       this._array[level] = score;
       this._fireItemAdded( level );
     }

@@ -68,7 +68,7 @@ define( function( require ) {
 
     scoreArray.addItemAddedListener( function( levelWithNewScore ) {
       if ( levelWithNewScore === level ) {
-        starBox.setScore( scoreArray.getScore( level ) );
+        starBox.setScore( scoreArray.get( level ) );
       }
     } );
   }
