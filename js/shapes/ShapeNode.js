@@ -41,14 +41,14 @@ define( function( require ) {
         denominator: 1,
         toSimplify: false,
         onlyPiece: false,
-        fill: "#F00"
+        fill: '#F00'
       },
       options );
     Node.call( this, {x: options.x, y: options.y} );
     options.x = 0;
     options.y = 0;
 
-    this.addChild( new map[options.type]( options ) );
+    this.addChild( this.shapeLink = new map[options.type]( options ) );
   }
 
   return inherit( Node, ShapeNode );

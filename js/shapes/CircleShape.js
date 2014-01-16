@@ -13,6 +13,7 @@ define( function( require ) {
     Node = require( 'SCENERY/nodes/Node' ),
     AbstractShape = require( 'FRACTION_COMMON/shapes/AbstractShape' ),
     Path = require( 'SCENERY/nodes/Path' ),
+    Line = require( 'SCENERY/nodes/Line' ),
     Shape = require( 'KITE/Shape' );
 
   function CircleShape( options ) {
@@ -28,6 +29,7 @@ define( function( require ) {
     denominator = options.denominator;
 
     radius = Math.min( options.width / 2, options.height / 2 );
+    this.radius = radius;
 
     // init arrays for shapes
     for ( var i = 0, j, len; i < Math.ceil( numerator / denominator ); i++ ) {
@@ -58,6 +60,11 @@ define( function( require ) {
     // add shapes to node
     this.addNodes( nodes, radius / 2 );
     this.setX( -(nodes.length - 1) * radius / 2 );
+
+    // add dashed divisions
+    if ( options.divisions ) {
+      this.addDivisions( options.divisions );
+    }
   }
 
   return inherit( AbstractShape, CircleShape, {
@@ -73,6 +80,27 @@ define( function( require ) {
         shape.circle( 0, 0, radius );
       }
       return shape;
+    },
+    addDivisions: function( number ) {
+      var angle = 2 * Math.PI / number,
+        radius = this.radius;
+      this.dashedDivisionNode = new Node();
+      if ( number > 1 ) {
+        for ( var i = 0; i < number; i++ ) {
+          this.dashedDivisionNode.addChild( new Line( 0, 0, Math.cos( angle * i ) * radius, Math.sin( angle * i ) * radius ), {fill: 'green'} );
+        }
+      }
+      this.addChild( this.dashedDivisionNode );
+    },
+    updateDivisions: function( number ) {
+      var angle = 2 * Math.PI / number,
+        radius = this.radius;
+      this.dashedDivisionNode.removeAllChildren();
+      if ( number > 1 ) {
+        for ( var i = 0; i < number; i++ ) {
+          this.dashedDivisionNode.addChild( new Line( 0, 0, Math.cos( angle * i ) * radius, Math.sin( angle * i ) * radius, {stroke: 'rgb(125,125,125)', lineDash: [ 6, 3 ],  lineWidth: 2} ) );
+        }
+      }
     }
   } );
 } );
