@@ -10,8 +10,10 @@ define( function( require ) {
 
   // imports
   var inherit = require( 'PHET_CORE/inherit' ),
+    Node = require( 'SCENERY/nodes/Node' ),
     AbstractShape = require( 'FRACTION_COMMON/shapes/AbstractShape' ),
     Path = require( 'SCENERY/nodes/Path' ),
+    Line = require( 'SCENERY/nodes/Line' ),
     Shape = require( 'KITE/Shape' );
 
   function VRectangleShape( options ) {
@@ -42,11 +44,40 @@ define( function( require ) {
     // add shapes to node
     this.arrayToShapes( pieces, options.width / 4 );
     this.setTranslation( -this.width / 2, -this.height / (2 * pieces.length) );
+
+    // add dashed divisions
+    if ( options.divisions ) {
+      this.addDivisions( options.divisions );
+    }
   }
 
   return inherit( AbstractShape, VRectangleShape, {
     getPiece: function( width, height ) {
       return new Shape.rect( 0, 0, width, height );
+    },
+    addDivisions: function( number ) {
+      var width = this.options.width,
+        height = this.options.height,
+        dx = width / number;
+      this.dashedDivisionNode = new Node();
+      this.dashedDivisionOptions = {stroke: 'rgb(125,125,125)', lineDash: [ 6, 3 ], lineWidth: 2};
+      if ( number > 1 ) {
+        for ( var i = 0; i < number; i++ ) {
+          this.dashedDivisionNode.addChild( new Line( dx * i, 0, dx * i, height, this.dashedDivisionOptions ) );
+        }
+      }
+      this.addChild( this.dashedDivisionNode );
+    },
+    updateDivisions: function( number ) {
+      var width = this.options.width,
+        height = this.options.height,
+        dx = width / number;
+      this.dashedDivisionNode.removeAllChildren();
+      if ( number > 1 ) {
+        for ( var i = 1; i < number; i++ ) {
+          this.dashedDivisionNode.addChild( new Line( dx * i, 0, dx * i, height, this.dashedDivisionOptions ) );
+        }
+      }
     }
   } );
 } );

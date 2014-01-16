@@ -85,9 +85,10 @@ define( function( require ) {
       var angle = 2 * Math.PI / number,
         radius = this.radius;
       this.dashedDivisionNode = new Node();
+      this.dashedDivisionOptions = {stroke: 'rgb(125,125,125)', lineDash: [ 6, 3 ], lineWidth: 2};
       if ( number > 1 ) {
         for ( var i = 0; i < number; i++ ) {
-          this.dashedDivisionNode.addChild( new Line( 0, 0, Math.cos( angle * i ) * radius, Math.sin( angle * i ) * radius ), {fill: 'green'} );
+          this.dashedDivisionNode.addChild( new Line( 0, 0, Math.cos( angle * i ) * radius, Math.sin( angle * i ) * radius, this.dashedDivisionOptions ) );
         }
       }
       this.addChild( this.dashedDivisionNode );
@@ -98,7 +99,7 @@ define( function( require ) {
       this.dashedDivisionNode.removeAllChildren();
       if ( number > 1 ) {
         for ( var i = 0; i < number; i++ ) {
-          this.dashedDivisionNode.addChild( new Line( 0, 0, Math.cos( angle * i ) * radius, Math.sin( angle * i ) * radius, {stroke: 'rgb(125,125,125)', lineDash: [ 6, 3 ],  lineWidth: 2} ) );
+          this.dashedDivisionNode.addChild( new Line( 0, 0, Math.cos( angle * i ) * radius, Math.sin( angle * i ) * radius, this.dashedDivisionOptions ) );
         }
       }
     }
