@@ -32,11 +32,13 @@ define( function( require ) {
     }
 
     // tune position of page
-    pageProperty.link( function( page ) {
-      var offsetX = (self.getWidth() - linksToPages[page].getWidth()) / 2;
-      linksToPages[page].setX( offsetX );
-      navBar.setX( offsetX + (linksToPages[page].getWidth() - navBar.getWidth()) / 2 );
-    } );
+    if ( pageProperty ) {
+      pageProperty.link( function( page ) {
+        var offsetX = (self.getWidth() - linksToPages[page].getWidth()) / 2;
+        linksToPages[page].setX( offsetX );
+        navBar.setX( offsetX + (linksToPages[page].getWidth() - navBar.getWidth()) / 2 );
+      } );
+    }
   }
 
   return inherit( Node, PaginationNode );

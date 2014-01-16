@@ -42,7 +42,7 @@ define( function( require ) {
           height: 50
         }, pages[i].shape ) ),
         callback: getCallback( targetProperty, pages[i].value )
-      }, scoreArray, number * (pages.length - 1) + i ) );
+      }, scoreArray, number * pages.length + (i > pages.length / 2 ? 2 * i + 1 - pages.length : i * 2 ) ) );
       (i >= pages.length / 2 ? hBoxBottom : hBoxTop).updateLayout();
       vBox.updateLayout();
     }

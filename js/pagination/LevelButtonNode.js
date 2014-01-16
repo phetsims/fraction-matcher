@@ -66,8 +66,10 @@ define( function( require ) {
       {listener: options.callback} )
     );
 
-    scoreArray.addItemAddedListener( function( scoreSet ) {
-      starBox.setScore( scoreSet[level] );
+    scoreArray.addItemAddedListener( function( levelWithNewScore ) {
+      if ( levelWithNewScore === level ) {
+        starBox.setScore( scoreArray.getScore( level ) );
+      }
     } );
   }
 
