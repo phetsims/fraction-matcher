@@ -17,6 +17,8 @@ define( function( require ) {
   function PaginationNode( options, pages, levelProperty, scoreArray, pageProperty ) {
     var self = this,
       navBar,
+      offsetX,
+      maxWidth = 0,
       linksToPages = [];
     Node.call( this, options );
 
@@ -27,17 +29,17 @@ define( function( require ) {
 
     // add navigation bar
     if ( pages.length > 1 ) {
-      this.addChild( navBar = new NavigationBar( pages, { x: this.getWidth() / 2, y: this.getHeight() + 30}, pageProperty ) );
-      navBar.setX( (linksToPages[0].getWidth() - navBar.getWidth()) / 2 );
-    }
+      this.addChild( navBar = new NavigationBar( pages, {y: this.getHeight() + 30}, pageProperty ) );
 
-    // tune position of page
-    if ( pageProperty ) {
-      pageProperty.link( function( page ) {
-        var offsetX = (self.getWidth() - linksToPages[page].getWidth()) / 2;
-        linksToPages[page].setX( offsetX );
-        navBar.setX( offsetX + (linksToPages[page].getWidth() - navBar.getWidth()) / 2 );
-      } );
+      // set offset for pages
+      for ( i = 0; i < pages.length; i++ ) {
+        offsetX = (self.getWidth() - linksToPages[i].getWidth()) / 2;
+        linksToPages[i].setX( offsetX );
+        maxWidth = Math.max( maxWidth, linksToPages[i].getWidth() );
+      }
+
+      // set offset for navigation bar
+      navBar.setX( offsetX + (maxWidth - navBar.getWidth()) / 2 );
     }
   }
 
