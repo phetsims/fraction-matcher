@@ -81,25 +81,25 @@ define( function( require ) {
       }
       return shape;
     },
+    // create node and add divisions
     addDivisions: function( number ) {
-      var angle = 2 * Math.PI / number,
-        radius = this.radius;
       this.dashedDivisionNode = new Node();
-      this.dashedDivisionOptions = {stroke: 'rgb(125,125,125)', lineDash: [ 6, 3 ], lineWidth: 2};
-      if ( number > 1 ) {
-        for ( var i = 0; i < number; i++ ) {
-          this.dashedDivisionNode.addChild( new Line( 0, 0, Math.cos( angle * i ) * radius, Math.sin( angle * i ) * radius, this.dashedDivisionOptions ) );
-        }
-      }
+      this.drawDivisions( number );
       this.addChild( this.dashedDivisionNode );
     },
+    // update division's position
     updateDivisions: function( number ) {
-      var angle = 2 * Math.PI / number,
-        radius = this.radius;
       this.dashedDivisionNode.removeAllChildren();
+      this.drawDivisions( number );
+    },
+    // add divisions to node
+    drawDivisions: function( number ) {
+      var angle = 2 * Math.PI / number,
+        radius = this.radius,
+        options = {stroke: 'rgb(125,125,125)', lineDash: [ 6, 3 ], lineWidth: 2};
       if ( number > 1 ) {
         for ( var i = 0; i < number; i++ ) {
-          this.dashedDivisionNode.addChild( new Line( 0, 0, Math.cos( angle * i ) * radius, Math.sin( angle * i ) * radius, this.dashedDivisionOptions ) );
+          this.dashedDivisionNode.addChild( new Line( 0, 0, Math.cos( angle * i ) * radius, Math.sin( angle * i ) * radius, options ) );
         }
       }
     }

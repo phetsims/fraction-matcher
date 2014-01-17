@@ -55,27 +55,27 @@ define( function( require ) {
     getPiece: function( width, height ) {
       return new Shape.rect( 0, 0, width, height );
     },
+    // create node and add divisions
     addDivisions: function( number ) {
-      var width = this.options.width,
-        height = this.options.height,
-        dx = width / number;
       this.dashedDivisionNode = new Node();
-      this.dashedDivisionOptions = {stroke: 'rgb(125,125,125)', lineDash: [ 6, 3 ], lineWidth: 2};
-      if ( number > 1 ) {
-        for ( var i = 0; i < number; i++ ) {
-          this.dashedDivisionNode.addChild( new Line( dx * i, 0, dx * i, height, this.dashedDivisionOptions ) );
-        }
-      }
+      this.drawDivisions( number );
       this.addChild( this.dashedDivisionNode );
     },
+    // update division's position
     updateDivisions: function( number ) {
+      this.dashedDivisionNode.removeAllChildren();
+      this.drawDivisions( number );
+    },
+    // add divisions to node
+    drawDivisions: function( number ) {
       var width = this.options.width,
         height = this.options.height,
-        dx = width / number;
-      this.dashedDivisionNode.removeAllChildren();
+        dx = width / number,
+        options = {stroke: 'rgb(125,125,125)', lineDash: [ 6, 3 ], lineWidth: 2};
+
       if ( number > 1 ) {
         for ( var i = 1; i < number; i++ ) {
-          this.dashedDivisionNode.addChild( new Line( dx * i, 0, dx * i, height, this.dashedDivisionOptions ) );
+          this.dashedDivisionNode.addChild( new Line( dx * i, 0, dx * i, height, options ) );
         }
       }
     }
