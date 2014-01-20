@@ -49,7 +49,7 @@ define( function( require ) {
       }
 
       // add integral part
-      this.addChild( integralPartNode = new Text( integralPart, {font: FONTBIG, centerY: 0 } ) );
+      this.addChild( integralPartNode = new Text( integralPart+"", {font: FONTBIG, centerY: 0 } ) );
 
       // add additional offset taking into account whole part width
       integralPartWidth = integralPartNode.getWidth();
@@ -73,8 +73,8 @@ define( function( require ) {
     getFractionNode: function( numerator, denominator, side ) {
       var line = new Shape().moveTo( -16, 0 ).lineTo( 16, 0 ),
         fractionNode = new Node( {children: [
-          new Text( numerator, { font: FONTSMALL, centerX: 0, centerY: -side / 4  } ),
-          new Text( denominator, { font: FONTSMALL, centerX: 0, centerY: +side / 4  } ),
+          new Text( numerator+"", { font: FONTSMALL, centerX: 0, centerY: -side / 4  } ),
+          new Text( denominator+"", { font: FONTSMALL, centerX: 0, centerY: +side / 4  } ),
           new Path( line, {stroke: 'black', lineWidth: 2, lineCap: 'round'} )
         ]} );
 
