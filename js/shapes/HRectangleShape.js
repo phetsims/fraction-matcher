@@ -35,7 +35,7 @@ define( function( require ) {
     var len = (options.onlyPiece ? numerator : denominator);
     for ( i = 0; i < pieces.length; i++ ) {
       for ( j = 0; j < len; j++ ) {
-        pieces[i].push( new Path( this.getPiece( options.width, options.height/ denominator ), {
+        pieces[i].push( new Path( this.getPiece( options.width, options.height / denominator ), {
           y: (denominator - j - 1) / denominator * options.height, fill: 'white', stroke: options.stroke, lineWidth: 1
         } ) );
       }
@@ -43,7 +43,7 @@ define( function( require ) {
 
     // add shapes to node
     this.arrayToShapes( pieces, options.height / 4 );
-    this.setTranslation( -options.width / 2, -options.height / (2 * pieces.length) );
+    this.setTranslation( -this.width / 2, -this.height / (2 * pieces.length) );
   }
 
   return inherit( AbstractShape, HRectangleShape, {
