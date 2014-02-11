@@ -32,13 +32,14 @@ define( function( require ) {
       level: 0,
       currentScore: 0,
       action: 0,
-      selectLevel: 0,
+      selectedLevel: 0,
       buttonStatus: "none", // ['none','ok','check','tryAgain','showAnswer']
       changeStatus: false,
       drag: false,
       canDrag: true,
       animateShow: false
     } );
+
     this.score = new ObservableArray( [0, 0, 0, 0, 0, 0, 0, 0] );
     this.levelStatus = [];
 
@@ -82,14 +83,14 @@ define( function( require ) {
     ];
 
     this.buttonStatusProperty.link( function updateButtonStatus() {
-      if ( self.selectLevel > 0 ) {
-        self.levelStatus[self.selectLevel].buttonStatus = self.buttonStatus;
+      if ( self.selectedLevel > 0 ) {
+        self.levelStatus[self.selectedLevel].buttonStatus = self.buttonStatus;
       }
     } );
 
     this.canDragProperty.link( function updateCanDragStatus() {
-      if ( self.selectLevel > 0 ) {
-        self.levelStatus[self.selectLevel].canDrag = self.canDrag;
+      if ( self.selectedLevel > 0 ) {
+        self.levelStatus[self.selectedLevel].canDrag = self.canDrag;
       }
     } );
 
@@ -142,21 +143,21 @@ define( function( require ) {
       if ( !this.levelStatus[level] ) {
         this.generateLevel( level );
       }
-      if ( this.answerZone[this.answerZone.length - 1].indexShape >= 0 && level === 0 && this.selectLevel !== 0 ) {
-        var hiScore = this.levelStatus[this.selectLevel].hiScore;
-        this.generateLevel( this.selectLevel );
-        this.levelStatus[this.selectLevel].hiScore = hiScore;
+      if ( this.answerZone[this.answerZone.length - 1].indexShape >= 0 && level === 0 && this.selectedLevel !== 0 ) {
+        var hiScore = this.levelStatus[this.selectedLevel].hiScore;
+        this.generateLevel( this.selectedLevel );
+        this.levelStatus[this.selectedLevel].hiScore = hiScore;
       }
       this.action = (level > 0) ? 1 : 0;
 
-      this.selectLevel = level;
-      if ( typeof this.levelStatus[this.selectLevel] !== 'undefined' ) {
-        this.buttonStatus = this.levelStatus[this.selectLevel].buttonStatus;
-        this.canDrag = this.levelStatus[this.selectLevel].canDrag;
+      this.selectedLevel = level;
+      if ( typeof this.levelStatus[this.selectedLevel] !== 'undefined' ) {
+        this.buttonStatus = this.levelStatus[this.selectedLevel].buttonStatus;
+        this.canDrag = this.levelStatus[this.selectedLevel].canDrag;
       }
       this.changeStatus = !this.changeStatus;
     },
-    // return filtered shapes set for the selected denominator
+    // return filtered shapes set for the selected denominator, from java model
     filterShapes: function( shapes, d ) {
       var arr = shapes.slice( 0 ),
         map = [
@@ -245,13 +246,13 @@ define( function( require ) {
       };
     },
     resetLevel: function() {
-      var hiScore = this.levelStatus[this.selectLevel].hiScore;
-      this.generateLevel( this.selectLevel );
-      this.levelStatus[this.selectLevel].hiScore = hiScore;
+      var hiScore = this.levelStatus[this.selectedLevel].hiScore;
+      this.generateLevel( this.selectedLevel );
+      this.levelStatus[this.selectedLevel].hiScore = hiScore;
       this.changeStatus = !this.changeStatus;
     },
     answerButton: function( buttonName ) {
-      var i, levelStatus = this.levelStatus[this.selectLevel];
+      var i, levelStatus = this.levelStatus[this.selectedLevel];
       switch( buttonName ) { //['none','ok','check','tryAgain','showAnswer']
         case "ok":
           var lastAnswerZone = 0;

@@ -83,10 +83,10 @@ define( function( require ) {
 
 
     model.changeStatusProperty.link( function updateAction() {
-      if ( model.selectLevel > 0 ) {
-        levelLabel.text = StringUtils.format( patternLevelString, model.selectLevel );
+      if ( model.selectedLevel > 0 ) {
+        levelLabel.text = StringUtils.format( patternLevelString, model.selectedLevel );
         levelLabel.text.right = 1115;
-        scoreLabel.text = StringUtils.format( patternScoreString, model.levelStatus[model.selectLevel].score );
+        scoreLabel.text = StringUtils.format( patternScoreString, model.levelStatus[model.selectedLevel].score );
         scoreLabel.text.right = 1115;
       }
     } );
@@ -97,7 +97,7 @@ define( function( require ) {
       buttonTryAgain.setVisible( value === 'tryAgain' );
       buttonShowAnswer.setVisible( value === 'showAnswer' );
       if ( model.buttonStatus === 'ok' ) {
-        smile.setValue( 2 - model.levelStatus[model.selectLevel].step );
+        smile.setValue( 2 - model.levelStatus[model.selectedLevel].step );
       }
       else {
         smile.setValue( 0 );
@@ -105,7 +105,7 @@ define( function( require ) {
       if ( model.buttonStatus !== 'none' ) {
         comparisonChart.reset();
         if ( model.buttonStatus !== 'check' ) {
-          comparisonChart.compare( model.levelStatus[model.selectLevel].shape[model.levelStatus[model.selectLevel].old12], model.levelStatus[model.selectLevel].shape[model.levelStatus[model.selectLevel].old13] );
+          comparisonChart.compare( model.levelStatus[model.selectedLevel].shape[model.levelStatus[model.selectedLevel].old12], model.levelStatus[model.selectedLevel].shape[model.levelStatus[model.selectedLevel].old13] );
         }
       }
       else {

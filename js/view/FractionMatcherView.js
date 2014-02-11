@@ -24,21 +24,23 @@ define( function( require ) {
     ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
 
   function MatchingGameView( model ) {
-    var action, vBox;
     ScreenView.call( this, { renderer: 'svg' } );
-    this.addChild( action = new ActionNode( model ) );
 
-    this.addChild( vBox = new VBox( {x: 150, y: 25, spacing: 20, children: [
+    var action = new ActionNode( model );
+    var vBox = new VBox( {x: 150, y: 25, spacing: 20, children: [
       // add header
       new Text( (model.game === mixedNumbersTitleString ? mixedNumbersHeaderString : matchingGameHeaderString), { font: new PhetFont( { size: 36, weight: 'bold'} )  } ),
       // add pagination
       new Pagination( model )
-    ]} ) );
+    ]} );
+
+    this.addChild( action );
+    this.addChild( vBox );
 
     // add reset button
     this.addChild( new ResetAllButton( function() { model.reset(); }, { x: 1.4 * model.width, y: 1.3 * model.height} ) );
 
-    model.actionProperty.link( function selectAction( value ) {
+    model.actionProperty.link( function( value ) {
       vBox.setVisible( value === 0 );
       action.setVisible( value === 1 );
     } );

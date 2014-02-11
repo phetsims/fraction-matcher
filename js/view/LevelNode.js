@@ -35,10 +35,10 @@ define( function( require ) {
           offsetCursor = {x: thisNode.globalToParentPoint( event.pointer.point ).x - event.currentTarget.x, y: thisNode.globalToParentPoint( event.pointer.point ).y - event.currentTarget.y};
           event.currentTarget.x = thisNode.globalToParentPoint( event.pointer.point ).x - offsetCursor.x;
           event.currentTarget.y = thisNode.globalToParentPoint( event.pointer.point ).y - offsetCursor.y;
-          model.dropZone[model.levelStatus[model.selectLevel].shape[event.currentTarget.indexShape].dropZone].indexShape = -1;
+          model.dropZone[model.levelStatus[model.selectedLevel].shape[event.currentTarget.indexShape].dropZone].indexShape = -1;
           dragLayer.children = [event.currentTarget];
-          if ( model.levelStatus[model.selectLevel].answerShape.zone === model.levelStatus[model.selectLevel].shape[event.currentTarget.indexShape].dropZone ) {
-            model.levelStatus[model.selectLevel].answerShape = {zone: -1, indexShape: -1};
+          if ( model.levelStatus[model.selectedLevel].answerShape.zone === model.levelStatus[model.selectedLevel].shape[event.currentTarget.indexShape].dropZone ) {
+            model.levelStatus[model.selectedLevel].answerShape = {zone: -1, indexShape: -1};
           }
         }
       },
@@ -52,28 +52,28 @@ define( function( require ) {
         if ( model.canDrag ) {
           var zone = model.nearDropZone( event.currentTarget, false );
           if ( zone >= 12 && model.dropZone[zone].indexShape >= 0 ) {
-            var zone2 = model.nearDropZone( model.levelStatus[model.selectLevel].shape[model.dropZone[zone].indexShape].view, true );
-            model.levelStatus[model.selectLevel].shape[model.dropZone[zone].indexShape].dropZone = zone2;
-            model.levelStatus[model.selectLevel].shape[model.dropZone[zone].indexShape].view.x = model.dropZone[zone2].x;
-            model.levelStatus[model.selectLevel].shape[model.dropZone[zone].indexShape].view.y = model.dropZone[zone2].y;
+            var zone2 = model.nearDropZone( model.levelStatus[model.selectedLevel].shape[model.dropZone[zone].indexShape].view, true );
+            model.levelStatus[model.selectedLevel].shape[model.dropZone[zone].indexShape].dropZone = zone2;
+            model.levelStatus[model.selectedLevel].shape[model.dropZone[zone].indexShape].view.x = model.dropZone[zone2].x;
+            model.levelStatus[model.selectedLevel].shape[model.dropZone[zone].indexShape].view.y = model.dropZone[zone2].y;
             model.dropZone[zone2].indexShape = model.dropZone[zone].indexShape;
-            if ( model.levelStatus[model.selectLevel].answerShape.zone === zone ) {
-              model.levelStatus[model.selectLevel].answerShape = {zone: -1, indexShape: -1};
+            if ( model.levelStatus[model.selectedLevel].answerShape.zone === zone ) {
+              model.levelStatus[model.selectedLevel].answerShape = {zone: -1, indexShape: -1};
             }
           }
-          if ( zone >= 12 && model.levelStatus[model.selectLevel].answerShape.zone < 0 ) {
-            model.levelStatus[model.selectLevel].answerShape = {zone: zone, indexShape: event.currentTarget.indexShape};
+          if ( zone >= 12 && model.levelStatus[model.selectedLevel].answerShape.zone < 0 ) {
+            model.levelStatus[model.selectedLevel].answerShape = {zone: zone, indexShape: event.currentTarget.indexShape};
           }
           else if ( model.dropZone[12].indexShape >= 1 ) {
-            model.levelStatus[model.selectLevel].answerShape = {zone: 12, indexShape: model.dropZone[12].indexShape};
+            model.levelStatus[model.selectedLevel].answerShape = {zone: 12, indexShape: model.dropZone[12].indexShape};
           }
           else if ( model.dropZone[13].indexShape >= 1 ) {
-            model.levelStatus[model.selectLevel].answerShape = {zone: 13, indexShape: model.dropZone[13].indexShape};
+            model.levelStatus[model.selectedLevel].answerShape = {zone: 13, indexShape: model.dropZone[13].indexShape};
           }
 
           event.currentTarget.x = model.dropZone[zone].x;
           event.currentTarget.y = model.dropZone[zone].y;
-          model.levelStatus[model.selectLevel].shape[event.currentTarget.indexShape].dropZone = zone;
+          model.levelStatus[model.selectedLevel].shape[event.currentTarget.indexShape].dropZone = zone;
           model.dropZone[zone].indexShape = event.currentTarget.indexShape;
           dragLayer.removeAllChildren();
           model.changeStatus = !model.changeStatus;
@@ -101,9 +101,9 @@ define( function( require ) {
       for ( i = 0; i < model.answerZone.length; i++ ) {
         model.answerZone[i].indexShape = -1;
       }
-      if ( model.levelStatus[model.selectLevel] ) {
-        for ( i = 0; i < model.levelStatus[model.selectLevel].shape.length; i++ ) {
-          shape = model.levelStatus[model.selectLevel].shape[i];
+      if ( model.levelStatus[model.selectedLevel] ) {
+        for ( i = 0; i < model.levelStatus[model.selectedLevel].shape.length; i++ ) {
+          shape = model.levelStatus[model.selectedLevel].shape[i];
           if ( shape.view === undefined ) {
             shape.view = new ShapeNode( shape );
             shape.view.cursor = "pointer";
@@ -133,7 +133,7 @@ define( function( require ) {
         }
       }
       if ( model.buttonStatus === 'check' || model.buttonStatus === 'none' ) {
-        if ( model.dropZone[12].indexShape >= 0 && model.dropZone[13].indexShape >= 0 && (model.dropZone[12].indexShape !== model.levelStatus[model.selectLevel].old12 || model.dropZone[13].indexShape !== model.levelStatus[model.selectLevel].old13) ) {
+        if ( model.dropZone[12].indexShape >= 0 && model.dropZone[13].indexShape >= 0 && (model.dropZone[12].indexShape !== model.levelStatus[model.selectedLevel].old12 || model.dropZone[13].indexShape !== model.levelStatus[model.selectedLevel].old13) ) {
           model.buttonStatus = 'check';
         }
         else {
@@ -151,7 +151,7 @@ define( function( require ) {
     this.mutate( options );
 
     model.changeStatusProperty.link( function updateLevel() {
-      if ( model.selectLevel > 0 ) {
+      if ( model.selectedLevel > 0 ) {
         thisNode.refreshLevel();
       }
     } );
