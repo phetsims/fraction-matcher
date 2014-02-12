@@ -40,12 +40,12 @@ define( function( require ) {
     this.addChild( new ButtonNode( buttonNewGameString, function() {model.setLevel( 0 );}, {font: new PhetFont( { size: 22, weight: "normal"} ), rectangleFillUp: "#F1F1F1", rectangleFillDown: "#F1F1F1", rectangleFillOver: "#F8F8F8", x: 575, y: 470, rectangleCornerRadius: 5, rectangleXMargin: 10, rectangleYMargin: 5} ) );
 
     model.changeStatusProperty.link( function updateGameOverNode() {
-      if ( model.selectedLevel > 0 ) {
-        if ( model.levelStatus[model.selectedLevel].score >= 12 ) {
-          gameOverScore.text = StringUtils.format( patternGameOverScorePrefectString, model.levelStatus[model.selectedLevel].score );
+      if ( model.currentLevel > 0 ) {
+        if ( model.levelStatus[model.currentLevel].score >= 12 ) {
+          gameOverScore.text = StringUtils.format( patternGameOverScorePrefectString, model.levelStatus[model.currentLevel].score );
         }
         else {
-          gameOverScore.text = StringUtils.format( patternGameOverScoreString, model.levelStatus[model.selectedLevel].score );
+          gameOverScore.text = StringUtils.format( patternGameOverScoreString, model.levelStatus[model.currentLevel].score );
         }
         gameOverScore.centerX = 575;
         gameOverLevel.x = gameOverScore.x;

@@ -77,27 +77,30 @@ define( function( require ) {
     buttonTryAgain.right = Math.min( buttonTryAgain.right, 290 );
     buttonShowAnswer.right = Math.min( buttonShowAnswer.right, 290 );
 
-    thisNode.addChild( new LevelNode( model, {} ) );
+    model.levels.forEach(function(levelModel){
+      thisNode.addChild( new LevelNode( levelModel, {} ) );
+    });
+
 
     thisNode.addChild( new GameOverNode( model ) );
 
 
     model.changeStatusProperty.link( function updateAction() {
-      if ( model.selectedLevel > 0 ) {
-        levelLabel.text = StringUtils.format( patternLevelString, model.selectedLevel );
+      if ( model.currentLevel > 0 ) {
+        levelLabel.text = StringUtils.format( patternLevelString, model.currentLevel );
         levelLabel.text.right = 1115;
-        scoreLabel.text = StringUtils.format( patternScoreString, model.levelStatus[model.selectedLevel].score );
+        scoreLabel.text = StringUtils.format( patternScoreString, model.levelStatus[model.currentLevel].score );
         scoreLabel.text.right = 1115;
       }
     } );
 
-    model.buttonStatusProperty.link( function updateButtonStatus( value ) {
+/*    model.buttonStatusProperty.link( function updateButtonStatus( value ) {
       buttonOk.setVisible( value === 'ok' );
       buttonCheck.setVisible( value === 'check' );
       buttonTryAgain.setVisible( value === 'tryAgain' );
       buttonShowAnswer.setVisible( value === 'showAnswer' );
       if ( model.buttonStatus === 'ok' ) {
-        smile.setValue( 2 - model.levelStatus[model.selectedLevel].step );
+        smile.setValue( 2 - model.levelStatus[model.currentLevel].step );
       }
       else {
         smile.setValue( 0 );
@@ -105,13 +108,13 @@ define( function( require ) {
       if ( model.buttonStatus !== 'none' ) {
         comparisonChart.reset();
         if ( model.buttonStatus !== 'check' ) {
-          comparisonChart.compare( model.levelStatus[model.selectedLevel].shape[model.levelStatus[model.selectedLevel].old12], model.levelStatus[model.selectedLevel].shape[model.levelStatus[model.selectedLevel].old13] );
+          comparisonChart.compare( model.levelStatus[model.currentLevel].shape[model.levelStatus[model.currentLevel].old12], model.levelStatus[model.currentLevel].shape[model.levelStatus[model.currentLevel].old13] );
         }
       }
       else {
         comparisonChart.hide();
       }
-    } );
+    } );*/
   }
 
   return inherit( Node, ActionNode );
