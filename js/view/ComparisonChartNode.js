@@ -24,14 +24,13 @@ define( function( require ) {
       eqShape = new Shape();
 
     options = _.extend( {
-        radius: 70,
         symbolFill: "#FFFF00",
         symbolWidth: 2,
         stroke: "#000",
         lineBaseWidth: 3,
         lineOtherWidth: 1,
-        lineWeight: 100,
-        lineHeight: 200
+        lineWeight: 70,
+        lineHeight: 140
       },
       options );
 

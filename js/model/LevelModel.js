@@ -166,10 +166,10 @@ define( function( require ) {
       this.shape = newLevel;
     },
     resetLevel: function() {
-      var hiScore = this.levelStatus[this.currentLevel].hiScore;
-      this.generateLevel( this.currentLevel );
-      this.levelStatus[this.currentLevel].hiScore = hiScore;
-      this.changeStatus = !this.changeStatus;
+      this.generateLevel();
+      //TODO
+      //this.levelStatus[this.currentLevel].hiScore = hiScore;
+      //this.changeStatus = !this.changeStatus;
     },
     answerButton: function( buttonName ) {
       var i, levelStatus = this.levelStatus[this.currentLevel];

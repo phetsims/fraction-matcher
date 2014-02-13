@@ -23,10 +23,10 @@ define( function( require ) {
       scoreText;
 
     options = _.extend( {
-        radius: 70,
+        radius: 50,
         fill: "#FFFF00",
         stroke: "#000",
-        lineWidth: 6
+        lineWidth: 4
       },
       options );
     Node.call( thisNode );
@@ -36,7 +36,7 @@ define( function( require ) {
     thisNode.addChild( new Path( Shape.circle( Math.cos( 7 * Math.PI / 6 ) * options.radius * 0.5, Math.sin( 7 * Math.PI / 6 ) * options.radius * 0.5, options.lineWidth * 2 ), {fill: options.stroke} ) );
     thisNode.addChild( new Path( Shape.circle( Math.cos( -1 * Math.PI / 6 ) * options.radius * 0.5, Math.sin( -1 * Math.PI / 6 ) * options.radius * 0.5, options.lineWidth * 2 ), {fill: options.stroke} ) );
     thisNode.addChild( new Path( Shape.arc( 0, 0, options.radius * 0.6, Math.PI / 6, 5 * Math.PI / 6, false ), {stroke: options.stroke, lineWidth: options.lineWidth, lineCap: "round" } ) );
-    thisNode.addChild( scoreText = new Text( "+2", { font: new PhetFont( { size: 19, weight: "bold"} ), centerX: 0, y: options.radius + 30  } ) );
+    thisNode.addChild( scoreText = new Text( "+2", { font: new PhetFont( { size: 19, weight: "bold"} ), centerX: 0, y: options.radius + 20  } ) );
 
     // set new value and update text
     this.setValue = function( value ) {

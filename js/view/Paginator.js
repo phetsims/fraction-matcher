@@ -18,7 +18,7 @@ define( function( require ) {
     ObservableArray = require( 'AXON/ObservableArray' ),
     PaginationNode = require( 'FRACTION_COMMON/pagination/PaginationNode' );
 
-  function Pagination( model, options ) {
+  function Paginator( model, options ) {
     var mixedNumber = (model.game === mixedNumbersTitleString);
     Node.call( this, options );
 
@@ -37,8 +37,7 @@ define( function( require ) {
 
     this.addChild( new PaginationNode( {x: 150, y: 90}, [firstPageChildren], model.currentLevelProperty, new ObservableArray() ) ); //TODO remove ObservableArray
 
-    this.scale( 1.4, 1.4 );
   }
 
-  return inherit( Node, Pagination );
+  return inherit( Node, Paginator );
 } );

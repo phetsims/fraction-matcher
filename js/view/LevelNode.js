@@ -17,12 +17,47 @@ define( function( require ) {
     PhetFont = require( 'SCENERY_PHET/PhetFont' ),
     equallyAnswerSymbolString = require( 'string!FRACTION_MATCHER/equallyAnswerSymbol' ),
     ShapeNode = require( 'FRACTION_COMMON/shapes/ShapeNode' ),
+    ButtonNode = require( 'FRACTION_MATCHER/view/ButtonNode' ),
+    SmileNode = require( 'FRACTION_MATCHER/view/SmileNode' ),
+    ComparisonChartNode = require( 'FRACTION_MATCHER/view/ComparisonChartNode' ),
+    GameOverNode = require( 'FRACTION_MATCHER/view/GameOverNode' ),
     SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
 
+  //strings
+  var buttonCheckString = require( 'string!FRACTION_MATCHER/buttonCheck' ),
+    buttonOkString = require( 'string!FRACTION_MATCHER/buttonOk' ),
+    buttonTryAgainString = require( 'string!FRACTION_MATCHER/buttonTryAgain' ),
+    buttonShowAnswerString = require( 'string!FRACTION_MATCHER/buttonShowAnswer' );
+
+
   function LevelNode( model, options ) {
+    var margin = 15;
 
     var thisNode = this;
-    Node.call( thisNode );
+    Node.call( this );
+
+    //smile
+    var smile = new SmileNode( {centerX: 170 / 2, centerY: 190} );
+    thisNode.addChild( smile );
+
+    //left part buttons, check, ok, tryAgain, showAnswer
+    var buttonCheck = new ButtonNode( buttonCheckString, function() {model.answerButton( "check" );}, {font: new PhetFont( { size: 14, weight: "bold"} ), rectangleFillUp: "#FFD63F", rectangleFillDown: "#FFD63F", rectangleFillOver: "#FFEA9D", x: smile.centerX, y: smile.bottom + margin, rectangleCornerRadius: 5, rectangleXMargin: 10} );
+    var buttonOk = new ButtonNode( buttonOkString, function() {model.answerButton( "ok" );}, {font: new PhetFont( { size: 14, weight: "bold"} ), rectangleFillUp: "#44FF44", rectangleFillDown: "#44FF44", rectangleFillOver: "#9FFF9F", x: smile.centerX, y: smile.bottom + margin, rectangleCornerRadius: 5, rectangleXMargin: 10} );
+    var buttonTryAgain = new ButtonNode( buttonTryAgainString, function() {model.answerButton( "tryAgain" );}, {font: new PhetFont( { size: 14, weight: "bold"} ), rectangleFillUp: "#FF7C3B", rectangleFillDown: "#FF7C3B", rectangleFillOver: "#FFBE9D", x: smile.centerX, y: smile.bottom + margin, rectangleCornerRadius: 5, rectangleXMargin: 10} );
+    var buttonShowAnswer = new ButtonNode( buttonShowAnswerString, function() {model.answerButton( "showAnswer" );}, {font: new PhetFont( { size: 14, weight: "bold"} ), rectangleFillUp: "#FF7C3B", rectangleFillDown: "#FF7C3B", rectangleFillOver: "#FFBE9D", x: smile.centerX, y: smile.bottom + margin, rectangleCornerRadius: 5, rectangleXMargin: 10} );
+    thisNode.addChild( buttonCheck );
+    thisNode.addChild( buttonOk );
+    thisNode.addChild( buttonTryAgain );
+    thisNode.addChild( buttonShowAnswer );
+    buttonCheck.right = Math.min( buttonCheck.right, 290 );
+    buttonOk.right = Math.min( buttonOk.right, 290 );
+    buttonTryAgain.right = Math.min( buttonTryAgain.right, 290 );
+    buttonShowAnswer.right = Math.min( buttonShowAnswer.right, 290 );
+
+    var comparisonChart = new ComparisonChartNode( {centerX: model.gameModel.width / 2, y: 250} );
+    thisNode.addChild( comparisonChart );
+
+    thisNode.addChild( new GameOverNode( model ) );
 
     var shapeNode = new Node();
     var dragLayer = new Node();
@@ -146,9 +181,31 @@ define( function( require ) {
       equallyAnswerSymbol[i].setVisible( false );
     }
 
+
+    model.buttonStatusProperty.link( function updateButtonStatus( value ) {
+      buttonOk.setVisible( value === 'ok' );
+      buttonCheck.setVisible( value === 'check' );
+      buttonTryAgain.setVisible( value === 'tryAgain' );
+      buttonShowAnswer.setVisible( value === 'showAnswer' );
+      if ( model.buttonStatus === 'ok' ) {
+        smile.setValue( 2 - model.levelStatus[model.currentLevel].step );
+      }
+      else {
+        smile.setValue( 0 );
+      }
+      if ( model.buttonStatus !== 'none' ) {
+        comparisonChart.reset();
+        if ( model.buttonStatus !== 'check' ) {
+          comparisonChart.compare( model.levelStatus[model.currentLevel].shape[model.levelStatus[model.currentLevel].old12], model.levelStatus[model.currentLevel].shape[model.levelStatus[model.currentLevel].old13] );
+        }
+      }
+      else {
+        comparisonChart.hide();
+      }
+    } );
+
+
     this.mutate( options );
-
-
   }
 
   return inherit( Node, LevelNode );

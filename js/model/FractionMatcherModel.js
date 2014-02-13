@@ -31,16 +31,21 @@ define( function( require ) {
     this.levels = [];
 
     PropertySet.call( this, {
-      level: -1,
-      action: 0,
-      currentLevel: 0,
-      changeStatus: false
+      currentLevel: 1,
+      isLevelScreenActive: false,
+      changeStatus: false,
+      isSound : true,
+      isTimer: false
     } );
 
     this.CONSTANTS.LEVEL_DESCRIPTION.forEach( function( levelDescription ) {
       self.levels.push( new LevelModel( self, levelDescription ) );
     } );
 
+
+    this.currentLevelProperty.link( function( currentLevel ) {
+      self.isLevelScreenActive = (currentLevel > 0);
+    } );
 
     /*    this.buttonStatusProperty.link( function updateButtonStatus() {
      if ( self.currentLevel > 0 ) {

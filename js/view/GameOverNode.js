@@ -22,6 +22,7 @@ define( function( require ) {
     PhetFont = require( 'SCENERY_PHET/PhetFont' ),
     Rectangle = require( 'SCENERY/nodes/Rectangle' ),
     Line = require( 'SCENERY/nodes/Line' ),
+    Vector2 = require('DOT/Vector2' ),
     ButtonNode = require( 'FRACTION_MATCHER/view/ButtonNode' );
 
   function GameOverNode( model ) {
@@ -39,13 +40,12 @@ define( function( require ) {
     this.addChild( gameOverScore = new Text( StringUtils.format( patternGameOverScoreString, 1 ), { font: new PhetFont( { size: 28, weight: "normal"} ), x: 400, centerY: 360  } ) );
     this.addChild( new ButtonNode( buttonNewGameString, function() {model.setLevel( 0 );}, {font: new PhetFont( { size: 22, weight: "normal"} ), rectangleFillUp: "#F1F1F1", rectangleFillDown: "#F1F1F1", rectangleFillOver: "#F8F8F8", x: 575, y: 470, rectangleCornerRadius: 5, rectangleXMargin: 10, rectangleYMargin: 5} ) );
 
-    model.changeStatusProperty.link( function updateGameOverNode() {
-      if ( model.currentLevel > 0 ) {
-        if ( model.levelStatus[model.currentLevel].score >= 12 ) {
-          gameOverScore.text = StringUtils.format( patternGameOverScorePrefectString, model.levelStatus[model.currentLevel].score );
+    model.buttonStatusProperty.link( function updateGameOverNode() {
+        if ( model.score >= 12 ) {
+          gameOverScore.text = StringUtils.format( patternGameOverScorePrefectString, model.score );
         }
         else {
-          gameOverScore.text = StringUtils.format( patternGameOverScoreString, model.levelStatus[model.currentLevel].score );
+          gameOverScore.text = StringUtils.format( patternGameOverScoreString, model.score );
         }
         gameOverScore.centerX = 575;
         gameOverLevel.x = gameOverScore.x;
@@ -54,8 +54,9 @@ define( function( require ) {
         background.addChild( new Rectangle( gameOverScore.x - 50, 170, gameOverScore.width + 120, 350, 0, 0, {fill: "#B4CDFF", stroke: "#000", lineWidth: 2} ) );
         background.addChild( new Line( gameOverScore.x, 260, gameOverScore.x + gameOverScore.width + 20, 260, {stroke: "#000", lineWidth: 2} ) );
         background.addChild( new Line( gameOverScore.x, 430, gameOverScore.x + gameOverScore.width + 20, 430, {stroke: "#000", lineWidth: 2} ) );
-        thisNode.setVisible( model.answerZone[model.answerZone.length - 1].indexShape >= 0 );
-      }
+
+        thisNode.center = new Vector2(model.gameModel.width/2,model.gameModel.height/2);
+        //TODO thisNode.setVisible( model.answerZone[model.answerZone.length - 1].indexShape >= 0 );
     } );
   }
 
