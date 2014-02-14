@@ -27,7 +27,7 @@ define( function( require ) {
     Node.call( this, options );
 
     // add "back" button
-    hBox.addChild( backButton = new CircleButton( {colorFrom: '#ff1', colorTo: '#ff0', type: 'back', callback: function() {
+    hBox.addChild( backButton = new CircleButton( {type: 'back', callback: function() {
       if ( pageProperty.get() > 0 ) {
         pageProperty.set( pageProperty.get() - 1 );
       }
@@ -52,7 +52,7 @@ define( function( require ) {
     }
 
     // add "next" button
-    hBox.addChild( nextButton = new CircleButton( {colorFrom: '#ff1', colorTo: '#ff0', type: 'next', callback: function() {
+    hBox.addChild( nextButton = new CircleButton( {type: 'next', callback: function() {
       if ( pageProperty.get() < (pages.length - 1) ) {
         pageProperty.set( pageProperty.get() + 1 );
       }

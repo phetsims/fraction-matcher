@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * View for "back", "next" and "plus" button in 'Build a Fraction' sim.
+ * View for "back", "next", "plus" and "minus" button in 'Build a Fraction' sim.
  *
  * @author Andrey Zelenkov (Mlearner)
  */
@@ -18,11 +18,18 @@ define( function( require ) {
     RadialGradient = require( 'SCENERY/util/RadialGradient' ),
     PushButton = require( 'SUN/PushButton' );
 
+  var colors = {
+    back: {from: '#ff1', to: '#ff0'},
+    next: {from: '#ff1', to: '#ff0'},
+    plus: {from: 'rgb(188,219,142)', to: 'rgb(97,143,44)'},
+    minus: {from: 'rgb(255,127,80)', to: 'rgb(165,42,42)'}
+  };
+
   function CircleButton( options ) {
     var radius = options.radius || 16,
       lineWidth = options.lineWidth || 4,
-      colorFrom = options.colorFrom,
-      colorTo = options.colorTo,
+      colorFrom = colors[options.type].from,
+      colorTo = colors[options.type].to,
       circleDefault = new Circle( radius, { // default circle sample for buttons "next" and "back"
         fill: new RadialGradient( -radius * 0.2, -radius * 0.3, 1, -radius * 0.2, -radius * 0.3, radius * 1.75 )
           .addColorStop( 0, colorFrom )
@@ -41,22 +48,9 @@ define( function( require ) {
           .addColorStop( 0.5, '#d3d3d3' )
           .addColorStop( 1, '#000' )
       } ),
-      plusShape = new Shape().moveTo( -radius / 2, 0 ).lineTo( radius / 2, 0 ).moveTo( 0, -radius / 2 ).lineTo( 0, radius / 2 ), // shape for plus button
-      nextShape = new Shape().moveTo( -radius / 4, -radius / 2 ).lineTo( radius / 3, 0 ).lineTo( -radius / 4, radius / 2 ), // arrow shape for next button
-      backShape = new Shape().moveTo( radius / 4, -radius / 2 ).lineTo( -radius / 3, 0 ).lineTo( radius / 4, radius / 2 ), // arrow shape for back button
-      shape; // arrow shape for back button
+    // arrow shape for button
+      shape = this.shape( options.type, radius );
     Node.call( this );
-
-    if ( options.type === 'back' ) {
-      shape = backShape;
-    }
-    else if ( options.type === 'next' ) {
-      shape = nextShape;
-    }
-    else if ( options.type === 'plus' ) {
-      shape = plusShape;
-    }
-
 
     return new PushButton(
       new Node( {children: [ // default state
@@ -70,5 +64,26 @@ define( function( require ) {
       {listener: options.callback} );
   }
 
-  return inherit( Node, CircleButton );
+  return inherit( Node, CircleButton, {
+    shape: function( type, radius ) {
+      var shape = new Shape();
+      if ( type === 'back' ) {
+        // arrow shape for back button
+        shape.moveTo( radius / 4, -radius / 2 ).lineTo( -radius / 3, 0 ).lineTo( radius / 4, radius / 2 );
+      }
+      else if ( type === 'next' ) {
+        // arrow shape for next button
+        shape.moveTo( -radius / 4, -radius / 2 ).lineTo( radius / 3, 0 ).lineTo( -radius / 4, radius / 2 );
+      }
+      else if ( type === 'plus' ) {
+        // shape for plus button
+        shape.moveTo( -radius / 2, 0 ).lineTo( radius / 2, 0 ).moveTo( 0, -radius / 2 ).lineTo( 0, radius / 2 );
+      }
+      else if ( type === 'minus' ) {
+        // shape for minus button
+        shape.moveTo( -radius / 2, 0 ).lineTo( radius / 2, 0 );
+      }
+      return shape;
+    }
+  } );
 } );
