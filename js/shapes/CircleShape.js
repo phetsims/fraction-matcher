@@ -98,7 +98,7 @@ define( function( require ) {
     drawDivisions: function( number ) {
       var angle = 2 * Math.PI / number,
         radius = this.radius,
-        options = {stroke: 'rgb(125,125,125)', lineDash: [ 6, 3 ], lineWidth: 1};
+        options = {stroke: 'rgb(125,125,125)', lineDash: [ 4, 2 ], lineWidth: 1};
       if ( number > 1 ) {
         for ( var i = 0; i < number; i++ ) {
           this.dashedDivisionNode.addChild( new Line( 0, 0, Math.cos( angle * i ) * radius, Math.sin( angle * i ) * radius, options ) );
