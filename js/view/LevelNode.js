@@ -21,12 +21,15 @@ define( function( require ) {
     SmileNode = require( 'FRACTION_MATCHER/view/SmileNode' ),
     ComparisonChartNode = require( 'FRACTION_MATCHER/view/ComparisonChartNode' ),
     GameOverNode = require( 'FRACTION_MATCHER/view/GameOverNode' ),
+    StringUtils = require( 'PHETCOMMON/util/StringUtils' ),
     SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
 
   //strings
   var buttonCheckString = require( 'string!FRACTION_MATCHER/buttonCheck' ),
     buttonOkString = require( 'string!FRACTION_MATCHER/buttonOk' ),
     buttonTryAgainString = require( 'string!FRACTION_MATCHER/buttonTryAgain' ),
+    patternLevelString = require( 'string!FRACTION_MATCHER/patternLevel' ),
+    patternScoreString = require( 'string!FRACTION_MATCHER/patternScore' ),
     buttonShowAnswerString = require( 'string!FRACTION_MATCHER/buttonShowAnswer' );
 
 
@@ -35,6 +38,13 @@ define( function( require ) {
 
     var thisNode = this;
     Node.call( this );
+
+  //labels at the right
+    var levelLabel = new Text( StringUtils.format( patternLevelString, model.levelNumber ), { font: new PhetFont( { size: 19, weight: "bold"} ), right: model.gameModel.width - margin, centerY: 100  } );
+    var scoreLabel = new Text( StringUtils.format( patternScoreString, 0 ), { font: new PhetFont( { size: 19, weight: "bold"} ), right: model.gameModel.width - margin, centerY: 125  } );
+    thisNode.addChild( levelLabel );
+    thisNode.addChild( scoreLabel );
+
 
     //smile
     var smile = new SmileNode( {centerX: 170 / 2, centerY: 190} );
@@ -57,10 +67,11 @@ define( function( require ) {
     var comparisonChart = new ComparisonChartNode( {centerX: model.gameModel.width / 2, y: 250} );
     thisNode.addChild( comparisonChart );
 
-    thisNode.addChild( new GameOverNode( model ) );
+    this.gameOverNode =  new GameOverNode( model );
+    this.gameOverNode.visible = false;
+    thisNode.addChild( this.gameOverNode );
 
     var shapeNode = new Node();
-    var dragLayer = new Node();
     var equallyAnswerSymbol = [];
     var offsetCursor = {};
     var i;
@@ -70,7 +81,6 @@ define( function( require ) {
           event.currentTarget.x = thisNode.globalToParentPoint( event.pointer.point ).x - offsetCursor.x;
           event.currentTarget.y = thisNode.globalToParentPoint( event.pointer.point ).y - offsetCursor.y;
           model.dropZone[model.levelStatus[model.currentLevel].shape[event.currentTarget.indexShape].dropZone].indexShape = -1;
-          dragLayer.children = [event.currentTarget];
           if ( model.levelStatus[model.currentLevel].answerShape.zone === model.levelStatus[model.currentLevel].shape[event.currentTarget.indexShape].dropZone ) {
             model.levelStatus[model.currentLevel].answerShape = {zone: -1, indexShape: -1};
           }
@@ -109,7 +119,6 @@ define( function( require ) {
           event.currentTarget.y = model.dropZone[zone].y;
           model.levelStatus[model.currentLevel].shape[event.currentTarget.indexShape].dropZone = zone;
           model.dropZone[zone].indexShape = event.currentTarget.indexShape;
-          dragLayer.removeAllChildren();
           model.changeStatus = !model.changeStatus;
           thisNode.refreshLevel();
         }
@@ -122,45 +131,42 @@ define( function( require ) {
       };
 
     thisNode.addChild( shapeNode );
-    thisNode.addChild( dragLayer );
 
     this.refreshLevel = function() {
       var i, shape;
       shapeNode.removeAllChildren();
-      dragLayer.removeAllChildren();
       for ( i = 0; i < model.dropZone.length; i++ ) {
         model.dropZone[i].indexShape = -1;
       }
       for ( i = 0; i < model.answerZone.length; i++ ) {
         model.answerZone[i].indexShape = -1;
       }
-      if ( model.levelStatus[model.currentLevel] ) {
-        for ( i = 0; i < model.levelStatus[model.currentLevel].shape.length; i++ ) {
-          shape = model.levelStatus[model.currentLevel].shape[i];
-          if ( shape.view === undefined ) {
-            shape.view = new ShapeNode( shape );
-            shape.view.cursor = "pointer";
-            shape.view.addInputListener( new SimpleDragHandler( dragParamers ) );
-            shape.view.indexShape = i;
-          }
-          shapeNode.addChild( shape.view );
-          if ( shape.dropZone >= 0 ) {
-            shape.view.x = model.dropZone[shape.dropZone].x;
-            shape.view.y = model.dropZone[shape.dropZone].y;
-            model.dropZone[shape.dropZone].indexShape = i;
-          }
-          else if ( shape.answerZone >= 0 ) {
-            shape.view.matrix = new Matrix3();
-            shape.view.x = model.answerZone[shape.answerZone].x;
-            shape.view.y = model.answerZone[shape.answerZone].y;
-            shape.view.scale( model.answerZone[shape.answerZone].scale );
-            shape.view.cursor = "normal";
-            if ( shape.view.getInputListeners().length > 0 ) {
-              shape.view.removeInputListener();
-            }
-            model.answerZone[shape.answerZone].indexShape = i;
-          }
+      for ( i = 0; i < model.shape.length; i++ ) {
+        shape = model.shape[i];
+        if ( shape.view === undefined ) {
+          shape.view = new ShapeNode( shape );
+          shape.view.cursor = "pointer";
+          shape.view.addInputListener( new SimpleDragHandler( dragParamers ) );
+          shape.view.indexShape = i;
         }
+        shapeNode.addChild( shape.view );
+        if ( shape.dropZone >= 0 ) {
+          shape.view.x = model.dropZone[shape.dropZone].x;
+          shape.view.y = model.dropZone[shape.dropZone].y;
+          model.dropZone[shape.dropZone].indexShape = i;
+        }
+        else if ( shape.answerZone >= 0 ) {
+          shape.view.matrix = new Matrix3();
+          shape.view.x = model.answerZone[shape.answerZone].x;
+          shape.view.y = model.answerZone[shape.answerZone].y;
+          shape.view.scale( model.answerZone[shape.answerZone].scale );
+          shape.view.cursor = "normal";
+          if ( shape.view.getInputListeners().length > 0 ) {
+            shape.view.removeInputListener();
+          }
+          model.answerZone[shape.answerZone].indexShape = i;
+        }
+
         for ( i = 0; i < model.answerZone.length / 2; i++ ) {
           equallyAnswerSymbol[i].setVisible( model.answerZone[i * 2].indexShape >= 0 );
         }

@@ -34,12 +34,12 @@ define( function( require ) {
       currentLevel: 1,
       isLevelScreenActive: false,
       changeStatus: false,
-      isSound : true,
+      isSound: true,
       isTimer: false
     } );
 
-    this.CONSTANTS.LEVEL_DESCRIPTION.forEach( function( levelDescription ) {
-      self.levels.push( new LevelModel( self, levelDescription ) );
+    this.CONSTANTS.LEVEL_DESCRIPTION.forEach( function( levelDescription, index ) {
+      self.levels.push( new LevelModel( self, levelDescription, index ) );
     } );
 
 

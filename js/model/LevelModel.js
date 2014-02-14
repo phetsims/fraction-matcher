@@ -13,8 +13,9 @@ define( function( require ) {
     PropertySet = require( 'AXON/PropertySet' ),
     ShapeGame = require( 'FRACTION_MATCHER/model/ShapeGame' );
 
-  function LevelModel( gameModel ) {
+  function LevelModel( gameModel, levelDescription, levelNumber ) {
     this.gameModel = gameModel;
+    this.levelNumber = levelNumber;
 
     PropertySet.call( this, {
       score: 0,
@@ -67,7 +68,6 @@ define( function( require ) {
       {x: 995, y: 70, scale: 0.5, radius: 50, indexShape: -1},
       {x: 1065, y: 70, scale: 0.5, radius: 50, indexShape: -1}
     ];
-
     this.generateLevel();
   }
 
@@ -117,10 +117,8 @@ define( function( require ) {
       return arr;
     },
     // generate new level
-    generateLevel: function( level ) {
-      if ( !level ) {return;} // if (level === 0) - it's menu page, and we don't have to generate new level
-
-      var levelDescription = this.gameModel.CONSTANTS.LEVEL_DESCRIPTION[level - 1], // get description for selected level
+    generateLevel: function() {
+      var levelDescription = this.gameModel.CONSTANTS.LEVEL_DESCRIPTION[this.levelNumber - 1], // get description for selected level
         numericScaleFactors = levelDescription.numericScaleFactors.slice( 0 ),
         shapesAll = levelDescription.shapes.slice( 0 ), // get possible shaped for selected level
         colorScheme = this.gameModel.colorScheme, // get possible color scheme for selected level

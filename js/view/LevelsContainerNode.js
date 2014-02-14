@@ -23,9 +23,7 @@ define( function( require ) {
     LevelNode = require( 'FRACTION_MATCHER/view/LevelNode' );
 
   // strings
-    var patternLevelString = require( 'string!FRACTION_MATCHER/patternLevel' ),
-    patternScoreString = require( 'string!FRACTION_MATCHER/patternScore' ),
-    myMatchesString = require( 'string!FRACTION_MATCHER/myMatches' );
+  var myMatchesString = require( 'string!FRACTION_MATCHER/myMatches' );
 
   function LevelsContainerNode( model ) {
     var margin = 15;
@@ -37,12 +35,6 @@ define( function( require ) {
     for ( i = 0; i < 6; i++ ) {
       thisNode.addChild( new Rectangle( margin + i * 125, margin, 115, 70, 10, 10, {fill: "#C0C0C0"} ) );
     }
-
-    //labels at the right
-    var levelLabel = new Text( StringUtils.format( patternLevelString, 1 ), { font: new PhetFont( { size: 19, weight: "bold"} ), right: model.width - margin, centerY: 100  } );
-    var scoreLabel = new Text( StringUtils.format( patternScoreString, 0 ), { font: new PhetFont( { size: 19, weight: "bold"} ), right: model.width - margin, centerY: 125  } );
-    thisNode.addChild( levelLabel );
-    thisNode.addChild( scoreLabel );
 
     //My matches string
     thisNode.addChild( new Text( myMatchesString, { font: new PhetFont( { size: 19, weight: "bold"} ), x: 15, centerY: 100  } ) );
@@ -58,8 +50,8 @@ define( function( require ) {
 
     //scales
     var scalesMarginFromCenter = 150;
-    var scaleLeft = new Image( require( 'image!FRACTION_MATCHER/../images/scale.png' ), {centerX: model.width/2-scalesMarginFromCenter, y: 230, scale: 0.33} );
-    var scaleRight = new Image( require( 'image!FRACTION_MATCHER/../images/scale.png' ), {centerX: model.width/2+scalesMarginFromCenter, y: 230, scale: 0.33} );
+    var scaleLeft = new Image( require( 'image!FRACTION_MATCHER/../images/scale.png' ), {centerX: model.width / 2 - scalesMarginFromCenter, y: 230, scale: 0.33} );
+    var scaleRight = new Image( require( 'image!FRACTION_MATCHER/../images/scale.png' ), {centerX: model.width / 2 + scalesMarginFromCenter, y: 230, scale: 0.33} );
     thisNode.addChild( scaleLeft );
     thisNode.addChild( scaleRight );
 
@@ -70,16 +62,18 @@ define( function( require ) {
       }
     }
 
-    model.levels.forEach( function( levelModel ) {
-      thisNode.addChild( new LevelNode( levelModel, {} ) );
+    var levelNodes = [];
+    model.levels.forEach( function( levelModel, index ) {
+      levelNodes[index] = new LevelNode( levelModel, {visible: false} );
+      thisNode.addChild( levelNodes[index] );
     } );
 
-    model.changeStatusProperty.link( function updateAction() {
-      if ( model.currentLevel > 0 ) {
-        levelLabel.text = StringUtils.format( patternLevelString, model.currentLevel );
-        levelLabel.text.right = 1115;
-        scoreLabel.text = StringUtils.format( patternScoreString, model.levels[model.currentLevel].score );
-        scoreLabel.text.right = 1115;
+    model.currentLevelProperty.link( function( newLevel, oldLevel ) {
+      if ( newLevel > 0 ) {
+        levelNodes[newLevel ].visible = true;
+      }
+      if ( oldLevel && oldLevel > 0 ) {
+        levelNodes[oldLevel ].visible = false;
       }
     } );
 
