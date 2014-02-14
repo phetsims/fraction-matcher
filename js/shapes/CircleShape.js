@@ -20,6 +20,7 @@ define( function( require ) {
     var radius,
       numerator,
       denominator,
+      segmentLength,
       temp = [],
       nodes = [];
 
@@ -39,9 +40,10 @@ define( function( require ) {
 
     // create pieces and add them to created array
     len = (options.onlyPiece ? numerator : denominator);
+    segmentLength = Math.PI * 2 / denominator;
     for ( i = 0; i < nodes.length; i++ ) {
       for ( j = 0; j < len; j++ ) {
-        temp[i].push( new Path( this.getPiece( radius, ((Math.PI * 2) / denominator) * j, ((Math.PI * 2) / denominator) * (j + 1) ), {
+        temp[i].push( new Path( this.getPiece( radius, segmentLength * j, segmentLength * (j + 1) ), {
           fill: 'white', stroke: options.stroke, lineWidth: 1
         } ) );
       }
@@ -96,7 +98,7 @@ define( function( require ) {
     drawDivisions: function( number ) {
       var angle = 2 * Math.PI / number,
         radius = this.radius,
-        options = {stroke: 'rgb(125,125,125)', lineDash: [ 6, 3 ], lineWidth: 2};
+        options = {stroke: 'rgb(125,125,125)', lineDash: [ 6, 3 ], lineWidth: 1};
       if ( number > 1 ) {
         for ( var i = 0; i < number; i++ ) {
           this.dashedDivisionNode.addChild( new Line( 0, 0, Math.cos( angle * i ) * radius, Math.sin( angle * i ) * radius, options ) );

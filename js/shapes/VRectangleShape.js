@@ -71,7 +71,7 @@ define( function( require ) {
       var width = this.options.width,
         height = this.options.height,
         dx = width / number,
-        options = {stroke: 'rgb(125,125,125)', lineDash: [ 6, 3 ], lineWidth: 2};
+        options = {stroke: 'rgb(125,125,125)', lineDash: [ 6, 3 ], lineWidth: 1};
 
       if ( number > 1 ) {
         for ( var i = 1; i < number; i++ ) {
