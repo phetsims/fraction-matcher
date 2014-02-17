@@ -39,7 +39,7 @@ define( function( require ) {
     var thisNode = this;
     Node.call( this );
 
-  //labels at the right
+    //labels at the right
     var levelLabel = new Text( StringUtils.format( patternLevelString, model.levelNumber ), { font: new PhetFont( { size: 19, weight: "bold"} ), right: model.gameModel.width - margin, centerY: 100  } );
     var scoreLabel = new Text( StringUtils.format( patternScoreString, 0 ), { font: new PhetFont( { size: 19, weight: "bold"} ), right: model.gameModel.width - margin, centerY: 125  } );
     thisNode.addChild( levelLabel );
@@ -67,7 +67,7 @@ define( function( require ) {
     var comparisonChart = new ComparisonChartNode( {centerX: model.gameModel.width / 2, y: 250} );
     thisNode.addChild( comparisonChart );
 
-    this.gameOverNode =  new GameOverNode( model );
+    this.gameOverNode = new GameOverNode( model );
     this.gameOverNode.visible = false;
     thisNode.addChild( this.gameOverNode );
 
@@ -141,12 +141,13 @@ define( function( require ) {
       for ( i = 0; i < model.answerZone.length; i++ ) {
         model.answerZone[i].indexShape = -1;
       }
+
       for ( i = 0; i < model.shape.length; i++ ) {
         shape = model.shape[i];
         if ( shape.view === undefined ) {
           shape.view = new ShapeNode( shape );
           shape.view.cursor = "pointer";
-          shape.view.addInputListener( new SimpleDragHandler( dragParamers ) );
+          //shape.view.addInputListener( new SimpleDragHandler( dragParamers ) );
           shape.view.indexShape = i;
         }
         shapeNode.addChild( shape.view );
@@ -167,8 +168,8 @@ define( function( require ) {
           model.answerZone[shape.answerZone].indexShape = i;
         }
 
-        for ( i = 0; i < model.answerZone.length / 2; i++ ) {
-          equallyAnswerSymbol[i].setVisible( model.answerZone[i * 2].indexShape >= 0 );
+        for ( var j = 0; j < model.answerZone.length / 2; j++ ) {
+          equallyAnswerSymbol[j].setVisible( model.answerZone[j * 2].indexShape >= 0 );
         }
       }
       if ( model.buttonStatus === 'check' || model.buttonStatus === 'none' ) {
@@ -212,6 +213,8 @@ define( function( require ) {
 
 
     this.mutate( options );
+
+    this.refreshLevel();
   }
 
   return inherit( Node, LevelNode );

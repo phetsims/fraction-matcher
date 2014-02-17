@@ -39,7 +39,7 @@ define( function( require ) {
     } );
 
     this.CONSTANTS.LEVEL_DESCRIPTION.forEach( function( levelDescription, index ) {
-      self.levels.push( new LevelModel( self, levelDescription, index ) );
+      self.levels.push( new LevelModel( self, levelDescription, index + 1 ) );
     } );
 
 

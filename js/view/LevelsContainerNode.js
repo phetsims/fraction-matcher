@@ -70,10 +70,10 @@ define( function( require ) {
 
     model.currentLevelProperty.link( function( newLevel, oldLevel ) {
       if ( newLevel > 0 ) {
-        levelNodes[newLevel ].visible = true;
+        levelNodes[newLevel-1 ].visible = true;
       }
       if ( oldLevel && oldLevel > 0 ) {
-        levelNodes[oldLevel ].visible = false;
+        levelNodes[oldLevel-1 ].visible = false;
       }
     } );
 

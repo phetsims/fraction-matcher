@@ -118,7 +118,7 @@ define( function( require ) {
     },
     // generate new level
     generateLevel: function() {
-      var levelDescription = this.gameModel.CONSTANTS.LEVEL_DESCRIPTION[this.levelNumber - 1], // get description for selected level
+      var levelDescription = this.gameModel.CONSTANTS.LEVEL_DESCRIPTION[this.levelNumber-1], // get description for selected level
         numericScaleFactors = levelDescription.numericScaleFactors.slice( 0 ),
         shapesAll = levelDescription.shapes.slice( 0 ), // get possible shaped for selected level
         colorScheme = this.gameModel.colorScheme, // get possible color scheme for selected level
