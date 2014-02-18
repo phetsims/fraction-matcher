@@ -27,7 +27,7 @@ define( function( require ) {
 
   function CircleButton( options ) {
     var radius = options.radius || 16,
-      lineWidth = options.lineWidth || 4,
+      lineWidth = radius / 5,
       colorFrom = colors[options.type].from,
       colorTo = colors[options.type].to,
       circleDefault = new Circle( radius, { // default circle sample for buttons "next" and "back"
