@@ -31,7 +31,7 @@ define( function( require ) {
     this.levels = [];
 
     PropertySet.call( this, {
-      currentLevel: 1,
+      currentLevel: 0,
       isLevelScreenActive: false,
       changeStatus: false,
       isSound: true,

@@ -20,6 +20,8 @@ define( function( require ) {
     this.fillType = fillType;
     this.answerZone = -1;
     this.dropZone = -1;
+    this.width = 60;
+    this.height = 60;
 
     this.getAnswer = function() {
       return this.numerator / this.denominator;

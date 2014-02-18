@@ -31,42 +31,42 @@ define( function( require ) {
     } );
 
     this.dropZone = [
-      {x: 245, y: 485, radius: 50, indexShape: -1},
-      {x: 375, y: 485, radius: 50, indexShape: -1},
-      {x: 505, y: 485, radius: 50, indexShape: -1},
-      {x: 635, y: 485, radius: 50, indexShape: -1},
-      {x: 765, y: 485, radius: 50, indexShape: -1},
-      {x: 895, y: 485, radius: 50, indexShape: -1},
+      {x: 175, y: 345, radius: 35, indexShape: -1},
+      {x: 260, y: 345, radius: 35, indexShape: -1},
+      {x: 360, y: 345, radius: 35, indexShape: -1},
+      {x: 450, y: 345, radius: 35, indexShape: -1},
+      {x: 545, y: 345, radius: 35, indexShape: -1},
+      {x: 640, y: 345, radius: 35, indexShape: -1},
 
-      {x: 245, y: 615, radius: 50, indexShape: -1},
-      {x: 375, y: 615, radius: 50, indexShape: -1},
-      {x: 505, y: 615, radius: 50, indexShape: -1},
-      {x: 635, y: 615, radius: 50, indexShape: -1},
-      {x: 765, y: 615, radius: 50, indexShape: -1},
-      {x: 895, y: 615, radius: 50, indexShape: -1},
+      {x: 175, y: 440, radius: 35, indexShape: -1},
+      {x: 270, y: 440, radius: 35, indexShape: -1},
+      {x: 360, y: 440, radius: 35, indexShape: -1},
+      {x: 450, y: 440, radius: 35, indexShape: -1},
+      {x: 545, y: 440, radius: 35, indexShape: -1},
+      {x: 640, y: 440, radius: 35, indexShape: -1},
 
-      {x: 395, y: 290, radius: 80, indexShape: -1}, //[12]
-      {x: 750, y: 290, radius: 80, indexShape: -1}  //[13]
+      {x: 280, y: 210, radius: 60, indexShape: -1}, //[12]
+      {x: 535, y: 210, radius: 60, indexShape: -1}  //[13]
     ];
 
     this.answerZone = [
-      {x: 70, y: 70, scale: 0.5, radius: 50, indexShape: -1},
-      {x: 140, y: 70, scale: 0.5, radius: 50, indexShape: -1},
+      {x: 50, y: 70, scale: 0.5, radius: 35, indexShape: -1},
+      {x: 100, y: 70, scale: 0.5, radius: 35, indexShape: -1},
 
-      {x: 255, y: 70, scale: 0.5, radius: 50, indexShape: -1},
-      {x: 325, y: 70, scale: 0.5, radius: 50, indexShape: -1},
+      {x: 180, y: 70, scale: 0.5, radius: 35, indexShape: -1},
+      {x: 230, y: 70, scale: 0.5, radius: 35, indexShape: -1},
 
-      {x: 440, y: 70, scale: 0.5, radius: 50, indexShape: -1},
-      {x: 510, y: 70, scale: 0.5, radius: 50, indexShape: -1},
+      {x: 315, y: 70, scale: 0.5, radius: 35, indexShape: -1},
+      {x: 360, y: 70, scale: 0.5, radius: 35, indexShape: -1},
 
-      {x: 625, y: 70, scale: 0.5, radius: 50, indexShape: -1},
-      {x: 695, y: 70, scale: 0.5, radius: 50, indexShape: -1},
+      {x: 445, y: 70, scale: 0.5, radius: 35, indexShape: -1},
+      {x: 495, y: 70, scale: 0.5, radius: 35, indexShape: -1},
 
-      {x: 810, y: 70, scale: 0.5, radius: 50, indexShape: -1},
-      {x: 880, y: 70, scale: 0.5, radius: 50, indexShape: -1},
+      {x: 575, y: 70, scale: 0.5, radius: 35, indexShape: -1},
+      {x: 630, y: 70, scale: 0.5, radius: 35, indexShape: -1},
 
-      {x: 995, y: 70, scale: 0.5, radius: 50, indexShape: -1},
-      {x: 1065, y: 70, scale: 0.5, radius: 50, indexShape: -1}
+      {x: 710, y: 70, scale: 0.5, radius: 35, indexShape: -1},
+      {x: 760, y: 70, scale: 0.5, radius: 35, indexShape: -1}
     ];
     this.generateLevel();
   }
@@ -118,7 +118,7 @@ define( function( require ) {
     },
     // generate new level
     generateLevel: function() {
-      var levelDescription = this.gameModel.CONSTANTS.LEVEL_DESCRIPTION[this.levelNumber-1], // get description for selected level
+      var levelDescription = this.gameModel.CONSTANTS.LEVEL_DESCRIPTION[this.levelNumber - 1], // get description for selected level
         numericScaleFactors = levelDescription.numericScaleFactors.slice( 0 ),
         shapesAll = levelDescription.shapes.slice( 0 ), // get possible shaped for selected level
         colorScheme = this.gameModel.colorScheme, // get possible color scheme for selected level
@@ -170,7 +170,7 @@ define( function( require ) {
       //this.changeStatus = !this.changeStatus;
     },
     answerButton: function( buttonName ) {
-      var i, levelStatus = this.levelStatus[this.currentLevel];
+      var i, levelStatus = this;
       switch( buttonName ) { //['none','ok','check','tryAgain','showAnswer']
         case "ok":
           var lastAnswerZone = 0;

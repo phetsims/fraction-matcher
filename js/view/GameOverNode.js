@@ -56,7 +56,7 @@ define( function( require ) {
         background.addChild( new Line( gameOverScore.x, 430, gameOverScore.x + gameOverScore.width + 20, 430, {stroke: "#000", lineWidth: 2} ) );
 
         thisNode.center = new Vector2(model.gameModel.width/2,model.gameModel.height/2);
-        //TODO thisNode.setVisible( model.answerZone[model.answerZone.length - 1].indexShape >= 0 );
+        thisNode.setVisible( model.answerZone[model.answerZone.length - 1].indexShape >= 0 );
     } );
   }
 

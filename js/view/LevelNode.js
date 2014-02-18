@@ -80,9 +80,9 @@ define( function( require ) {
           offsetCursor = {x: thisNode.globalToParentPoint( event.pointer.point ).x - event.currentTarget.x, y: thisNode.globalToParentPoint( event.pointer.point ).y - event.currentTarget.y};
           event.currentTarget.x = thisNode.globalToParentPoint( event.pointer.point ).x - offsetCursor.x;
           event.currentTarget.y = thisNode.globalToParentPoint( event.pointer.point ).y - offsetCursor.y;
-          model.dropZone[model.levelStatus[model.currentLevel].shape[event.currentTarget.indexShape].dropZone].indexShape = -1;
-          if ( model.levelStatus[model.currentLevel].answerShape.zone === model.levelStatus[model.currentLevel].shape[event.currentTarget.indexShape].dropZone ) {
-            model.levelStatus[model.currentLevel].answerShape = {zone: -1, indexShape: -1};
+          model.dropZone[model.shape[event.currentTarget.indexShape].dropZone].indexShape = -1;
+          if ( model.answerShape.zone === model.shape[event.currentTarget.indexShape].dropZone ) {
+            model.answerShape = {zone: -1, indexShape: -1};
           }
         }
       },
@@ -96,28 +96,28 @@ define( function( require ) {
         if ( model.canDrag ) {
           var zone = model.nearDropZone( event.currentTarget, false );
           if ( zone >= 12 && model.dropZone[zone].indexShape >= 0 ) {
-            var zone2 = model.nearDropZone( model.levelStatus[model.currentLevel].shape[model.dropZone[zone].indexShape].view, true );
-            model.levelStatus[model.currentLevel].shape[model.dropZone[zone].indexShape].dropZone = zone2;
-            model.levelStatus[model.currentLevel].shape[model.dropZone[zone].indexShape].view.x = model.dropZone[zone2].x;
-            model.levelStatus[model.currentLevel].shape[model.dropZone[zone].indexShape].view.y = model.dropZone[zone2].y;
+            var zone2 = model.nearDropZone( model.shape[model.dropZone[zone].indexShape].view, true );
+            model.shape[model.dropZone[zone].indexShape].dropZone = zone2;
+            model.shape[model.dropZone[zone].indexShape].view.x = model.dropZone[zone2].x;
+            model.shape[model.dropZone[zone].indexShape].view.y = model.dropZone[zone2].y;
             model.dropZone[zone2].indexShape = model.dropZone[zone].indexShape;
-            if ( model.levelStatus[model.currentLevel].answerShape.zone === zone ) {
-              model.levelStatus[model.currentLevel].answerShape = {zone: -1, indexShape: -1};
+            if ( model.answerShape.zone === zone ) {
+              model.answerShape = {zone: -1, indexShape: -1};
             }
           }
-          if ( zone >= 12 && model.levelStatus[model.currentLevel].answerShape.zone < 0 ) {
-            model.levelStatus[model.currentLevel].answerShape = {zone: zone, indexShape: event.currentTarget.indexShape};
+          if ( zone >= 12 && model.answerShape.zone < 0 ) {
+            model.answerShape = {zone: zone, indexShape: event.currentTarget.indexShape};
           }
           else if ( model.dropZone[12].indexShape >= 1 ) {
-            model.levelStatus[model.currentLevel].answerShape = {zone: 12, indexShape: model.dropZone[12].indexShape};
+            model.answerShape = {zone: 12, indexShape: model.dropZone[12].indexShape};
           }
           else if ( model.dropZone[13].indexShape >= 1 ) {
-            model.levelStatus[model.currentLevel].answerShape = {zone: 13, indexShape: model.dropZone[13].indexShape};
+            model.answerShape = {zone: 13, indexShape: model.dropZone[13].indexShape};
           }
 
           event.currentTarget.x = model.dropZone[zone].x;
           event.currentTarget.y = model.dropZone[zone].y;
-          model.levelStatus[model.currentLevel].shape[event.currentTarget.indexShape].dropZone = zone;
+          model.shape[event.currentTarget.indexShape].dropZone = zone;
           model.dropZone[zone].indexShape = event.currentTarget.indexShape;
           model.changeStatus = !model.changeStatus;
           thisNode.refreshLevel();
@@ -147,7 +147,7 @@ define( function( require ) {
         if ( shape.view === undefined ) {
           shape.view = new ShapeNode( shape );
           shape.view.cursor = "pointer";
-          //shape.view.addInputListener( new SimpleDragHandler( dragParamers ) );
+          shape.view.addInputListener( new SimpleDragHandler( dragParamers ) );
           shape.view.indexShape = i;
         }
         shapeNode.addChild( shape.view );
@@ -173,7 +173,7 @@ define( function( require ) {
         }
       }
       if ( model.buttonStatus === 'check' || model.buttonStatus === 'none' ) {
-        if ( model.dropZone[12].indexShape >= 0 && model.dropZone[13].indexShape >= 0 && (model.dropZone[12].indexShape !== model.levelStatus[model.currentLevel].old12 || model.dropZone[13].indexShape !== model.levelStatus[model.currentLevel].old13) ) {
+        if ( model.dropZone[12].indexShape >= 0 && model.dropZone[13].indexShape >= 0 && (model.dropZone[12].indexShape !== model.old12 || model.dropZone[13].indexShape !== model.old13) ) {
           model.buttonStatus = 'check';
         }
         else {
@@ -195,7 +195,7 @@ define( function( require ) {
       buttonTryAgain.setVisible( value === 'tryAgain' );
       buttonShowAnswer.setVisible( value === 'showAnswer' );
       if ( model.buttonStatus === 'ok' ) {
-        smile.setValue( 2 - model.levelStatus[model.currentLevel].step );
+        smile.setValue( 2 - model.step );
       }
       else {
         smile.setValue( 0 );
@@ -203,7 +203,7 @@ define( function( require ) {
       if ( model.buttonStatus !== 'none' ) {
         comparisonChart.reset();
         if ( model.buttonStatus !== 'check' ) {
-          comparisonChart.compare( model.levelStatus[model.currentLevel].shape[model.levelStatus[model.currentLevel].old12], model.levelStatus[model.currentLevel].shape[model.levelStatus[model.currentLevel].old13] );
+          comparisonChart.compare( model.shape[model.old12], model.shape[model.old13] );
         }
       }
       else {
@@ -211,10 +211,11 @@ define( function( require ) {
       }
     } );
 
+    model.buttonStatusProperty.link( function updateLevel() {
+      thisNode.refreshLevel();
+    } );
 
     this.mutate( options );
-
-    this.refreshLevel();
   }
 
   return inherit( Node, LevelNode );
