@@ -23,6 +23,8 @@ define( function( require ) {
     Paginator = require( 'FRACTION_MATCHER/view/Paginator' ),
     Rectangle = require( 'SCENERY/nodes/Rectangle' ),
     LevelsContainerNode = require( 'FRACTION_MATCHER/view/LevelsContainerNode' ),
+    SoundToggleButton = require( 'SCENERY_PHET/SoundToggleButton' ),
+    TimerToggleButton = require( 'SCENERY_PHET/TimerToggleButton' ),
     ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
 
   function MatchingGameView( model ) {
@@ -39,10 +41,12 @@ define( function( require ) {
       // add pagination
       new Paginator( model )
     ]} );
-    var paginatorNode = new Node({children:[
+    var paginatorNode = new Node( {children: [
       paginatorBox,
-      new ResetAllButton( function() { model.reset(); }, { x: model.width - 40, y: model.height - 40} )
-    ]});
+      new ResetAllButton( function() { model.reset(); }, { x: model.width - 40, y: model.height - 40} ),
+      new TimerToggleButton( model.isTimerProperty, {x: 20, y: model.height - 120} ),
+      new SoundToggleButton( model.isSoundProperty, {x: 20, y: model.height - 60} )
+    ]} );
 
     this.addChild( levelsContainerNode );
     this.addChild( paginatorNode );
