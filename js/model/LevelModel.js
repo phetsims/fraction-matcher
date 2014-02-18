@@ -11,12 +11,15 @@ define( function( require ) {
   // imports
   var inherit = require( 'PHET_CORE/inherit' ),
     PropertySet = require( 'AXON/PropertySet' ),
-    ShapeGame = require( 'FRACTION_MATCHER/model/ShapeGame' );
+    SingleShapeModel = require( 'FRACTION_MATCHER/model/SingleShapeModel' );
 
   function LevelModel( gameModel, levelDescription, levelNumber ) {
     this.gameModel = gameModel;
     this.levelNumber = levelNumber;
     this.levelDescription = levelDescription;
+
+    this.MAXIMUM_PAIRS = 6;
+
 
     PropertySet.call( this, {
       score: 0,
@@ -27,6 +30,7 @@ define( function( require ) {
       old13: -1,
       stepScore: 0,
       answer: [],
+      shapes: [],
       canDrag: true,
       buttonStatus: "none" // ['none','ok','check','tryAgain','showAnswer']
     } );
@@ -124,52 +128,39 @@ define( function( require ) {
     },
     // generate new level
     generateLevel: function() {
-      var levelDescription = this.levelDescription, // get description for selected level
-        numericScaleFactors = levelDescription.numericScaleFactors.slice( 0 ),
-        shapesAll = levelDescription.shapes.slice( 0 ), // get possible shaped for selected level
-        colorScheme = this.gameModel.colorScheme, // get possible color scheme for selected level
-        max = 6, // number of shapes to add
-        fractions = _.shuffle( levelDescription.fractions.slice( 0 ) ).splice( 0, max ),
-        toSimplify = this.toSimplify,
+      var fractions = _.shuffle( this.levelDescription.fractions.slice( 0 ) ).splice( 0, this.MAXIMUM_PAIRS ), //get random MAXIMUM_PAIRS fractions
+        numericScaleFactors = this.levelDescription.numericScaleFactors.slice( 0 ), //scaleFactors to multiply fractions
         numberType = 'NUMBER',
-        newLevel = [],
-        scaleFactor,
-        fillType,
-        fraction,
-        shapes,
-        color,
-        type,
-        i;
+        newShapes = [];
 
+      var shapesAll = this.levelDescription.shapes.slice( 0 ); // get possible shapes for selected level
       shapesAll.push( numberType ); // add fractions to possible shapes
 
-      this.time = 0;
-
       // add shapes
-      for ( i = 0; i < max; i++ ) {
-        fraction = fractions[i];
-        shapes = this.filterShapes( shapesAll, fraction[1] );
-        scaleFactor = numericScaleFactors[_.random( numericScaleFactors.length - 1 )];
-        fillType = levelDescription.fillType[_.random( levelDescription.fillType.length - 1 )];
+      for ( var i = 0; i < this.MAXIMUM_PAIRS; i++ ) {
+        var fraction = fractions[i];
+        var shapes = this.filterShapes( shapesAll, fraction[1] );
+        var scaleFactor = numericScaleFactors[_.random( numericScaleFactors.length - 1 )];
+        var fillType = this.levelDescription.fillType[_.random( this.levelDescription.fillType.length - 1 )];
 
         // first 3 fractions - number, last 3 fractions - shapes with different colors (3 numbers and 3 shapes at least)
-        type = (i < max / 2) ? numberType : shapes[ i % (shapes.length - 1) ];
-        color = (type === numberType) ? 'rgb(0,0,0)' : colorScheme[i % 3];
-        newLevel.push( new ShapeGame( type, fraction, scaleFactor, color, fillType, toSimplify ) );
+        var type = (i < this.MAXIMUM_PAIRS / 2) ? numberType : shapes[ i % (shapes.length - 1) ];
+        var color = (type === numberType) ? 'rgb(0,0,0)' : this.gameModel.colorScheme[i % 3];
+        newShapes.push( new SingleShapeModel( type, fraction, scaleFactor, color, fillType, this.toSimplify ) );
 
         // add partner: if was number - add shape, if was shape - add number or shape with another color
         type = shapes[_.random( shapes.length - (type === numberType ? 2 : 1) )];
-        color = (type === numberType) ? 'rgb(0,0,0)' : colorScheme[(i + 1) % 3];
-        newLevel.push( new ShapeGame( type, fraction, scaleFactor, color, fillType, toSimplify ) );
+        color = (type === numberType) ? 'rgb(0,0,0)' : this.gameModel.colorScheme[(i + 1) % 3];
+        newShapes.push( new SingleShapeModel( type, fraction, scaleFactor, color, fillType, this.toSimplify ) );
       }
 
-      newLevel = _.shuffle( newLevel );
-      for ( i = 0; i < newLevel.length; i++ ) {
-        newLevel[i].dropZone = i;
+      newShapes = _.shuffle( newShapes );
+      for ( i = 0; i < newShapes.length; i++ ) {
+        newShapes[i].dropZone = i;
       }
 
       PropertySet.prototype.reset.call( this );
-      this.shape = newLevel;
+      this.shapes = newShapes;
     },
     resetLevel: function() {
       this.generateLevel();

@@ -8,7 +8,7 @@
 define( function( require ) {
   'use strict';
 
-  function ShapeGame( type, fraction, scaleFactor, fill, fillType, toSimplify ) {
+  function SingleShapeModel( type, fraction, scaleFactor, fill, fillType, toSimplify ) {
     this.x = 0;
     this.y = 0;
     this.type = type;
@@ -28,5 +28,5 @@ define( function( require ) {
     };
   }
 
-  return ShapeGame;
+  return SingleShapeModel;
 } );

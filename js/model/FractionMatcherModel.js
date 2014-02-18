@@ -33,7 +33,6 @@ define( function( require ) {
     PropertySet.call( this, {
       currentLevel: 1,
       isLevelScreenActive: false,
-      changeStatus: false,
       isSound: true,
       isTimer: false
     } );
