@@ -37,14 +37,14 @@ define( function( require ) {
     }
 
     //My matches string
-    thisNode.addChild( new Text( myMatchesString, { font: new PhetFont( { size: 19, weight: "bold"} ), x: 15, centerY: 100  } ) );
+    thisNode.addChild( new Text( myMatchesString, { font: new PhetFont( { size: 19, weight: "bold"} ), x: 15, y: 105  } ) );
 
     //right buttons, reset and toLevelSelection
-    var backButton = new BackButton( {y: 150}, function() {model.currentLevel = 0;} );
+    var backButton = new BackButton( {y: 160}, function() {model.currentLevel = 0;} );
     backButton.x = model.width - backButton.width - margin;
     thisNode.addChild( backButton );
 
-    var refreshButton = new RefreshButton( {y: 190}, function() {model.levels[model.currentLevel].resetLevel();} );
+    var refreshButton = new RefreshButton( {y: 200}, function() {model.levels[model.currentLevel].resetLevel();} );
     refreshButton.x = model.width - refreshButton.width - margin;
     thisNode.addChild( refreshButton );
 

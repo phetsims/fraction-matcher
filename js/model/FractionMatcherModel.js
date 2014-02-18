@@ -31,7 +31,7 @@ define( function( require ) {
     this.levels = [];
 
     PropertySet.call( this, {
-      currentLevel: 0,
+      currentLevel: 1,
       isLevelScreenActive: false,
       changeStatus: false,
       isSound: true,
@@ -41,7 +41,6 @@ define( function( require ) {
     this.CONSTANTS.LEVEL_DESCRIPTION.forEach( function( levelDescription, index ) {
       self.levels.push( new LevelModel( self, levelDescription, index + 1 ) );
     } );
-
 
     this.currentLevelProperty.link( function( currentLevel ) {
       self.isLevelScreenActive = (currentLevel > 0);
@@ -69,10 +68,10 @@ define( function( require ) {
     reset: function() {
       PropertySet.prototype.reset.call( this );
     },
-    step: function() {},
-
-    setLevel: function( level ) {
-      this.currentLevel = level;
+    step: function( dt ) {
+      if ( this.currentLevel > 0 ) {
+        this.levels[this.currentLevel - 1].step( dt );
+      }
     }
   } );
 

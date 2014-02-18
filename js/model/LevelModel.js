@@ -16,6 +16,7 @@ define( function( require ) {
   function LevelModel( gameModel, levelDescription, levelNumber ) {
     this.gameModel = gameModel;
     this.levelNumber = levelNumber;
+    this.levelDescription = levelDescription;
 
     PropertySet.call( this, {
       score: 0,
@@ -24,7 +25,7 @@ define( function( require ) {
       time: 0,
       old12: -1,
       old13: -1,
-      step: 0,
+      stepScore: 0,
       answer: [],
       canDrag: true,
       buttonStatus: "none" // ['none','ok','check','tryAgain','showAnswer']
@@ -72,6 +73,11 @@ define( function( require ) {
   }
 
   inherit( PropertySet, LevelModel, {
+    step: function( dt ) {
+      if ( this.gameModel.isTimer ) {
+        this.time += dt;
+      }
+    },
     nearDropZone: function( coord, onlyFree ) {
       var near = -1,
         min = 9999;
@@ -118,7 +124,7 @@ define( function( require ) {
     },
     // generate new level
     generateLevel: function() {
-      var levelDescription = this.gameModel.CONSTANTS.LEVEL_DESCRIPTION[this.levelNumber - 1], // get description for selected level
+      var levelDescription = this.levelDescription, // get description for selected level
         numericScaleFactors = levelDescription.numericScaleFactors.slice( 0 ),
         shapesAll = levelDescription.shapes.slice( 0 ), // get possible shaped for selected level
         colorScheme = this.gameModel.colorScheme, // get possible color scheme for selected level
@@ -136,6 +142,8 @@ define( function( require ) {
         i;
 
       shapesAll.push( numberType ); // add fractions to possible shapes
+
+      this.time = 0;
 
       // add shapes
       for ( i = 0; i < max; i++ ) {
@@ -165,9 +173,6 @@ define( function( require ) {
     },
     resetLevel: function() {
       this.generateLevel();
-      //TODO
-      //this.levelStatus[this.currentLevel].hiScore = hiScore;
-      //this.changeStatus = !this.changeStatus;
     },
     answerButton: function( buttonName ) {
       var i, levelStatus = this;
@@ -185,7 +190,7 @@ define( function( require ) {
           this.answerZone[lastAnswerZone + 1].indexShape = levelStatus.old13;
 
           this.answerShape = {zone: -1, indexShape: -1};
-          levelStatus.step = 0;
+          levelStatus.stepScore = 0;
           levelStatus.old12 = -1;
           levelStatus.old13 = -1;
           this.canDrag = true;
@@ -204,13 +209,13 @@ define( function( require ) {
           if ( Math.abs( levelStatus.shape[levelStatus.old12].getAnswer() - levelStatus.shape[levelStatus.old13].getAnswer() ) < 0.001 ) {
             //answer true
             this.buttonStatus = "ok";
-            levelStatus.score += 2 - levelStatus.step;
+            levelStatus.score += 2 - levelStatus.stepScore;
             this.changeStatus = !this.changeStatus;
           }
           else {
             //answer false
-            levelStatus.step++;
-            if ( levelStatus.step > 1 ) {
+            levelStatus.stepScore++;
+            if ( levelStatus.stepScore > 1 ) {
               this.buttonStatus = "showAnswer";
             }
             else {

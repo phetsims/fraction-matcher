@@ -21,7 +21,9 @@ define( function( require ) {
     SmileNode = require( 'FRACTION_MATCHER/view/SmileNode' ),
     ComparisonChartNode = require( 'FRACTION_MATCHER/view/ComparisonChartNode' ),
     GameOverNode = require( 'FRACTION_MATCHER/view/GameOverNode' ),
+    VBox = require( 'SCENERY/nodes/VBox' ),
     StringUtils = require( 'PHETCOMMON/util/StringUtils' ),
+    Util = require( 'DOT/Util' ),
     SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
 
   //strings
@@ -30,21 +32,28 @@ define( function( require ) {
     buttonTryAgainString = require( 'string!FRACTION_MATCHER/buttonTryAgain' ),
     patternLevelString = require( 'string!FRACTION_MATCHER/patternLevel' ),
     patternScoreString = require( 'string!FRACTION_MATCHER/patternScore' ),
+    patternTimeString = require( 'string!FRACTION_MATCHER/time.pattern' ),
     buttonShowAnswerString = require( 'string!FRACTION_MATCHER/buttonShowAnswer' );
 
 
   function LevelNode( model, options ) {
     var margin = 15;
-
     var thisNode = this;
+
     Node.call( this );
 
     //labels at the right
-    var levelLabel = new Text( StringUtils.format( patternLevelString, model.levelNumber ), { font: new PhetFont( { size: 19, weight: "bold"} ), right: model.gameModel.width - margin, centerY: 100  } );
-    var scoreLabel = new Text( StringUtils.format( patternScoreString, 0 ), { font: new PhetFont( { size: 19, weight: "bold"} ), right: model.gameModel.width - margin, centerY: 125  } );
-    thisNode.addChild( levelLabel );
-    thisNode.addChild( scoreLabel );
-
+    var levelLabel = new Text( StringUtils.format( patternLevelString, model.levelNumber ), { font: new PhetFont( { size: 19, weight: "bold"} )} );
+    var scoreLabel = new Text( StringUtils.format( patternScoreString, 0 ), { font: new PhetFont( { size: 19, weight: "bold"} )} );
+    var timeLabel = new Text( StringUtils.format( patternScoreString, 0 ), { font: new PhetFont( { size: 19, weight: "bold"} )} );
+    var vBox = new VBox( {
+      children: [levelLabel, scoreLabel, timeLabel],
+      spacing: 0,
+      y: 85,
+      right: model.gameModel.width - margin,
+      align: 'right'
+    } );
+    thisNode.addChild( vBox );
 
     //smile
     var smile = new SmileNode( {centerX: 170 / 2, centerY: 190} );
@@ -195,7 +204,7 @@ define( function( require ) {
       buttonTryAgain.setVisible( value === 'tryAgain' );
       buttonShowAnswer.setVisible( value === 'showAnswer' );
       if ( model.buttonStatus === 'ok' ) {
-        smile.setValue( 2 - model.step );
+        smile.setValue( 2 - model.stepScore );
       }
       else {
         smile.setValue( 0 );
@@ -214,6 +223,16 @@ define( function( require ) {
     model.buttonStatusProperty.link( function updateLevel() {
       thisNode.refreshLevel();
     } );
+
+    model.gameModel.isTimerProperty.link( function( isTimer ) {
+      timeLabel.visible = isTimer;
+    } );
+
+    model.timeProperty.link( function( newTime ) {
+      timeLabel.text = StringUtils.format( patternTimeString, Util.toFixed( newTime, 0 ) );
+      timeLabel.right = levelLabel.right;
+    } );
+
 
     this.mutate( options );
   }
