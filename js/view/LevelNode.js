@@ -24,6 +24,7 @@ define( function( require ) {
     VBox = require( 'SCENERY/nodes/VBox' ),
     StringUtils = require( 'PHETCOMMON/util/StringUtils' ),
     Util = require( 'DOT/Util' ),
+    Vector2 = require( 'DOT/Vector2' ),
     SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
 
   //strings
@@ -36,11 +37,14 @@ define( function( require ) {
     buttonShowAnswerString = require( 'string!FRACTION_MATCHER/buttonShowAnswer' );
 
 
-  function LevelNode( model, options ) {
+  function LevelNode( model, levelsContainer, options ) {
     var margin = 15;
     var thisNode = this;
 
     Node.call( this );
+
+    this.levelsContainer = levelsContainer;
+    this.model = model;
 
     //labels at the right
     var levelLabel = new Text( StringUtils.format( patternLevelString, model.levelNumber ), { font: new PhetFont( { size: 19, weight: "bold"} )} );
@@ -86,8 +90,6 @@ define( function( require ) {
     var startDrag = function( event ) {
         if ( model.canDrag ) {
           offsetCursor = {x: thisNode.globalToParentPoint( event.pointer.point ).x - event.currentTarget.x, y: thisNode.globalToParentPoint( event.pointer.point ).y - event.currentTarget.y};
-          event.currentTarget.x = thisNode.globalToParentPoint( event.pointer.point ).x - offsetCursor.x;
-          event.currentTarget.y = thisNode.globalToParentPoint( event.pointer.point ).y - offsetCursor.y;
           model.dropZone[model.shapes[event.currentTarget.indexShape].dropZone].indexShape = -1;
           if ( model.answerShape.zone === model.shapes[event.currentTarget.indexShape].dropZone ) {
             model.answerShape = {zone: -1, indexShape: -1};
@@ -122,7 +124,6 @@ define( function( require ) {
           else if ( model.dropZone[13].indexShape >= 1 ) {
             model.answerShape = {zone: 13, indexShape: model.dropZone[13].indexShape};
           }
-
           event.currentTarget.x = model.dropZone[zone].x;
           event.currentTarget.y = model.dropZone[zone].y;
           model.shapes[event.currentTarget.indexShape].dropZone = zone;
@@ -160,8 +161,7 @@ define( function( require ) {
         }
         shapeNode.addChild( shape.view );
         if ( shape.dropZone >= 0 ) {
-          shape.view.x = model.dropZone[shape.dropZone].x;
-          shape.view.y = model.dropZone[shape.dropZone].y;
+          shape.view.center = thisNode.getShapeDropPosition( shape.dropZone );
           model.dropZone[shape.dropZone].indexShape = i;
         }
         else if ( shape.answerZone >= 0 ) {
@@ -189,7 +189,6 @@ define( function( require ) {
         }
       }
     };
-
     for ( i = 0; i < model.answerZone.length / 2; i++ ) {
       equallyAnswerSymbol[i] = new Text( equallyAnswerSymbolString, { font: new PhetFont( { size: 22, _weight: "bold"} ), centerX: (model.answerZone[i * 2].x + model.answerZone[i * 2 + 1].x) / 2, centerY: model.answerZone[i * 2].y  } );
       thisNode.addChild( equallyAnswerSymbol[i] );
@@ -238,9 +237,20 @@ define( function( require ) {
       scoreLabel.right = levelLabel.right;
     } );
 
-
     this.mutate( options );
   }
 
-  return inherit( Node, LevelNode );
+  return inherit( Node, LevelNode, {
+    getShapeDropPosition: function( position ) {
+      //inside dropZones at the bottom
+      if ( position < this.model.gameModel.MAXIMUM_PAIRS * 2 ) {
+        return this.levelsContainer.sourceRectangles[position].center;
+      }
+      else {
+        //one of two scales
+        var scale = this.levelsContainer.scales[position - this.model.gameModel.MAXIMUM_PAIRS * 2];
+        return new Vector2( scale.centerX, scale.top );
+      }
+    }
+  } );
 } );

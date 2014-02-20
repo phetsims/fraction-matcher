@@ -32,8 +32,10 @@ define( function( require ) {
     Node.call( this );
 
     //top gray targets
+    this.answerRects = [];
     for ( i = 0; i < 6; i++ ) {
-      thisNode.addChild( new Rectangle( margin + i * 125, margin, 115, 70, 10, 10, {fill: "#C0C0C0"} ) );
+      this.answerRects.push( new Rectangle( margin + i * 125, margin, 115, 70, 10, 10, {fill: "#C0C0C0"} ) );
+      thisNode.addChild( this.answerRects[i] );
     }
 
     //My matches string
@@ -50,30 +52,33 @@ define( function( require ) {
 
     //scales
     var scalesMarginFromCenter = 150;
-    var scaleLeft = new Image( require( 'image!FRACTION_MATCHER/../images/scale.png' ), {centerX: model.width / 2 - scalesMarginFromCenter, y: 230, scale: 0.33} );
-    var scaleRight = new Image( require( 'image!FRACTION_MATCHER/../images/scale.png' ), {centerX: model.width / 2 + scalesMarginFromCenter, y: 230, scale: 0.33} );
-    thisNode.addChild( scaleLeft );
-    thisNode.addChild( scaleRight );
+    this.scales = [];
+    this.scales[0] = new Image( require( 'image!FRACTION_MATCHER/../images/scale.png' ), {centerX: model.width / 2 - scalesMarginFromCenter, y: 230, scale: 0.33} );
+    this.scales[1] = new Image( require( 'image!FRACTION_MATCHER/../images/scale.png' ), {centerX: model.width / 2 + scalesMarginFromCenter, y: 230, scale: 0.33} );
+    thisNode.addChild( this.scales[0] );
+    thisNode.addChild( this.scales[1] );
 
     //source rectangles
+    this.sourceRectangles = [];
     for ( i = 0; i < 6; i++ ) {
       for ( j = 0; j < 2; j++ ) {
-        thisNode.addChild( new Rectangle( 125 + i * 90, 300 + j * 90, 90, 90, 0, 0, { stroke: "#C0C0C0", lineWidth: 1} ) );
+        this.sourceRectangles.push( new Rectangle( 125 + i * 90, 300 + j * 90, 90, 90, 0, 0, { stroke: "#C0C0C0", lineWidth: 1} ) );
+        thisNode.addChild( this.sourceRectangles[this.sourceRectangles.length - 1] );
       }
     }
 
     var levelNodes = [];
     model.levels.forEach( function( levelModel, index ) {
-      levelNodes[index] = new LevelNode( levelModel, {visible: false} );
+      levelNodes[index] = new LevelNode( levelModel, thisNode, {visible: false} );
       thisNode.addChild( levelNodes[index] );
     } );
 
     model.currentLevelProperty.link( function( newLevel, oldLevel ) {
       if ( newLevel > 0 ) {
-        levelNodes[newLevel-1 ].visible = true;
+        levelNodes[newLevel - 1 ].visible = true;
       }
       if ( oldLevel && oldLevel > 0 ) {
-        levelNodes[oldLevel-1 ].visible = false;
+        levelNodes[oldLevel - 1 ].visible = false;
       }
     } );
 

@@ -32,6 +32,7 @@ define( function( require ) {
     this.colorScheme = [CONSTANTS.COLORS.LIGHT_BLUE, CONSTANTS.COLORS.LIGHT_GREEN, CONSTANTS.COLORS.LIGHT_RED];
     this.toSimplify = (this.game === mixedNumbersTitleString); // flag for simplifying number shapes
     this.ANIMATION_TIME = 500;
+    this.MAXIMUM_PAIRS = 6;
 
     this.sounds = {
       correct: new Sound( correctAudio ),

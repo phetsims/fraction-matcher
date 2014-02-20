@@ -19,9 +19,6 @@ define( function( require ) {
     this.levelNumber = levelNumber;
     this.levelDescription = levelDescription;
 
-    this.MAXIMUM_PAIRS = 6;
-
-
     PropertySet.call( this, {
       score: 0,
       highScore: 0,
@@ -84,7 +81,7 @@ define( function( require ) {
     },
     nearDropZone: function( coord, onlyFree ) {
       var near = -1,
-        min = 9999;
+        min = 1e10;
       for ( var i = 0; i < this.dropZone.length; i++ ) {
         if ( min > this.distanceSquared( coord, this.dropZone[i] ) && (this.dropZone[i].indexShape < 0 || (!onlyFree && (i === 12 || i === 13))) && (!onlyFree || i < 12) ) {
           min = this.distanceSquared( coord, this.dropZone[i] );
@@ -128,7 +125,7 @@ define( function( require ) {
     },
     // generate new level
     generateLevel: function() {
-      var fractions = _.shuffle( this.levelDescription.fractions.slice( 0 ) ).splice( 0, this.MAXIMUM_PAIRS ), //get random MAXIMUM_PAIRS fractions
+      var fractions = _.shuffle( this.levelDescription.fractions.slice( 0 ) ).splice( 0, this.gameModel.MAXIMUM_PAIRS ), //get random MAXIMUM_PAIRS fractions
         numericScaleFactors = this.levelDescription.numericScaleFactors.slice( 0 ), //scaleFactors to multiply fractions
         numberType = 'NUMBER',
         newShapes = [];
@@ -137,14 +134,14 @@ define( function( require ) {
       shapesAll.push( numberType ); // add fractions to possible shapes
 
       // add shapes
-      for ( var i = 0; i < this.MAXIMUM_PAIRS; i++ ) {
+      for ( var i = 0; i < this.gameModel.MAXIMUM_PAIRS; i++ ) {
         var fraction = fractions[i]; // [numerator, denominator] pair
         var shapes = this.filterShapes( shapesAll, fraction[1] ); //filter only shapes for current denominator
         var scaleFactor = numericScaleFactors[_.random( numericScaleFactors.length - 1 )]; //random scaleFactor
         var fillType = this.levelDescription.fillType[_.random( this.levelDescription.fillType.length - 1 )];
 
         // first 3 fractions - number, last 3 fractions - shapes with different colors (3 numbers and 3 shapes at least)
-        var type = (i < this.MAXIMUM_PAIRS / 2) ? numberType : shapes[ i % (shapes.length - 1) ];
+        var type = (i < this.gameModel.MAXIMUM_PAIRS / 2) ? numberType : shapes[ i % (shapes.length - 1) ];
         var color = (type === numberType) ? 'rgb(0,0,0)' : this.gameModel.colorScheme[i % 3];
         newShapes.push( new SingleShapeModel( type, fraction, scaleFactor, color, fillType, this.toSimplify ) );
 
@@ -186,7 +183,7 @@ define( function( require ) {
           this.canDrag = true;
           this.buttonStatus = "none";
 
-          if ( self.answers.length === self.MAXIMUM_PAIRS ) {
+          if ( self.answers.length === self.gameModel.MAXIMUM_PAIRS ) {
             self.hiScore = Math.max( self.hiScore, self.score );
           }
           break;
