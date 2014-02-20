@@ -73,7 +73,7 @@ define( function( require ) {
     buttonTryAgain.right = Math.min( buttonTryAgain.right, 290 );
     buttonShowAnswer.right = Math.min( buttonShowAnswer.right, 290 );
 
-    var comparisonChart = new ComparisonChartNode( {centerX: model.gameModel.width / 2, y: 250} );
+    var comparisonChart = new ComparisonChartNode( model.gameModel, {centerX: model.gameModel.width / 2, y: 250} );
     thisNode.addChild( comparisonChart );
 
     this.gameOverNode = new GameOverNode( model );
@@ -89,8 +89,8 @@ define( function( require ) {
           offsetCursor = {x: thisNode.globalToParentPoint( event.pointer.point ).x - event.currentTarget.x, y: thisNode.globalToParentPoint( event.pointer.point ).y - event.currentTarget.y};
           event.currentTarget.x = thisNode.globalToParentPoint( event.pointer.point ).x - offsetCursor.x;
           event.currentTarget.y = thisNode.globalToParentPoint( event.pointer.point ).y - offsetCursor.y;
-          model.dropZone[model.shape[event.currentTarget.indexShape].dropZone].indexShape = -1;
-          if ( model.answerShape.zone === model.shape[event.currentTarget.indexShape].dropZone ) {
+          model.dropZone[model.shapes[event.currentTarget.indexShape].dropZone].indexShape = -1;
+          if ( model.answerShape.zone === model.shapes[event.currentTarget.indexShape].dropZone ) {
             model.answerShape = {zone: -1, indexShape: -1};
           }
         }
@@ -105,10 +105,10 @@ define( function( require ) {
         if ( model.canDrag ) {
           var zone = model.nearDropZone( event.currentTarget, false );
           if ( zone >= 12 && model.dropZone[zone].indexShape >= 0 ) {
-            var zone2 = model.nearDropZone( model.shape[model.dropZone[zone].indexShape].view, true );
-            model.shape[model.dropZone[zone].indexShape].dropZone = zone2;
-            model.shape[model.dropZone[zone].indexShape].view.x = model.dropZone[zone2].x;
-            model.shape[model.dropZone[zone].indexShape].view.y = model.dropZone[zone2].y;
+            var zone2 = model.nearDropZone( model.shapes[model.dropZone[zone].indexShape].view, true );
+            model.shapes[model.dropZone[zone].indexShape].dropZone = zone2;
+            model.shapes[model.dropZone[zone].indexShape].view.x = model.dropZone[zone2].x;
+            model.shapes[model.dropZone[zone].indexShape].view.y = model.dropZone[zone2].y;
             model.dropZone[zone2].indexShape = model.dropZone[zone].indexShape;
             if ( model.answerShape.zone === zone ) {
               model.answerShape = {zone: -1, indexShape: -1};
@@ -126,7 +126,7 @@ define( function( require ) {
 
           event.currentTarget.x = model.dropZone[zone].x;
           event.currentTarget.y = model.dropZone[zone].y;
-          model.shape[event.currentTarget.indexShape].dropZone = zone;
+          model.shapes[event.currentTarget.indexShape].dropZone = zone;
           model.dropZone[zone].indexShape = event.currentTarget.indexShape;
           model.changeStatus = !model.changeStatus;
           thisNode.refreshLevel();
@@ -151,8 +151,8 @@ define( function( require ) {
         model.answerZone[i].indexShape = -1;
       }
 
-      for ( i = 0; i < model.shape.length; i++ ) {
-        shape = model.shape[i];
+      for ( i = 0; i < model.shapes.length; i++ ) {
+        shape = model.shapes[i];
         if ( shape.view === undefined ) {
           shape.view = new ShapeNode( shape );
           shape.view.cursor = "pointer";
@@ -212,7 +212,7 @@ define( function( require ) {
       if ( model.buttonStatus !== 'none' ) {
         comparisonChart.reset();
         if ( model.buttonStatus !== 'check' ) {
-          comparisonChart.compare( model.shape[model.old12], model.shape[model.old13] );
+          comparisonChart.compare( model.shapes[model.lastPair[0]], model.shapes[model.lastPair[1]] );
         }
       }
       else {

@@ -15,10 +15,11 @@ define( function( require ) {
     Node = require( 'SCENERY/nodes/Node' ),
     Path = require( 'SCENERY/nodes/Path' ),
     Shape = require( 'KITE/Shape' ),
+    Rectangle = require( 'SCENERY/nodes/Rectangle' ),
     Text = require( 'SCENERY/nodes/Text' ),
     PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
-  function ComparisonChartNode( options ) {
+  function ComparisonChartNode( gameModel, options ) {
     var thisNode = this,
       lessShape = new Shape(),
       eqShape = new Shape();
@@ -33,33 +34,33 @@ define( function( require ) {
         lineHeight: 140
       },
       options );
+    Node.call( thisNode );
+
 
     // create less shape
-    lessShape.moveTo( -options.lineWeight / 8, 0 );
-    lessShape.lineTo( options.lineWeight / 4, -options.lineWeight / 8 );
-    lessShape.lineTo( options.lineWeight / 4, -options.lineWeight / 4 );
-    lessShape.lineTo( -options.lineWeight / 4, -options.lineWeight / 16 );
-    lessShape.lineTo( -options.lineWeight / 4, options.lineWeight / 16 );
-    lessShape.lineTo( options.lineWeight / 4, options.lineWeight / 4 );
-    lessShape.lineTo( options.lineWeight / 4, options.lineWeight / 8 );
-    lessShape.close();
+    lessShape.moveTo( -options.lineWeight / 8, 0 )
+      .lineTo( options.lineWeight / 4, -options.lineWeight / 8 )
+      .lineTo( options.lineWeight / 4, -options.lineWeight / 4 )
+      .lineTo( -options.lineWeight / 4, -options.lineWeight / 16 )
+      .lineTo( -options.lineWeight / 4, options.lineWeight / 16 )
+      .lineTo( options.lineWeight / 4, options.lineWeight / 4 )
+      .lineTo( options.lineWeight / 4, options.lineWeight / 8 ).close();
+
 
     // create equal shape
-    eqShape.moveTo( -3 * options.lineWeight / 8, -3 * options.lineWeight / 16 );
-    eqShape.lineTo( 3 * options.lineWeight / 8, -3 * options.lineWeight / 16 );
-    eqShape.lineTo( 3 * options.lineWeight / 8, -options.lineWeight / 16 );
-    eqShape.lineTo( -3 * options.lineWeight / 8, -options.lineWeight / 16 );
-    eqShape.lineTo( -3 * options.lineWeight / 8, -3 * options.lineWeight / 16 );
+    eqShape.moveTo( -3 * options.lineWeight / 8, -3 * options.lineWeight / 16 )
+      .lineTo( 3 * options.lineWeight / 8, -3 * options.lineWeight / 16 )
+      .lineTo( 3 * options.lineWeight / 8, -options.lineWeight / 16 )
+      .lineTo( -3 * options.lineWeight / 8, -options.lineWeight / 16 )
+      .lineTo( -3 * options.lineWeight / 8, -3 * options.lineWeight / 16 )
+      .moveTo( -3 * options.lineWeight / 8, 3 * options.lineWeight / 16 )
+      .lineTo( 3 * options.lineWeight / 8, 3 * options.lineWeight / 16 )
+      .lineTo( 3 * options.lineWeight / 8, options.lineWeight / 16 )
+      .lineTo( -3 * options.lineWeight / 8, options.lineWeight / 16 )
+      .lineTo( -3 * options.lineWeight / 8, 3 * options.lineWeight / 16 );
 
-    eqShape.moveTo( -3 * options.lineWeight / 8, 3 * options.lineWeight / 16 );
-    eqShape.lineTo( 3 * options.lineWeight / 8, 3 * options.lineWeight / 16 );
-    eqShape.lineTo( 3 * options.lineWeight / 8, options.lineWeight / 16 );
-    eqShape.lineTo( -3 * options.lineWeight / 8, options.lineWeight / 16 );
-    eqShape.lineTo( -3 * options.lineWeight / 8, 3 * options.lineWeight / 16 );
 
-    var rectLeft = new Path( null, {stroke: options.stroke, lineWidth: options.lineOtherWidth} ),
-      rectRight = new Path( null, {stroke: options.stroke, lineWidth: options.lineOtherWidth} ),
-      less = new Path( lessShape, {visible: false, y: options.lineWeight / 4 + 10, stroke: options.stroke, lineWidth: options.symbolWidth, fill: options.symbolFill} ),
+    var less = new Path( lessShape, {visible: false, y: options.lineWeight / 4 + 10, stroke: options.stroke, lineWidth: options.symbolWidth, fill: options.symbolFill} ),
       eq = new Path( eqShape, {visible: false, y: options.lineWeight / 4 + 10, stroke: options.stroke, lineWidth: options.symbolWidth, fill: options.symbolFill} ),
       more = new Node( {visible: false} );
 
@@ -67,7 +68,6 @@ define( function( require ) {
     more.addChild( new Path( lessShape, {y: options.lineWeight / 4 + 10, stroke: options.stroke, lineWidth: options.symbolWidth, fill: options.symbolFill} ) );
     more.scale( -1, 1 );
 
-    Node.call( thisNode );
 
     thisNode.addChild( new Path( Shape.lineSegment( 0, 0, 0, -options.lineHeight - 20 ), {stroke: options.stroke, lineWidth: options.lineBaseWidth} ) );
 
@@ -92,50 +92,52 @@ define( function( require ) {
     thisNode.addChild( new Text( "2", { font: new PhetFont( { size: 18, weight: "normal"} ), centerX: -options.lineWeight / 2 - 10, centerY: -options.lineHeight } ) );
     thisNode.addChild( new Text( "2", { font: new PhetFont( { size: 18, weight: "normal"} ), centerX: options.lineWeight / 2 + 10, centerY: -options.lineHeight } ) );
 
+
+    //compare rectangles
+    var widthRect = options.lineWeight / 4 * 0.6;
+    var rectLeft = new Rectangle( -options.lineWeight / 8 - widthRect / 2, 0, widthRect, 0, {stroke: options.stroke, lineWidth: options.lineOtherWidth, fill: "#F00"} ),
+      rectRight = new Rectangle( options.lineWeight / 8 - widthRect / 2, 0, widthRect, 0, {stroke: options.stroke, lineWidth: options.lineOtherWidth, fill: "#0F0"} );
+
+
     thisNode.addChild( rectLeft );
     thisNode.addChild( rectRight );
     thisNode.addChild( less );
     thisNode.addChild( eq );
     thisNode.addChild( more );
-    var widthRect = options.lineWeight / 4 * 0.6;
-
-    rectLeft.shape = Shape.rectangle( -options.lineWeight / 8 - widthRect / 2, 0, widthRect, -50 );
-    rectLeft.fill = "#F00";
-    rectRight.shape = Shape.rectangle( options.lineWeight / 8 - widthRect / 2, 0, widthRect, -100 );
-    rectRight.fill = "#0F0";
 
     // function for comparing shapes on scales
     this.compare = function( left, right ) {
-      // set indicator's height and color
-      rectLeft.shape = Shape.rectangle( -options.lineWeight / 8 - widthRect / 2, 0, widthRect, -left.getAnswer() * 100 );
-      rectLeft.fill = left.fill;
-      rectRight.shape = Shape.rectangle( options.lineWeight / 8 - widthRect / 2, 0, widthRect, -right.getAnswer() * 100 );
-      rectRight.fill = right.fill;
 
-      // show appropriate sign shape
+      // set indicator's height
+      new TWEEN.Tween( rectLeft ).to( { y: -left.getAnswer() * 100 }, gameModel.ANIMATION_TIME ).onUpdate(function( step ) {
+        rectLeft.setRectHeight( left.getAnswer() * 100 * step );
+      } ).start();
+      new TWEEN.Tween( rectRight ).to( { y: -right.getAnswer() * 100 }, gameModel.ANIMATION_TIME ).onUpdate(function( step ) {
+        rectRight.setRectHeight( right.getAnswer() * 100 * step );
+      } ).start();
+
       less.setVisible( left.getAnswer() < right.getAnswer() );
       eq.setVisible( left.getAnswer() === right.getAnswer() );
       more.setVisible( left.getAnswer() > right.getAnswer() );
     };
+
     // reset all nodes
     this.reset = function() {
-      this.setVisible( true );
+      rectLeft.y = 0;
+      rectRight.y = 0;
+      rectRight.setRectHeight(0);
+      rectLeft.setRectHeight(0);
+
       less.setVisible( false );
       eq.setVisible( false );
       more.setVisible( false );
-      rectLeft.shape = Shape.rectangle( -options.lineWeight / 8 - widthRect / 2, 0, widthRect, 0 );
-      rectRight.shape = Shape.rectangle( options.lineWeight / 8 - widthRect / 2, 0, widthRect, 0 );
+
+      this.setVisible( true );
     };
     // hide all nodes
     this.hide = function() {
       this.setVisible( false );
-      less.setVisible( false );
-      eq.setVisible( false );
-      more.setVisible( false );
-      rectLeft.shape = Shape.rectangle( -options.lineWeight / 8 - widthRect / 2, 0, widthRect, 0 );
-      rectRight.shape = Shape.rectangle( options.lineWeight / 8 - widthRect / 2, 0, widthRect, 0 );
     };
-    this.reset();
     this.mutate( options );
   }
 

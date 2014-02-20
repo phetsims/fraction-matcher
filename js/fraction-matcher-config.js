@@ -34,9 +34,11 @@ require.config( {
     NITROGLYCERIN: '../../nitroglycerin/js',
     PHET_CORE: '../../phet-core/js',
     PHETCOMMON: '../../phetcommon/js',
+    SHERPA: '../../sherpa',
     SCENERY: '../../scenery/js',
     SCENERY_PHET: '../../scenery-phet/js',
     SUN: '../../sun/js',
+    VIBE: '../../vibe/js',
     // contrib dependencies required by common directories
     stats: '../../phetcommon/contrib/stats-r11',
 

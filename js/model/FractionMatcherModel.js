@@ -13,7 +13,11 @@ define( function( require ) {
     PropertySet = require( 'AXON/PropertySet' ),
     Constants = require( 'FRACTION_MATCHER/model/Constants' ),
     LevelModel = require( 'FRACTION_MATCHER/model/LevelModel' ),
+    Sound = require( 'VIBE/Sound' ),
     mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
+
+  var correctAudio = require( 'audio!FRACTION_MATCHER/correctAnswer' ),
+    wrongAudio = require( 'audio!FRACTION_MATCHER/wrongAnswer' );
 
   function MatchingGameModel( width, height, game ) {
     var self = this,
@@ -27,6 +31,12 @@ define( function( require ) {
     this.CONSTANTS = CONSTANTS;
     this.colorScheme = [CONSTANTS.COLORS.LIGHT_BLUE, CONSTANTS.COLORS.LIGHT_GREEN, CONSTANTS.COLORS.LIGHT_RED];
     this.toSimplify = (this.game === mixedNumbersTitleString); // flag for simplifying number shapes
+    this.ANIMATION_TIME = 300;
+
+    this.sounds = {
+      correct: new Sound( correctAudio ),
+      incorrect: new Sound( wrongAudio )
+    };
 
     this.levels = [];
 

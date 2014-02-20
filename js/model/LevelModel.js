@@ -11,6 +11,7 @@ define( function( require ) {
   // imports
   var inherit = require( 'PHET_CORE/inherit' ),
     PropertySet = require( 'AXON/PropertySet' ),
+    ObservableArray = require( 'AXON/ObservableArray' ),
     SingleShapeModel = require( 'FRACTION_MATCHER/model/SingleShapeModel' );
 
   function LevelModel( gameModel, levelDescription, levelNumber ) {
@@ -26,10 +27,9 @@ define( function( require ) {
       highScore: 0,
       answerShape: {zone: -1, indexShape: -1},
       time: 0,
-      old12: -1,
-      old13: -1,
+      lastPair: [],
       stepScore: 0,
-      answer: [],
+      answers: new ObservableArray(),
       shapes: [],
       canDrag: true,
       buttonStatus: "none" // ['none','ok','check','tryAgain','showAnswer']
@@ -138,9 +138,9 @@ define( function( require ) {
 
       // add shapes
       for ( var i = 0; i < this.MAXIMUM_PAIRS; i++ ) {
-        var fraction = fractions[i];
-        var shapes = this.filterShapes( shapesAll, fraction[1] );
-        var scaleFactor = numericScaleFactors[_.random( numericScaleFactors.length - 1 )];
+        var fraction = fractions[i]; // [numerator, denominator] pair
+        var shapes = this.filterShapes( shapesAll, fraction[1] ); //filter only shapes for current denominator
+        var scaleFactor = numericScaleFactors[_.random( numericScaleFactors.length - 1 )]; //random scaleFactor
         var fillType = this.levelDescription.fillType[_.random( this.levelDescription.fillType.length - 1 )];
 
         // first 3 fractions - number, last 3 fractions - shapes with different colors (3 numbers and 3 shapes at least)
@@ -166,52 +166,43 @@ define( function( require ) {
       this.generateLevel();
     },
     answerButton: function( buttonName ) {
-      var i, levelStatus = this;
+      var i, self = this;
       switch( buttonName ) { //['none','ok','check','tryAgain','showAnswer']
         case "ok":
           var lastAnswerZone = 0;
           while ( this.answerZone[lastAnswerZone].indexShape >= 0 ) {
             lastAnswerZone += 2;
           }
-          levelStatus.shape[levelStatus.old12].dropZone = -1;
-          levelStatus.shape[levelStatus.old12].answerZone = lastAnswerZone;
-          levelStatus.shape[levelStatus.old13].dropZone = -1;
-          levelStatus.shape[levelStatus.old13].answerZone = lastAnswerZone + 1;
-          this.answerZone[lastAnswerZone].indexShape = levelStatus.old12;
-          this.answerZone[lastAnswerZone + 1].indexShape = levelStatus.old13;
-
+          //TODO
+          self.shapes[self.old12].dropZone = -1;
+          self.shapes[self.old12].answerZone = lastAnswerZone;
+          self.shapes[self.old13].dropZone = -1;
+          self.shapes[self.old13].answerZone = lastAnswerZone + 1;
           this.answerShape = {zone: -1, indexShape: -1};
-          levelStatus.stepScore = 0;
-          levelStatus.old12 = -1;
-          levelStatus.old13 = -1;
+          self.stepScore = 0;
+
+          self.answers.push( self.lastPair );
+          self.lastPair = [];
           this.canDrag = true;
           this.buttonStatus = "none";
 
-          if ( this.answerZone[this.answerZone.length - 1].indexShape >= 0 ) {
-            levelStatus.hiScore = Math.max( levelStatus.hiScore, levelStatus.score );
+          if ( self.answers.length === self.MAXIMUM_PAIRS ) {
+            self.hiScore = Math.max( self.hiScore, self.score );
           }
-
-          this.changeStatus = !this.changeStatus;
           break;
         case "check":
-          levelStatus.old12 = this.dropZone[12].indexShape;
-          levelStatus.old13 = this.dropZone[13].indexShape;
-
-          if ( Math.abs( levelStatus.shape[levelStatus.old12].getAnswer() - levelStatus.shape[levelStatus.old13].getAnswer() ) < 0.001 ) {
-            //answer true
+          self.lastPair = [this.dropZone[12].indexShape, this.dropZone[13].indexShape];
+          if ( Math.abs( self.shapes[self.lastPair[0]].getAnswer() - self.shapes[self.lastPair[1]].getAnswer() ) < 0.001 ) {
+            //answer correct
             this.buttonStatus = "ok";
-            levelStatus.score += 2 - levelStatus.stepScore;
-            this.changeStatus = !this.changeStatus;
+            self.score += 2 - self.stepScore;
+            self.gameModel.sounds.correct.play();
           }
           else {
-            //answer false
-            levelStatus.stepScore++;
-            if ( levelStatus.stepScore > 1 ) {
-              this.buttonStatus = "showAnswer";
-            }
-            else {
-              this.buttonStatus = "tryAgain";
-            }
+            //answer incorrect
+            self.gameModel.sounds.incorrect.play();
+            self.stepScore++;
+            this.buttonStatus = (self.stepScore === 1) ? "tryAgain" : "showAnswer";
           }
           this.canDrag = false;
           break;
@@ -220,18 +211,17 @@ define( function( require ) {
           this.buttonStatus = "none";
           break;
         case "showAnswer":
-          var findAnswer = levelStatus.shape[levelStatus.answerShape.indexShape].getAnswer();
-          var zoneAnswer = levelStatus.answerShape.zone === 12 ? 13 : 12;
-
-          for ( i = 0; i < levelStatus.shape.length; i++ ) {
-            if ( Math.abs( levelStatus.shape[i].getAnswer() - findAnswer ) < 0.001 && levelStatus.shape[i].dropZone < 12 && levelStatus.shape[i].answerZone < 0 ) {
-              var freeZone = this.nearDropZone( levelStatus.shape[this.dropZone[zoneAnswer].indexShape].view, true );
-              levelStatus.shape[this.dropZone[zoneAnswer].indexShape].dropZone = freeZone;
+          var findAnswer = self.shapes[self.answerShape.indexShape].getAnswer();
+          var zoneAnswer = self.answerShape.zone === 12 ? 13 : 12;
+          for ( i = 0; i < self.shapes.length; i++ ) {
+            if ( Math.abs( self.shapes[i].getAnswer() - findAnswer ) < 0.001 && self.shapes[i].dropZone < 12 && self.shapes[i].answerZone < 0 ) {
+              var freeZone = this.nearDropZone( self.shapes[this.dropZone[zoneAnswer].indexShape].view, true );
+              self.shapes[this.dropZone[zoneAnswer].indexShape].dropZone = freeZone;
               this.dropZone[freeZone].indexShape = this.dropZone[zoneAnswer].indexShape;
-              levelStatus.shape[i].dropZone = zoneAnswer;
+              self.shapes[i].dropZone = zoneAnswer;
               this.dropZone[zoneAnswer].indexShape = i;
-              levelStatus.old12 = this.dropZone[12].indexShape;
-              levelStatus.old13 = this.dropZone[13].indexShape;
+              self.old12 = this.dropZone[12].indexShape;
+              self.old13 = this.dropZone[13].indexShape;
               break;
             }
           }
