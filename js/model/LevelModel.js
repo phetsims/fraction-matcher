@@ -173,11 +173,11 @@ define( function( require ) {
           while ( this.answerZone[lastAnswerZone].indexShape >= 0 ) {
             lastAnswerZone += 2;
           }
-          //TODO
-          self.shapes[self.old12].dropZone = -1;
-          self.shapes[self.old12].answerZone = lastAnswerZone;
-          self.shapes[self.old13].dropZone = -1;
-          self.shapes[self.old13].answerZone = lastAnswerZone + 1;
+
+          self.shapes[self.lastPair[0]].dropZone = -1;
+          self.shapes[self.lastPair[0]].answerZone = lastAnswerZone;
+          self.shapes[self.lastPair[1]].dropZone = -1;
+          self.shapes[self.lastPair[1]].answerZone = lastAnswerZone + 1;
           this.answerShape = {zone: -1, indexShape: -1};
           self.stepScore = 0;
 

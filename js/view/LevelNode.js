@@ -76,8 +76,7 @@ define( function( require ) {
     var comparisonChart = new ComparisonChartNode( model.gameModel, {centerX: model.gameModel.width / 2, y: 250} );
     thisNode.addChild( comparisonChart );
 
-    this.gameOverNode = new GameOverNode( model );
-    this.gameOverNode.visible = false;
+    this.gameOverNode = new GameOverNode( model, {visible: false} );
     thisNode.addChild( this.gameOverNode );
 
     var shapeNode = new Node();
@@ -198,6 +197,7 @@ define( function( require ) {
     }
 
 
+    //TODO
     model.buttonStatusProperty.link( function updateButtonStatus( value ) {
       buttonOk.setVisible( value === 'ok' );
       buttonCheck.setVisible( value === 'check' );
@@ -231,6 +231,11 @@ define( function( require ) {
     model.timeProperty.link( function( newTime ) {
       timeLabel.text = StringUtils.format( patternTimeString, Util.toFixed( newTime, 0 ) );
       timeLabel.right = levelLabel.right;
+    } );
+
+    model.scoreProperty.link( function( newScore ) {
+      scoreLabel.text = StringUtils.format( patternScoreString, newScore );
+      scoreLabel.right = levelLabel.right;
     } );
 
 

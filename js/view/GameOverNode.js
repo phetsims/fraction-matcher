@@ -25,13 +25,13 @@ define( function( require ) {
     Vector2 = require('DOT/Vector2' ),
     ButtonNode = require( 'FRACTION_MATCHER/view/ButtonNode' );
 
-  function GameOverNode( model ) {
+  function GameOverNode( model, options ) {
     var thisNode = this,
       gameOverScore,
       gameOverLevel,
       background = new Node();
 
-    Node.call( thisNode );
+    Node.call( thisNode , options);
 
     // add components
     this.addChild( background );
