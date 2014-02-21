@@ -31,7 +31,7 @@ define( function( require ) {
     var thisNode = this, i, j;
     Node.call( this );
 
-    //top gray targets
+    //top gray targets                                          f
     this.answerRects = [];
     for ( i = 0; i < 6; i++ ) {
       this.answerRects.push( new Rectangle( margin + i * 125, margin, 115, 70, 10, 10, {fill: "#C0C0C0"} ) );

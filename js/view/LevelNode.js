@@ -65,17 +65,31 @@ define( function( require ) {
 
     //left part buttons, check, ok, tryAgain, showAnswer
     var buttonCheck = new ButtonNode( buttonCheckString, function() {model.answerButton( "check" );}, {font: new PhetFont( { size: 14, weight: "bold"} ), rectangleFillUp: "#FFD63F", rectangleFillDown: "#FFD63F", rectangleFillOver: "#FFEA9D", x: smile.centerX, y: smile.bottom + margin, rectangleCornerRadius: 5, rectangleXMargin: 10} );
-    var buttonOk = new ButtonNode( buttonOkString, function() {model.answerButton( "ok" );}, {font: new PhetFont( { size: 14, weight: "bold"} ), rectangleFillUp: "#44FF44", rectangleFillDown: "#44FF44", rectangleFillOver: "#9FFF9F", x: smile.centerX, y: smile.bottom + margin, rectangleCornerRadius: 5, rectangleXMargin: 10} );
-    var buttonTryAgain = new ButtonNode( buttonTryAgainString, function() {model.answerButton( "tryAgain" );}, {font: new PhetFont( { size: 14, weight: "bold"} ), rectangleFillUp: "#FF7C3B", rectangleFillDown: "#FF7C3B", rectangleFillOver: "#FFBE9D", x: smile.centerX, y: smile.bottom + margin, rectangleCornerRadius: 5, rectangleXMargin: 10} );
-    var buttonShowAnswer = new ButtonNode( buttonShowAnswerString, function() {model.answerButton( "showAnswer" );}, {font: new PhetFont( { size: 14, weight: "bold"} ), rectangleFillUp: "#FF7C3B", rectangleFillDown: "#FF7C3B", rectangleFillOver: "#FFBE9D", x: smile.centerX, y: smile.bottom + margin, rectangleCornerRadius: 5, rectangleXMargin: 10} );
     thisNode.addChild( buttonCheck );
+
+    var buttonOk = new ButtonNode( buttonOkString,
+      function() {
+        model.answerButton( "ok" );
+        //animate to answers area
+        equallyAnswerSymbol[model.answers.length].setVisible( true );
+        [0, 1].forEach( function( i ) {
+          var shape = model.shapes[model.dropZone[model.gameModel.MAXIMUM_PAIRS * 2 + i]];
+          var newPosition = thisNode.getShapeAnswerPosition( model.answers.length );
+          new TWEEN.Tween( shape.view ).to( { x: newPosition.x, y: newPosition.y }, model.gameModel.ANIMATION_TIME ).onUpdate(function( step ) {
+            shape.view.scale( (1 - step * 0.5) / shape.view.matrix.scaleVector.x );
+          } ).start();
+          model.answers.push( model.dropZone[model.gameModel.MAXIMUM_PAIRS * 2 + i] );
+          model.dropZone[model.gameModel.MAXIMUM_PAIRS * 2 + i] = -1;
+        } );
+      },
+      {font: new PhetFont( { size: 14, weight: "bold"} ), rectangleFillUp: "#44FF44", rectangleFillDown: "#44FF44", rectangleFillOver: "#9FFF9F", x: smile.centerX, y: smile.bottom + margin, rectangleCornerRadius: 5, rectangleXMargin: 10} );
     thisNode.addChild( buttonOk );
+
+    var buttonTryAgain = new ButtonNode( buttonTryAgainString, function() {model.answerButton( "tryAgain" );}, {font: new PhetFont( { size: 14, weight: "bold"} ), rectangleFillUp: "#FF7C3B", rectangleFillDown: "#FF7C3B", rectangleFillOver: "#FFBE9D", x: smile.centerX, y: smile.bottom + margin, rectangleCornerRadius: 5, rectangleXMargin: 10} );
     thisNode.addChild( buttonTryAgain );
+
+    var buttonShowAnswer = new ButtonNode( buttonShowAnswerString, function() {model.answerButton( "showAnswer" );}, {font: new PhetFont( { size: 14, weight: "bold"} ), rectangleFillUp: "#FF7C3B", rectangleFillDown: "#FF7C3B", rectangleFillOver: "#FFBE9D", x: smile.centerX, y: smile.bottom + margin, rectangleCornerRadius: 5, rectangleXMargin: 10} );
     thisNode.addChild( buttonShowAnswer );
-    buttonCheck.right = Math.min( buttonCheck.right, 290 );
-    buttonOk.right = Math.min( buttonOk.right, 290 );
-    buttonTryAgain.right = Math.min( buttonTryAgain.right, 290 );
-    buttonShowAnswer.right = Math.min( buttonShowAnswer.right, 290 );
 
     var comparisonChart = new ComparisonChartNode( model.gameModel, {centerX: model.gameModel.width / 2, y: 250} );
     thisNode.addChild( comparisonChart );
@@ -83,10 +97,14 @@ define( function( require ) {
     this.gameOverNode = new GameOverNode( model, {visible: false} );
     thisNode.addChild( this.gameOverNode );
 
-    var shapeNode = new Node();
     var equallyAnswerSymbol = [];
+    this.levelsContainer.answerRects.forEach( function( answerRect, i ) {
+      equallyAnswerSymbol[i] = new Text( equallyAnswerSymbolString, { font: new PhetFont( { size: 22, _weight: "bold"} ), center: answerRect.center, visible: false  } );
+      thisNode.addChild( equallyAnswerSymbol[i] );
+    } );
+
+    var shapeNode = new Node();
     var offsetCursor = {};
-    var i;
     var startDrag = function( event ) {
         if ( model.canDrag ) {
           offsetCursor = {x: thisNode.globalToParentPoint( event.pointer.point ).x - event.currentTarget.x, y: thisNode.globalToParentPoint( event.pointer.point ).y - event.currentTarget.y};
@@ -104,13 +122,13 @@ define( function( require ) {
       },
       endDrag = function( event ) {
         if ( model.canDrag ) {
-          var zone = model.nearDropZone( event.currentTarget, false );
-          if ( zone >= 12 && model.dropZone[zone].indexShape >= 0 ) {
-            var zone2 = model.nearDropZone( model.shapes[model.dropZone[zone].indexShape].view, true );
+          var zone = thisNode.getClosestDropZone( event.currentTarget.center, false );
+          if ( zone >= 12 && model.dropZone[zone] >= 0 ) {
+            var zone2 = thisNode.getClosestDropZone( model.shapes[model.dropZone[zone].indexShape].view.center, true );
             model.shapes[model.dropZone[zone].indexShape].dropZone = zone2;
             model.shapes[model.dropZone[zone].indexShape].view.x = model.dropZone[zone2].x;
             model.shapes[model.dropZone[zone].indexShape].view.y = model.dropZone[zone2].y;
-            model.dropZone[zone2].indexShape = model.dropZone[zone].indexShape;
+            model.dropZone[zone2] = model.dropZone[zone].indexShape;
             if ( model.answerShape.zone === zone ) {
               model.answerShape = {zone: -1, indexShape: -1};
             }
@@ -118,18 +136,26 @@ define( function( require ) {
           if ( zone >= 12 && model.answerShape.zone < 0 ) {
             model.answerShape = {zone: zone, indexShape: event.currentTarget.indexShape};
           }
-          else if ( model.dropZone[12].indexShape >= 1 ) {
+          else if ( model.dropZone[12] >= -1 ) {
             model.answerShape = {zone: 12, indexShape: model.dropZone[12].indexShape};
           }
-          else if ( model.dropZone[13].indexShape >= 1 ) {
+          else if ( model.dropZone[13] >= -1 ) {
             model.answerShape = {zone: 13, indexShape: model.dropZone[13].indexShape};
           }
-          event.currentTarget.x = model.dropZone[zone].x;
-          event.currentTarget.y = model.dropZone[zone].y;
+          event.currentTarget.center = thisNode.getShapeDropPosition( zone );
           model.shapes[event.currentTarget.indexShape].dropZone = zone;
-          model.dropZone[zone].indexShape = event.currentTarget.indexShape;
+          model.dropZone[zone] = event.currentTarget.indexShape;
           model.changeStatus = !model.changeStatus;
-          thisNode.refreshLevel();
+          //thisNode.resetLevel();
+          if ( model.buttonStatus === 'check' || model.buttonStatus === 'none' ) {
+            if ( model.dropZone[12] >= 0 && model.dropZone[13] >= 0 && (model.dropZone[12].indexShape !== model.lastPair[0] || model.dropZone[13].indexShape !== model.lastPair[1]) ) {
+
+              model.buttonStatus = 'check';
+            }
+            else {
+              model.buttonStatus = 'none';
+            }
+          }
         }
       },
       dragParamers = {
@@ -141,15 +167,13 @@ define( function( require ) {
 
     thisNode.addChild( shapeNode );
 
-    this.refreshLevel = function() {
+    this.resetLevel = function() {
       var i, shape;
       shapeNode.removeAllChildren();
       for ( i = 0; i < model.dropZone.length; i++ ) {
-        model.dropZone[i].indexShape = -1;
+        model.dropZone[i] = -1;
       }
-      for ( i = 0; i < model.answerZone.length; i++ ) {
-        model.answerZone[i].indexShape = -1;
-      }
+      model.lastPair = [-1, -1];
 
       for ( i = 0; i < model.shapes.length; i++ ) {
         shape = model.shapes[i];
@@ -162,41 +186,17 @@ define( function( require ) {
         shapeNode.addChild( shape.view );
         if ( shape.dropZone >= 0 ) {
           shape.view.center = thisNode.getShapeDropPosition( shape.dropZone );
-          model.dropZone[shape.dropZone].indexShape = i;
-        }
-        else if ( shape.answerZone >= 0 ) {
-          shape.view.matrix = new Matrix3();
-          shape.view.x = model.answerZone[shape.answerZone].x;
-          shape.view.y = model.answerZone[shape.answerZone].y;
-          shape.view.scale( model.answerZone[shape.answerZone].scale );
-          shape.view.cursor = "normal";
-          if ( shape.view.getInputListeners().length > 0 ) {
-            shape.view.removeInputListener();
-          }
-          model.answerZone[shape.answerZone].indexShape = i;
+          model.dropZone[shape.dropZone] = i;
         }
 
-        for ( var j = 0; j < model.answerZone.length / 2; j++ ) {
-          equallyAnswerSymbol[j].setVisible( model.answerZone[j * 2].indexShape >= 0 );
-        }
-      }
-      if ( model.buttonStatus === 'check' || model.buttonStatus === 'none' ) {
-        if ( model.dropZone[12].indexShape >= 0 && model.dropZone[13].indexShape >= 0 && (model.dropZone[12].indexShape !== model.old12 || model.dropZone[13].indexShape !== model.old13) ) {
-          model.buttonStatus = 'check';
-        }
-        else {
-          model.buttonStatus = 'none';
+        model.answerZone = [];
+        for ( var j = 0; j < model.gameModel.MAXIMUM_PAIRS; j++ ) {
+          equallyAnswerSymbol[j].setVisible( false );
         }
       }
     };
-    for ( i = 0; i < model.answerZone.length / 2; i++ ) {
-      equallyAnswerSymbol[i] = new Text( equallyAnswerSymbolString, { font: new PhetFont( { size: 22, _weight: "bold"} ), centerX: (model.answerZone[i * 2].x + model.answerZone[i * 2 + 1].x) / 2, centerY: model.answerZone[i * 2].y  } );
-      thisNode.addChild( equallyAnswerSymbol[i] );
-      equallyAnswerSymbol[i].setVisible( false );
-    }
 
 
-    //TODO
     model.buttonStatusProperty.link( function updateButtonStatus( value ) {
       buttonOk.setVisible( value === 'ok' );
       buttonCheck.setVisible( value === 'check' );
@@ -220,7 +220,7 @@ define( function( require ) {
     } );
 
     model.buttonStatusProperty.link( function updateLevel() {
-      thisNode.refreshLevel();
+      //thisNode.resetLevel();
     } );
 
     model.gameModel.isTimerProperty.link( function( isTimer ) {
@@ -238,6 +238,7 @@ define( function( require ) {
     } );
 
     this.mutate( options );
+    this.resetLevel();
   }
 
   return inherit( Node, LevelNode, {
@@ -251,6 +252,23 @@ define( function( require ) {
         var scale = this.levelsContainer.scales[position - this.model.gameModel.MAXIMUM_PAIRS * 2];
         return new Vector2( scale.centerX, scale.top );
       }
+    },
+    getShapeAnswerPosition: function( position ) {
+      var targetRect = this.levelsContainer.answerRects[Math.floor( position / 2 )];
+      var diff = (position % 2 === 0) ? -targetRect.width / 4 : targetRect.width / 4;
+      return new Vector2( targetRect.centerX + diff, targetRect.centerY );
+    },
+    getClosestDropZone: function( coord, onlyFree ) {
+      var near = -1,
+        min = 1e10;
+      for ( var i = 0; i < this.model.dropZone.length; i++ ) {
+        var dist = coord.distanceSquared( this.getShapeDropPosition( i ) );
+        if ( min > dist && (this.model.dropZone[i] < 0 || (!onlyFree && (i === 12 || i === 13))) && (!onlyFree || i < 12) ) {
+          min = dist;
+          near = i;
+        }
+      }
+      return near;
     }
   } );
 } );

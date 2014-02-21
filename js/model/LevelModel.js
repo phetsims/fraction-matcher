@@ -11,7 +11,6 @@ define( function( require ) {
   // imports
   var inherit = require( 'PHET_CORE/inherit' ),
     PropertySet = require( 'AXON/PropertySet' ),
-    ObservableArray = require( 'AXON/ObservableArray' ),
     SingleShapeModel = require( 'FRACTION_MATCHER/model/SingleShapeModel' );
 
   function LevelModel( gameModel, levelDescription, levelNumber ) {
@@ -26,50 +25,24 @@ define( function( require ) {
       time: 0,
       lastPair: [],
       stepScore: 0,
-      answers: new ObservableArray(),
+      answers: [],
       shapes: [],
       canDrag: true,
       buttonStatus: "none" // ['none','ok','check','tryAgain','showAnswer']
     } );
 
-    this.dropZone = [
-      {x: 175, y: 345, radius: 35, indexShape: -1},
-      {x: 260, y: 345, radius: 35, indexShape: -1},
-      {x: 360, y: 345, radius: 35, indexShape: -1},
-      {x: 450, y: 345, radius: 35, indexShape: -1},
-      {x: 545, y: 345, radius: 35, indexShape: -1},
-      {x: 640, y: 345, radius: 35, indexShape: -1},
+    this.dropZone = [];
+    this.answerZone = [];
 
-      {x: 175, y: 440, radius: 35, indexShape: -1},
-      {x: 270, y: 440, radius: 35, indexShape: -1},
-      {x: 360, y: 440, radius: 35, indexShape: -1},
-      {x: 450, y: 440, radius: 35, indexShape: -1},
-      {x: 545, y: 440, radius: 35, indexShape: -1},
-      {x: 640, y: 440, radius: 35, indexShape: -1},
+    for ( var i = 0; i < 2 * this.gameModel.MAXIMUM_PAIRS; i++ ) {
+      this.dropZone[i] = -1;
+      this.answerZone[i] = -1;
+    }
 
-      {x: 280, y: 210, radius: 60, indexShape: -1}, //[12]
-      {x: 535, y: 210, radius: 60, indexShape: -1}  //[13]
-    ];
+    //two more dropZones - scales
+    this.dropZone.push( -1 );
+    this.dropZone.push( -1 );
 
-    this.answerZone = [
-      {x: 50, y: 70, scale: 0.5, radius: 35, indexShape: -1},
-      {x: 100, y: 70, scale: 0.5, radius: 35, indexShape: -1},
-
-      {x: 180, y: 70, scale: 0.5, radius: 35, indexShape: -1},
-      {x: 230, y: 70, scale: 0.5, radius: 35, indexShape: -1},
-
-      {x: 315, y: 70, scale: 0.5, radius: 35, indexShape: -1},
-      {x: 360, y: 70, scale: 0.5, radius: 35, indexShape: -1},
-
-      {x: 445, y: 70, scale: 0.5, radius: 35, indexShape: -1},
-      {x: 495, y: 70, scale: 0.5, radius: 35, indexShape: -1},
-
-      {x: 575, y: 70, scale: 0.5, radius: 35, indexShape: -1},
-      {x: 630, y: 70, scale: 0.5, radius: 35, indexShape: -1},
-
-      {x: 710, y: 70, scale: 0.5, radius: 35, indexShape: -1},
-      {x: 760, y: 70, scale: 0.5, radius: 35, indexShape: -1}
-    ];
     this.generateLevel();
   }
 
@@ -78,20 +51,6 @@ define( function( require ) {
       if ( this.gameModel.isTimer ) {
         this.time += dt;
       }
-    },
-    nearDropZone: function( coord, onlyFree ) {
-      var near = -1,
-        min = 1e10;
-      for ( var i = 0; i < this.dropZone.length; i++ ) {
-        if ( min > this.distanceSquared( coord, this.dropZone[i] ) && (this.dropZone[i].indexShape < 0 || (!onlyFree && (i === 12 || i === 13))) && (!onlyFree || i < 12) ) {
-          min = this.distanceSquared( coord, this.dropZone[i] );
-          near = i;
-        }
-      }
-      return near;
-    },
-    distanceSquared: function( pt1, pt2 ) {
-      return Math.pow( pt1.x - pt2.x, 2 ) + Math.pow( pt1.y - pt2.y, 2 );
     },
     // return filtered shapes set for the selected denominator, from java model
     filterShapes: function( shapes, d ) {
@@ -166,20 +125,18 @@ define( function( require ) {
       var i, self = this;
       switch( buttonName ) { //['none','ok','check','tryAgain','showAnswer']
         case "ok":
-          var lastAnswerZone = 0;
-          while ( this.answerZone[lastAnswerZone].indexShape >= 0 ) {
-            lastAnswerZone += 2;
-          }
-
+          /*var lastAnswerZone = 0;
+           while ( this.answerZone[lastAnswerZone] >= 0 ) {
+           lastAnswerZone += 2;
+           }*/
           self.shapes[self.lastPair[0]].dropZone = -1;
-          self.shapes[self.lastPair[0]].answerZone = lastAnswerZone;
+          //self.shapes[self.lastPair[0]].answerZone = lastAnswerZone;
           self.shapes[self.lastPair[1]].dropZone = -1;
-          self.shapes[self.lastPair[1]].answerZone = lastAnswerZone + 1;
+          //self.shapes[self.lastPair[1]].answerZone = lastAnswerZone + 1;
           this.answerShape = {zone: -1, indexShape: -1};
           self.stepScore = 0;
 
-          self.answers.push( self.lastPair );
-          self.lastPair = [];
+          self.lastPair = [-1,-1];
           this.canDrag = true;
           this.buttonStatus = "none";
 
@@ -188,8 +145,8 @@ define( function( require ) {
           }
           break;
         case "check":
-          self.lastPair = [this.dropZone[12].indexShape, this.dropZone[13].indexShape];
-          if ( Math.abs( self.shapes[self.lastPair[0]].getAnswer() - self.shapes[self.lastPair[1]].getAnswer() ) < 0.001 ) {
+          self.lastPair = [this.dropZone[12], this.dropZone[13]];
+          if ( self.isShapesEqual( self.shapes[self.lastPair[0]], self.shapes[self.lastPair[1]] ) ) {
             //answer correct
             this.buttonStatus = "ok";
             self.score += 2 - self.stepScore;
@@ -208,17 +165,17 @@ define( function( require ) {
           this.buttonStatus = "none";
           break;
         case "showAnswer":
-          var findAnswer = self.shapes[self.answerShape.indexShape].getAnswer();
+          var findAnswer = self.shapes[self.answerShape].getAnswer();
           var zoneAnswer = self.answerShape.zone === 12 ? 13 : 12;
           for ( i = 0; i < self.shapes.length; i++ ) {
-            if ( Math.abs( self.shapes[i].getAnswer() - findAnswer ) < 0.001 && self.shapes[i].dropZone < 12 && self.shapes[i].answerZone < 0 ) {
-              var freeZone = this.nearDropZone( self.shapes[this.dropZone[zoneAnswer].indexShape].view, true );
-              self.shapes[this.dropZone[zoneAnswer].indexShape].dropZone = freeZone;
-              this.dropZone[freeZone].indexShape = this.dropZone[zoneAnswer].indexShape;
+            if ( Math.abs( self.shapes[i].getAnswer() - findAnswer ) < 0.001 && self.shapes[i].dropZone < 12 && self.shapes[i].dropZone > -1 ) {
+              //TODO var freeZone = this.nearDropZone( self.shapes[this.dropZone[zoneAnswer].indexShape].view, true );
+              //self.shapes[this.dropZone[zoneAnswer].indexShape].dropZone = freeZone;
+              //this.dropZone[freeZone].indexShape = this.dropZone[zoneAnswer].indexShape;
               self.shapes[i].dropZone = zoneAnswer;
-              this.dropZone[zoneAnswer].indexShape = i;
-              self.old12 = this.dropZone[12].indexShape;
-              self.old13 = this.dropZone[13].indexShape;
+              this.dropZone[zoneAnswer] = i;
+              self.old12 = this.dropZone[12];
+              self.old13 = this.dropZone[13];
               break;
             }
           }
@@ -226,6 +183,9 @@ define( function( require ) {
           this.changeStatus = !this.changeStatus;
           break;
       }
+    },
+    isShapesEqual: function( shape1, shape2 ) {
+      return Math.abs( shape1.getAnswer() - shape2.getAnswer() ) < 0.001;
     }
   } );
 

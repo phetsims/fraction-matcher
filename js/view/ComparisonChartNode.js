@@ -109,11 +109,11 @@ define( function( require ) {
     this.compare = function( left, right ) {
 
       // set indicator's height
-      new TWEEN.Tween( rectLeft ).to( { y: -left.getAnswer() * 100 }, gameModel.ANIMATION_TIME ).onUpdate(function( step ) {
-        rectLeft.setRectHeight( left.getAnswer() * 100 * step );
+      new TWEEN.Tween( rectLeft ).to( { y: -left.getAnswer() * 70 }, gameModel.ANIMATION_TIME ).onUpdate(function( step ) {
+        rectLeft.setRectHeight( left.getAnswer() * 70 * step );
       } ).start();
-      new TWEEN.Tween( rectRight ).to( { y: -right.getAnswer() * 100 }, gameModel.ANIMATION_TIME ).onUpdate(function( step ) {
-        rectRight.setRectHeight( right.getAnswer() * 100 * step );
+      new TWEEN.Tween( rectRight ).to( { y: -right.getAnswer() * 70}, gameModel.ANIMATION_TIME ).onUpdate(function( step ) {
+        rectRight.setRectHeight( right.getAnswer() * 70 * step );
       } ).start();
 
       less.setVisible( left.getAnswer() < right.getAnswer() );
@@ -125,8 +125,8 @@ define( function( require ) {
     this.reset = function() {
       rectLeft.y = 0;
       rectRight.y = 0;
-      rectRight.setRectHeight(0);
-      rectLeft.setRectHeight(0);
+      rectRight.setRectHeight( 0 );
+      rectLeft.setRectHeight( 0 );
 
       less.setVisible( false );
       eq.setVisible( false );
