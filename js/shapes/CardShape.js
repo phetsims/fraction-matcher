@@ -16,8 +16,7 @@ define( function( require ) {
     AbstractShape = require( 'FRACTION_COMMON/shapes/AbstractShape' ),
     Rectangle = require( 'SCENERY/nodes/Rectangle' ),
     Text = require( 'SCENERY/nodes/Text' ),
-    PhetFont = require( 'SCENERY_PHET/PhetFont' ),
-    FONT = new PhetFont( {size: 45, weight: 'bold'} );
+    PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
   function NumericSimplifiedShape( options ) {
     var width,
@@ -36,8 +35,7 @@ define( function( require ) {
 
     // create top card with number
     cardTop = this.getCardNode( width, height );
-    text = new Text( numerator, {font: FONT} );
-    text.setTranslation( -text.getWidth() / 2, text.getHeight() / 4 );
+    text = new Text( numerator, {centerX: 0, centerY: 0, font: new PhetFont( { size: options.width, weight: 'bold'} )} );
     cardTop.addChild( text );
 
     if ( options.deck ) {
@@ -58,7 +56,7 @@ define( function( require ) {
 
   return inherit( AbstractShape, NumericSimplifiedShape, {
     getCardNode: function( width, height ) {
-      return new Node( {children: [new Rectangle( -width / 2, -height / 2, width, height, 5, 5, {fill: 'white', stroke: 'black', lineWidth: 1} )]} );
+      return new Node( {children: [new Rectangle( -width / 2, -height / 2, width, height, width / 10, width / 10, {fill: 'white', stroke: 'black', lineWidth: 1} )]} );
     }
   } );
 } );
