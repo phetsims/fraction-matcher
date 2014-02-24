@@ -70,8 +70,8 @@ define( function( require ) {
     var buttonOk = new ButtonNode( buttonOkString,
       function() {
         model.answerButton( "ok" );
-        //animate to answers area
-        equallyAnswerSymbol[model.answers.length].setVisible( true );
+        //animate to answers area and remove listeners
+        equallyAnswerSymbol[model.answers.length / 2].setVisible( true );
         [0, 1].forEach( function( i ) {
           var shape = model.shapes[model.dropZone[model.gameModel.MAXIMUM_PAIRS * 2 + i]];
           var newPosition = thisNode.getShapeAnswerPosition( model.answers.length );
@@ -80,6 +80,7 @@ define( function( require ) {
           } ).start();
           model.answers.push( model.dropZone[model.gameModel.MAXIMUM_PAIRS * 2 + i] );
           model.dropZone[model.gameModel.MAXIMUM_PAIRS * 2 + i] = -1;
+          shape.view.removeInputListener( shape.view.getInputListeners()[0] );
         } );
       },
       {font: new PhetFont( { size: 14, weight: "bold"} ), rectangleFillUp: "#44FF44", rectangleFillDown: "#44FF44", rectangleFillOver: "#9FFF9F", x: smile.centerX, y: smile.bottom + margin, rectangleCornerRadius: 5, rectangleXMargin: 10} );
@@ -102,15 +103,17 @@ define( function( require ) {
       equallyAnswerSymbol[i] = new Text( equallyAnswerSymbolString, { font: new PhetFont( { size: 22, _weight: "bold"} ), center: answerRect.center, visible: false  } );
       thisNode.addChild( equallyAnswerSymbol[i] );
     } );
-
     var shapeNode = new Node();
     var offsetCursor = {};
+    var draggableShape = '';
     var startDrag = function( event ) {
         if ( model.canDrag ) {
+          event.currentTarget.moveToFront();
           offsetCursor = {x: thisNode.globalToParentPoint( event.pointer.point ).x - event.currentTarget.x, y: thisNode.globalToParentPoint( event.pointer.point ).y - event.currentTarget.y};
-          model.dropZone[model.shapes[event.currentTarget.indexShape].dropZone].indexShape = -1;
-          if ( model.answerShape.zone === model.shapes[event.currentTarget.indexShape].dropZone ) {
-            model.answerShape = {zone: -1, indexShape: -1};
+          draggableShape = model.shapes[event.currentTarget.indexShape];
+          model.dropZone[draggableShape.dropZone] = -1;
+          if ( model.lastChangedZone === draggableShape.dropZone ) {
+            model.lastChangedZone = -1;
           }
         }
       },
@@ -122,34 +125,31 @@ define( function( require ) {
       },
       endDrag = function( event ) {
         if ( model.canDrag ) {
-          var zone = thisNode.getClosestDropZone( event.currentTarget.center, false );
-          if ( zone >= 12 && model.dropZone[zone] >= 0 ) {
-            var zone2 = thisNode.getClosestDropZone( model.shapes[model.dropZone[zone].indexShape].view.center, true );
-            model.shapes[model.dropZone[zone].indexShape].dropZone = zone2;
-            model.shapes[model.dropZone[zone].indexShape].view.x = model.dropZone[zone2].x;
-            model.shapes[model.dropZone[zone].indexShape].view.y = model.dropZone[zone2].y;
-            model.dropZone[zone2] = model.dropZone[zone].indexShape;
-            if ( model.answerShape.zone === zone ) {
-              model.answerShape = {zone: -1, indexShape: -1};
-            }
+          var zone = thisNode.getClosestDropZone( event.currentTarget.center, true );
+          if ( zone >= 12 && model.dropZone[zone] >= 0 ) { //if scale and scale not empty
+            var zone2 = thisNode.getClosestDropZone( model.shapes[model.dropZone[zone]].view.center, false ); //get free zone, not scale
+            thisNode.dropShapeToZone( model.shapes[model.dropZone[zone]].view, zone2 );
+            /*
+             if ( model.answerShape.zone === zone ) {
+             model.answerShape = {zone: -1, indexShape: -1};
+             }
+             */
           }
-          if ( zone >= 12 && model.answerShape.zone < 0 ) {
-            model.answerShape = {zone: zone, indexShape: event.currentTarget.indexShape};
+          if ( zone >= 12 && model.lastChangedZone < 0 ) {
+            model.lastChangedZone = zone;
           }
           else if ( model.dropZone[12] >= -1 ) {
-            model.answerShape = {zone: 12, indexShape: model.dropZone[12].indexShape};
+            model.lastChangedZone = 12;
           }
           else if ( model.dropZone[13] >= -1 ) {
-            model.answerShape = {zone: 13, indexShape: model.dropZone[13].indexShape};
+            model.lastChangedZone = 13;
           }
-          event.currentTarget.center = thisNode.getShapeDropPosition( zone );
-          model.shapes[event.currentTarget.indexShape].dropZone = zone;
-          model.dropZone[zone] = event.currentTarget.indexShape;
-          model.changeStatus = !model.changeStatus;
+          thisNode.dropShapeToZone( event.currentTarget, zone );
+          /*model.shapes[.indexShape].dropZone = zone;
+           model.dropZone[zone] = event.currentTarget.indexShape;*/
           //thisNode.resetLevel();
           if ( model.buttonStatus === 'check' || model.buttonStatus === 'none' ) {
             if ( model.dropZone[12] >= 0 && model.dropZone[13] >= 0 && (model.dropZone[12].indexShape !== model.lastPair[0] || model.dropZone[13].indexShape !== model.lastPair[1]) ) {
-
               model.buttonStatus = 'check';
             }
             else {
@@ -242,33 +242,47 @@ define( function( require ) {
   }
 
   return inherit( Node, LevelNode, {
-    getShapeDropPosition: function( position ) {
-      //inside dropZones at the bottom
-      if ( position < this.model.gameModel.MAXIMUM_PAIRS * 2 ) {
-        return this.levelsContainer.sourceRectangles[position].center;
-      }
-      else {
-        //one of two scales
-        var scale = this.levelsContainer.scales[position - this.model.gameModel.MAXIMUM_PAIRS * 2];
-        return new Vector2( scale.centerX, scale.top );
-      }
-    },
-    getShapeAnswerPosition: function( position ) {
-      var targetRect = this.levelsContainer.answerRects[Math.floor( position / 2 )];
-      var diff = (position % 2 === 0) ? -targetRect.width / 4 : targetRect.width / 4;
-      return new Vector2( targetRect.centerX + diff, targetRect.centerY );
-    },
-    getClosestDropZone: function( coord, onlyFree ) {
-      var near = -1,
-        min = 1e10;
-      for ( var i = 0; i < this.model.dropZone.length; i++ ) {
-        var dist = coord.distanceSquared( this.getShapeDropPosition( i ) );
-        if ( min > dist && (this.model.dropZone[i] < 0 || (!onlyFree && (i === 12 || i === 13))) && (!onlyFree || i < 12) ) {
-          min = dist;
-          near = i;
+      getShapeDropPosition: function( position ) {
+        //inside dropZones at the bottom
+        if ( position < this.model.gameModel.MAXIMUM_PAIRS * 2 ) {
+          return this.levelsContainer.sourceRectangles[position].center;
         }
+        else {
+          //one of two scales
+          var scale = this.levelsContainer.scales[position - this.model.gameModel.MAXIMUM_PAIRS * 2];
+          return new Vector2( scale.centerX, scale.top );
+        }
+      },
+      getShapeAnswerPosition: function( position ) {
+        var targetRect = this.levelsContainer.answerRects[Math.floor( position / 2 )];
+        var diff = (position % 2 === 0) ? -targetRect.width / 4 : targetRect.width / 4;
+        return new Vector2( targetRect.centerX + diff, targetRect.centerY );
+      },
+      getClosestDropZone: function( coord, canDropOnScale ) {
+        var closestZone = -1,
+          min = 1e10;
+        for ( var i = 0; i < this.model.dropZone.length; i++ ) {
+          //if empty or one of two scales and canDropOnScale
+          if ( this.model.dropZone[i] < 0 || (canDropOnScale && (i === 12 || i === 13)) ) {
+            var dist = coord.distanceSquared( this.getShapeDropPosition( i ) );
+            if ( min > dist ) {
+              min = dist;
+              closestZone = i;
+            }
+          }
+        }
+        return closestZone;
+      },
+      dropShapeToZone: function( shapeView, zoneIndex ) {
+        //source dropZone empty
+        this.model.dropZone[this.model.shapes[shapeView.indexShape].dropZone] = -1;
+        //target dropZone now = indexShape
+        this.model.dropZone[zoneIndex] = shapeView.indexShape;
+        shapeView.dropZone = zoneIndex;
+        var targetPosition = this.getShapeDropPosition( zoneIndex );
+        new TWEEN.Tween( shapeView ).to( { x: targetPosition.x, y: targetPosition.y } ).start();
       }
-      return near;
     }
-  } );
+  );
+
 } );

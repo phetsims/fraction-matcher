@@ -21,12 +21,12 @@ define( function( require ) {
     PropertySet.call( this, {
       score: 0,
       highScore: 0,
-      answerShape: {zone: -1, indexShape: -1},
       time: 0,
-      lastPair: [],
       stepScore: 0,
-      answers: [],
-      shapes: [],
+      answers: [], //shapes, which moved to answer zone
+      lastPair: [-1, -1], //pair of shapes on scales, user can't compare the same pair two times
+      lastChangedZone: -1, //when showing correct answer, change only last dragged shape position
+      shapes: [], //array of SingleShapeModels
       canDrag: true,
       buttonStatus: "none" // ['none','ok','check','tryAgain','showAnswer']
     } );
@@ -129,14 +129,11 @@ define( function( require ) {
            while ( this.answerZone[lastAnswerZone] >= 0 ) {
            lastAnswerZone += 2;
            }*/
-          self.shapes[self.lastPair[0]].dropZone = -1;
-          //self.shapes[self.lastPair[0]].answerZone = lastAnswerZone;
-          self.shapes[self.lastPair[1]].dropZone = -1;
           //self.shapes[self.lastPair[1]].answerZone = lastAnswerZone + 1;
-          this.answerShape = {zone: -1, indexShape: -1};
+          this.lastChangedZone = -1;
+          //TODO replace to 2
           self.stepScore = 0;
 
-          self.lastPair = [-1,-1];
           this.canDrag = true;
           this.buttonStatus = "none";
 
@@ -145,8 +142,7 @@ define( function( require ) {
           }
           break;
         case "check":
-          self.lastPair = [this.dropZone[12], this.dropZone[13]];
-          if ( self.isShapesEqual( self.shapes[self.lastPair[0]], self.shapes[self.lastPair[1]] ) ) {
+          if ( self.isShapesEqual( self.shapes[this.dropZone[12]], self.shapes[this.dropZone[13]] ) ) {
             //answer correct
             this.buttonStatus = "ok";
             self.score += 2 - self.stepScore;
@@ -165,7 +161,7 @@ define( function( require ) {
           this.buttonStatus = "none";
           break;
         case "showAnswer":
-          var findAnswer = self.shapes[self.answerShape].getAnswer();
+         /* var findAnswer = self.shapes[self.answerShape].getAnswer();
           var zoneAnswer = self.answerShape.zone === 12 ? 13 : 12;
           for ( i = 0; i < self.shapes.length; i++ ) {
             if ( Math.abs( self.shapes[i].getAnswer() - findAnswer ) < 0.001 && self.shapes[i].dropZone < 12 && self.shapes[i].dropZone > -1 ) {
@@ -178,9 +174,8 @@ define( function( require ) {
               self.old13 = this.dropZone[13];
               break;
             }
-          }
+          }*/
           this.buttonStatus = "ok";
-          this.changeStatus = !this.changeStatus;
           break;
       }
     },
