@@ -56,21 +56,6 @@ define( function( require ) {
       self.isLevelScreenActive = (currentLevel > 0);
     } );
 
-    /*    this.buttonStatusProperty.link( function updateButtonStatus() {
-     if ( self.currentLevel > 0 ) {
-     self.levelStatus[self.currentLevel].buttonStatus = self.buttonStatus;
-     }
-     } );
-
-     this.canDragProperty.link( function updateCanDragStatus() {
-     if ( self.currentLevel > 0 ) {
-     self.levelStatus[self.currentLevel].canDrag = self.canDrag;
-     }
-     } );*/
-
-    /*this.levelProperty.link( function( level ) {
-     self.setLevel( level );
-     } );*/
   }
 
   inherit( PropertySet, MatchingGameModel, {

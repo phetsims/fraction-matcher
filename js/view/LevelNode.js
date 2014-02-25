@@ -165,6 +165,7 @@ define( function( require ) {
       var i, shape;
       this.model.reset();
       shapeNode.removeAllChildren();
+
       for ( i = 0; i < model.shapes.length; i++ ) {
         shape = model.shapes[i];
         if ( shape.view === undefined ) {
@@ -176,7 +177,6 @@ define( function( require ) {
         shapeNode.addChild( shape.view );
         if ( shape.dropZone >= 0 ) {
           shape.view.center = thisNode.getShapeDropPosition( shape.dropZone );
-          model.dropZone[shape.dropZone] = i;
         }
       }
 
@@ -193,7 +193,7 @@ define( function( require ) {
       buttonTryAgain.setVisible( value === 'tryAgain' );
       buttonShowAnswer.setVisible( value === 'showAnswer' );
       if ( model.buttonStatus === 'ok' ) {
-        smile.setValue( 2 - model.stepScore );
+        smile.setValue( model.stepScore );
       }
       else {
         smile.setValue( 0 );
@@ -266,7 +266,7 @@ define( function( require ) {
         this.model.dropZone[zoneIndex] = shape.view.indexShape;
         shape.dropZone = zoneIndex;
         var targetPosition = this.getShapeDropPosition( zoneIndex );
-        if ( zoneIndex > this.gameModel.MAXIMUM_PAIRS * 2 - 1 ) {
+        if ( zoneIndex > this.model.gameModel.MAXIMUM_PAIRS * 2 - 1 ) {
           targetPosition.y -= shape.view.height / 2 - 13; //adjust position on scales
         }
         new TWEEN.Tween( shape.view ).to( { x: targetPosition.x, y: targetPosition.y }, this.model.gameModel.ANIMATION_TIME ).start();

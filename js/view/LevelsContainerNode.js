@@ -46,7 +46,7 @@ define( function( require ) {
     backButton.x = model.width - backButton.width - margin;
     thisNode.addChild( backButton );
 
-    var refreshButton = new RefreshButton( {y: 200}, function() {model.levels[model.currentLevel].generateNewLevel();} );
+    var refreshButton = new RefreshButton( {y: 200}, function() {levelNodes[model.currentLevel-1].generateNewLevel();} );
     refreshButton.x = model.width - refreshButton.width - margin;
     thisNode.addChild( refreshButton );
 

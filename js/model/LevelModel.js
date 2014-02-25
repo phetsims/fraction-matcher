@@ -22,7 +22,7 @@ define( function( require ) {
       score: 0,
       highScore: 0,
       time: 0,
-      stepScore: 0,
+      stepScore: 2,
       answers: [], //shapes, which moved to answer zone
       lastPair: [-1, -1], //pair of shapes on scales, user can't compare the same pair two times
       lastChangedZone: -1, //when showing correct answer, change only last dragged shape position
@@ -46,12 +46,8 @@ define( function( require ) {
 
   inherit( PropertySet, LevelModel, {
     reset: function() {
-      this.lastPairProperty.reset();
-      this.scoreProperty.reset();
-      this.timeProperty.reset();
-      this.answersProperty.reset();
       this.generateLevel();
-      for (var i = 0; i < this.dropZone.length; i++ ) {
+      for ( var i = 0; i < this.dropZone.length; i++ ) {
         this.dropZone[i] = -1;
       }
 
@@ -124,7 +120,9 @@ define( function( require ) {
         newShapes[i].dropZone = i;
       }
 
+      var highScore = this.highScore;
       PropertySet.prototype.reset.call( this );
+      this.highScore = highScore;
       this.shapes = newShapes;
     },
     generateNewLevel: function() {
@@ -135,8 +133,7 @@ define( function( require ) {
       switch( buttonName ) { //['none','ok','check','tryAgain','showAnswer']
         case "ok":
           this.lastChangedZone = -1;
-          //TODO replace to 2
-          self.stepScore = 0;
+          self.stepScore = 2;
           this.canDrag = true;
           this.buttonStatus = "none";
           if ( self.answers.length === self.gameModel.MAXIMUM_PAIRS ) {
@@ -147,14 +144,14 @@ define( function( require ) {
           if ( self.isShapesEqual( self.shapes[this.dropZone[12]], self.shapes[this.dropZone[13]] ) ) {
             //answer correct
             this.buttonStatus = "ok";
-            self.score += 2 - self.stepScore;
+            self.score += self.stepScore;
             self.gameModel.sounds.correct.play();
           }
           else {
             //answer incorrect
             self.gameModel.sounds.incorrect.play();
-            self.stepScore++;
-            this.buttonStatus = (self.stepScore === 1) ? "tryAgain" : "showAnswer";
+            self.stepScore--;
+            this.buttonStatus = (self.stepScore) ? "tryAgain" : "showAnswer";
           }
           this.canDrag = false;
           break;
