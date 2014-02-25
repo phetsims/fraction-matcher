@@ -20,7 +20,6 @@ define( function( require ) {
 
     PropertySet.call( this, {
       score: 0,
-      highScore: 0,
       time: 0,
       stepScore: 2,
       answers: [], //shapes, which moved to answer zone
@@ -120,9 +119,7 @@ define( function( require ) {
         newShapes[i].dropZone = i;
       }
 
-      var highScore = this.highScore;
       PropertySet.prototype.reset.call( this );
-      this.highScore = highScore;
       this.shapes = newShapes;
     },
     generateNewLevel: function() {

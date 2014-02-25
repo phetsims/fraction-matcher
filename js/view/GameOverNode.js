@@ -39,8 +39,8 @@ define( function( require ) {
     this.addChild( gameOverLevel = new Text( StringUtils.format( patternGameOverLevelString, 1 ), { font: new PhetFont( { size: 28, weight: "normal"} ), x: 400, centerY: 300  } ) );
     this.addChild( gameOverScore = new Text( StringUtils.format( patternGameOverScoreString, 1 ), { font: new PhetFont( { size: 28, weight: "normal"} ), x: 400, centerY: 360  } ) );
     this.addChild( new ButtonNode( buttonNewGameString, function() {
+      model.gameModel.highScores[model.levelNumber-1].set(Math.max( model.gameModel.highScores[model.levelNumber-1].get(), model.score ));
       model.gameModel.currentLevel = 0;
-      model.highScore = Math.max( model.highScore, model.score );
       levelNode.generateNewLevel();
     }, {font: new PhetFont( { size: 22, weight: "normal"} ), rectangleFillUp: "#F1F1F1", rectangleFillDown: "#F1F1F1", rectangleFillOver: "#F8F8F8", x: 575, y: 470, rectangleCornerRadius: 5, rectangleXMargin: 10, rectangleYMargin: 5} ) );
 

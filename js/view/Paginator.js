@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * View for a pagination in 'Fraction Matcher' sim.
+ * View for a paginator in 'Fraction Matcher' sim.
  *
  * @author Andrey Zelenkov (Mlearner)
  */
@@ -15,8 +15,7 @@ define( function( require ) {
     StringUtils = require( 'PHETCOMMON/util/StringUtils' ),
     patternLevelString = require( 'string!FRACTION_COMMON/patternLevel' ),
     mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' ),
-    ObservableArray = require( 'AXON/ObservableArray' ),
-    PaginationNode = require( 'FRACTION_COMMON/pagination/PaginationNode' );
+    PaginatorNode = require( 'FRACTION_COMMON/paginator/PaginatorNode' );
 
   function Paginator( model, options ) {
     var mixedNumber = (model.game === mixedNumbersTitleString);
@@ -35,7 +34,7 @@ define( function( require ) {
       } );
     } );
 
-    this.addChild( new PaginationNode( {x: 150, y: 90}, [firstPageChildren], model.currentLevelProperty, new ObservableArray() ) ); //TODO remove ObservableArray
+    this.addChild( new PaginatorNode( {x: 150, y: 90}, [firstPageChildren], model.currentLevelProperty, model.highScores ) );
 
   }
 

@@ -11,6 +11,7 @@ define( function( require ) {
   // imports
   var inherit = require( 'PHET_CORE/inherit' ),
     PropertySet = require( 'AXON/PropertySet' ),
+    Property = require( 'AXON/Property' ),
     Constants = require( 'FRACTION_MATCHER/model/Constants' ),
     LevelModel = require( 'FRACTION_MATCHER/model/LevelModel' ),
     Sound = require( 'VIBE/Sound' ),
@@ -40,9 +41,10 @@ define( function( require ) {
     };
 
     this.levels = [];
+    this.highScores = [];
 
     PropertySet.call( this, {
-      currentLevel: 1,
+      currentLevel: 0,
       isLevelScreenActive: false,
       isSound: true,
       isTimer: false
@@ -50,6 +52,7 @@ define( function( require ) {
 
     this.CONSTANTS.LEVEL_DESCRIPTION.forEach( function( levelDescription, index ) {
       self.levels.push( new LevelModel( self, levelDescription, index + 1 ) );
+      self.highScores.push(new Property(0));
     } );
 
     this.currentLevelProperty.link( function( currentLevel ) {
@@ -62,6 +65,9 @@ define( function( require ) {
     // Resets all model elements
     reset: function() {
       PropertySet.prototype.reset.call( this );
+      this.highScores.forEach(function (highScore) {
+        highScore.reset();
+      });
     },
     step: function( dt ) {
       if ( this.currentLevel > 0 ) {
