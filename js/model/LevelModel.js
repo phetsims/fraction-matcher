@@ -31,15 +31,13 @@ define( function( require ) {
       buttonStatus: "none" // ['none','ok','check','tryAgain','showAnswer']
     } );
 
-    this.dropZone = [];
-    this.answerZone = [];
+    this.dropZone = []; //contains indexes of shapes, which are placed in current zone, -1 if empty
 
     for ( var i = 0; i < 2 * this.gameModel.MAXIMUM_PAIRS; i++ ) {
       this.dropZone[i] = -1;
-      this.answerZone[i] = -1;
     }
 
-    //two more dropZones - scales
+    //two more dropZones 12 and 13 - scales
     this.dropZone.push( -1 );
     this.dropZone.push( -1 );
 
@@ -47,6 +45,17 @@ define( function( require ) {
   }
 
   inherit( PropertySet, LevelModel, {
+    reset: function() {
+      this.lastPairProperty.reset();
+      this.scoreProperty.reset();
+      this.timeProperty.reset();
+      this.answersProperty.reset();
+      this.generateLevel();
+      for (var i = 0; i < this.dropZone.length; i++ ) {
+        this.dropZone[i] = -1;
+      }
+
+    },
     step: function( dt ) {
       if ( this.gameModel.isTimer ) {
         this.time += dt;
@@ -118,25 +127,18 @@ define( function( require ) {
       PropertySet.prototype.reset.call( this );
       this.shapes = newShapes;
     },
-    resetLevel: function() {
+    generateNewLevel: function() {
       this.generateLevel();
     },
     answerButton: function( buttonName ) {
-      var i, self = this;
+      var self = this;
       switch( buttonName ) { //['none','ok','check','tryAgain','showAnswer']
         case "ok":
-          /*var lastAnswerZone = 0;
-           while ( this.answerZone[lastAnswerZone] >= 0 ) {
-           lastAnswerZone += 2;
-           }*/
-          //self.shapes[self.lastPair[1]].answerZone = lastAnswerZone + 1;
           this.lastChangedZone = -1;
           //TODO replace to 2
           self.stepScore = 0;
-
           this.canDrag = true;
           this.buttonStatus = "none";
-
           if ( self.answers.length === self.gameModel.MAXIMUM_PAIRS ) {
             self.hiScore = Math.max( self.hiScore, self.score );
           }
@@ -161,20 +163,6 @@ define( function( require ) {
           this.buttonStatus = "none";
           break;
         case "showAnswer":
-         /* var findAnswer = self.shapes[self.answerShape].getAnswer();
-          var zoneAnswer = self.answerShape.zone === 12 ? 13 : 12;
-          for ( i = 0; i < self.shapes.length; i++ ) {
-            if ( Math.abs( self.shapes[i].getAnswer() - findAnswer ) < 0.001 && self.shapes[i].dropZone < 12 && self.shapes[i].dropZone > -1 ) {
-              //TODO var freeZone = this.nearDropZone( self.shapes[this.dropZone[zoneAnswer].indexShape].view, true );
-              //self.shapes[this.dropZone[zoneAnswer].indexShape].dropZone = freeZone;
-              //this.dropZone[freeZone].indexShape = this.dropZone[zoneAnswer].indexShape;
-              self.shapes[i].dropZone = zoneAnswer;
-              this.dropZone[zoneAnswer] = i;
-              self.old12 = this.dropZone[12];
-              self.old13 = this.dropZone[13];
-              break;
-            }
-          }*/
           this.buttonStatus = "ok";
           break;
       }

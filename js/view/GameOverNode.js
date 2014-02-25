@@ -25,7 +25,7 @@ define( function( require ) {
     Vector2 = require( 'DOT/Vector2' ),
     ButtonNode = require( 'FRACTION_MATCHER/view/ButtonNode' );
 
-  function GameOverNode( model, options ) {
+  function GameOverNode( model, levelNode, options ) {
     var thisNode = this,
       gameOverScore,
       gameOverLevel,
@@ -38,9 +38,14 @@ define( function( require ) {
     this.addChild( new Text( gameOverString, { font: new PhetFont( { size: 36, weight: "normal"} ), centerX: 575, centerY: 215  } ) );
     this.addChild( gameOverLevel = new Text( StringUtils.format( patternGameOverLevelString, 1 ), { font: new PhetFont( { size: 28, weight: "normal"} ), x: 400, centerY: 300  } ) );
     this.addChild( gameOverScore = new Text( StringUtils.format( patternGameOverScoreString, 1 ), { font: new PhetFont( { size: 28, weight: "normal"} ), x: 400, centerY: 360  } ) );
-    this.addChild( new ButtonNode( buttonNewGameString, function() {model.setLevel( 0 );}, {font: new PhetFont( { size: 22, weight: "normal"} ), rectangleFillUp: "#F1F1F1", rectangleFillDown: "#F1F1F1", rectangleFillOver: "#F8F8F8", x: 575, y: 470, rectangleCornerRadius: 5, rectangleXMargin: 10, rectangleYMargin: 5} ) );
+    this.addChild( new ButtonNode( buttonNewGameString, function() {
+      model.gameModel.currentLevel = 0;
+      model.highScore = Math.max( model.highScore, model.score );
+      levelNode.generateNewLevel();
+    }, {font: new PhetFont( { size: 22, weight: "normal"} ), rectangleFillUp: "#F1F1F1", rectangleFillDown: "#F1F1F1", rectangleFillOver: "#F8F8F8", x: 575, y: 470, rectangleCornerRadius: 5, rectangleXMargin: 10, rectangleYMargin: 5} ) );
 
-    model.buttonStatusProperty.link( function updateGameOverNode() {
+
+    this.showGameOver = function() {
       if ( model.score >= 12 ) {
         gameOverScore.text = StringUtils.format( patternGameOverScorePrefectString, model.score );
       }
@@ -56,8 +61,10 @@ define( function( require ) {
       background.addChild( new Line( gameOverScore.x, 430, gameOverScore.x + gameOverScore.width + 20, 430, {stroke: "#000", lineWidth: 2} ) );
 
       thisNode.center = new Vector2( model.gameModel.width / 2, model.gameModel.height / 2 );
-      thisNode.setVisible( model.answerZone[model.answerZone.length - 1] >= 0 );
-    } );
+      thisNode.setVisible( true );
+    };
+
+
   }
 
   return inherit( Node, GameOverNode );

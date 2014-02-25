@@ -48,7 +48,7 @@ define( function( require ) {
     thisNode.addChild( scoreLabel );
     thisNode.addChild( new Text( myMatchesString, { font: new PhetFont( { size: 19, weight: "bold"} ), x: 20, centerY: 135  } ) );
     thisNode.addChild( new BackButton( {x: 1045, y: 200, scale: 1.4}, function() {model.level = 0;} ) );
-    thisNode.addChild( new RefreshButton( {x: 1045, y: 255, scale: 1.4}, function() {model.resetLevel();} ) );
+    thisNode.addChild( new RefreshButton( {x: 1045, y: 255, scale: 1.4}, function() {model.generateNewLevel();} ) );
 
     var scaleLeft = new Image( require( 'image!FRACTION_MATCHER/../images/scale.png' ), {x: 300, y: 320, scale: 0.5} );
     var scaleRight = new Image( require( 'image!FRACTION_MATCHER/../images/scale.png' ), {x: 655, y: 320, scale: 0.5} );

@@ -107,7 +107,6 @@ define( function( require ) {
 
     // function for comparing shapes on scales
     this.compare = function( left, right ) {
-
       // set indicator's height
       new TWEEN.Tween( rectLeft ).to( { y: -left.getAnswer() * 70 }, gameModel.ANIMATION_TIME ).onUpdate(function( step ) {
         rectLeft.setRectHeight( left.getAnswer() * 70 * step );
