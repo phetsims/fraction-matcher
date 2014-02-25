@@ -15,7 +15,7 @@ define( function( require ) {
     Node = require( 'SCENERY/nodes/Node' ),
     HBox = require( 'SCENERY/nodes/HBox' ),
     VBox = require( 'SCENERY/nodes/VBox' ),
-    LevelButtonNode = require( 'FRACTION_COMMON/pagination/LevelButtonNode' ),
+    LevelButtonNode = require( 'FRACTION_COMMON/paginator/LevelButtonNode' ),
     ShapeNode = require( 'FRACTION_COMMON/shapes/ShapeNode' );
 
   function Page1Node( pages, number, targetProperty, pageProperty, scoreArray ) {
@@ -28,6 +28,7 @@ define( function( require ) {
 
     // add level buttons
     for ( var i = 0; i < pages.length; i++ ) {
+      var levelNumber = i + number * pages.length;
       (i >= pages.length / 2 ? hBoxBottom : hBoxTop).addChild( new LevelButtonNode( {
         width: pages[i].width || 90,
         height: pages[i].height || 150,
@@ -42,7 +43,7 @@ define( function( require ) {
           height: 50
         }, pages[i].shape ) ),
         callback: getCallback( targetProperty, pages[i].value )
-      }, scoreArray, number * pages.length + (i > pages.length / 2 ? 2 * i + 1 - pages.length : i * 2 ) ) );
+      }, scoreArray[levelNumber]) );
       (i >= pages.length / 2 ? hBoxBottom : hBoxTop).updateLayout();
       vBox.updateLayout();
     }

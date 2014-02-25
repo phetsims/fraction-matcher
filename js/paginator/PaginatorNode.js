@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * Pagination for the 'Build a Fraction' screen.
+ * paginator for the 'Build a Fraction' screen.
  *
  * @author Andrey Zelenkov (Mlearner)
  */
@@ -11,10 +11,10 @@ define( function( require ) {
   // imports
   var inherit = require( 'PHET_CORE/inherit' ),
     Node = require( 'SCENERY/nodes/Node' ),
-    Page1Node = require( 'FRACTION_COMMON/pagination/Page1Node' ),
-    NavigationBar = require( 'FRACTION_COMMON/pagination/NavigationBar' );
+    Page1Node = require( 'FRACTION_COMMON/paginator/Page1Node' ),
+    NavigationBar = require( 'FRACTION_COMMON/paginator/NavigationBar' );
 
-  function PaginationNode( options, pages, levelProperty, scoreArray, pageProperty ) {
+  function paginatorNode( options, pages, levelProperty, scoreArray, pageProperty ) {
     var self = this,
       navBar,
       offsetX,
@@ -43,5 +43,5 @@ define( function( require ) {
     }
   }
 
-  return inherit( Node, PaginationNode );
+  return inherit( Node, paginatorNode );
 } );

@@ -16,10 +16,10 @@ define( function( require ) {
     PhetFont = require( 'SCENERY_PHET/PhetFont' ),
     Rectangle = require( 'SCENERY/nodes/Rectangle' ),
     PushButton = require( 'SUN/PushButton' ),
-    StarBoxNode = require( 'FRACTION_COMMON/pagination/StarBoxNode' ),
+    StarBoxNode = require( 'FRACTION_COMMON/paginator/StarBoxNode' ),
     FONT = new PhetFont( { size: 14, weight: 'bold'} );
 
-  function LevelButtonNode( options, scoreArray, level ) {
+  function LevelButtonNode( options, highScoreProperty ) {
     var shadowBt,
       starBox,
       baseBt = new Node(),
@@ -66,10 +66,8 @@ define( function( require ) {
       {listener: options.callback} )
     );
 
-    scoreArray.addItemAddedListener( function( levelWithNewScore ) {
-      if ( levelWithNewScore === level ) {
-        starBox.setScore( scoreArray.get( level ) );
-      }
+    highScoreProperty.link( function( newHighScore ) {
+      starBox.setScore( newHighScore );
     } );
   }
 
