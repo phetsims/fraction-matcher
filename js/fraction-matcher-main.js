@@ -41,11 +41,11 @@ define( function( require ) {
       new Screen( matchingGameTitleString, new Image( imageMatchingGame ),
         function() { return new FractionMatcherModel( ScreenView.DEFAULT_LAYOUT_BOUNDS.width, ScreenView.DEFAULT_LAYOUT_BOUNDS.height, matchingGameTitleString ); },
         function( model ) { return new FractionMatcherView( model ); }
-      )/*,
+      ),
       new Screen( mixedNumbersTitleString, new Image( imageMixedNumber ),
         function() { return new FractionMatcherModel( ScreenView.DEFAULT_LAYOUT_BOUNDS.width, ScreenView.DEFAULT_LAYOUT_BOUNDS.height, mixedNumbersTitleString ); },
         function( model ) { return new FractionMatcherView( model ); }
-      )*/
+      )
     ], simOptions ).start();
   } );
 } );
