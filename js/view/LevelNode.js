@@ -131,11 +131,6 @@ define( function( require ) {
           if ( zone >= 12 && model.dropZone[zone] >= 0 ) { //if scale and scale not empty
             var zone2 = thisNode.getClosestDropZone( model.shapes[model.dropZone[zone]].view.center, false ); //get free zone, not scale
             thisNode.dropShapeToZone( model.shapes[model.dropZone[zone]], zone2 );
-            /*
-             if ( model.answerShape.zone === zone ) {
-             model.answerShape = {zone: -1, indexShape: -1};
-             }
-             */
           }
           if ( zone === 12 || zone === 13 ) {
             model.lastChangedZone = zone;
@@ -177,6 +172,7 @@ define( function( require ) {
         shapeNode.addChild( shape.view );
         if ( shape.dropZone >= 0 ) {
           shape.view.center = thisNode.getShapeDropPosition( shape.dropZone );
+          thisNode.model.dropZone[shape.dropZone] = shape.view.indexShape;
         }
       }
 
@@ -260,8 +256,6 @@ define( function( require ) {
         return closestZone;
       },
       dropShapeToZone: function( shape, zoneIndex ) {
-        //source dropZone empty
-        this.model.dropZone[shape.dropZone] = -1;
         //target dropZone now = indexShape
         this.model.dropZone[zoneIndex] = shape.view.indexShape;
         shape.dropZone = zoneIndex;
@@ -283,9 +277,9 @@ define( function( require ) {
           }
         }
         var lastShapeOnScale = this.model.shapes[this.model.dropZone[this.model.lastChangedZone]];
+        this.model.dropZone[secondCorrectShape.dropZone] = -1;
         this.dropShapeToZone( secondCorrectShape, this.model.lastChangedZone );
         this.dropShapeToZone( lastShapeOnScale, this.getClosestDropZone( lastShapeOnScale.view.center, false ) );
-        this.model.dropZone[this.model.lastChangedZone] = secondCorrectShape.view.indexShape;
         thisNode.comparisonChart.compare( thisNode.model.shapes[thisNode.model.dropZone[12]], thisNode.model.shapes[thisNode.model.dropZone[13]] );
       },
       moveShapesOnScalesToAnswer: function() {
