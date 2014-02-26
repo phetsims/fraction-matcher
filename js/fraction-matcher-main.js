@@ -15,7 +15,7 @@ define( function( require ) {
     ScreenView = require( 'JOIST/ScreenView' ),
     FractionMatcherModel = require( 'FRACTION_MATCHER/model/FractionMatcherModel' ),
     FractionMatcherView = require( 'FRACTION_MATCHER/view/FractionMatcherView' ),
-    imageMixedNumber = require( 'image!FRACTION_MATCHER/../images/MixedNumbers-icon.jpg' ),
+    imageMixedNumber = require( 'image!FRACTION_MATCHER/../images/MixedNumbers-icon.png' ),
     imageMatchingGame = require( 'image!FRACTION_MATCHER/../images/MatchingGame-icon.png' ),
     mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' ),
     matchingGameTitleString = require( 'string!FRACTION_MATCHER/matchingGameTitle' ),

@@ -43,7 +43,12 @@ define( function( require ) {
     ]} );
     var paginatorNode = new Node( {children: [
       paginatorBox,
-      new ResetAllButton( function() { model.reset(); }, { x: model.width - 40, y: model.height - 40} ),
+      new ResetAllButton( function() {
+        model.reset();
+        levelsContainerNode.levelNodes.forEach(function (levelNode) {
+          levelNode.generateNewLevel();
+        });
+      }, { x: model.width - 40, y: model.height - 40} ),
       new TimerToggleButton( model.isTimerProperty, {x: 20, y: model.height - 120} ),
       new SoundToggleButton( model.isSoundProperty, {x: 20, y: model.height - 60} )
     ]} );

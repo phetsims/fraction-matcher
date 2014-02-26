@@ -16,8 +16,6 @@ define( function( require ) {
     PhetFont = require( 'SCENERY_PHET/PhetFont' ),
     Image = require( 'SCENERY/nodes/Image' ),
     Rectangle = require( 'SCENERY/nodes/Rectangle' ),
-    StringUtils = require( 'PHETCOMMON/util/StringUtils' ),
-
     BackButton = require( 'FRACTION_COMMON/yellow-buttons/BackButton' ),
     RefreshButton = require( 'FRACTION_COMMON/yellow-buttons/RefreshButton' ),
     LevelNode = require( 'FRACTION_MATCHER/view/LevelNode' );
@@ -46,7 +44,7 @@ define( function( require ) {
     backButton.x = model.width - backButton.width - margin;
     thisNode.addChild( backButton );
 
-    var refreshButton = new RefreshButton( {y: 200}, function() {levelNodes[model.currentLevel-1].generateNewLevel();} );
+    var refreshButton = new RefreshButton( {y: 200}, function() {thisNode.levelNodes[model.currentLevel - 1].generateNewLevel();} );
     refreshButton.x = model.width - refreshButton.width - margin;
     thisNode.addChild( refreshButton );
 
@@ -67,18 +65,18 @@ define( function( require ) {
       }
     }
 
-    var levelNodes = [];
+    this.levelNodes = [];
     model.levels.forEach( function( levelModel, index ) {
-      levelNodes[index] = new LevelNode( levelModel, thisNode, {visible: false} );
-      thisNode.addChild( levelNodes[index] );
+      thisNode.levelNodes[index] = new LevelNode( levelModel, thisNode, {visible: false} );
+      thisNode.addChild( thisNode.levelNodes[index] );
     } );
 
     model.currentLevelProperty.link( function( newLevel, oldLevel ) {
       if ( newLevel > 0 ) {
-        levelNodes[newLevel - 1 ].visible = true;
+        thisNode.levelNodes[newLevel - 1 ].visible = true;
       }
       if ( oldLevel && oldLevel > 0 ) {
-        levelNodes[oldLevel - 1 ].visible = false;
+        thisNode.levelNodes[oldLevel - 1 ].visible = false;
       }
     } );
 
