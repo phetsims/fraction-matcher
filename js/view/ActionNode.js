@@ -77,9 +77,9 @@ define( function( require ) {
     buttonTryAgain.right = Math.min( buttonTryAgain.right, 290 );
     buttonShowAnswer.right = Math.min( buttonShowAnswer.right, 290 );
 
-    model.levels.forEach(function(levelModel){
+    model.levels.forEach( function( levelModel ) {
       thisNode.addChild( new LevelNode( levelModel, {} ) );
-    });
+    } );
 
 
     thisNode.addChild( new GameOverNode( model ) );
@@ -94,27 +94,27 @@ define( function( require ) {
       }
     } );
 
-/*    model.buttonStatusProperty.link( function updateButtonStatus( value ) {
-      buttonOk.setVisible( value === 'ok' );
-      buttonCheck.setVisible( value === 'check' );
-      buttonTryAgain.setVisible( value === 'tryAgain' );
-      buttonShowAnswer.setVisible( value === 'showAnswer' );
-      if ( model.buttonStatus === 'ok' ) {
-        smile.setValue( 2 - model.levelStatus[model.currentLevel].step );
-      }
-      else {
-        smile.setValue( 0 );
-      }
-      if ( model.buttonStatus !== 'none' ) {
-        comparisonChart.reset();
-        if ( model.buttonStatus !== 'check' ) {
-          comparisonChart.compare( model.levelStatus[model.currentLevel].shape[model.levelStatus[model.currentLevel].old12], model.levelStatus[model.currentLevel].shape[model.levelStatus[model.currentLevel].old13] );
-        }
-      }
-      else {
-        comparisonChart.hide();
-      }
-    } );*/
+    /*    model.buttonStatusProperty.link( function updateButtonStatus( value ) {
+     buttonOk.setVisible( value === 'ok' );
+     buttonCheck.setVisible( value === 'check' );
+     buttonTryAgain.setVisible( value === 'tryAgain' );
+     buttonShowAnswer.setVisible( value === 'showAnswer' );
+     if ( model.buttonStatus === 'ok' ) {
+     smile.setValue( 2 - model.levelStatus[model.currentLevel].step );
+     }
+     else {
+     smile.setValue( 0 );
+     }
+     if ( model.buttonStatus !== 'none' ) {
+     comparisonChart.reset();
+     if ( model.buttonStatus !== 'check' ) {
+     comparisonChart.compare( model.levelStatus[model.currentLevel].shape[model.levelStatus[model.currentLevel].old12], model.levelStatus[model.currentLevel].shape[model.levelStatus[model.currentLevel].old13] );
+     }
+     }
+     else {
+     comparisonChart.hide();
+     }
+     } );*/
   }
 
   return inherit( Node, ActionNode );

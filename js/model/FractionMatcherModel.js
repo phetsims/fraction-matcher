@@ -52,7 +52,7 @@ define( function( require ) {
 
     this.CONSTANTS.LEVEL_DESCRIPTION.forEach( function( levelDescription, index ) {
       self.levels.push( new LevelModel( self, levelDescription, index + 1 ) );
-      self.highScores.push(new Property(0));
+      self.highScores.push( new Property( 0 ) );
     } );
 
     this.currentLevelProperty.link( function( currentLevel ) {
@@ -65,9 +65,9 @@ define( function( require ) {
     // Resets all model elements
     reset: function() {
       PropertySet.prototype.reset.call( this );
-      this.highScores.forEach(function (highScore) {
+      this.highScores.forEach( function( highScore ) {
         highScore.reset();
-      });
+      } );
     },
     step: function( dt ) {
       if ( this.currentLevel > 0 ) {
