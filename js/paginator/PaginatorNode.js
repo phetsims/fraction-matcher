@@ -14,7 +14,7 @@ define( function( require ) {
     Page1Node = require( 'FRACTION_COMMON/paginator/Page1Node' ),
     NavigationBar = require( 'FRACTION_COMMON/paginator/NavigationBar' );
 
-  function paginatorNode( options, pages, levelProperty, scoreArray, pageProperty ) {
+  function PaginatorNode( options, pages, levelProperty, scoreArray, pageProperty ) {
     var self = this,
       navBar,
       offsetX,
@@ -43,5 +43,5 @@ define( function( require ) {
     }
   }
 
-  return inherit( Node, paginatorNode );
+  return inherit( Node, PaginatorNode );
 } );
