@@ -10,8 +10,7 @@ define( function( require ) {
   "use strict";
 
   // imports
-  var Bounds2 = require( 'DOT/Bounds2' ),
-    inherit = require( 'PHET_CORE/inherit' ),
+  var inherit = require( 'PHET_CORE/inherit' ),
     ScreenView = require( 'JOIST/ScreenView' ),
     VBox = require( 'SCENERY/nodes/VBox' ),
     Text = require( 'SCENERY/nodes/Text' ),
