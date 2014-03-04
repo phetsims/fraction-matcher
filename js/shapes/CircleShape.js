@@ -72,7 +72,7 @@ define( function( require ) {
   return inherit( AbstractShape, CircleShape, {
     getPiece: function( radius, s, e ) {
       var shape = new Shape();
-      if ( (s / 2) % Math.PI !== (e / 2) % Math.PI ) {
+      if ( Math.abs((s / 2) % Math.PI - (e / 2) % Math.PI)>0.001 ) {
         shape.moveTo( 0, 0 );
         shape.lineTo( Math.cos( s ) * radius, Math.sin( s ) * radius );
         shape.arc( 0, 0, radius, s, e, false );
