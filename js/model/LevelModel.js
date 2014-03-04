@@ -45,11 +45,13 @@ define( function( require ) {
 
   inherit( PropertySet, LevelModel, {
     reset: function() {
+      PropertySet.prototype.reset.call( this );
       this.generateLevel();
       for ( var i = 0; i < this.dropZone.length; i++ ) {
         this.dropZone[i] = -1;
       }
-
+      this.answers = [];
+      this.lastPair = [-1, -1];
     },
     step: function( dt ) {
       if ( this.gameModel.isTimer ) {
@@ -119,11 +121,7 @@ define( function( require ) {
         newShapes[i].dropZone = i;
       }
 
-      PropertySet.prototype.reset.call( this );
       this.shapes = newShapes;
-    },
-    generateNewLevel: function() {
-      this.generateLevel();
     },
     answerButton: function( buttonName ) {
       var self = this;
