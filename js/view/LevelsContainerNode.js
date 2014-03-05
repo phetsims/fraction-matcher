@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * Main page for the 'Fraction Matcher' screen.
+ * Levels Container. Contains levels and common buttons and scales
  *
  * @author Anton Ulyanov (Mlearner)
  */

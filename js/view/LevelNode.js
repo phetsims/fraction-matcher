@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * Main page for the 'Fraction Matcher' screen.
+ * Contains all nodes for single level. Shapes, strings, buttons.
  *
  * @author Anton Ulyanov (Mlearner)
  */

@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * Model container for the 'Matching Game' screen.
+ * Model container single shape.
  *
  * @author Anton Ulyanov, Andrey Zelenkov (Mlearner)
  */

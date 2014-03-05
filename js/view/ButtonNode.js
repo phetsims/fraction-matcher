@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * Main page for the 'Fraction Matcher' screen.
+ * Single Button Constructor
  *
  * @author Anton Ulyanov (Mlearner)
  */
