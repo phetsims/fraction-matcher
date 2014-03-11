@@ -44,7 +44,10 @@ define( function( require ) {
     backButton.x = model.width - backButton.width - margin;
     thisNode.addChild( backButton );
 
-    var refreshButton = new RefreshButton( {y: 200}, function() {thisNode.levelNodes[model.currentLevel - 1].generateNewLevel();} );
+    var refreshButton = new RefreshButton( {y: 200}, function() {
+      model.levels[model.currentLevel - 1].reset();
+      thisNode.levelNodes[model.currentLevel - 1].generateNewLevel();
+    } );
     refreshButton.x = model.width - refreshButton.width - margin;
     thisNode.addChild( refreshButton );
 
@@ -73,6 +76,10 @@ define( function( require ) {
 
     model.currentLevelProperty.link( function( newLevel, oldLevel ) {
       if ( newLevel > 0 ) {
+        //if shapes not drawn, draw shapes then show level. Made this to not generate all levels at once as it freeze simulation for 1-2 seconds
+        if(!model.levels[newLevel - 1].shapes[0].view) {
+          thisNode.levelNodes[newLevel - 1 ].generateNewLevel();
+        }
         thisNode.levelNodes[newLevel - 1 ].visible = true;
       }
       if ( oldLevel && oldLevel > 0 ) {

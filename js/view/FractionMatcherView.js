@@ -44,8 +44,8 @@ define( function( require ) {
       paginatorBox,
       new ResetAllButton( function() {
         model.reset();
-        levelsContainerNode.levelNodes.forEach( function( levelNode ) {
-          levelNode.generateNewLevel();
+        model.levels.forEach( function( levelModel ) {
+          levelModel.reset();
         } );
       }, { x: model.width - 40, y: model.height - 40} ),
       new TimerToggleButton( model.isTimerProperty, {x: 20, y: model.height - 120} ),

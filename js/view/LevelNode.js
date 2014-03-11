@@ -158,7 +158,6 @@ define( function( require ) {
 
     this.generateNewLevel = function() {
       var i, shape;
-      this.model.reset();
       shapeNode.removeAllChildren();
 
       for ( i = 0; i < model.shapes.length; i++ ) {
@@ -220,7 +219,6 @@ define( function( require ) {
     } );
 
     this.mutate( options );
-    this.generateNewLevel();
   }
 
   return inherit( Node, LevelNode, {
