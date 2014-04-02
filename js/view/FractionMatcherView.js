@@ -29,10 +29,7 @@ define( function( require ) {
   function MatchingGameView( model ) {
     ScreenView.call( this, { renderer: 'svg' } );
 
-    this.addChild( new Rectangle( 0, 0, 768, 504, {fill: '#eee'} ) );
-
     var levelsContainerNode = new LevelsContainerNode( model );
-
 
     var paginatorBox = new VBox( {centerX: model.width / 2, y: 25, spacing: 20, children: [
       // add header
