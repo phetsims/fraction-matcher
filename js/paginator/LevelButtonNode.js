@@ -39,6 +39,7 @@ define( function( require ) {
         shape: new Node(),
         round: 10,
         score: 0,
+        padding: 10,
         callback: function() {}
       },
       options
@@ -47,9 +48,12 @@ define( function( require ) {
     Node.call( this, {x: options.x, y: options.y} );
     this.score = 0;
 
+    var levelLabel = new Text( options.label, { font: FONT, centerX: 0, centerY: -(options.height / 2) + 12 } )
+    options.width = Math.max (options.width, levelLabel.width+options.padding);
+
     // create base template
     baseBt.addChild( new Rectangle( -(options.width / 2), -(options.height / 2), options.width, options.height, options.round, options.round, {fill: options.fill, stroke: options.stroke, lineWidth: options.lineWidth} ) );
-    baseBt.addChild( new Text( options.label, { font: FONT, centerX: 0, centerY: -(options.height / 2) + 12 } ) );
+    baseBt.addChild( levelLabel );
     baseBt.addChild( new Node( {children: [options.shape], x: 0, y: 0} ) );
     baseBt.addChild( starBox = new StarBoxNode( {x: 0, width: options.width, starCount: options.starCount} ) );
     starBox.setY( (options.height - starBox.getHeight()) / 2 );
