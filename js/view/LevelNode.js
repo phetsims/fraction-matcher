@@ -206,16 +206,17 @@ define( function( require ) {
 
     model.gameModel.isTimerProperty.link( function( isTimer ) {
       timeLabel.visible = isTimer;
+      vBox.right = model.gameModel.width - margin;
     } );
 
     model.timeProperty.link( function( newTime ) {
       timeLabel.text = StringUtils.format( patternTimeString, Util.toFixed( newTime, 0 ) );
-      timeLabel.right = levelLabel.right;
+      vBox.right = model.gameModel.width - margin;
     } );
 
     model.scoreProperty.link( function( newScore ) {
       scoreLabel.text = StringUtils.format( patternScoreString, newScore );
-      scoreLabel.right = levelLabel.right;
+      vBox.right = model.gameModel.width - margin;
     } );
 
     this.mutate( options );
