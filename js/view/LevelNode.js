@@ -262,7 +262,7 @@ define( function( require ) {
         if ( zoneIndex > this.model.gameModel.MAXIMUM_PAIRS * 2 - 1 ) {
           targetPosition.y -= shape.view.height / 2 - 13; //adjust position on scales
         }
-        new TWEEN.Tween( shape.view ).to( { x: targetPosition.x, y: targetPosition.y }, this.model.gameModel.ANIMATION_TIME ).start();
+        new TWEEN.Tween( shape.view ).to( { centerX: targetPosition.x, centerY: targetPosition.y }, this.model.gameModel.ANIMATION_TIME ).start();
       },
       showCorrectAnswer: function() {
         var thisNode = this;
