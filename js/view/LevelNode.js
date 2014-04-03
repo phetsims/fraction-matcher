@@ -107,14 +107,12 @@ define( function( require ) {
     } );
     var shapeNode = new Node();
     var offsetCursor = {};
-    var draggableShape = '';
     var startDrag = function( event ) {
         if ( model.canDrag ) {
           event.currentTarget.moveToFront();
           offsetCursor = {x: thisNode.globalToParentPoint( event.pointer.point ).x - event.currentTarget.x, y: thisNode.globalToParentPoint( event.pointer.point ).y - event.currentTarget.y};
-          draggableShape = model.shapes[event.currentTarget.indexShape];
-          model.dropZone[draggableShape.dropZone] = -1;
-          if ( model.lastChangedZone === draggableShape.dropZone ) {
+          model.dropZone[model.shapes[event.currentTarget.indexShape].dropZone] = -1;
+          if ( model.lastChangedZone === model.shapes[event.currentTarget.indexShape].dropZone ) {
             model.lastChangedZone = -1;
           }
         }
@@ -136,7 +134,7 @@ define( function( require ) {
             model.lastChangedZone = zone;
             model.lastPair[zone - 12] = event.currentTarget.indexShape;
           }
-          thisNode.dropShapeToZone( draggableShape, zone );
+          thisNode.dropShapeToZone( model.shapes[event.currentTarget.indexShape], zone );
           if ( model.buttonStatus === 'check' || model.buttonStatus === 'none' ) {
             if ( model.dropZone[12] >= 0 && model.dropZone[13] >= 0 && (model.dropZone[12].indexShape !== model.lastPair[0] || model.dropZone[13].indexShape !== model.lastPair[1]) ) {
               model.buttonStatus = 'check';
