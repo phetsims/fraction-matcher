@@ -10,7 +10,8 @@ define( function( require ) {
 
   // imports
   var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( 'SCENERY/nodes/Node' );
+    Node = require( 'SCENERY/nodes/Node' ),
+    FILL_TYPE = require( 'FRACTION_COMMON/enum/FillType' );
 
   function AbstractShape( options ) {
     options = _.extend( {
@@ -22,7 +23,7 @@ define( function( require ) {
         denominator: 1, // numerator <= denominator
         fill: "#F00",
         freeFill: "#FFF",
-        fillType: 'SEQUENTIAL',
+        fillType: FILL_TYPE.SEQUENTIAL,
         stroke: "#000"
       },
       options );
@@ -46,11 +47,11 @@ define( function( require ) {
         var filled = 0, i = 0, j = 0, len1 = arrays.length, len2 = arrays[0].length;
 
         while ( filled < this.options.numerator ) {
-          if ( this.options.fillType === 'SEQUENTIAL' ) {
+          if ( this.options.fillType === FILL_TYPE.SEQUENTIAL ) {
             arrays[Math.floor( i / len2 ) % len1][i++ % len2].fill = this.options.fill;
             filled++;
           }
-          else if ( this.options.fillType === 'MIXED' ) {
+          else if ( this.options.fillType === FILL_TYPE.MIXED ) {
             if ( filled < len2 ) {
               arrays[Math.floor( i / len2 ) % len1][i++ % len2].fill = this.options.fill;
               filled++;
@@ -64,7 +65,7 @@ define( function( require ) {
               }
             }
           }
-          else if ( this.options.fillType === 'RANDOM' ) {
+          else if ( this.options.fillType === FILL_TYPE.RANDOM ) {
             i = _.random( len1 - 1 );
             j = _.random( len2 - 1 );
             if ( arrays[i][j].fill === 'white' ) {
