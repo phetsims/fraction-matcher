@@ -6,9 +6,10 @@
  * @author Andrey Zelenkov (Mlearner)
  */
 define( function( require ) {
-  "use strict";
+  'use strict';
 
-  var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
+  var FILL_TYPE = require( 'FRACTION_COMMON/enum/FillType' ),
+    mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
 
   function Constants( game ) {
     // color constants
@@ -27,13 +28,6 @@ define( function( require ) {
     this.COLORS.HORIZONTAL_SLICE_COLOR = this.COLORS.LIGHT_RED;
     this.COLORS.VERTICAL_SLICE_COLOR = this.COLORS.LIGHT_BLUE;
     this.COLORS.NUMBER_LINE = this.COLORS.LIGHT_GREEN;
-
-    // fill types constants
-    this.FILL_TYPES = [
-      'SEQUENTIAL', // fills in order (left to right, etc)
-      'MIXED', // when > 1, first shape will be completely filled and the 2nd shape will be random
-      'RANDOM' // when > 1 all shapes will be randomized
-    ];
 
     // shapes type constants
     this.SHAPES = ['PIES', 'HORIZONTAL_BARS', 'VERTICAL_BARS', 'PLUSES', 'GRID', 'PYRAMID', 'POLYGON', 'TETRIS', 'FLOWER', 'LETTER_L_SHAPES', 'INTERLEAVED_L_SHAPES', 'RING_OF_HEXAGONS', 'NINJA_STAR'];
@@ -56,7 +50,7 @@ define( function( require ) {
           [1, 1]
         ],
         numericScaleFactors: [1],
-        fillType: [this.FILL_TYPES[0]],
+        fillType: [FILL_TYPE.SEQUENTIAL],
         shapes: this.SHAPES.slice( 0, 3 )
       },
     /**
@@ -76,7 +70,7 @@ define( function( require ) {
           [3, 6]
         ],
         numericScaleFactors: [1],
-        fillType: [this.FILL_TYPES[0]],
+        fillType: [FILL_TYPE.SEQUENTIAL],
         shapes: this.SHAPES.slice( 0 )
       },
     /**
@@ -105,7 +99,7 @@ define( function( require ) {
           [7, 8]
         ],
         numericScaleFactors: [1],
-        fillType: [this.FILL_TYPES[0]],
+        fillType: [FILL_TYPE.SEQUENTIAL],
         shapes: this.SHAPES.slice( 0 )
       },
     /**
@@ -128,7 +122,7 @@ define( function( require ) {
           [8, 9]
         ],
         numericScaleFactors: [1, 2],
-        fillType: [this.FILL_TYPES[0]],
+        fillType: [FILL_TYPE.SEQUENTIAL],
         shapes: this.SHAPES.slice( 0 )
       },
     /**
@@ -151,7 +145,7 @@ define( function( require ) {
           [8, 9]
         ],
         numericScaleFactors: [1, 2, 3],
-        fillType: [this.FILL_TYPES[0], this.FILL_TYPES[1]],
+        fillType: [FILL_TYPE.SEQUENTIAL, FILL_TYPE.MIXED],
         shapes: this.SHAPES.slice( 0 )
       },
     /**
@@ -181,7 +175,7 @@ define( function( require ) {
           [11, 9]
         ],
         numericScaleFactors: [1, 4, 5],
-        fillType: [this.FILL_TYPES[0], this.FILL_TYPES[2]],
+        fillType: [FILL_TYPE.SEQUENTIAL, FILL_TYPE.RANDOM],
         shapes: this.SHAPES.slice( 0 )
       },
     /**
@@ -203,7 +197,7 @@ define( function( require ) {
           [11, 6]
         ],
         numericScaleFactors: [1, 6, 7],
-        fillType: [this.FILL_TYPES[0], this.FILL_TYPES[2]],
+        fillType: [FILL_TYPE.SEQUENTIAL, FILL_TYPE.RANDOM],
         shapes: this.SHAPES.slice( 0 )
       },
     /**
@@ -235,7 +229,7 @@ define( function( require ) {
           [17, 9]
         ],
         numericScaleFactors: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-        fillType: [this.FILL_TYPES[0], this.FILL_TYPES[2]],
+        fillType: [FILL_TYPE.SEQUENTIAL, FILL_TYPE.RANDOM],
         shapes: this.SHAPES.slice( 0 )
       }
     ];
