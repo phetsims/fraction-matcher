@@ -28,7 +28,7 @@ define( function( require ) {
         symbolFill: "#FFFF00",
         symbolWidth: 2,
         stroke: "#000",
-        lineBaseWidth: 3,
+        lineBaseWidth: 2,
         lineOtherWidth: 1,
         lineWeight: 70,
         lineHeight: 140
@@ -108,6 +108,9 @@ define( function( require ) {
     // function for comparing shapes on scales
     this.compare = function( left, right ) {
       // set indicator's height
+      rectLeft.fill = left.fill;
+      rectRight.fill = right.fill;
+
       new TWEEN.Tween( rectLeft ).to( { y: -left.getAnswer() * 70 }, gameModel.ANIMATION_TIME ).onUpdate(function( step ) {
         rectLeft.setRectHeight( left.getAnswer() * 70 * step );
       } ).start();

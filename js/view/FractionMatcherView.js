@@ -20,7 +20,6 @@ define( function( require ) {
     mixedNumbersHeaderString = require( 'string!FRACTION_MATCHER/mixedNumbersHeader' ),
     mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' ),
     Paginator = require( 'FRACTION_MATCHER/view/Paginator' ),
-    Rectangle = require( 'SCENERY/nodes/Rectangle' ),
     LevelsContainerNode = require( 'FRACTION_MATCHER/view/LevelsContainerNode' ),
     SoundToggleButton = require( 'SCENERY_PHET/SoundToggleButton' ),
     TimerToggleButton = require( 'SCENERY_PHET/TimerToggleButton' ),
