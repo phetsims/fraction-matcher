@@ -75,7 +75,7 @@ define( function( require ) {
         fractionNode = new Node( {children: [
           new Text( numerator+"", { font: FONTSMALL, centerX: 0, centerY: -side / 4  } ),
           new Text( denominator+"", { font: FONTSMALL, centerX: 0, centerY: +side / 4  } ),
-          new Path( line, {stroke: 'black', lineWidth: 2, lineCap: 'round'} )
+          new Path( line, {stroke: 'black', lineWidth: 3, lineCap: 'round'} )
         ]} );
 
       fractionNode.shapeWidth = line.bounds.width;
