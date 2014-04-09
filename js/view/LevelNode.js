@@ -216,6 +216,7 @@ define( function( require ) {
     } );
 
     this.mutate( options );
+
   }
 
   return inherit( Node, LevelNode, {

@@ -27,6 +27,7 @@ define( function( require ) {
 
   function GameOverNode( model, levelNode, options ) {
     var thisNode = this,
+      gameOver,
       gameOverScore,
       gameOverLevel,
       background = new Node();
@@ -35,17 +36,18 @@ define( function( require ) {
 
     // add components
     this.addChild( background );
-    this.addChild( new Text( gameOverString, { font: new PhetFont( { size: 36, weight: "normal"} ), centerX: 575, centerY: 215  } ) );
-    this.addChild( gameOverLevel = new Text( StringUtils.format( patternGameOverLevelString, 1 ), { font: new PhetFont( { size: 28, weight: "normal"} ), x: 400, centerY: 300  } ) );
-    this.addChild( gameOverScore = new Text( StringUtils.format( patternGameOverScoreString, 1 ), { font: new PhetFont( { size: 28, weight: "normal"} ), x: 400, centerY: 360  } ) );
+    this.addChild( gameOver = new Text( gameOverString, { font: new PhetFont( { size: 28, weight: "normal"} ), centerX: 0, centerY: 33  } ) );
+    this.addChild( gameOverLevel = new Text( StringUtils.format( patternGameOverLevelString, 1 ), { font: new PhetFont( { size: 20, weight: "normal"} ), centerX: 0, centerY: 100  } ) );
+    this.addChild( gameOverScore = new Text( StringUtils.format( patternGameOverScoreString, 1 ), { font: new PhetFont( { size: 20, weight: "normal"} ), centerX: 0, centerY: 140  } ) );
     this.addChild( new ButtonNode( buttonNewGameString, function() {
       model.gameModel.highScores[model.levelNumber - 1].set( Math.max( model.gameModel.highScores[model.levelNumber - 1].get(), model.score ) );
       model.gameModel.currentLevel = 0;
       model.reset();
       levelNode.generateNewLevel();
-    }, {font: new PhetFont( { size: 22, weight: "normal"} ), rectangleFillUp: "#F1F1F1", rectangleFillDown: "#F1F1F1", rectangleFillOver: "#F8F8F8", x: 575, y: 470, rectangleCornerRadius: 5, rectangleXMargin: 10, rectangleYMargin: 5} ) );
+    }, {font: new PhetFont( { size: 16, weight: "normal"} ), rectangleFillUp: "#F1F1F1", rectangleFillDown: "#F1F1F1", rectangleFillOver: "#F8F8F8", centerX: 0, y: 240, rectangleCornerRadius: 5, rectangleXMargin: 10, rectangleYMargin: 5} ) );
 
 
+    var margin = 28;
     this.showGameOver = function() {
       if ( model.score >= 12 ) {
         gameOverScore.text = StringUtils.format( patternGameOverScorePrefectString, model.score );
@@ -53,18 +55,20 @@ define( function( require ) {
       else {
         gameOverScore.text = StringUtils.format( patternGameOverScoreString, model.score );
       }
-      gameOverScore.centerX = 575;
-      gameOverLevel.x = gameOverScore.x;
+      var maxWidth = Math.max( gameOver.width + 2 * margin, gameOverScore.width );
+
+      gameOverScore.x = gameOver.x - margin;
+      gameOverLevel.x = gameOver.x - margin;
 
       background.removeAllChildren();
-      background.addChild( new Rectangle( gameOverScore.x - 50, 170, gameOverScore.width + 120, 350, 0, 0, {fill: "#B4CDFF", stroke: "#000", lineWidth: 2} ) );
-      background.addChild( new Line( gameOverScore.x, 260, gameOverScore.x + gameOverScore.width + 20, 260, {stroke: "#000", lineWidth: 2} ) );
-      background.addChild( new Line( gameOverScore.x, 430, gameOverScore.x + gameOverScore.width + 20, 430, {stroke: "#000", lineWidth: 2} ) );
+      background.addChild( new Rectangle( -maxWidth / 2 - margin, 0, maxWidth + 2 * margin, 280, 0, 0, {fill: "#B4CDFF", stroke: "#000", lineWidth: 1} ) );
+      background.addChild( new Line( gameOver.x - margin, 65, gameOver.x + maxWidth-margin, 65, {stroke: "#000", lineWidth: 1} ) );
+      background.addChild( new Line( gameOver.x - margin, 210, gameOver.x + maxWidth-margin, 210, {stroke: "#000", lineWidth: 1} ) );
 
       thisNode.center = new Vector2( model.gameModel.width / 2, model.gameModel.height / 2 );
+
       thisNode.setVisible( true );
     };
-
 
   }
 
