@@ -32,7 +32,7 @@ define( function( require ) {
 
     var paginatorBox = new VBox( {centerX: model.width / 2, y: 25, spacing: 20, children: [
       // add header
-      new Text( (model.game === mixedNumbersTitleString ? mixedNumbersHeaderString : matchingGameHeaderString), { font: new PhetFont( { size: 36, weight: 'bold'} )  } ),
+      new Text( (model.game === mixedNumbersTitleString ? mixedNumbersHeaderString : matchingGameHeaderString), { font: new PhetFont( { size: 28, weight: 'bold'} )  } ),
       // add pagination
       new Paginator( model )
     ]} );
