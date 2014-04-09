@@ -30,7 +30,7 @@ define( function( require ) {
 
     var levelsContainerNode = new LevelsContainerNode( model );
 
-    var paginatorBox = new VBox( {centerX: model.width / 2, y: 25, spacing: 20, children: [
+    var paginatorBox = new VBox( {centerX: model.width / 2, y: 10, spacing: 40, children: [
       // add header
       new Text( (model.game === mixedNumbersTitleString ? mixedNumbersHeaderString : matchingGameHeaderString), { font: new PhetFont( { size: 28, weight: 'bold'} )  } ),
       // add pagination

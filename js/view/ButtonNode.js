@@ -38,8 +38,8 @@ define( function( require ) {
         rectangleFillDown: "#FFD63F",
         rectangleFillOver: "#FFEA9D",
         rectangleCornerRadius: 5,
-        rectangleXMargin: 10,
-        rectangleYMargin: 5
+        rectangleXMargin: 5,
+        rectangleYMargin: 3
       },
       options
     );

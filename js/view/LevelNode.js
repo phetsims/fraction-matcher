@@ -59,16 +59,14 @@ define( function( require ) {
     thisNode.addChild( vBox );
 
     //smile
-    var smile = new SmileNode( {centerX: 170 / 2, centerY: 190} );
+    var smile = new SmileNode( {centerX: 105, centerY: 190} );
     thisNode.addChild( smile );
 
     //left part buttons, check, ok, tryAgain, showAnswer
     var commonButtonStyle = {
       font: new PhetFont( { size: 14, weight: "bold"} ),
       x: smile.centerX,
-      y: smile.bottom + margin,
-      rectangleCornerRadius: 5,
-      rectangleXMargin: 10
+      y: smile.bottom + margin
     };
 
 
