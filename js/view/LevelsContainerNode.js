@@ -63,7 +63,7 @@ define( function( require ) {
     this.sourceRectangles = [];
     for ( i = 0; i < 6; i++ ) {
       for ( j = 0; j < 2; j++ ) {
-        this.sourceRectangles.push( new Rectangle( 125 + i * 90, 300 + j * 90, 90, 90, 0, 0, { stroke: "#C0C0C0", lineWidth: 1} ) );
+        this.sourceRectangles.push( new Rectangle( 85 + i * 96, 315 + j * 90, 96, 90, 0, 0, { stroke: "#C0C0C0", lineWidth: 1} ) );
         thisNode.addChild( this.sourceRectangles[this.sourceRectangles.length - 1] );
       }
     }
