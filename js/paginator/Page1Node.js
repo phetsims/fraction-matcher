@@ -19,9 +19,9 @@ define( function( require ) {
     ShapeNode = require( 'FRACTION_COMMON/shapes/ShapeNode' );
 
   function Page1Node( pages, number, targetProperty, pageProperty, scoreArray ) {
-    var self = this, hBoxTop = new HBox( {spacing: 20} ),
-      hBoxBottom = new HBox( {spacing: 20} ),
-      vBox = new VBox( {x: -25, spacing: 20, children: [hBoxTop, hBoxBottom]} );
+    var self = this, hBoxTop = new HBox( {spacing: 45} ),
+      hBoxBottom = new HBox( {spacing: 45} ),
+      vBox = new VBox( {x: -25, spacing: 30, children: [hBoxTop, hBoxBottom]} );
 
     Node.call( this );
     this.addChild( vBox );
