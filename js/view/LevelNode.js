@@ -46,12 +46,12 @@ define( function( require ) {
     this.model = model;
 
     //labels at the right
-    var levelLabel = new Text( StringUtils.format( patternLevelString, model.levelNumber ), { font: new PhetFont( { size: 19, weight: "bold"} )} );
-    var scoreLabel = new Text( StringUtils.format( patternScoreString, 0 ), { font: new PhetFont( { size: 19, weight: "bold"} )} );
-    var timeLabel = new Text( StringUtils.format( patternScoreString, 0 ), { font: new PhetFont( { size: 19, weight: "bold"} )} );
+    var levelLabel = new Text( StringUtils.format( patternLevelString, model.levelNumber ), { font: new PhetFont( { size: 12, weight: "bold"} )} );
+    var scoreLabel = new Text( StringUtils.format( patternScoreString, 0 ), { font: new PhetFont( { size: 12, weight: "bold"} )} );
+    var timeLabel = new Text( StringUtils.format( patternScoreString, 0 ), { font: new PhetFont( { size: 12, weight: "bold"} )} );
     var vBox = new VBox( {
       children: [levelLabel, scoreLabel, timeLabel],
-      spacing: 0,
+      spacing: 5,
       y: 85,
       right: model.gameModel.width - margin,
       align: 'right'
