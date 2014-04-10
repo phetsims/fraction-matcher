@@ -61,10 +61,11 @@ define( function( require ) {
       gameOverLevel.x = gameOver.x - margin;
 
       background.removeAllChildren();
-      background.addChild( new Rectangle( -maxWidth / 2 - margin, 0, maxWidth + 2 * margin, 280, 0, 0, {fill: "#B4CDFF", stroke: "#000", lineWidth: 1} ) );
-      background.addChild( new Line( gameOver.x - margin, 65, gameOver.x + maxWidth-margin, 65, {stroke: "#000", lineWidth: 1} ) );
-      background.addChild( new Line( gameOver.x - margin, 210, gameOver.x + maxWidth-margin, 210, {stroke: "#000", lineWidth: 1} ) );
+      background.addChild( new Rectangle( gameOver.x - 2 * margin, 0, maxWidth + 2 * margin, 280, 0, 0, {fill: "#B4CDFF", stroke: "#000", lineWidth: 1} ) );
+      background.addChild( new Line( gameOver.x - margin, 65, gameOver.x - margin + maxWidth, 65, {stroke: "#000", lineWidth: 1} ) );
+      background.addChild( new Line( gameOver.x - margin, 210, gameOver.x - margin + maxWidth, 210, {stroke: "#000", lineWidth: 1} ) );
 
+      gameOver.centerX = background.centerX;
       thisNode.center = new Vector2( model.gameModel.width / 2, model.gameModel.height / 2 );
 
       thisNode.setVisible( true );
