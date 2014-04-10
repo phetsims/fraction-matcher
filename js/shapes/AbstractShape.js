@@ -84,13 +84,15 @@ define( function( require ) {
     },
     // add nodes to main container
     addNodes: function( nodes, offset ) {
-      var self = this;
+      var self = this,
+        scaleFactor;
       nodes.forEach( function( node, i ) {
         node.setX( (i ? i * nodes[i - 1].getWidth() : 0) + (nodes.length === 2 ? (i - 0.5) * offset : 0) );
         self.addChild( node );
       } );
 
-      this.scale( 1 / nodes.length, 1 / nodes.length );
+      scaleFactor = Math.min( this.options.width / this.getWidth(), this.options.height / this.getHeight() );
+      this.scale( scaleFactor );
     },
     // convert array to nodes
     getNodesFromArray: function( array ) {
