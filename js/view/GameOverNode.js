@@ -30,6 +30,7 @@ define( function( require ) {
       gameOver,
       gameOverScore,
       gameOverLevel,
+      gameOverButton,
       background = new Node();
 
     Node.call( thisNode, options );
@@ -39,7 +40,7 @@ define( function( require ) {
     this.addChild( gameOver = new Text( gameOverString, { font: new PhetFont( { size: 28, weight: "normal"} ), centerX: 0, centerY: 33  } ) );
     this.addChild( gameOverLevel = new Text( StringUtils.format( patternGameOverLevelString, 1 ), { font: new PhetFont( { size: 20, weight: "normal"} ), centerX: 0, centerY: 100  } ) );
     this.addChild( gameOverScore = new Text( StringUtils.format( patternGameOverScoreString, 1 ), { font: new PhetFont( { size: 20, weight: "normal"} ), centerX: 0, centerY: 140  } ) );
-    this.addChild( new ButtonNode( buttonNewGameString, function() {
+    this.addChild( gameOverButton = new ButtonNode( buttonNewGameString, function() {
       model.gameModel.highScores[model.levelNumber - 1].set( Math.max( model.gameModel.highScores[model.levelNumber - 1].get(), model.score ) );
       model.gameModel.currentLevel = 0;
       model.reset();
@@ -66,6 +67,7 @@ define( function( require ) {
       background.addChild( new Line( gameOver.x - margin, 210, gameOver.x - margin + maxWidth, 210, {stroke: "#000", lineWidth: 1} ) );
 
       gameOver.centerX = background.centerX;
+      gameOverButton.centerX = background.centerX;
       thisNode.center = new Vector2( model.gameModel.width / 2, model.gameModel.height / 2 );
 
       thisNode.setVisible( true );

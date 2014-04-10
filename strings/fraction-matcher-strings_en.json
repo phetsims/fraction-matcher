@@ -15,7 +15,7 @@
   "gameOver": "Game Over",
   "patternGameOverLevel": "Level: {0}",
   "patternGameOverScore": "Score: {0} out  of 12",
-  "patternGameOverScorePrefect": "Score: {0} out  of 12 (Perfect!)",
+  "patternGameOverScorePrefect": "Score: {0} out of 12 (Perfect!)",
   "buttonNewGame": "New game",
   "time.pattern": "Time: {0} sec"
 
