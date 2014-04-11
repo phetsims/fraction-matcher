@@ -19,19 +19,26 @@ define( function( require ) {
     ShapeNode = require( 'FRACTION_COMMON/shapes/ShapeNode' );
 
   function Page1Node( pages, number, targetProperty, pageProperty, scoreArray, options ) {
-    options = _.extend( {hSpacing: 45, vSpacing: 30}, options );
-
     var self = this,
-      hBoxTop = new HBox( {spacing: options.hSpacing} ),
-      hBoxBottom = new HBox( {spacing: options.hSpacing} ),
-      vBox = new VBox( {x: -25, spacing: options.vSpacing, children: [hBoxTop, hBoxBottom]} );
+      hBoxTop,
+      hBoxBottom,
+      vBox,
+      levelNumber,
+      i;
 
     Node.call( this );
+
+    options = _.extend( {hSpacing: 45, vSpacing: 30}, options );
+
+    hBoxTop = new HBox( {spacing: options.hSpacing} );
+    hBoxBottom = new HBox( {spacing: options.hSpacing} );
+    vBox = new VBox( {x: -25, spacing: options.vSpacing, children: [hBoxTop, hBoxBottom]} );
+
     this.addChild( vBox );
 
     // add level buttons
-    for ( var i = 0; i < pages.length; i++ ) {
-      var levelNumber = i + number * pages.length;
+    for ( i = 0; i < pages.length; i++ ) {
+      levelNumber = i + number * pages.length;
       (i >= pages.length / 2 ? hBoxBottom : hBoxTop).addChild( new LevelButtonNode( {
         width: pages[i].width || 90,
         height: pages[i].height || 150,
