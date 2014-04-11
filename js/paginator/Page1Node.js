@@ -8,7 +8,7 @@
  */
 
 define( function( require ) {
-  "use strict";
+  'use strict';
 
   // imports
   var inherit = require( 'PHET_CORE/inherit' ),
@@ -18,10 +18,13 @@ define( function( require ) {
     LevelButtonNode = require( 'FRACTION_COMMON/paginator/LevelButtonNode' ),
     ShapeNode = require( 'FRACTION_COMMON/shapes/ShapeNode' );
 
-  function Page1Node( pages, number, targetProperty, pageProperty, scoreArray ) {
-    var self = this, hBoxTop = new HBox( {spacing: 45} ),
-      hBoxBottom = new HBox( {spacing: 45} ),
-      vBox = new VBox( {x: -25, spacing: 30, children: [hBoxTop, hBoxBottom]} );
+  function Page1Node( pages, number, targetProperty, pageProperty, scoreArray, options ) {
+    options = _.extend( {hSpacing: 45, vSpacing: 30}, options );
+
+    var self = this,
+      hBoxTop = new HBox( {spacing: options.hSpacing} ),
+      hBoxBottom = new HBox( {spacing: options.hSpacing} ),
+      vBox = new VBox( {x: -25, spacing: options.vSpacing, children: [hBoxTop, hBoxBottom]} );
 
     Node.call( this );
     this.addChild( vBox );
@@ -43,7 +46,7 @@ define( function( require ) {
           height: 50
         }, pages[i].shape ) ),
         callback: getCallback( targetProperty, pages[i].value )
-      }, scoreArray[levelNumber]) );
+      }, scoreArray[levelNumber] ) );
       (i >= pages.length / 2 ? hBoxBottom : hBoxTop).updateLayout();
       vBox.updateLayout();
     }

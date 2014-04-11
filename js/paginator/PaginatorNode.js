@@ -14,7 +14,7 @@ define( function( require ) {
     Page1Node = require( 'FRACTION_COMMON/paginator/Page1Node' ),
     NavigationBar = require( 'FRACTION_COMMON/paginator/NavigationBar' );
 
-  function PaginatorNode( options, pages, levelProperty, scoreArray, pageProperty ) {
+  function PaginatorNode( options, pages, levelProperty, scoreArray, pageProperty, pageOptions ) {
     var self = this,
       navBar,
       offsetX,
@@ -24,7 +24,7 @@ define( function( require ) {
 
     // add pages
     for ( var i = 0; i < pages.length; i++ ) {
-      this.addChild( linksToPages[i] = new Page1Node( pages[i], i, levelProperty, pageProperty, scoreArray ) );
+      this.addChild( linksToPages[i] = new Page1Node( pages[i], i, levelProperty, pageProperty, scoreArray, pageOptions ) );
     }
 
     // add navigation bar
