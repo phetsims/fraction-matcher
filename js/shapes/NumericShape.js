@@ -16,15 +16,15 @@ define( function( require ) {
     Path = require( 'SCENERY/nodes/Path' ),
     Shape = require( 'KITE/Shape' ),
     Text = require( 'SCENERY/nodes/Text' ),
-    PhetFont = require( 'SCENERY_PHET/PhetFont' ),
-    FONTSMALL = new PhetFont( 32 ),
-    FONTBIG = new PhetFont( 70 );
+    PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
   function NumericShape( options ) {
-    var side = 70,// define fixed size of fraction
-      fractionNode = new Node(),
+    var fractionNode = new Node(),
       spaceX = 0,
       offsetX = 0,
+      side,
+      fontSizeBig,
+      fontSizeSmall,
       numerator,
       denominator,
       integralPart,
@@ -37,11 +37,14 @@ define( function( require ) {
     numerator = options.numerator;
     denominator = options.denominator;
     integralPart = Math.floor( numerator / denominator );
+    fontSizeSmall = options.fontSize || 32;
+    fontSizeBig = fontSizeSmall * 2.2;
+    side = fontSizeBig; // define size of fraction
 
     if ( integralPart && options.toSimplify ) {
       if ( numerator % denominator ) {
         // add simplified fraction node
-        fractionNode = this.getFractionNode( numerator % denominator, denominator, side );
+        fractionNode = this.getFractionNode( numerator % denominator, denominator, side, fontSizeSmall );
         this.addChild( fractionNode );
 
         // correct it's position
@@ -49,7 +52,7 @@ define( function( require ) {
       }
 
       // add integral part
-      this.addChild( integralPartNode = new Text( integralPart+"", {font: FONTBIG, centerY: 0 } ) );
+      this.addChild( integralPartNode = new Text( integralPart + "", {font: new PhetFont( fontSizeBig ), centerY: 0 } ) );
 
       // add additional offset taking into account whole part width
       integralPartWidth = integralPartNode.getWidth();
@@ -65,16 +68,16 @@ define( function( require ) {
     }
     else {
       // add fraction node
-      this.addChild( this.getFractionNode( numerator, denominator, side ) );
+      this.addChild( this.getFractionNode( numerator, denominator, side, fontSizeSmall ) );
     }
   }
 
   return inherit( AbstractShape, NumericShape, {
-    getFractionNode: function( numerator, denominator, side ) {
-      var line = new Shape().moveTo( -16, 0 ).lineTo( 16, 0 ),
+    getFractionNode: function( numerator, denominator, side, fontSizeSmall ) {
+      var line = new Shape().moveTo( -fontSizeSmall / 2, 0 ).lineTo( fontSizeSmall / 2, 0 ),
         fractionNode = new Node( {children: [
-          new Text( numerator+"", { font: FONTSMALL, centerX: 0, centerY: -side / 4  } ),
-          new Text( denominator+"", { font: FONTSMALL, centerX: 0, centerY: +side / 4  } ),
+          new Text( numerator + "", { font: new PhetFont( fontSizeSmall ), centerX: 0, centerY: -side / 4  } ),
+          new Text( denominator + "", { font: new PhetFont( fontSizeSmall ), centerX: 0, centerY: +side / 4  } ),
           new Path( line, {stroke: 'black', lineWidth: 3, lineCap: 'round'} )
         ]} );
 
