@@ -43,7 +43,6 @@ define( function( require ) {
 
     // add shapes to node
     this.arrayToShapes( pieces, options.width / 4 );
-    this.setTranslation( -this.width / 2, -this.height / (2 * pieces.length) );
 
     // add dashed divisions
     if ( options.divisions ) {

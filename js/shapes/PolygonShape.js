@@ -49,7 +49,6 @@ define( function( require ) {
 
     // add letters to node
     this.arrayToShapes( pieces, diameter / 10 );
-    this.setTranslation( -options.width / 4 * (pieces.length > 1 ? 1 : 0), 0 );
   }
 
   return inherit( AbstractShape, Polygon, {

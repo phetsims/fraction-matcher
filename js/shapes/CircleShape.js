@@ -30,7 +30,7 @@ define( function( require ) {
     denominator = options.denominator;
 
     radius = Math.min( options.width / 2, options.height / 2 );
-    this.radius = radius;
+    this._radius = radius;
 
     // init arrays for shapes
     for ( var i = 0, j, len; i < Math.ceil( numerator / denominator ); i++ ) {
@@ -43,7 +43,7 @@ define( function( require ) {
     segmentLength = Math.PI * 2 / denominator;
     for ( i = 0; i < nodes.length; i++ ) {
       for ( j = 0; j < len; j++ ) {
-        temp[i].push( new Path( this.getPiece( radius, segmentLength * j, segmentLength * (j + 1) ), {
+        temp[i].push( new Path( this.getPiece( segmentLength * j, segmentLength * (j + 1) ), {
           fill: 'white', stroke: options.stroke, lineWidth: 1
         } ) );
       }
@@ -61,7 +61,6 @@ define( function( require ) {
 
     // add shapes to node
     this.addNodes( nodes, radius / 2 );
-    this.setX( -(nodes.length - 1) * radius / 2 );
 
     // add dashed divisions
     if ( options.divisions ) {
@@ -70,8 +69,9 @@ define( function( require ) {
   }
 
   return inherit( AbstractShape, CircleShape, {
-    getPiece: function( radius, s, e ) {
-      var shape = new Shape();
+    getPiece: function( s, e ) {
+      var shape = new Shape(),
+        radius = this._radius;
       if ( Math.abs((s / 2) % Math.PI - (e / 2) % Math.PI)>0.001 ) {
         shape.moveTo( 0, 0 );
         shape.lineTo( Math.cos( s ) * radius, Math.sin( s ) * radius );
@@ -97,7 +97,7 @@ define( function( require ) {
     // add divisions to node
     drawDivisions: function( number ) {
       var angle = 2 * Math.PI / number,
-        radius = this.radius,
+        radius = this._radius,
         options = {stroke: 'rgb(125,125,125)', lineDash: [ 4, 2 ], lineWidth: 1};
       if ( number > 1 ) {
         for ( var i = 0; i < number; i++ ) {

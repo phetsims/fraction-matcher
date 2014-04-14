@@ -49,7 +49,6 @@ define( function( require ) {
 
     // add letters to node
     this.arrayToShapes( pieces, size / 2 );
-    this.setTranslation( -options.width / 2, -options.height / (2 * pieces.length) );
   }
 
   return inherit( AbstractShape, GridShape, {

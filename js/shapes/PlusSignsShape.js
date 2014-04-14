@@ -53,7 +53,6 @@ define( function( require ) {
 
     // add pluses to node
     this.arrayToShapes( pieces, size );
-    this.setTranslation( -Math.max( 0, w - h ) - options.width / (9 / 2 - pieces.length), Math.max( 0, h - w ) / 2 );
   }
 
   var plusSignPattern = [

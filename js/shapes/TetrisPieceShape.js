@@ -46,7 +46,6 @@ define( function( require ) {
 
     // add letters to node
     this.arrayToShapes( pieces, size );
-    this.setTranslation( -options.width / 2, -options.height / 4 * (pieces.length > 1 ? 1 : 2) );
   }
 
   var map = [

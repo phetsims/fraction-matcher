@@ -52,7 +52,6 @@ define( function( require ) {
 
     // add pyramids to node
     this.arrayToShapes( pieces, 10 );
-    this.setTranslation( -options.width / 4 * (pieces.length - 1), options.height / 8 );
   }
 
   var SQRT_3 = Math.sqrt( 3 ),
