@@ -83,7 +83,7 @@ define( function( require ) {
       this.addNodes( nodes, offset );
     },
     // add nodes to main container
-    addNodes: function( nodes, offset ) {
+    addNodes: function( nodes, offset, isNotToScale ) {
       var self = this,
         scaleFactor;
       nodes.forEach( function( node, i ) {
@@ -91,8 +91,11 @@ define( function( require ) {
         self.addChild( node );
       } );
 
-      scaleFactor = Math.min( this.options.width / this.getWidth(), this.options.height / this.getHeight() );
-      this.scale( scaleFactor );
+      if ( !isNotToScale ) {
+        scaleFactor = Math.min( this.options.width / this.getWidth(), this.options.height / this.getHeight() );
+        this.scale( scaleFactor );
+      }
+
       this.centerX = 0;
       this.centerY = 0;
     },

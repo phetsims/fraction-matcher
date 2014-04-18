@@ -60,7 +60,7 @@ define( function( require ) {
     } );
 
     // add shapes to node
-    this.addNodes( nodes, radius / 2 );
+    this.addNodes( nodes, radius / 2, (options.onlyPiece && denominator > 1) );
 
     // add dashed divisions
     if ( options.divisions ) {
@@ -72,7 +72,7 @@ define( function( require ) {
     getPiece: function( s, e ) {
       var shape = new Shape(),
         radius = this._radius;
-      if ( Math.abs((s / 2) % Math.PI - (e / 2) % Math.PI)>0.001 ) {
+      if ( Math.abs( (s / 2) % Math.PI - (e / 2) % Math.PI ) > 0.001 ) {
         shape.moveTo( 0, 0 );
         shape.lineTo( Math.cos( s ) * radius, Math.sin( s ) * radius );
         shape.arc( 0, 0, radius, s, e, false );
