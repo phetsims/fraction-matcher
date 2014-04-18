@@ -94,10 +94,9 @@ define( function( require ) {
       if ( !isNotToScale ) {
         scaleFactor = Math.min( this.options.width / this.getWidth(), this.options.height / this.getHeight() );
         this.scale( scaleFactor );
+        this.centerX = 0;
+        this.centerY = 0;
       }
-
-      this.centerX = 0;
-      this.centerY = 0;
     },
     // convert array to nodes
     getNodesFromArray: function( array ) {
