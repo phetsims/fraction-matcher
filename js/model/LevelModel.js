@@ -140,21 +140,29 @@ define( function( require ) {
             //answer correct
             this.buttonStatus = "ok";
             self.score += self.stepScore;
-            self.gameModel.sounds.correct.play();
+            if ( self.gameModel.isSound ) {
+              self.gameModel.sounds.correct.play();
+            }
           }
           else {
             //answer incorrect
-            self.gameModel.sounds.incorrect.play();
+            if ( self.gameModel.isSound ) {
+              self.gameModel.sounds.incorrect.play();
+            }
             self.stepScore--;
             this.buttonStatus = (self.stepScore) ? "tryAgain" : "showAnswer";
           }
           this.canDrag = false;
           break;
-        case "tryAgain":
+        case
+        "tryAgain"
+        :
           this.canDrag = true;
           this.buttonStatus = "none";
           break;
-        case "showAnswer":
+        case
+        "showAnswer"
+        :
           this.buttonStatus = "ok";
           break;
       }
