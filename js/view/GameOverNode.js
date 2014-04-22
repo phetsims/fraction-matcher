@@ -50,6 +50,9 @@ define( function( require ) {
 
     var margin = 28;
     this.showGameOver = function() {
+
+      gameOverLevel.text =  StringUtils.format( patternGameOverLevelString, model.gameModel.currentLevel );
+
       if ( model.score >= 12 ) {
         gameOverScore.text = StringUtils.format( patternGameOverScorePrefectString, model.score );
       }
