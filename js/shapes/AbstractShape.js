@@ -11,6 +11,7 @@ define( function( require ) {
   // imports
   var inherit = require( 'PHET_CORE/inherit' ),
     Node = require( 'SCENERY/nodes/Node' ),
+    HBox = require( 'SCENERY/nodes/HBox' ),
     FILL_TYPE = require( 'FRACTION_COMMON/enum/FillType' );
 
   function AbstractShape( options ) {
@@ -27,11 +28,11 @@ define( function( require ) {
         stroke: "#000"
       },
       options );
-    Node.call( this, {x: options.x, y: options.y} );
+    HBox.call( this, {x: options.x, y: options.y} );
     this.options = options;
   }
 
-  return inherit( Node, AbstractShape, {
+  return inherit( HBox, AbstractShape, {
     // function for drawing shapes
     pointsToShape: function( s, array, size ) {
       size = size || 1;
@@ -86,16 +87,36 @@ define( function( require ) {
     addNodes: function( nodes, offset, isNotToScale ) {
       var self = this,
         scaleFactor;
-      nodes.forEach( function( node, i ) {
-        node.setX( (i ? i * nodes[i - 1].getWidth() : 0) + (nodes.length === 2 ? (i - 0.5) * offset : 0) );
+
+      // set spacing
+      self.options.spacing = function() { return offset; };
+
+      // add nodes
+      nodes.forEach( function( node ) {
         self.addChild( node );
       } );
 
+      // update layout
+      self.updateLayout();
+
+      // fit the size of shapes
       if ( !isNotToScale ) {
         scaleFactor = Math.min( this.options.width / this.getWidth(), this.options.height / this.getHeight() );
         this.scale( scaleFactor );
         this.centerX = 0;
         this.centerY = 0;
+      }
+      else if ( self.options.type === 'PIES' ) {
+        // adjust position for not scaled pies
+        if ( this.options.denominator === 2 ) {
+          this.centerX = 0;
+        }
+        else if ( this.options.denominator === 3 ) {
+          this.centerX = offset / 2;
+        }
+        else {
+          this.centerX = offset;
+        }
       }
     },
     // convert array to nodes
