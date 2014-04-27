@@ -28,7 +28,7 @@ define( function( require ) {
         stroke: "#000"
       },
       options );
-    HBox.call( this, {x: options.x, y: options.y} );
+    HBox.call( this, {resize: false, x: options.x, y: options.y} );
     this.options = options;
   }
 

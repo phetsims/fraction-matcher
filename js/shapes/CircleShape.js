@@ -26,10 +26,11 @@ define( function( require ) {
 
     AbstractShape.call( this, options );
     options = this.options;
-    numerator = Math.max( 1, options.numerator ); //if numerator 0, we still want shape, but not filled
+    numerator = Math.max( 1, options.numerator ); // if numerator 0, we still want shape, but not filled
     denominator = options.denominator;
 
     radius = Math.min( options.width / 2, options.height / 2 );
+    this._nodes = nodes;
     this._radius = radius;
 
     // init arrays for shapes
@@ -59,13 +60,13 @@ define( function( require ) {
       } );
     } );
 
-    // add shapes to node
-    this.addNodes( nodes, radius / 2, (options.onlyPiece && denominator > 1) );
-
     // add dashed divisions
     if ( options.divisions ) {
-      this.addDivisions( options.divisions );
+      this.addDivisions( nodes, options.divisions );
     }
+
+    // add shapes to node
+    this.addNodes( nodes, radius / 2, (options.onlyPiece && denominator > 1) );
   }
 
   return inherit( AbstractShape, CircleShape, {
@@ -83,27 +84,33 @@ define( function( require ) {
       }
       return shape;
     },
-    // create node and add divisions
-    addDivisions: function( number ) {
-      this.dashedDivisionNode = new Node();
-      this.drawDivisions( number );
-      this.addChild( this.dashedDivisionNode );
+    drawDivisions: function( node, number ) {
+      var angle = 2 * Math.PI / number,
+        options = {stroke: 'rgb(125,125,125)', lineDash: [ 4, 2 ], lineWidth: 1};
+
+      if ( number > 1 ) {
+        for ( var i = 0; i < number; i++ ) {
+          node._divisions.addChild( new Line( 0, 0, Math.cos( angle * i ) * this._radius, Math.sin( angle * i ) * this._radius, options ) );
+        }
+      }
     },
     // update division's position
     updateDivisions: function( number ) {
-      this.dashedDivisionNode.removeAllChildren();
-      this.drawDivisions( number );
+      var self = this;
+
+      this._nodes.forEach( function( node ) {
+        node._divisions.removeAllChildren();
+        self.drawDivisions( node, number );
+      } );
     },
     // add divisions to node
-    drawDivisions: function( number ) {
-      var angle = 2 * Math.PI / number,
-        radius = this._radius,
-        options = {stroke: 'rgb(125,125,125)', lineDash: [ 4, 2 ], lineWidth: 1};
-      if ( number > 1 ) {
-        for ( var i = 0; i < number; i++ ) {
-          this.dashedDivisionNode.addChild( new Line( 0, 0, Math.cos( angle * i ) * radius, Math.sin( angle * i ) * radius, options ) );
-        }
-      }
+    addDivisions: function( nodes, number ) {
+      var self = this;
+
+      nodes.forEach( function( node ) {
+        node.addChild( node._divisions = new Node() );
+        self.drawDivisions( node, number );
+      } );
     }
   } );
 } );
