@@ -21,8 +21,8 @@ define( function( require ) {
     mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' ),
     Paginator = require( 'FRACTION_MATCHER/view/Paginator' ),
     LevelsContainerNode = require( 'FRACTION_MATCHER/view/LevelsContainerNode' ),
-    SoundToggleButton = require( 'SCENERY_PHET/SoundToggleButton' ),
-    TimerToggleButton = require( 'SCENERY_PHET/TimerToggleButton' ),
+    SoundToggleButtonDeprecated = require( 'SCENERY_PHET/SoundToggleButtonDeprecated' ),
+    TimerToggleButtonDeprecated = require( 'SCENERY_PHET/TimerToggleButtonDeprecated' ),
     ResetAllButtonDeprecated = require( 'SCENERY_PHET/ResetAllButtonDeprecated' );
 
   function MatchingGameView( model ) {
@@ -44,8 +44,8 @@ define( function( require ) {
           levelModel.reset();
         } );
       }, { x: model.width - 40, y: model.height - 40} ),
-      new TimerToggleButton( model.isTimerProperty, {x: 20, y: model.height - 120} ),
-      new SoundToggleButton( model.isSoundProperty, {x: 20, y: model.height - 60} )
+      new TimerToggleButtonDeprecated( model.isTimerProperty, {x: 20, y: model.height - 120} ),
+      new SoundToggleButtonDeprecated( model.isSoundProperty, {x: 20, y: model.height - 60} )
     ]} );
 
     this.addChild( levelsContainerNode );
