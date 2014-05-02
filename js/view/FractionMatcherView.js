@@ -23,7 +23,7 @@ define( function( require ) {
     LevelsContainerNode = require( 'FRACTION_MATCHER/view/LevelsContainerNode' ),
     SoundToggleButton = require( 'SCENERY_PHET/SoundToggleButton' ),
     TimerToggleButton = require( 'SCENERY_PHET/TimerToggleButton' ),
-    ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
+    ResetAllButtonDeprecated = require( 'SCENERY_PHET/ResetAllButtonDeprecated' );
 
   function MatchingGameView( model ) {
     ScreenView.call( this, { renderer: 'svg' } );
@@ -38,7 +38,7 @@ define( function( require ) {
     ]} );
     var paginatorNode = new Node( {children: [
       paginatorBox,
-      new ResetAllButton( function() {
+      new ResetAllButtonDeprecated( function() {
         model.reset();
         model.levels.forEach( function( levelModel ) {
           levelModel.reset();
