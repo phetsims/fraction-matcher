@@ -23,7 +23,7 @@ define( function( require ) {
     LevelsContainerNode = require( 'FRACTION_MATCHER/view/LevelsContainerNode' ),
     SoundToggleButtonDeprecated = require( 'SCENERY_PHET/SoundToggleButtonDeprecated' ),
     TimerToggleButtonDeprecated = require( 'SCENERY_PHET/TimerToggleButtonDeprecated' ),
-    ResetAllButtonDeprecated = require( 'SCENERY_PHET/ResetAllButtonDeprecated' );
+    ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
 
   function MatchingGameView( model ) {
     ScreenView.call( this, { renderer: 'svg' } );
@@ -38,12 +38,16 @@ define( function( require ) {
     ]} );
     var paginatorNode = new Node( {children: [
       paginatorBox,
-      new ResetAllButtonDeprecated( function() {
-        model.reset();
-        model.levels.forEach( function( levelModel ) {
-          levelModel.reset();
-        } );
-      }, { x: model.width - 40, y: model.height - 40} ),
+      new ResetAllButton( {
+        listener: function() {
+          model.reset();
+          model.levels.forEach( function( levelModel ) {
+            levelModel.reset();
+          } );
+        },
+        x: model.width - 40,
+        y: model.height - 40
+      } ),
       new TimerToggleButtonDeprecated( model.isTimerProperty, {x: 20, y: model.height - 120} ),
       new SoundToggleButtonDeprecated( model.isSoundProperty, {x: 20, y: model.height - 60} )
     ]} );
