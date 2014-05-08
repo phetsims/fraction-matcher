@@ -21,7 +21,7 @@ define( function( require ) {
     mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' ),
     Paginator = require( 'FRACTION_MATCHER/view/Paginator' ),
     LevelsContainerNode = require( 'FRACTION_MATCHER/view/LevelsContainerNode' ),
-    SoundToggleButtonDeprecated = require( 'SCENERY_PHET/SoundToggleButtonDeprecated' ),
+    SoundToggleButton = require( 'SCENERY_PHET/SoundToggleButton' ),
     TimerToggleButtonDeprecated = require( 'SCENERY_PHET/TimerToggleButtonDeprecated' ),
     ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
 
@@ -49,7 +49,7 @@ define( function( require ) {
         y: model.height - 40
       } ),
       new TimerToggleButtonDeprecated( model.isTimerProperty, {x: 20, y: model.height - 120} ),
-      new SoundToggleButtonDeprecated( model.isSoundProperty, {x: 20, y: model.height - 60} )
+      new SoundToggleButton( model.isSoundProperty, {x: 20, y: model.height - 60} )
     ]} );
 
     this.addChild( levelsContainerNode );
