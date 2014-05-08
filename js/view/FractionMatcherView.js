@@ -22,7 +22,7 @@ define( function( require ) {
     Paginator = require( 'FRACTION_MATCHER/view/Paginator' ),
     LevelsContainerNode = require( 'FRACTION_MATCHER/view/LevelsContainerNode' ),
     SoundToggleButton = require( 'SCENERY_PHET/SoundToggleButton' ),
-    TimerToggleButtonDeprecated = require( 'SCENERY_PHET/TimerToggleButtonDeprecated' ),
+    TimerToggleButton = require( 'SCENERY_PHET/TimerToggleButton' ),
     ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
 
   function MatchingGameView( model ) {
@@ -48,7 +48,7 @@ define( function( require ) {
         x: model.width - 40,
         y: model.height - 40
       } ),
-      new TimerToggleButtonDeprecated( model.isTimerProperty, {x: 20, y: model.height - 120} ),
+      new TimerToggleButton( model.isTimerProperty, {x: 20, y: model.height - 120} ),
       new SoundToggleButton( model.isSoundProperty, {x: 20, y: model.height - 60} )
     ]} );
 
