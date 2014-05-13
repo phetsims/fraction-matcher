@@ -20,7 +20,7 @@ define( function( require ) {
 
   // images
   var imageMixedNumber = require( 'image!FRACTION_MATCHER/MixedNumbers-icon.png' );
-  var imageMatchingGame = require( 'image!FRACTION_MATCHER//MatchingGame-icon.png' );
+  var imageMatchingGame = require( 'image!FRACTION_MATCHER/MatchingGame-icon.png' );
 
   // strings
   var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
