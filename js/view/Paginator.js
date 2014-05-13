@@ -24,7 +24,8 @@ define( function( require ) {
     Node.call( this, options );
 
     var shapes = ['PIES', 'HORIZONTAL_BARS', 'VERTICAL_BARS', 'LETTER_L_SHAPES', 'POLYGON', 'FLOWER', 'RING_OF_HEXAGONS', 'NINJA_STAR'];
-    var shapeColors = [model.CONSTANTS.COLORS.LIGHT_RED, model.CONSTANTS.COLORS.LIGHT_GREEN, model.CONSTANTS.COLORS.LIGHT_BLUE, model.CONSTANTS.COLORS.ORANGE, model.CONSTANTS.COLORS.PINK, model.CONSTANTS.COLORS.YELLOW, model.CONSTANTS.COLORS.LIGHT_PINK, model.CONSTANTS.COLORS.GREEN];
+    var colors = model.CONSTANTS.COLORS;
+    var shapeColors = [colors.LIGHT_RED, colors.LIGHT_GREEN, colors.LIGHT_BLUE, colors.ORANGE, colors.PINK, colors.YELLOW, colors.LIGHT_PINK, colors.GREEN];
 
     var firstPageChildren = [];
     shapes.forEach( function( shape, index ) {
