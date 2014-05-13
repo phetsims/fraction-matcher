@@ -32,15 +32,6 @@ define( function( require ) {
     thanks: ''
   };
 
-  // Appending '?dev' to the URL will enable developer-only features.
-  if ( window.phetcommon.getQueryParameter( 'dev' ) ) {
-    simOptions = _.extend( {
-      // add dev-specific options here
-      showHomeScreen: false,
-      screenIndex: 0
-    }, simOptions );
-  }
-
   SimLauncher.launch( function() {
     // create and start the sim
     new Sim( simTitleString, [
