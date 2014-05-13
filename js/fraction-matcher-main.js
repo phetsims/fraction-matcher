@@ -19,8 +19,8 @@ define( function( require ) {
   var FractionMatcherView = require( 'FRACTION_MATCHER/view/FractionMatcherView' );
 
   // images
-  var imageMixedNumber = require( 'image!FRACTION_MATCHER/../images/MixedNumbers-icon.png' );
-  var imageMatchingGame = require( 'image!FRACTION_MATCHER/../images/MatchingGame-icon.png' );
+  var imageMixedNumber = require( 'image!FRACTION_MATCHER/MixedNumbers-icon.png' );
+  var imageMatchingGame = require( 'image!FRACTION_MATCHER//MatchingGame-icon.png' );
 
   // strings
   var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
