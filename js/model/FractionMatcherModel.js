@@ -20,8 +20,8 @@ define( function( require ) {
   var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
 
   // audio
-  var correctAudio = require( 'audio!FRACTION_MATCHER/correctAnswer' );
-  var wrongAudio = require( 'audio!FRACTION_MATCHER/wrongAnswer' );
+  var correctAudio = require( 'audio!VEGAS/correctAnswer' );
+  var wrongAudio = require( 'audio!VEGAS/incorrectAnswer' );
 
   function MatchingGameModel( width, height, game ) {
     var self = this,

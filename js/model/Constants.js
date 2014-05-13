@@ -9,7 +9,7 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var FILL_TYPE = require( 'FRACTION_COMMON/enum/FillType' )
+  var FILL_TYPE = require( 'FRACTION_COMMON/enum/FillType' );
 
   // strings
   var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );

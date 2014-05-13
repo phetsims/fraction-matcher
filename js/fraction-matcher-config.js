@@ -40,6 +40,7 @@ require.config( {
     SCENERY_PHET: '../../scenery-phet/js',
     SUN: '../../sun/js',
     VIBE: '../../vibe/js',
+    VEGAS: '../../vegas/js',
     // contrib dependencies required by common directories
     stats: '../../phetcommon/contrib/stats-r11',
 

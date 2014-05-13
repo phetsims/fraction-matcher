@@ -24,7 +24,7 @@ define( function( require ) {
   var myMatchesString = require( 'string!FRACTION_MATCHER/myMatches' );
 
   // images
-  var scaleImage = require( 'image!FRACTION_MATCHER/scale.png' )
+  var scaleImage = require( 'image!FRACTION_MATCHER/scale.png' );
 
   function LevelsContainerNode( model ) {
     var margin = 15;
