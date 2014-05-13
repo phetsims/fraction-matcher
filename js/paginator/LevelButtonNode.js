@@ -48,7 +48,7 @@ define( function( require ) {
     Node.call( this, {x: options.x, y: options.y} );
     this.score = 0;
 
-    var levelLabel = new Text( options.label, { font: FONT, centerX: 0, centerY: -(options.height / 2) + 12 } )
+    var levelLabel = new Text( options.label, { font: FONT, centerX: 0, centerY: -(options.height / 2) + 12 } );
     options.width = Math.max (options.width, levelLabel.width+options.padding);
 
     // create base template
