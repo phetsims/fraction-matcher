@@ -9,13 +9,13 @@
 define( function( require ) {
   "use strict";
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( "SCENERY/nodes/Node" ),
-    Rectangle = require( 'SCENERY/nodes/Rectangle' ),
-    PushButton = require( 'SUN/PushButton' ),
-    Text = require( 'SCENERY/nodes/Text' ),
-    PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( "SCENERY/nodes/Node" );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var PushButton = require( 'SUN/PushButton' );
+  var Text = require( 'SCENERY/nodes/Text' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
   function ButtonNode( text, callback, options ) {
     var thisNode = this,
@@ -63,11 +63,11 @@ define( function( require ) {
     shadowBt = new Rectangle( -(width / 2) + options.shadowOffset.x, -(height / 2) + options.shadowOffset.y, width, height, options.rectangleCornerRadius, options.rectangleCornerRadius, {fill: options.shadowFill, stroke: options.shadowFill, lineWidth: options.lineWidth} );
 
     thisNode.addChild( new PushButton(
-      new Node( {children: [shadowBt, baseUpBt]} ),
-      new Node( {children: [shadowBt, baseOverBt]} ),
-      new Node( {children: [baseDownBt], x: options.shadowOffset.x, y: options.shadowOffset.y} ),
-      new Node( {children: [baseUpBt]} ),
-      {listener: callback} )
+        new Node( {children: [shadowBt, baseUpBt]} ),
+        new Node( {children: [shadowBt, baseOverBt]} ),
+        new Node( {children: [baseDownBt], x: options.shadowOffset.x, y: options.shadowOffset.y} ),
+        new Node( {children: [baseUpBt]} ),
+        {listener: callback} )
     );
   }
 

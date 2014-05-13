@@ -10,14 +10,14 @@
 define( function( require ) {
   "use strict";
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( 'SCENERY/nodes/Node' ),
-    Path = require( 'SCENERY/nodes/Path' ),
-    Shape = require( 'KITE/Shape' ),
-    Rectangle = require( 'SCENERY/nodes/Rectangle' ),
-    Text = require( 'SCENERY/nodes/Text' ),
-    PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var Path = require( 'SCENERY/nodes/Path' );
+  var Shape = require( 'KITE/Shape' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var Text = require( 'SCENERY/nodes/Text' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
   function ComparisonChartNode( gameModel, options ) {
     var thisNode = this,
@@ -111,10 +111,10 @@ define( function( require ) {
       rectLeft.fill = left.fill;
       rectRight.fill = right.fill;
 
-      new TWEEN.Tween( rectLeft ).to( { y: -left.getAnswer() * 70 }, gameModel.ANIMATION_TIME ).onUpdate(function( step ) {
+      new TWEEN.Tween( rectLeft ).to( { y: -left.getAnswer() * 70 }, gameModel.ANIMATION_TIME ).onUpdate( function( step ) {
         rectLeft.setRectHeight( left.getAnswer() * 70 * step );
       } ).start();
-      new TWEEN.Tween( rectRight ).to( { y: -right.getAnswer() * 70}, gameModel.ANIMATION_TIME ).onUpdate(function( step ) {
+      new TWEEN.Tween( rectRight ).to( { y: -right.getAnswer() * 70}, gameModel.ANIMATION_TIME ).onUpdate( function( step ) {
         rectRight.setRectHeight( right.getAnswer() * 70 * step );
       } ).start();
 

@@ -9,19 +9,22 @@
 define( function( require ) {
   "use strict";
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( "SCENERY/nodes/Node" ),
-    Text = require( 'SCENERY/nodes/Text' ),
-    PhetFont = require( 'SCENERY_PHET/PhetFont' ),
-    Image = require( 'SCENERY/nodes/Image' ),
-    Rectangle = require( 'SCENERY/nodes/Rectangle' ),
-    BackButton = require( 'FRACTION_COMMON/yellow-buttons/BackButton' ),
-    RefreshButton = require( 'FRACTION_COMMON/yellow-buttons/RefreshButton' ),
-    LevelNode = require( 'FRACTION_MATCHER/view/LevelNode' );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( "SCENERY/nodes/Node" );
+  var Text = require( 'SCENERY/nodes/Text' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var Image = require( 'SCENERY/nodes/Image' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var BackButton = require( 'FRACTION_COMMON/yellow-buttons/BackButton' );
+  var RefreshButton = require( 'FRACTION_COMMON/yellow-buttons/RefreshButton' );
+  var LevelNode = require( 'FRACTION_MATCHER/view/LevelNode' );
 
   // strings
   var myMatchesString = require( 'string!FRACTION_MATCHER/myMatches' );
+
+  // images
+  var scaleImage = require( 'image!FRACTION_MATCHER/scale.png' )
 
   function LevelsContainerNode( model ) {
     var margin = 15;
@@ -54,8 +57,8 @@ define( function( require ) {
     //scales
     var scalesMarginFromCenter = 150;
     this.scales = [];
-    this.scales[0] = new Image( require( 'image!FRACTION_MATCHER/../images/scale.png' ), {centerX: model.width / 2 - scalesMarginFromCenter, y: 230, scale: 0.33} );
-    this.scales[1] = new Image( require( 'image!FRACTION_MATCHER/../images/scale.png' ), {centerX: model.width / 2 + scalesMarginFromCenter, y: 230, scale: 0.33} );
+    this.scales[0] = new Image( scaleImage, {centerX: model.width / 2 - scalesMarginFromCenter, y: 230, scale: 0.33} );
+    this.scales[1] = new Image( scaleImage, {centerX: model.width / 2 + scalesMarginFromCenter, y: 230, scale: 0.33} );
     thisNode.addChild( this.scales[0] );
     thisNode.addChild( this.scales[1] );
 
@@ -77,7 +80,7 @@ define( function( require ) {
     model.currentLevelProperty.link( function( newLevel, oldLevel ) {
       if ( newLevel > 0 ) {
         //if shapes not drawn, draw shapes then show level. Made this to not generate all levels at once as it freeze simulation for 1-2 seconds
-        if(!model.levels[newLevel - 1].shapes[0].view) {
+        if ( !model.levels[newLevel - 1].shapes[0].view ) {
           thisNode.levelNodes[newLevel - 1 ].generateNewLevel();
         }
         thisNode.levelNodes[newLevel - 1 ].visible = true;

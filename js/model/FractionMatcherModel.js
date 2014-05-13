@@ -8,17 +8,20 @@
 define( function( require ) {
   'use strict';
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    PropertySet = require( 'AXON/PropertySet' ),
-    Property = require( 'AXON/Property' ),
-    Constants = require( 'FRACTION_MATCHER/model/Constants' ),
-    LevelModel = require( 'FRACTION_MATCHER/model/LevelModel' ),
-    Sound = require( 'VIBE/Sound' ),
-    mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var PropertySet = require( 'AXON/PropertySet' );
+  var Property = require( 'AXON/Property' );
+  var Constants = require( 'FRACTION_MATCHER/model/Constants' );
+  var LevelModel = require( 'FRACTION_MATCHER/model/LevelModel' );
+  var Sound = require( 'VIBE/Sound' );
 
-  var correctAudio = require( 'audio!FRACTION_MATCHER/correctAnswer' ),
-    wrongAudio = require( 'audio!FRACTION_MATCHER/wrongAnswer' );
+  // strings
+  var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
+
+  // audio
+  var correctAudio = require( 'audio!FRACTION_MATCHER/correctAnswer' );
+  var wrongAudio = require( 'audio!FRACTION_MATCHER/wrongAnswer' );
 
   function MatchingGameModel( width, height, game ) {
     var self = this,

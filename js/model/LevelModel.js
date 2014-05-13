@@ -8,10 +8,10 @@
 define( function( require ) {
   'use strict';
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    PropertySet = require( 'AXON/PropertySet' ),
-    SingleShapeModel = require( 'FRACTION_MATCHER/model/SingleShapeModel' );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var PropertySet = require( 'AXON/PropertySet' );
+  var SingleShapeModel = require( 'FRACTION_MATCHER/model/SingleShapeModel' );
 
   function LevelModel( gameModel, levelDescription, levelNumber ) {
     this.gameModel = gameModel;
@@ -63,18 +63,18 @@ define( function( require ) {
       var arr = shapes.slice( 0 ),
         map = [
           true, // PIES
-          d < 9, // HORIZONTAL_BARS
-          d < 9, // VERTICAL_BARS
-          d === 6, // PLUSES
-          d === 4 || d === 9, // GRID
-          d === 1 || d === 4 || d === 9, // PYRAMID
-          d >= 3, // POLYGON
-          d === 4, // TETRIS
-          d === 6, // FLOWER
-          d % 2 === 0, // LETTER_L_SHAPES
-          d === 2 || d === 4, // INTERLEAVED_L_SHAPES
-          d === 7, // RING_OF_HEXAGONS
-          d === 8  // NINJA_STAR
+            d < 9, // HORIZONTAL_BARS
+            d < 9, // VERTICAL_BARS
+            d === 6, // PLUSES
+            d === 4 || d === 9, // GRID
+            d === 1 || d === 4 || d === 9, // PYRAMID
+            d >= 3, // POLYGON
+            d === 4, // TETRIS
+            d === 6, // FLOWER
+            d % 2 === 0, // LETTER_L_SHAPES
+            d === 2 || d === 4, // INTERLEAVED_L_SHAPES
+            d === 7, // RING_OF_HEXAGONS
+            d === 8  // NINJA_STAR
         ],
         index;
 

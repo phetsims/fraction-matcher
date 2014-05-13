@@ -9,32 +9,31 @@
 define( function( require ) {
   "use strict";
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( 'SCENERY/nodes/Node' ),
-    Text = require( 'SCENERY/nodes/Text' ),
-    PhetFont = require( 'SCENERY_PHET/PhetFont' ),
-    equallyAnswerSymbolString = require( 'string!FRACTION_MATCHER/equallyAnswerSymbol' ),
-    ShapeNode = require( 'FRACTION_COMMON/shapes/ShapeNode' ),
-    ButtonNode = require( 'FRACTION_MATCHER/view/ButtonNode' ),
-    SmileNode = require( 'FRACTION_MATCHER/view/SmileNode' ),
-    ComparisonChartNode = require( 'FRACTION_MATCHER/view/ComparisonChartNode' ),
-    GameOverNode = require( 'FRACTION_MATCHER/view/GameOverNode' ),
-    VBox = require( 'SCENERY/nodes/VBox' ),
-    StringUtils = require( 'PHETCOMMON/util/StringUtils' ),
-    Util = require( 'DOT/Util' ),
-    Vector2 = require( 'DOT/Vector2' ),
-    SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var Text = require( 'SCENERY/nodes/Text' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var equallyAnswerSymbolString = require( 'string!FRACTION_MATCHER/equallyAnswerSymbol' );
+  var ShapeNode = require( 'FRACTION_COMMON/shapes/ShapeNode' );
+  var ButtonNode = require( 'FRACTION_MATCHER/view/ButtonNode' );
+  var SmileNode = require( 'FRACTION_MATCHER/view/SmileNode' );
+  var ComparisonChartNode = require( 'FRACTION_MATCHER/view/ComparisonChartNode' );
+  var GameOverNode = require( 'FRACTION_MATCHER/view/GameOverNode' );
+  var VBox = require( 'SCENERY/nodes/VBox' );
+  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  var Util = require( 'DOT/Util' );
+  var Vector2 = require( 'DOT/Vector2' );
+  var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
 
-  //strings
-  var buttonCheckString = require( 'string!FRACTION_MATCHER/buttonCheck' ),
-    buttonOkString = require( 'string!FRACTION_MATCHER/buttonOk' ),
-    buttonTryAgainString = require( 'string!FRACTION_MATCHER/buttonTryAgain' ),
-    patternLevelString = require( 'string!FRACTION_MATCHER/patternLevel' ),
-    patternScoreString = require( 'string!FRACTION_MATCHER/patternScore' ),
-    patternTimeString = require( 'string!FRACTION_MATCHER/time.pattern' ),
-    buttonShowAnswerString = require( 'string!FRACTION_MATCHER/buttonShowAnswer' );
-
+  // strings
+  var buttonCheckString = require( 'string!FRACTION_MATCHER/buttonCheck' );
+  var buttonOkString = require( 'string!FRACTION_MATCHER/buttonOk' );
+  var buttonTryAgainString = require( 'string!FRACTION_MATCHER/buttonTryAgain' );
+  var patternLevelString = require( 'string!FRACTION_MATCHER/patternLevel' );
+  var patternScoreString = require( 'string!FRACTION_MATCHER/patternScore' );
+  var patternTimeString = require( 'string!FRACTION_MATCHER/time.pattern' );
+  var buttonShowAnswerString = require( 'string!FRACTION_MATCHER/buttonShowAnswer' );
 
   function LevelNode( model, levelsContainer, options ) {
     var margin = 15;
@@ -284,7 +283,7 @@ define( function( require ) {
         [0, 1].forEach( function( i ) {
           var shape = thisNode.model.shapes[thisNode.model.dropZone[thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i]];
           var newPosition = thisNode.getShapeAnswerPosition( thisNode.model.answers.length );
-          new TWEEN.Tween( shape.view ).to( { x: newPosition.x, y: newPosition.y }, thisNode.model.gameModel.ANIMATION_TIME ).onUpdate(function( step ) {
+          new TWEEN.Tween( shape.view ).to( { x: newPosition.x, y: newPosition.y }, thisNode.model.gameModel.ANIMATION_TIME ).onUpdate( function( step ) {
             shape.view.scale( (1 - step * 0.5) / shape.view.matrix.scaleVector.x );
           } ).start();
           thisNode.model.answers.push( thisNode.model.dropZone[thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i] );

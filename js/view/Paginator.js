@@ -9,13 +9,15 @@
 define( function( require ) {
   "use strict";
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( 'SCENERY/nodes/Node' ),
-    StringUtils = require( 'PHETCOMMON/util/StringUtils' ),
-    patternLevelString = require( 'string!FRACTION_COMMON/patternLevel' ),
-    mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' ),
-    PaginatorNode = require( 'FRACTION_COMMON/paginator/PaginatorNode' );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
+  var PaginatorNode = require( 'FRACTION_COMMON/paginator/PaginatorNode' );
+
+  // strings
+  var patternLevelString = require( 'string!FRACTION_COMMON/patternLevel' );
 
   function Paginator( model, options ) {
     var mixedNumber = (model.game === mixedNumbersTitleString);

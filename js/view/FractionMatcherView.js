@@ -9,21 +9,23 @@
 define( function( require ) {
   "use strict";
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    ScreenView = require( 'JOIST/ScreenView' ),
-    VBox = require( 'SCENERY/nodes/VBox' ),
-    Text = require( 'SCENERY/nodes/Text' ),
-    PhetFont = require( 'SCENERY_PHET/PhetFont' ),
-    Node = require( "SCENERY/nodes/Node" ),
-    matchingGameHeaderString = require( 'string!FRACTION_MATCHER/matchingGameHeader' ),
-    mixedNumbersHeaderString = require( 'string!FRACTION_MATCHER/mixedNumbersHeader' ),
-    mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' ),
-    Paginator = require( 'FRACTION_MATCHER/view/Paginator' ),
-    LevelsContainerNode = require( 'FRACTION_MATCHER/view/LevelsContainerNode' ),
-    SoundToggleButton = require( 'SCENERY_PHET/SoundToggleButton' ),
-    TimerToggleButton = require( 'SCENERY_PHET/TimerToggleButton' ),
-    ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var ScreenView = require( 'JOIST/ScreenView' );
+  var VBox = require( 'SCENERY/nodes/VBox' );
+  var Text = require( 'SCENERY/nodes/Text' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var Node = require( "SCENERY/nodes/Node" );
+  var Paginator = require( 'FRACTION_MATCHER/view/Paginator' );
+  var LevelsContainerNode = require( 'FRACTION_MATCHER/view/LevelsContainerNode' );
+  var SoundToggleButton = require( 'SCENERY_PHET/SoundToggleButton' );
+  var TimerToggleButton = require( 'SCENERY_PHET/TimerToggleButton' );
+  var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
+
+  // strings
+  var matchingGameHeaderString = require( 'string!FRACTION_MATCHER/matchingGameHeader' );
+  var mixedNumbersHeaderString = require( 'string!FRACTION_MATCHER/mixedNumbersHeader' );
+  var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
 
   function MatchingGameView( model ) {
     ScreenView.call( this, { renderer: 'svg' } );

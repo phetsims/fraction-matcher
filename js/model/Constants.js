@@ -8,8 +8,11 @@
 define( function( require ) {
   'use strict';
 
-  var FILL_TYPE = require( 'FRACTION_COMMON/enum/FillType' ),
-    mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
+  // modules
+  var FILL_TYPE = require( 'FRACTION_COMMON/enum/FillType' )
+
+  // strings
+  var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
 
   function Constants( game ) {
     // color constants

@@ -9,21 +9,23 @@
 define( function( require ) {
   "use strict";
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( "SCENERY/nodes/Node" ),
-    Text = require( 'SCENERY/nodes/Text' ),
-    gameOverString = require( 'string!FRACTION_MATCHER/gameOver' ),
-    patternGameOverLevelString = require( 'string!FRACTION_MATCHER/patternGameOverLevel' ),
-    patternGameOverScoreString = require( 'string!FRACTION_MATCHER/patternGameOverScore' ),
-    patternGameOverScorePrefectString = require( 'string!FRACTION_MATCHER/patternGameOverScorePrefect' ),
-    buttonNewGameString = require( 'string!FRACTION_MATCHER/buttonNewGame' ),
-    StringUtils = require( 'PHETCOMMON/util/StringUtils' ),
-    PhetFont = require( 'SCENERY_PHET/PhetFont' ),
-    Rectangle = require( 'SCENERY/nodes/Rectangle' ),
-    Line = require( 'SCENERY/nodes/Line' ),
-    Vector2 = require( 'DOT/Vector2' ),
-    ButtonNode = require( 'FRACTION_MATCHER/view/ButtonNode' );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( "SCENERY/nodes/Node" );
+  var Text = require( 'SCENERY/nodes/Text' );
+  var gameOverString = require( 'string!FRACTION_MATCHER/gameOver' );
+  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var Line = require( 'SCENERY/nodes/Line' );
+  var Vector2 = require( 'DOT/Vector2' );
+  var ButtonNode = require( 'FRACTION_MATCHER/view/ButtonNode' );
+
+  // strings
+  var patternGameOverLevelString = require( 'string!FRACTION_MATCHER/patternGameOverLevel' );
+  var patternGameOverScoreString = require( 'string!FRACTION_MATCHER/patternGameOverScore' );
+  var patternGameOverScorePrefectString = require( 'string!FRACTION_MATCHER/patternGameOverScorePrefect' );
+  var buttonNewGameString = require( 'string!FRACTION_MATCHER/buttonNewGame' );
 
   function GameOverNode( model, levelNode, options ) {
     var thisNode = this,
@@ -51,7 +53,7 @@ define( function( require ) {
     var margin = 28;
     this.showGameOver = function() {
 
-      gameOverLevel.text =  StringUtils.format( patternGameOverLevelString, model.gameModel.currentLevel );
+      gameOverLevel.text = StringUtils.format( patternGameOverLevelString, model.gameModel.currentLevel );
 
       if ( model.score >= 12 ) {
         gameOverScore.text = StringUtils.format( patternGameOverScorePrefectString, model.score );

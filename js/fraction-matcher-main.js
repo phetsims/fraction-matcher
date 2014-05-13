@@ -8,18 +8,24 @@
 
 define( function( require ) {
   'use strict';
-  var SimLauncher = require( 'JOIST/SimLauncher' ),
-    Sim = require( 'JOIST/Sim' ),
-    Screen = require( 'JOIST/Screen' ),
-    Image = require( 'SCENERY/nodes/Image' ),
-    ScreenView = require( 'JOIST/ScreenView' ),
-    FractionMatcherModel = require( 'FRACTION_MATCHER/model/FractionMatcherModel' ),
-    FractionMatcherView = require( 'FRACTION_MATCHER/view/FractionMatcherView' ),
-    imageMixedNumber = require( 'image!FRACTION_MATCHER/../images/MixedNumbers-icon.png' ),
-    imageMatchingGame = require( 'image!FRACTION_MATCHER/../images/MatchingGame-icon.png' ),
-    mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' ),
-    matchingGameTitleString = require( 'string!FRACTION_MATCHER/matchingGameTitle' ),
-    simTitleString = require( 'string!FRACTION_MATCHER/simTitle' );
+
+  // modules
+  var SimLauncher = require( 'JOIST/SimLauncher' );
+  var Sim = require( 'JOIST/Sim' );
+  var Screen = require( 'JOIST/Screen' );
+  var Image = require( 'SCENERY/nodes/Image' );
+  var ScreenView = require( 'JOIST/ScreenView' );
+  var FractionMatcherModel = require( 'FRACTION_MATCHER/model/FractionMatcherModel' );
+  var FractionMatcherView = require( 'FRACTION_MATCHER/view/FractionMatcherView' );
+
+  // images
+  var imageMixedNumber = require( 'image!FRACTION_MATCHER/../images/MixedNumbers-icon.png' );
+  var imageMatchingGame = require( 'image!FRACTION_MATCHER/../images/MatchingGame-icon.png' );
+
+  // strings
+  var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
+  var matchingGameTitleString = require( 'string!FRACTION_MATCHER/matchingGameTitle' );
+  var simTitleString = require( 'string!FRACTION_MATCHER/simTitle' );
 
   var simOptions = {
     credits: '',
