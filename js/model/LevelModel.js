@@ -154,15 +154,11 @@ define( function( require ) {
           }
           this.canDrag = false;
           break;
-        case
-        "tryAgain"
-        :
+        case "tryAgain" :
           this.canDrag = true;
           this.buttonStatus = "none";
           break;
-        case
-        "showAnswer"
-        :
+        case "showAnswer" :
           this.buttonStatus = "ok";
           break;
       }
