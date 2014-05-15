@@ -60,29 +60,27 @@ define( function( require ) {
     },
     // return filtered shapes set for the selected denominator, from java model
     filterShapes: function( shapes, d ) {
-      var arr = shapes.slice( 0 ),
-        map = [
-          true, // PIES
-            d < 9, // HORIZONTAL_BARS
-            d < 9, // VERTICAL_BARS
-            d === 6, // PLUSES
-            d === 4 || d === 9, // GRID
-            d === 1 || d === 4 || d === 9, // PYRAMID
-            d >= 3, // POLYGON
-            d === 4, // TETRIS
-            d === 6, // FLOWER
-            d % 2 === 0, // LETTER_L_SHAPES
-            d === 2 || d === 4, // INTERLEAVED_L_SHAPES
-            d === 7, // RING_OF_HEXAGONS
-            d === 8  // NINJA_STAR
-        ],
-        index;
+      var arr = [],
+        //rules if shape_type can be used for denominator d
+        map = {
+          PIES: true,
+          HORIZONTAL_BARS: d < 9,
+          VERTICAL_BARS: d < 9,
+          PLUSES: d === 6,
+          GRID: d === 4 || d === 9,
+          PYRAMID: d === 1 || d === 4 || d === 9,
+          TETRIS: d === 4,
+          FLOWER: d === 6,
+          LETTER_L_SHAPES: d % 2 === 0,
+          INTERLEAVED_L_SHAPES: d === 2 || d === 4,
+          RING_OF_HEXAGONS: d === 7,
+          NINJA_STAR: d === 8
+        };
 
-      // move through all shapes and check it
-      this.gameModel.CONSTANTS.SHAPES.forEach( function( shape, i ) {
-        index = arr.indexOf( shape );
-        if ( !map[i] && index !== -1 ) {
-          arr.splice( index, 1 );
+      // move through all possible shapes and add it if filter through map
+      shapes.forEach( function( shape) {
+        if ( map[shape]) {
+          arr.push(shape);
         }
       } );
 
