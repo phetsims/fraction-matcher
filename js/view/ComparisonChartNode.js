@@ -106,16 +106,20 @@ define( function( require ) {
     thisNode.addChild( more );
 
     // function for comparing shapes on scales
+    var rectLeftTween = new TWEEN.Tween( rectLeft );
+    var rectRightTween = new TWEEN.Tween( rectRight );
     this.compare = function( left, right ) {
       // set indicator's height
       rectLeft.fill = left.fill;
       rectRight.fill = right.fill;
+      var targetLeftY = left.getAnswer() * 70;
+      var targetRightY = right.getAnswer() * 70;
 
-      new TWEEN.Tween( rectLeft ).to( { y: -left.getAnswer() * 70 }, gameModel.ANIMATION_TIME ).onUpdate( function( step ) {
-        rectLeft.setRectHeight( left.getAnswer() * 70 * step );
+      rectLeftTween.to( { y: -targetLeftY  }, gameModel.ANIMATION_TIME ).onUpdate(function( step ) {
+        rectLeft.setRectHeight( targetLeftY * step );
       } ).start();
-      new TWEEN.Tween( rectRight ).to( { y: -right.getAnswer() * 70}, gameModel.ANIMATION_TIME ).onUpdate( function( step ) {
-        rectRight.setRectHeight( right.getAnswer() * 70 * step );
+      rectRightTween.to( { y: -targetRightY}, gameModel.ANIMATION_TIME ).onUpdate(function( step ) {
+        rectRight.setRectHeight( targetRightY * step );
       } ).start();
 
       less.setVisible( left.getAnswer() < right.getAnswer() );
