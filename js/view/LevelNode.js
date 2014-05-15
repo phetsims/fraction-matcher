@@ -16,7 +16,7 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var equallyAnswerSymbolString = require( 'string!FRACTION_MATCHER/equallyAnswerSymbol' );
   var ShapeNode = require( 'FRACTION_COMMON/shapes/ShapeNode' );
-  var ButtonNode = require( 'FRACTION_MATCHER/view/ButtonNode' );
+  var TextPushButton = require( 'SUN/buttons/TextPushButton' );
   var SmileNode = require( 'FRACTION_MATCHER/view/SmileNode' );
   var ComparisonChartNode = require( 'FRACTION_MATCHER/view/ComparisonChartNode' );
   var GameOverNode = require( 'FRACTION_MATCHER/view/GameOverNode' );
@@ -61,34 +61,52 @@ define( function( require ) {
     var smile = new SmileNode( {centerX: 105, centerY: 190} );
     thisNode.addChild( smile );
 
-    //left part buttons, check, ok, tryAgain, showAnswer
+    //left part buttons: check, ok, tryAgain, showAnswer
     var commonButtonStyle = {
       font: new PhetFont( { size: 14, weight: "bold"} ),
-      x: smile.centerX,
-      y: smile.bottom + margin
+      centerX: smile.centerX,
+      centerY: smile.bottom + margin
     };
 
-
-    var buttonCheck = new ButtonNode( buttonCheckString, function() {model.answerButton( "check" );}, _.extend( commonButtonStyle, {rectangleFillUp: "#FFD63F", rectangleFillDown: "#FFD63F", rectangleFillOver: "#FFEA9D"} ) );
+    var buttonCheck = new TextPushButton(
+      buttonCheckString,
+      _.extend( commonButtonStyle, {
+        baseColor: "#FFD63F",
+        listener: function() {model.answerButton( "check" );}
+      } ) );
     thisNode.addChild( buttonCheck );
 
-    var buttonOk = new ButtonNode( buttonOkString,
-      function() {
-        model.answerButton( "ok" );
-        //animate to answers area and remove listeners
-        thisNode.moveShapesOnScalesToAnswer();
-      },
-      _.extend( commonButtonStyle, {rectangleFillUp: "#44FF44", rectangleFillDown: "#44FF44", rectangleFillOver: "#9FFF9F"} ) );
+    var buttonOk = new TextPushButton(
+      buttonOkString,
+      _.extend( commonButtonStyle, {
+        baseColor: "#44FF44",
+        listener: function() {
+          model.answerButton( "ok" );
+          //animate to answers area and remove listeners
+          thisNode.moveShapesOnScalesToAnswer();
+        }
+      } ) );
     thisNode.addChild( buttonOk );
 
-    var buttonTryAgain = new ButtonNode( buttonTryAgainString, function() {model.answerButton( "tryAgain" );},
-      _.extend( commonButtonStyle, {rectangleFillUp: "#FF7C3B", rectangleFillDown: "#FF7C3B", rectangleFillOver: "#FFBE9D"} ) );
+    var buttonTryAgain = new TextPushButton(
+      buttonTryAgainString,
+      _.extend( commonButtonStyle, {
+        baseColor: "#FF7C3B",
+        listener: function() {
+          model.answerButton( "tryAgain" );
+        }
+      } ) );
     thisNode.addChild( buttonTryAgain );
 
-    var buttonShowAnswer = new ButtonNode( buttonShowAnswerString, function() {
-      model.answerButton( "showAnswer" );
-      thisNode.showCorrectAnswer();
-    }, _.extend( commonButtonStyle, {rectangleFillUp: "#FF7C3B", rectangleFillDown: "#FF7C3B", rectangleFillOver: "#FFBE9D"} ) );
+    var buttonShowAnswer = new TextPushButton(
+      buttonShowAnswerString,
+      _.extend( commonButtonStyle, {
+        baseColor: "#FF7C3B",
+        listener: function() {
+          model.answerButton( "tryAgain" );
+          thisNode.showCorrectAnswer();
+        }
+      } ) );
     thisNode.addChild( buttonShowAnswer );
 
     this.comparisonChart = new ComparisonChartNode( model.gameModel, {centerX: model.gameModel.width / 2, y: 250} );
@@ -283,7 +301,7 @@ define( function( require ) {
         [0, 1].forEach( function( i ) {
           var shape = thisNode.model.shapes[thisNode.model.dropZone[thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i]];
           var newPosition = thisNode.getShapeAnswerPosition( thisNode.model.answers.length );
-          new TWEEN.Tween( shape.view ).to( { x: newPosition.x, y: newPosition.y }, thisNode.model.gameModel.ANIMATION_TIME ).onUpdate( function( step ) {
+          new TWEEN.Tween( shape.view ).to( { x: newPosition.x, y: newPosition.y }, thisNode.model.gameModel.ANIMATION_TIME ).onUpdate(function( step ) {
             shape.view.scale( (1 - step * 0.5) / shape.view.matrix.scaleVector.x );
           } ).start();
           thisNode.model.answers.push( thisNode.model.dropZone[thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i] );

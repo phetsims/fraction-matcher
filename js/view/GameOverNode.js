@@ -19,7 +19,7 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Line = require( 'SCENERY/nodes/Line' );
   var Vector2 = require( 'DOT/Vector2' );
-  var ButtonNode = require( 'FRACTION_MATCHER/view/ButtonNode' );
+  var TextPushButton = require( 'SUN/buttons/TextPushButton' );
 
   // strings
   var patternGameOverLevelString = require( 'string!FRACTION_MATCHER/patternGameOverLevel' );
@@ -42,12 +42,23 @@ define( function( require ) {
     this.addChild( gameOver = new Text( gameOverString, { font: new PhetFont( { size: 28, weight: "normal"} ), centerX: 0, centerY: 33  } ) );
     this.addChild( gameOverLevel = new Text( StringUtils.format( patternGameOverLevelString, 1 ), { font: new PhetFont( { size: 20, weight: "normal"} ), centerX: 0, centerY: 100  } ) );
     this.addChild( gameOverScore = new Text( StringUtils.format( patternGameOverScoreString, 1 ), { font: new PhetFont( { size: 20, weight: "normal"} ), centerX: 0, centerY: 140  } ) );
-    this.addChild( gameOverButton = new ButtonNode( buttonNewGameString, function() {
-      model.gameModel.highScores[model.levelNumber - 1].set( Math.max( model.gameModel.highScores[model.levelNumber - 1].get(), model.score ) );
-      model.gameModel.currentLevel = 0;
-      model.reset();
-      levelNode.generateNewLevel();
-    }, {font: new PhetFont( { size: 16, weight: "normal"} ), rectangleFillUp: "#F1F1F1", rectangleFillDown: "#F1F1F1", rectangleFillOver: "#F8F8F8", centerX: 0, y: 240, rectangleCornerRadius: 5, rectangleXMargin: 10, rectangleYMargin: 5} ) );
+    this.addChild( gameOverButton = new TextPushButton(
+      buttonNewGameString,
+      {
+        centerX: 0,
+        y: 240,
+        font: new PhetFont( { size: 16, weight: "normal"} ),
+        baseColor: "#F1F1F1",
+        rectangleCornerRadius: 5,
+        rectangleXMargin: 10,
+        rectangleYMargin: 5,
+        listener: function() {
+          model.gameModel.highScores[model.levelNumber - 1].set( Math.max( model.gameModel.highScores[model.levelNumber - 1].get(), model.score ) );
+          model.gameModel.currentLevel = 0;
+          model.reset();
+          levelNode.generateNewLevel();
+        }
+      } ) );
 
 
     var margin = 28;
