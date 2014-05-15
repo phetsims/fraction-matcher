@@ -44,7 +44,7 @@ define( function( require ) {
     this.levelsContainer = levelsContainer;
     this.model = model;
 
-    //labels at the right
+    //drawing labels at the right
     var levelLabel = new Text( StringUtils.format( patternLevelString, model.levelNumber ), { font: new PhetFont( { size: 12, weight: "bold"} )} );
     var scoreLabel = new Text( StringUtils.format( patternScoreString, 0 ), { font: new PhetFont( { size: 12, weight: "bold"} )} );
     var timeLabel = new Text( StringUtils.format( patternScoreString, 0 ), { font: new PhetFont( { size: 12, weight: "bold"} )} );
@@ -57,11 +57,11 @@ define( function( require ) {
     } );
     thisNode.addChild( vBox );
 
-    //smile
+    //drawing smile
     var smile = new SmileNode( {centerX: 105, centerY: 190} );
     thisNode.addChild( smile );
 
-    //left part buttons: check, ok, tryAgain, showAnswer
+    //drawing left part buttons: check, ok, tryAgain, showAnswer
     var commonButtonStyle = {
       font: new PhetFont( { size: 14, weight: "bold"} ),
       centerX: smile.centerX,
@@ -109,18 +109,22 @@ define( function( require ) {
       } ) );
     thisNode.addChild( buttonShowAnswer );
 
+    //drawing comparisonChart
     this.comparisonChart = new ComparisonChartNode( model.gameModel, {centerX: model.gameModel.width / 2, y: 250} );
     thisNode.addChild( this.comparisonChart );
 
+    //drawing gameOverNode
     this.gameOverNode = new GameOverNode( model, thisNode, {visible: false} );
     thisNode.addChild( this.gameOverNode );
 
+    //equal signs at the top for six gray answer rectangles
     this.equallyAnswerSymbol = [];
     this.levelsContainer.answerRects.forEach( function( answerRect, i ) {
       thisNode.equallyAnswerSymbol[i] = new Text( equallyAnswerSymbolString, { font: new PhetFont( { size: 22, _weight: "bold"} ), center: answerRect.center, visible: false  } );
       thisNode.addChild( thisNode.equallyAnswerSymbol[i] );
     } );
-    var shapeNode = new Node();
+
+    //drag handler for shapes
     var offsetCursor = {};
     var startDrag = function( event ) {
         if ( model.canDrag ) {
@@ -167,34 +171,42 @@ define( function( require ) {
         end: endDrag
       };
 
+    //container for all shapes on the screen
+    var shapeNode = new Node();
     thisNode.addChild( shapeNode );
 
+    //drawing new level shapes, placing them and adding drag handler
     this.generateNewLevel = function() {
-      var i, shape;
+      var i, singleShapeModel;
       shapeNode.removeAllChildren();
 
       for ( i = 0; i < model.shapes.length; i++ ) {
-        shape = model.shapes[i];
-        if ( shape.view === undefined ) {
-          shape.view = new ShapeNode( shape );
-          shape.view.cursor = "pointer";
-          shape.view.addInputListener( new SimpleDragHandler( dragParamers ) );
-          shape.view.indexShape = i;
+        singleShapeModel = model.shapes[i];
+        //new shapeView
+        if ( singleShapeModel.view === undefined ) {
+          singleShapeModel.view = new ShapeNode( singleShapeModel );
+          singleShapeModel.view.cursor = "pointer";
+          //handler for new single shape
+          singleShapeModel.view.addInputListener( new SimpleDragHandler( dragParamers ) );
+          singleShapeModel.view.indexShape = i;
         }
-        shapeNode.addChild( shape.view );
-        if ( shape.dropZone >= 0 ) {
-          shape.view.center = thisNode.getShapeDropPosition( shape.dropZone );
-          thisNode.model.dropZone[shape.dropZone] = shape.view.indexShape;
+        //add to container
+        shapeNode.addChild( singleShapeModel.view );
+        //placing at the correct position (dropZone)
+        if ( singleShapeModel.dropZone >= 0 ) {
+          singleShapeModel.view.center = thisNode.getShapeDropPosition( singleShapeModel.dropZone );
+          thisNode.model.dropZone[singleShapeModel.dropZone] = singleShapeModel.view.indexShape;
         }
       }
 
+      //hiding equal signs at the answer zone
       for ( var j = 0; j < model.gameModel.MAXIMUM_PAIRS; j++ ) {
         thisNode.equallyAnswerSymbol[j].setVisible( false );
       }
       this.gameOverNode.setVisible( false );
     };
 
-
+    //show correct button depending on the previous actions
     model.buttonStatusProperty.link( function updateButtonStatus( value ) {
       buttonOk.setVisible( value === 'ok' );
       buttonCheck.setVisible( value === 'check' );
@@ -217,26 +229,29 @@ define( function( require ) {
       }
     } );
 
+    //adjustion timer position if necessary
     model.gameModel.isTimerProperty.link( function( isTimer ) {
       timeLabel.visible = isTimer;
       vBox.right = model.gameModel.width - margin;
     } );
 
+    //update timer
     model.timeProperty.link( function( newTime ) {
       timeLabel.text = StringUtils.format( patternTimeString, Util.toFixed( newTime, 0 ) );
       vBox.right = model.gameModel.width - margin;
     } );
 
+    //update score
     model.scoreProperty.link( function( newScore ) {
       scoreLabel.text = StringUtils.format( patternScoreString, newScore );
       vBox.right = model.gameModel.width - margin;
     } );
 
     this.mutate( options );
-
   }
 
   return inherit( Node, LevelNode, {
+      //get Vector2(x,y) - position in dropZones rect at the bottom
       getShapeDropPosition: function( position ) {
         //inside dropZones at the bottom
         if ( position < this.model.gameModel.MAXIMUM_PAIRS * 2 ) {
@@ -248,11 +263,13 @@ define( function( require ) {
           return new Vector2( scale.centerX, scale.top );
         }
       },
+      //get Vector2(x,y) - position in answer gray rect at the top
       getShapeAnswerPosition: function( position ) {
         var targetRect = this.levelsContainer.answerRects[Math.floor( position / 2 )];
         var diff = (position % 2 === 0) ? -targetRect.width / 4 : targetRect.width / 4;
         return new Vector2( targetRect.centerX + diff, targetRect.centerY );
       },
+      //get closest dropZone for shape when drag ends
       getClosestDropZone: function( coord, canDropOnScale ) {
         var closestZone = -1,
           min = 1e10;
@@ -268,6 +285,7 @@ define( function( require ) {
         }
         return closestZone;
       },
+      //animation for "snapping" shape to correct position
       dropShapeToZone: function( shape, zoneIndex ) {
         //target dropZone now = indexShape
         this.model.dropZone[zoneIndex] = shape.view.indexShape;
@@ -278,6 +296,7 @@ define( function( require ) {
         }
         new TWEEN.Tween( shape.view ).to( { centerX: targetPosition.x, centerY: targetPosition.y }, this.model.gameModel.ANIMATION_TIME ).start();
       },
+      //move correct shape to scales
       showCorrectAnswer: function() {
         var thisNode = this;
         //the unchanged shape on scale
@@ -295,6 +314,7 @@ define( function( require ) {
         this.dropShapeToZone( lastShapeOnScale, this.getClosestDropZone( lastShapeOnScale.view.center, false ) );
         thisNode.comparisonChart.compare( thisNode.model.shapes[thisNode.model.dropZone[12]], thisNode.model.shapes[thisNode.model.dropZone[13]] );
       },
+      //move shapes from scales to answer zone and disable them
       moveShapesOnScalesToAnswer: function() {
         var thisNode = this;
         thisNode.equallyAnswerSymbol[thisNode.model.answers.length / 2].setVisible( true );
