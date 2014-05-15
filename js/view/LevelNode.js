@@ -130,6 +130,10 @@ define( function( require ) {
         if ( model.canDrag ) {
           event.currentTarget.moveToFront();
           offsetCursor = {x: thisNode.globalToParentPoint( event.pointer.point ).x - event.currentTarget.x, y: thisNode.globalToParentPoint( event.pointer.point ).y - event.currentTarget.y};
+          //if touch device show shape above the pointer
+          if(navigator.userAgent.match(/(iPad|Android)/)) {
+            offsetCursor.y+=50;
+          }
           model.dropZone[model.shapes[event.currentTarget.indexShape].dropZone] = -1;
           if ( model.lastChangedZone === model.shapes[event.currentTarget.indexShape].dropZone ) {
             model.lastChangedZone = -1;

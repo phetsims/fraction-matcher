@@ -47,7 +47,7 @@ define( function( require ) {
     this.highScores = [];
 
     PropertySet.call( this, {
-      currentLevel: 0,
+      currentLevel: 1,
       isLevelScreenActive: false,
       isSound: true,
       isTimer: false
