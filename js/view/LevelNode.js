@@ -151,11 +151,10 @@ define( function( require ) {
           }
           if ( zone === 12 || zone === 13 ) {
             model.lastChangedZone = zone;
-            model.lastPair[zone - 12] = event.currentTarget.indexShape;
           }
           thisNode.dropShapeToZone( model.shapes[event.currentTarget.indexShape], zone );
           if ( model.buttonStatus === 'check' || model.buttonStatus === 'none' ) {
-            if ( model.dropZone[12] >= 0 && model.dropZone[13] >= 0 && (model.dropZone[12].indexShape !== model.lastPair[0] || model.dropZone[13].indexShape !== model.lastPair[1]) ) {
+            if ( model.dropZone[12] >= 0 && model.dropZone[13] >= 0 && (model.dropZone[12] !== model.lastPair[0] || model.dropZone[13] !== model.lastPair[1]) ) {
               model.buttonStatus = 'check';
             }
             else {

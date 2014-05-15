@@ -149,6 +149,7 @@ define( function( require ) {
             }
             self.stepScore--;
             this.buttonStatus = (self.stepScore) ? "tryAgain" : "showAnswer";
+            this.lastPair = [this.dropZone[12],this.dropZone[13]];
           }
           this.canDrag = false;
           break;
