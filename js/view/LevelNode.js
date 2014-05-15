@@ -103,7 +103,7 @@ define( function( require ) {
       _.extend( commonButtonStyle, {
         baseColor: "#FF7C3B",
         listener: function() {
-          model.answerButton( "tryAgain" );
+          model.answerButton( "showAnswer" );
           thisNode.showCorrectAnswer();
         }
       } ) );
