@@ -23,15 +23,58 @@ define( function( require ) {
     var mixedNumber = (model.game === mixedNumbersTitleString);
     Node.call( this, options );
 
-    var shapes = ['PIES', 'HORIZONTAL_BARS', 'VERTICAL_BARS', 'LETTER_L_SHAPES', 'POLYGON', 'FLOWER', 'RING_OF_HEXAGONS', 'NINJA_STAR'];
     var colors = model.CONSTANTS.COLORS;
-    var shapeColors = [colors.LIGHT_RED, colors.LIGHT_GREEN, colors.LIGHT_BLUE, colors.ORANGE, colors.PINK, colors.YELLOW, colors.LIGHT_PINK, colors.GREEN];
+    var shapes = [
+      {
+        type:'PIES',
+        color:colors.LIGHT_RED
+      },
+      {
+        type:'HORIZONTAL_BARS',
+        color:colors.LIGHT_GREEN
+      },
+      {
+        type:'VERTICAL_BARS',
+        color:colors.LIGHT_BLUE
+      },
+      {
+        type:'LETTER_L_SHAPES',
+        color:colors.ORANGE,
+        height:75
+      },
+      {
+        type:'POLYGON',
+        color:colors.PINK
+      },
+      {
+        type:'FLOWER',
+        color:colors.YELLOW,
+        width:65,
+        height:65
+      },
+      {
+        type:'RING_OF_HEXAGONS',
+        color:colors.LIGHT_PINK
+      },
+      {
+        type:'NINJA_STAR',
+        color:colors.GREEN
+      }
+    ];
 
     var firstPageChildren = [];
     shapes.forEach( function( shape, index ) {
       firstPageChildren.push( {
         value: index + 1,
-        shape: {type: shape, numerator: mixedNumber ? index + 2 : index + 1, denominator: index + 1, value: index + 1, fill: shapeColors[index]},
+        shape: {
+          type: shape.type,
+          numerator: mixedNumber ? index + 2 : index + 1,
+          denominator: index + 1,
+          value: index + 1,
+          fill: shape.color,
+          width: shape.width ? shape.width : 60,
+          height: shape.height ? shape.height :60
+        },
         height: (mixedNumber ? 100 : null),
         label: StringUtils.format( patternLevelString, index + 1 )
       } );
