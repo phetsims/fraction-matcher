@@ -13,6 +13,7 @@ define( function( require ) {
   var PropertySet = require( 'AXON/PropertySet' );
   var Property = require( 'AXON/Property' );
   var Constants = require( 'FRACTION_MATCHER/model/Constants' );
+  var MixedNumbersConstants = require( 'FRACTION_MATCHER/model/MixedNumbersConstants' );
   var LevelModel = require( 'FRACTION_MATCHER/model/LevelModel' );
   var Sound = require( 'VIBE/Sound' );
 
@@ -25,7 +26,7 @@ define( function( require ) {
 
   function MatchingGameModel( width, height, game ) {
     var self = this,
-      CONSTANTS = new Constants( game );
+      CONSTANTS = (this.game === mixedNumbersTitleString) ? MixedNumbersConstants : Constants;
 
     // dimensions of the model's space
     this.width = width;
