@@ -15,7 +15,7 @@ define( function( require ) {
     Text = require( 'SCENERY/nodes/Text' ),
     PhetFont = require( 'SCENERY_PHET/PhetFont' ),
     Rectangle = require( 'SCENERY/nodes/Rectangle' ),
-    PushButton = require( 'SUN/PushButton' ),
+    PushButtonDeprecated = require( 'SUN/PushButtonDeprecated' ),
     StarBoxNode = require( 'FRACTION_COMMON/paginator/StarBoxNode' ),
     FONT = new PhetFont( { size: 14, weight: 'bold'} );
 
@@ -62,7 +62,7 @@ define( function( require ) {
     shadowBt = new Rectangle( -(options.width / 2) + shadowOffset.x, -(options.height / 2) + shadowOffset.y, options.width, options.height, options.round, options.round, {fill: options.stroke, stroke: options.stroke, lineWidth: options.lineWidth} );
 
     // create push button
-    this.addChild( new PushButton(
+    this.addChild( new PushButtonDeprecated(
       new Node( {children: [shadowBt, baseBt]} ),
       new Node( {children: [shadowBt, baseBt]} ),
       new Node( {children: [baseBt], x: shadowOffset.x, y: shadowOffset.y} ),

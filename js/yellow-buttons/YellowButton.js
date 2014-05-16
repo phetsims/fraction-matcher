@@ -13,7 +13,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' ),
     Node = require( 'SCENERY/nodes/Node' ),
     Rectangle = require( 'SCENERY/nodes/Rectangle' ),
-    PushButton = require( 'SUN/PushButton' );
+    PushButtonDeprecated = require( 'SUN/PushButtonDeprecated' );
 
   function YellowButton( options ) {
     var width = 70,
@@ -31,7 +31,7 @@ define( function( require ) {
     base.addChild( options.label );
 
     // create push button
-    this.addChild( new PushButton(
+    this.addChild( new PushButtonDeprecated(
       new Node( {children: [shadowBt, base]} ),
       new Node( {children: [shadowBt, base]} ),
       new Node( {children: [base], x: shadowOffset.x, y: shadowOffset.y} ),
