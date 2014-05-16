@@ -48,8 +48,7 @@ define( function( require ) {
     this.highScores = [];
 
     PropertySet.call( this, {
-      currentLevel: 1,
-      isLevelScreenActive: false,
+      currentLevel: 0,
       isSound: true,
       isTimer: false
     } );
@@ -57,10 +56,6 @@ define( function( require ) {
     this.CONSTANTS.LEVEL_DESCRIPTION.forEach( function( levelDescription, index ) {
       self.levels.push( new LevelModel( self, levelDescription, index + 1 ) );
       self.highScores.push( new Property( 0 ) );
-    } );
-
-    this.currentLevelProperty.link( function( currentLevel ) {
-      self.isLevelScreenActive = (currentLevel > 0);
     } );
 
   }

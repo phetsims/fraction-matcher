@@ -31,6 +31,8 @@ define( function( require ) {
     ScreenView.call( this, { renderer: 'svg' } );
 
     var levelsContainerNode = new LevelsContainerNode( model );
+    levelsContainerNode.visible = false;
+    levelsContainerNode.x = model.width;
 
     var paginatorBox = new VBox( {centerX: model.width / 2, y: 10, spacing: 40, children: [
       // add header
@@ -57,9 +59,35 @@ define( function( require ) {
     this.addChild( levelsContainerNode );
     this.addChild( paginatorNode );
 
-    model.isLevelScreenActiveProperty.link( function( isActive ) {
-      paginatorNode.visible = !isActive;
-      levelsContainerNode.visible = isActive;
+    var paginatorTween = new TWEEN.Tween( paginatorNode ).onComplete( function() {
+      paginatorNode.visible = (paginatorNode.x === 0);
+    } );
+    var levelsTween = new TWEEN.Tween( levelsContainerNode ).onComplete( function() {
+      levelsContainerNode.visible = (levelsContainerNode.x === 0);
+    } );
+
+    var animateToLevels = function() {
+      paginatorTween.stop().to( {x: -model.width}, model.ANIMATION_TIME ).start();
+
+      levelsContainerNode.visible = true;
+      levelsTween.stop().to( {x: 0}, model.ANIMATION_TIME ).start();
+    };
+
+    var animateFromLevels = function() {
+      levelsTween.stop().to( {x: model.width}, model.ANIMATION_TIME ).start();
+
+      paginatorNode.visible = true;
+      paginatorTween.stop().to( {x: 0}, model.ANIMATION_TIME ).start();
+    };
+
+
+    model.currentLevelProperty.lazyLink( function( newLevel ) {
+      if ( newLevel > 0 ) {
+        animateToLevels();
+      }
+      else {
+        animateFromLevels();
+      }
     } );
 
 

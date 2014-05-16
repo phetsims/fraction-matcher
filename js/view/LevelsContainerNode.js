@@ -77,16 +77,15 @@ define( function( require ) {
       thisNode.addChild( thisNode.levelNodes[index] );
     } );
 
-    model.currentLevelProperty.link( function( newLevel, oldLevel ) {
+    model.currentLevelProperty.link( function( newLevel ) {
       if ( newLevel > 0 ) {
         //if shapes not drawn, draw shapes then show level. Made this to not generate all levels at once as it freeze simulation for 1-2 seconds
         if ( !model.levels[newLevel - 1].shapes[0].view ) {
           thisNode.levelNodes[newLevel - 1 ].generateNewLevel();
         }
-        thisNode.levelNodes[newLevel - 1 ].visible = true;
-      }
-      if ( oldLevel && oldLevel > 0 ) {
-        thisNode.levelNodes[oldLevel - 1 ].visible = false;
+        thisNode.levelNodes.forEach(function(levelNode,i) {
+          levelNode.visible= (newLevel - 1===i);
+        });
       }
     } );
 
