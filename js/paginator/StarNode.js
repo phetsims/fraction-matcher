@@ -1,4 +1,4 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2014, University of Colorado Boulder
 
 /**
  * View for a single star. Have 5 different states depends on score.
@@ -9,10 +9,10 @@
 define( function( require ) {
   "use strict";
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( 'SCENERY/nodes/Node' ),
-    Image = require( 'SCENERY/nodes/Image' );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var Image = require( 'SCENERY/nodes/Image' );
 
   function StarNode( options ) {
     var star = [ // view for different score

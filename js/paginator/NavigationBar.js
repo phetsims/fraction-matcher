@@ -1,4 +1,4 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2014, University of Colorado Boulder
 
 /**
  * View for navigation bar of paginator.
@@ -9,17 +9,17 @@
 define( function( require ) {
   "use strict";
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( 'SCENERY/nodes/Node' ),
-    Circle = require( 'SCENERY/nodes/Circle' ),
-    HBox = require( 'SCENERY/nodes/HBox' ),
-    Text = require( 'SCENERY/nodes/Text' ),
-    PhetFont = require( 'SCENERY_PHET/PhetFont' ),
-    CircleButton = require( 'FRACTION_COMMON/paginator/CircleButton' ),
-    FONT = new PhetFont( {size: 16, weight: 'bold'} );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var Circle = require( 'SCENERY/nodes/Circle' );
+  var HBox = require( 'SCENERY/nodes/HBox' );
+  var Text = require( 'SCENERY/nodes/Text' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var CircleButton = require( 'FRACTION_COMMON/paginator/CircleButton' );
 
   function NavigationBar( pages, options, pageProperty ) {
+    var FONT = new PhetFont( {size: 16, weight: 'bold'} );
     var marks = [],
       hBox = new HBox( {spacing: 15} ), // container for bar
       backButton,

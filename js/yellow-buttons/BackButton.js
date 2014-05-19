@@ -1,4 +1,4 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2014, University of Colorado Boulder
 
 /**
  * View for a back button.
@@ -9,12 +9,13 @@
 define( function( require ) {
   "use strict";
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( 'SCENERY/nodes/Node' ),
-    YellowButton = require( 'FRACTION_COMMON/yellow-buttons/YellowButton' ),
-    backImage = require( 'image!FRACTION_COMMON/images/back-button.png' ),
-    Image = require( 'SCENERY/nodes/Image' );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var YellowButton = require( 'FRACTION_COMMON/yellow-buttons/YellowButton' );
+  var Image = require( 'SCENERY/nodes/Image' );
+
+  var backImage = require( 'image!FRACTION_COMMON/images/back-button.png' );
 
   function BackButton( options, callback ) {
     Node.call( this, options );

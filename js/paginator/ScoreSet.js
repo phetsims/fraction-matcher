@@ -1,4 +1,4 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2014, University of Colorado Boulder
 
 /**
  * Object for working with score in 'Fraction Matcher' and 'Build a Fraction Game'
@@ -8,8 +8,8 @@
 define( function( require ) {
   'use strict';
 
-  var ObservableArray = require( 'AXON/ObservableArray' ),
-    inherit = require( 'PHET_CORE/inherit' );
+  var ObservableArray = require( 'AXON/ObservableArray' );
+  var inherit = require( 'PHET_CORE/inherit' );
 
   function ScoreSet( levels ) {
     ObservableArray.call( this );

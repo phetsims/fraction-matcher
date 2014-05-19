@@ -1,4 +1,4 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2014, University of Colorado Boulder
 
 /**
  * Abstract shape for the 'Build a Fraction' sim.
@@ -8,11 +8,11 @@
 define( function( require ) {
   "use strict";
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( 'SCENERY/nodes/Node' ),
-    HBox = require( 'SCENERY/nodes/HBox' ),
-    FILL_TYPE = require( 'FRACTION_COMMON/enum/FillType' );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var HBox = require( 'SCENERY/nodes/HBox' );
+  var FILL_TYPE = require( 'FRACTION_COMMON/FillType' );
 
   function AbstractShape( options ) {
     options = _.extend( {

@@ -1,4 +1,4 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2014, University of Colorado Boulder
 
 /**
  * Button for one level for the 'Build a Fraction'.
@@ -9,15 +9,16 @@
 define( function( require ) {
   "use strict";
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( 'SCENERY/nodes/Node' ),
-    Text = require( 'SCENERY/nodes/Text' ),
-    PhetFont = require( 'SCENERY_PHET/PhetFont' ),
-    Rectangle = require( 'SCENERY/nodes/Rectangle' ),
-    PushButtonDeprecated = require( 'SUN/PushButtonDeprecated' ),
-    StarBoxNode = require( 'FRACTION_COMMON/paginator/StarBoxNode' ),
-    FONT = new PhetFont( { size: 14, weight: 'bold'} );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var Text = require( 'SCENERY/nodes/Text' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var PushButton = require( 'SUN/PushButton' );
+  var StarBoxNode = require( 'FRACTION_COMMON/paginator/StarBoxNode' );
+
+  var FONT = new PhetFont( { size: 14, weight: 'bold'} );
 
   function LevelButtonNode( options, highScoreProperty ) {
     var shadowBt,
@@ -49,7 +50,7 @@ define( function( require ) {
     this.score = 0;
 
     var levelLabel = new Text( options.label, { font: FONT, centerX: 0, centerY: -(options.height / 2) + 12 } );
-    options.width = Math.max (options.width, levelLabel.width+options.padding);
+    options.width = Math.max( options.width, levelLabel.width + options.padding );
 
     // create base template
     baseBt.addChild( new Rectangle( -(options.width / 2), -(options.height / 2), options.width, options.height, options.round, options.round, {fill: options.fill, stroke: options.stroke, lineWidth: options.lineWidth} ) );
@@ -62,7 +63,7 @@ define( function( require ) {
     shadowBt = new Rectangle( -(options.width / 2) + shadowOffset.x, -(options.height / 2) + shadowOffset.y, options.width, options.height, options.round, options.round, {fill: options.stroke, stroke: options.stroke, lineWidth: options.lineWidth} );
 
     // create push button
-    this.addChild( new PushButtonDeprecated(
+    this.addChild( new PushButton(
       new Node( {children: [shadowBt, baseBt]} ),
       new Node( {children: [shadowBt, baseBt]} ),
       new Node( {children: [baseBt], x: shadowOffset.x, y: shadowOffset.y} ),

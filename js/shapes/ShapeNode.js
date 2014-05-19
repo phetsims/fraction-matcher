@@ -1,16 +1,16 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2014, University of Colorado Boulder
 
 /**
- * Shape for the 'Build a Fraction' sim.
+ * Shape for the 'Fractions' sim.
  *
  * @author Andrey Zelenkov (Mlearner)
  */
 define( function( require ) {
   "use strict";
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( 'SCENERY/nodes/Node' );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
 
   var map = {
     PIES: require( 'FRACTION_COMMON/shapes/CircleShape' ),
@@ -31,6 +31,7 @@ define( function( require ) {
   };
 
   function ShapeNode( options ) {
+    //default parameters
     options = _.extend( {
         type: 'PIES',
         x: 0,
@@ -40,15 +41,12 @@ define( function( require ) {
         numerator: 1,
         denominator: 1,
         toSimplify: false,
-        onlyPiece: false,
         fill: '#F00'
       },
       options );
-    Node.call( this, {x: options.x, y: options.y} );
-    options.x = 0;
-    options.y = 0;
 
-    this.addChild( this.shapeLink = new map[options.type]( options ) );
+    Node.call( this );
+    this.addChild( new map[options.type]( options ) );
   }
 
   return inherit( Node, ShapeNode );

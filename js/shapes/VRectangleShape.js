@@ -1,20 +1,20 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2014, University of Colorado Boulder
 
 /**
- * Rectangle with vertical lines shape graph for the 'Build a Fraction' sim.
+ * Rectangle with vertical lines shape graph for the 'Fractions' sim.
  *
  * @author Andrey Zelenkov (Mlearner)
  */
 define( function( require ) {
   "use strict";
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( 'SCENERY/nodes/Node' ),
-    AbstractShape = require( 'FRACTION_COMMON/shapes/AbstractShape' ),
-    Path = require( 'SCENERY/nodes/Path' ),
-    Line = require( 'SCENERY/nodes/Line' ),
-    Shape = require( 'KITE/Shape' );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var AbstractShape = require( 'FRACTION_COMMON/shapes/AbstractShape' );
+  var Path = require( 'SCENERY/nodes/Path' );
+  var Line = require( 'SCENERY/nodes/Line' );
+  var Shape = require( 'KITE/Shape' );
 
   function VRectangleShape( options ) {
     var pieces = [],

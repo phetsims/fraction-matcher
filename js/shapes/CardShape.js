@@ -1,7 +1,7 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2014, University of Colorado Boulder
 
 /**
- * Card shape for the 'Build a Fraction' sim.
+ * Card shape for the 'Fractions' sim.
  * Expected denominator equal to 1.
  *
  * @author Andrey Zelenkov (Mlearner)
@@ -10,13 +10,13 @@
 define( function( require ) {
   "use strict";
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( 'SCENERY/nodes/Node' ),
-    AbstractShape = require( 'FRACTION_COMMON/shapes/AbstractShape' ),
-    Rectangle = require( 'SCENERY/nodes/Rectangle' ),
-    Text = require( 'SCENERY/nodes/Text' ),
-    PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var AbstractShape = require( 'FRACTION_COMMON/shapes/AbstractShape' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var Text = require( 'SCENERY/nodes/Text' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
   function NumericSimplifiedShape( options ) {
     var width,

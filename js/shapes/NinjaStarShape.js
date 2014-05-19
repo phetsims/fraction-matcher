@@ -1,7 +1,7 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2014, University of Colorado Boulder
 
 /**
- * Ninja star shape graph for the 'Build a Fraction' sim.
+ * Ninja star shape graph for the 'Fractions' sim.
  * Denominator should be 8 or 10.
  *
  * @author Andrey Zelenkov (Mlearner)
@@ -9,13 +9,14 @@
 define( function( require ) {
   "use strict";
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    AbstractShape = require( 'FRACTION_COMMON/shapes/AbstractShape' ),
-    Path = require( 'SCENERY/nodes/Path' ),
-    Shape = require( 'KITE/Shape' ),
-    angle8 = Math.PI * 2 / 8,
-    angle10 = Math.PI * 2 / 10;
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var AbstractShape = require( 'FRACTION_COMMON/shapes/AbstractShape' );
+  var Path = require( 'SCENERY/nodes/Path' );
+  var Shape = require( 'KITE/Shape' );
+
+  var angle8 = Math.PI * 2 / 8;
+  var angle10 = Math.PI * 2 / 10;
 
   var patterns = {
     fourPoint: [

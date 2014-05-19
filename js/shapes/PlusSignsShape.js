@@ -1,7 +1,7 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2014, University of Colorado Boulder
 
 /**
- * Plus sign view for 'Build a Fraction' sim.
+ * Plus sign view for 'Fractions' sim.
  * Only for fractions with denominator equal to 6.
  *
  * @author Andrey Zelenkov (Mlearner)
@@ -9,11 +9,11 @@
 define( function( require ) {
   "use strict";
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    AbstractShape = require( 'FRACTION_COMMON/shapes/AbstractShape' ),
-    Path = require( 'SCENERY/nodes/Path' ),
-    Shape = require( 'KITE/Shape' );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var AbstractShape = require( 'FRACTION_COMMON/shapes/AbstractShape' );
+  var Path = require( 'SCENERY/nodes/Path' );
+  var Shape = require( 'KITE/Shape' );
 
   function PlusSignsShape( options ) {
     var w,

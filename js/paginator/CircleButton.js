@@ -1,4 +1,4 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2014, University of Colorado Boulder
 
 /**
  * View for "back", "next", "plus" and "minus" button in 'Build a Fraction' sim.
@@ -9,20 +9,18 @@
 define( function( require ) {
   "use strict";
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( 'SCENERY/nodes/Node' ),
-    Path = require( 'SCENERY/nodes/Path' ),
-    Shape = require( 'KITE/Shape' ),
-    Circle = require( 'SCENERY/nodes/Circle' ),
-    RadialGradient = require( 'SCENERY/util/RadialGradient' ),
-    PushButtonDeprecated = require( 'SUN/PushButtonDeprecated' );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var Path = require( 'SCENERY/nodes/Path' );
+  var Shape = require( 'KITE/Shape' );
+  var Circle = require( 'SCENERY/nodes/Circle' );
+  var RadialGradient = require( 'SCENERY/util/RadialGradient' );
+  var PushButton = require( 'SUN/PushButton' );
 
   var colors = {
     back: {from: '#ff1', to: '#ff0'},
-    next: {from: '#ff1', to: '#ff0'},
-    plus: {from: 'rgb(188,219,142)', to: 'rgb(97,143,44)'},
-    minus: {from: 'rgb(255,127,80)', to: 'rgb(165,42,42)'}
+    next: {from: '#ff1', to: '#ff0'}
   };
 
   function CircleButton( options ) {
@@ -52,7 +50,7 @@ define( function( require ) {
       shape = this.shape( options.type, radius );
     Node.call( this );
 
-    return new PushButtonDeprecated(
+    return new PushButton(
       new Node( {children: [ // default state
         circleDefault, new Path( shape, {stroke: 'black', lineCap: 'round', lineWidth: lineWidth} )]} ),
       new Node( {children: [ // hover state
@@ -74,14 +72,6 @@ define( function( require ) {
       else if ( type === 'next' ) {
         // arrow shape for next button
         shape.moveTo( -radius / 4, -radius / 2 ).lineTo( radius / 3, 0 ).lineTo( -radius / 4, radius / 2 );
-      }
-      else if ( type === 'plus' ) {
-        // shape for plus button
-        shape.moveTo( -radius / 2, 0 ).lineTo( radius / 2, 0 ).moveTo( 0, -radius / 2 ).lineTo( 0, radius / 2 );
-      }
-      else if ( type === 'minus' ) {
-        // shape for minus button
-        shape.moveTo( -radius / 2, 0 ).lineTo( radius / 2, 0 );
       }
       return shape;
     }

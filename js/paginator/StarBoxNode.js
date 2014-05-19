@@ -1,4 +1,4 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2014, University of Colorado Boulder
 
 /**
  * View for box with 3 or 4 star in bottom of level button.
@@ -9,11 +9,11 @@
 define( function( require ) {
   "use strict";
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( 'SCENERY/nodes/Node' ),
-    Rectangle = require( 'SCENERY/nodes/Rectangle' ),
-    StarNode = require( 'FRACTION_COMMON/paginator/StarNode' );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var StarNode = require( 'FRACTION_COMMON/paginator/StarNode' );
 
   function StarBoxNode( options ) {
     var starNode = new Node(),

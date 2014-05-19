@@ -1,4 +1,4 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2014, University of Colorado Boulder
 
 /**
  * Abstract class for back, reset and refresh buttons in 'Build a Fraction' sim.
@@ -9,11 +9,11 @@
 define( function( require ) {
   "use strict";
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( 'SCENERY/nodes/Node' ),
-    Rectangle = require( 'SCENERY/nodes/Rectangle' ),
-    PushButtonDeprecated = require( 'SUN/PushButtonDeprecated' );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var PushButton = require( 'SUN/PushButton' );
 
   function YellowButton( options ) {
     var width = 70,
@@ -31,7 +31,7 @@ define( function( require ) {
     base.addChild( options.label );
 
     // create push button
-    this.addChild( new PushButtonDeprecated(
+    this.addChild( new PushButton(
       new Node( {children: [shadowBt, base]} ),
       new Node( {children: [shadowBt, base]} ),
       new Node( {children: [base], x: shadowOffset.x, y: shadowOffset.y} ),

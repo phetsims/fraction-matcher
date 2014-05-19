@@ -1,7 +1,7 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2014, University of Colorado Boulder
 
 /**
- * Numeric shape for the 'Build a Fraction' sim.
+ * Numeric shape for the 'Fractions' sim.
  *
  * @author Andrey Zelenkov (Mlearner)
  */
@@ -9,14 +9,14 @@
 define( function( require ) {
   "use strict";
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( 'SCENERY/nodes/Node' ),
-    AbstractShape = require( 'FRACTION_COMMON/shapes/AbstractShape' ),
-    Path = require( 'SCENERY/nodes/Path' ),
-    Shape = require( 'KITE/Shape' ),
-    Text = require( 'SCENERY/nodes/Text' ),
-    PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var AbstractShape = require( 'FRACTION_COMMON/shapes/AbstractShape' );
+  var Path = require( 'SCENERY/nodes/Path' );
+  var Shape = require( 'KITE/Shape' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var Text = require( 'SCENERY/nodes/Text' );
 
   function NumericShape( options ) {
     var fractionNode = new Node(),

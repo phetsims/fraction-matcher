@@ -1,18 +1,18 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2014, University of Colorado Boulder
 
 /**
- * paginator for the 'Build a Fraction' screen.
+ * paginator for the 'Fractionss' screen.
  *
  * @author Andrey Zelenkov (Mlearner)
  */
 define( function( require ) {
   "use strict";
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( 'SCENERY/nodes/Node' ),
-    Page1Node = require( 'FRACTION_COMMON/paginator/Page1Node' ),
-    NavigationBar = require( 'FRACTION_COMMON/paginator/NavigationBar' );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var Page1Node = require( 'FRACTION_COMMON/paginator/Page1Node' );
+  var NavigationBar = require( 'FRACTION_COMMON/paginator/NavigationBar' );
 
   function PaginatorNode( options, pages, levelProperty, scoreArray, pageProperty, pageOptions ) {
     var self = this,

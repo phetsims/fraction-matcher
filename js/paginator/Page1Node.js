@@ -1,7 +1,7 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2014, University of Colorado Boulder
 
 /**
- * One page of paginator for the 'Build a Fraction'.
+ * One page of paginator for the 'Fractions'.
  * Contains buttons for choosing different levels.
  *
  * @author Andrey Zelenkov (Mlearner)
@@ -10,13 +10,13 @@
 define( function( require ) {
   'use strict';
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    Node = require( 'SCENERY/nodes/Node' ),
-    HBox = require( 'SCENERY/nodes/HBox' ),
-    VBox = require( 'SCENERY/nodes/VBox' ),
-    LevelButtonNode = require( 'FRACTION_COMMON/paginator/LevelButtonNode' ),
-    ShapeNode = require( 'FRACTION_COMMON/shapes/ShapeNode' );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var HBox = require( 'SCENERY/nodes/HBox' );
+  var VBox = require( 'SCENERY/nodes/VBox' );
+  var LevelButtonNode = require( 'FRACTION_COMMON/paginator/LevelButtonNode' );
+  var ShapeNode = require( 'FRACTION_COMMON/shapes/ShapeNode' );
 
   function Page1Node( pages, number, targetProperty, pageProperty, scoreArray, options ) {
     var self = this,

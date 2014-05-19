@@ -1,7 +1,7 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2014, University of Colorado Boulder
 
 /**
- * Pyramid shape graph for the 'Build a Fraction' sim.
+ * Pyramid shape graph for the 'Fractions' sim.
  * Only for fractions with denominator equal to 1, 4 or 9.
  *
  * @author Andrey Zelenkov (Mlearner)
@@ -9,11 +9,11 @@
 define( function( require ) {
   "use strict";
 
-  // imports
-  var inherit = require( 'PHET_CORE/inherit' ),
-    AbstractShape = require( 'FRACTION_COMMON/shapes/AbstractShape' ),
-    Path = require( 'SCENERY/nodes/Path' ),
-    Shape = require( 'KITE/Shape' );
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var AbstractShape = require( 'FRACTION_COMMON/shapes/AbstractShape' );
+  var Path = require( 'SCENERY/nodes/Path' );
+  var Shape = require( 'KITE/Shape' );
 
   function PyramidShape( options ) {
     var diameter,
