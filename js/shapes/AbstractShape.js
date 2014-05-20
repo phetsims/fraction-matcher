@@ -30,6 +30,11 @@ define( function( require ) {
       options );
     HBox.call( this, {resize: false, x: options.x, y: options.y} );
     this.options = options;
+
+    if ( options.create ) {
+      this.arrayToShapes( options.create.shapes, options.create.margin, options.create.outlines );
+    }
+
   }
 
   return inherit( HBox, AbstractShape, {
@@ -78,13 +83,13 @@ define( function( require ) {
       }
     },
     // convert array to shapes and add them to main container
-    arrayToShapes: function( array, offset ) {
-      var nodes = this.getNodesFromArray( array );
+    arrayToShapes: function( array, offset, outlines ) {
       this.fillShapes( array );
+      var nodes = this.getNodesFromArray( array, outlines );
       this.addNodes( nodes, offset );
     },
     // add nodes to main container
-    addNodes: function( nodes, offset, isNotToScale ) {
+    addNodes: function( nodes, offset ) {
       var self = this,
         scaleFactor;
 
@@ -100,32 +105,21 @@ define( function( require ) {
       self.updateLayout();
 
       // fit the size of shapes
-      if ( !isNotToScale ) {
-        scaleFactor = Math.min( this.options.width / this.getWidth(), this.options.height / this.getHeight() );
-        this.scale( scaleFactor );
-        this.centerX = 0;
-        this.centerY = 0;
-      }
-      else if ( self.options.type === 'PIES' ) {
-        // adjust position for not scaled pies
-        if ( this.options.denominator === 2 ) {
-          this.centerX = 0;
-        }
-        else if ( this.options.denominator === 3 ) {
-          this.centerX = offset / 2;
-        }
-        else {
-          this.centerX = offset;
-        }
-      }
+      scaleFactor = Math.min( this.options.width / this.getWidth(), this.options.height / this.getHeight() );
+      this.scale( scaleFactor );
+      this.centerX = 0;
+      this.centerY = 0;
     },
     // convert array to nodes
-    getNodesFromArray: function( array ) {
+    getNodesFromArray: function( array, outlines ) {
       var nodes = [];
       for ( var i = 0, j; i < array.length; i++ ) {
         nodes[i] = new Node();
         for ( j = 0; j < array[i].length; j++ ) {
           nodes[i].addChild( array[i][j] );
+        }
+        if ( outlines ) {
+          nodes[i].addChild( outlines[i] );
         }
       }
       return nodes;

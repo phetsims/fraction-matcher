@@ -38,16 +38,22 @@ define( function( require ) {
       pieces[i] = [];
     }
 
-    // create pieces and add them to temporary array
+    var borderPoints = [];
+    for ( i = 0; i < 6; i++ ) {
+      borderPoints.push( {x: -Math.sin( angle * (i - 1 / 2) ) / 2, y: -Math.cos( angle * (i - 1 / 2) ) / 2} );
+      borderPoints.push( {x: -Math.sin( angle * i ), y: -Math.cos( angle * i )} );
+    }
+
+    // create pieces
     for ( i = 0, len = max; i < len; i++ ) {
-      // TODO: stroke
       pieces[Math.floor( i / denominator )].push( new Path( this.getPiece( diameter / 2, angle, i ), {
         fill: 'white', stroke: options.stroke, lineWidth: 1
       } ) );
     }
 
-    // add letters to node
+    // add to node
     this.arrayToShapes( pieces, diameter / 10 );
+
   }
 
   return inherit( AbstractShape, FlowerShape, {

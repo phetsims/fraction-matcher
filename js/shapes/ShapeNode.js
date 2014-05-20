@@ -13,7 +13,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
 
   var map = {
-    PIES: require( 'FRACTION_COMMON/shapes/CircleShape' ),
+    PIES: require( 'FRACTION_COMMON/shapes/PieShape' ),
     VERTICAL_BARS: require( 'FRACTION_COMMON/shapes/VRectangleShape' ),
     HORIZONTAL_BARS: require( 'FRACTION_COMMON/shapes/HRectangleShape' ),
     POLYGON: require( 'FRACTION_COMMON/shapes/PolygonShape' ),
@@ -26,9 +26,11 @@ define( function( require ) {
     INTERLEAVED_L_SHAPES: require( 'FRACTION_COMMON/shapes/InterleavedLShape' ),
     TETRIS: require( 'FRACTION_COMMON/shapes/TetrisPieceShape' ),
     NINJA_STAR: require( 'FRACTION_COMMON/shapes/NinjaStarShape' ),
-    NUMBER: require( 'FRACTION_COMMON/shapes/NumericShape' ),
-    CARD: require( 'FRACTION_COMMON/shapes/CardShape' )
+    NUMBER: require( 'FRACTION_COMMON/shapes/NumericShape' )
   };
+
+  var Pattern = require('FRACTION_COMMON/shapes/Pattern');
+  var AbstractShape = require( 'FRACTION_COMMON/shapes/AbstractShape' );
 
   function ShapeNode( options ) {
     //default parameters
@@ -41,13 +43,27 @@ define( function( require ) {
         numerator: 1,
         denominator: 1,
         toSimplify: false,
-        fill: '#F00'
+        fill: '#F00',
+        outlineWidth: 2,
+        stroke: "#000"
       },
       options );
 
     Node.call( this );
-    this.addChild( new map[options.type]( options ) );
+
+    this.addChild( this.createShapeFromPattern(options.type, options));
   }
 
-  return inherit( Node, ShapeNode );
+  return inherit( Node, ShapeNode, {
+    createShapeFromPattern: function(shapeType, options) {
+      if(Pattern[shapeType]) {
+        options.create = Pattern.createShapes(options);
+        return new AbstractShape(options);
+      }
+      else {
+        return new map[shapeType]( options );
+      }
+
+    }
+  } );
 } );
