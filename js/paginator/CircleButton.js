@@ -16,7 +16,7 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var Circle = require( 'SCENERY/nodes/Circle' );
   var RadialGradient = require( 'SCENERY/util/RadialGradient' );
-  var PushButton = require( 'SUN/PushButton' );
+  var PushButtonDeprecated = require( 'SUN/PushButtonDeprecated' );
 
   var colors = {
     back: {from: '#ff1', to: '#ff0'},
@@ -50,7 +50,7 @@ define( function( require ) {
       shape = this.shape( options.type, radius );
     Node.call( this );
 
-    return new PushButton(
+    return new PushButtonDeprecated(
       new Node( {children: [ // default state
         circleDefault, new Path( shape, {stroke: 'black', lineCap: 'round', lineWidth: lineWidth} )]} ),
       new Node( {children: [ // hover state
