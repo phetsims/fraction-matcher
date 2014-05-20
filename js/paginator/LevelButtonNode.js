@@ -15,7 +15,7 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var PushButton = require( 'SUN/PushButton' );
+  var PushButtonDeprecated = require( 'SUN/PushButtonDeprecated' );
   var StarBoxNode = require( 'FRACTION_COMMON/paginator/StarBoxNode' );
 
   var FONT = new PhetFont( { size: 14, weight: 'bold'} );
@@ -63,12 +63,12 @@ define( function( require ) {
     shadowBt = new Rectangle( -(options.width / 2) + shadowOffset.x, -(options.height / 2) + shadowOffset.y, options.width, options.height, options.round, options.round, {fill: options.stroke, stroke: options.stroke, lineWidth: options.lineWidth} );
 
     // create push button
-    this.addChild( new PushButton(
-      new Node( {children: [shadowBt, baseBt]} ),
-      new Node( {children: [shadowBt, baseBt]} ),
-      new Node( {children: [baseBt], x: shadowOffset.x, y: shadowOffset.y} ),
-      new Node( {children: [baseBt]} ),
-      {listener: options.callback} )
+    this.addChild( new PushButtonDeprecated(
+        new Node( {children: [shadowBt, baseBt]} ),
+        new Node( {children: [shadowBt, baseBt]} ),
+        new Node( {children: [baseBt], x: shadowOffset.x, y: shadowOffset.y} ),
+        new Node( {children: [baseBt]} ),
+        {listener: options.callback} )
     );
 
     highScoreProperty.link( function( newHighScore ) {
