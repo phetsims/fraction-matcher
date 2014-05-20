@@ -13,11 +13,11 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
   var PaginatorNode = require( 'FRACTION_COMMON/paginator/PaginatorNode' );
 
   // strings
   var patternLevelString = require( 'string!FRACTION_COMMON/patternLevel' );
+  var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
 
   function Paginator( model, options ) {
     var mixedNumber = (model.game === mixedNumbersTitleString);
