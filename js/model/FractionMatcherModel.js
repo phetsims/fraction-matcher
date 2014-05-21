@@ -61,6 +61,7 @@ define( function( require ) {
   }
 
   inherit( PropertySet, MatchingGameModel, {
+
     // Resets all model elements
     reset: function() {
       PropertySet.prototype.reset.call( this );
@@ -68,6 +69,7 @@ define( function( require ) {
         highScore.reset();
       } );
     },
+
     step: function( dt ) {
       if ( this.currentLevel > 0 ) {
         this.levels[this.currentLevel - 1].step( dt );

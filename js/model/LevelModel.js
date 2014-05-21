@@ -61,7 +61,7 @@ define( function( require ) {
     // return filtered shapes set for the selected denominator, from java model
     filterShapes: function( shapes, d ) {
       var arr = [],
-        //rules if shape_type can be used for denominator d
+      //rules if shape_type can be used for denominator d
         map = {
           PIES: true,
           HORIZONTAL_BARS: d < 9,
@@ -78,9 +78,9 @@ define( function( require ) {
         };
 
       // move through all possible shapes and add it if filter through map
-      shapes.forEach( function( shape) {
-        if ( map[shape]) {
-          arr.push(shape);
+      shapes.forEach( function( shape ) {
+        if ( map[shape] ) {
+          arr.push( shape );
         }
       } );
 
@@ -150,7 +150,7 @@ define( function( require ) {
             }
             self.stepScore--;
             this.buttonStatus = (self.stepScore) ? "tryAgain" : "showAnswer";
-            this.lastPair = [this.dropZone[12],this.dropZone[13]];
+            this.lastPair = [this.dropZone[12], this.dropZone[13]];
           }
           this.canDrag = false;
           break;
