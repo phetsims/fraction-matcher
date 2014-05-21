@@ -11,10 +11,10 @@ define( function( require ) {
   /**
    *  @param {String}  type of shape (PIES, HORIZONTAL_BARS, etc)
    *  @param {Array} fraction of shape [1,2] corresponds for 1/2 fraction
-   *  @param {Number} scale, multiply numerator and denominator by scaleFactor
+   *  @param {Number} scaleFactor multiply numerator and denominator by scaleFactor
    *  @param {String} fill color of shape
-   *  @param {FRACTION_MATCHER/FillType} type of filling piece(SEQUENTIAL, MIXED, etc)
-   *  @param {Boolean} whether we must show shape in form of 13/5 or 2 3/5
+   *  @param {FillType} fillType of filling piece(SEQUENTIAL, MIXED, etc)
+   *  @param {Boolean} toSimplify whether we must show shape in form of 13/5 or 2 3/5
    * */
 
   function SingleShapeModel( type, fraction, scaleFactor, fill, fillType, toSimplify ) {
@@ -27,11 +27,14 @@ define( function( require ) {
     this.toSimplify = toSimplify;
     this.fill = fill;
     this.fillType = fillType;
+
     //dropZone - index of rectangle at the bottom in LevelNode where this shape currently placed
     this.dropZone = -1;
+
     //width and height of view of current shape, required for creating view of shape
     this.width = 60;
     this.height = 60;
+
     if ( this.numerator / this.denominator > 1 ) {
       this.width = 80;
       this.height = 80;
