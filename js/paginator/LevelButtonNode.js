@@ -64,11 +64,11 @@ define( function( require ) {
 
     // create push button
     this.addChild( new PushButtonDeprecated(
-      new Node( {children: [shadowBt, baseBt]} ),
-      new Node( {children: [shadowBt, baseBt]} ),
-      new Node( {children: [baseBt], x: shadowOffset.x, y: shadowOffset.y} ),
-      new Node( {children: [baseBt]} ),
-      {listener: options.callback} )
+        new Node( {children: [shadowBt, baseBt]} ),
+        new Node( {children: [shadowBt, baseBt]} ),
+        new Node( {children: [baseBt], x: shadowOffset.x, y: shadowOffset.y} ),
+        new Node( {children: [baseBt]} ),
+        {listener: options.callback} )
     );
 
     highScoreProperty.link( function( newHighScore ) {
