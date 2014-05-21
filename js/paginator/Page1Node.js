@@ -39,7 +39,7 @@ define( function( require ) {
     // add level buttons
     for ( i = 0; i < pages.length; i++ ) {
       levelNumber = i + number * pages.length;
-      (i >= pages.length / 2 ? hBoxBottom : hBoxTop).addChild( new LevelButtonNode( {
+      (i >= pages.length / 2 ? hBoxBottom : hBoxTop).addChild( new LevelButtonNode( scoreArray[levelNumber], {
         width: pages[i].width || 90,
         height: pages[i].height || 150,
         starCount: number > 0 ? 4 : 3,
@@ -53,7 +53,7 @@ define( function( require ) {
           height: 50
         }, pages[i].shape ) ),
         callback: getCallback( targetProperty, pages[i].value )
-      }, scoreArray[levelNumber] ) );
+      } ) );
       (i >= pages.length / 2 ? hBoxBottom : hBoxTop).updateLayout();
       vBox.updateLayout();
     }

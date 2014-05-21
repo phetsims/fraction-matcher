@@ -20,7 +20,7 @@ define( function( require ) {
 
   var FONT = new PhetFont( { size: 14, weight: 'bold'} );
 
-  function LevelButtonNode( options, highScoreProperty ) {
+  function LevelButtonNode( highScoreProperty, options ) {
     var shadowBt,
       starBox,
       baseBt = new Node(),
