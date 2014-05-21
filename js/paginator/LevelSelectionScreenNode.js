@@ -18,7 +18,7 @@ define( function( require ) {
   var LevelButtonNode = require( 'FRACTION_MATCHER/paginator/LevelButtonNode' );
   var ShapeNode = require( 'FRACTION_MATCHER/shapes/ShapeNode' );
 
-  function Page1Node( pages, number, targetProperty, pageProperty, scoreArray, options ) {
+  function LevelSelectionScreenNode( pages, number, targetProperty, pageProperty, scoreArray, options ) {
     var self = this,
       hBoxTop,
       hBoxBottom,
@@ -69,5 +69,5 @@ define( function( require ) {
     return function() {targetProperty.set( value );};
   };
 
-  return inherit( Node, Page1Node );
+  return inherit( Node, LevelSelectionScreenNode );
 } );

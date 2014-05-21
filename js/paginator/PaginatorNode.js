@@ -11,14 +11,14 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var Page1Node = require( 'FRACTION_MATCHER/paginator/Page1Node' );
+  var LevelSelectionScreenNode = require( 'FRACTION_MATCHER/paginator/LevelSelectionScreenNode' );
 
   function PaginatorNode( options, pages, levelProperty, scoreArray, pageProperty, pageOptions ) {
     Node.call( this, options );
 
     // add pages
     for ( var i = 0; i < pages.length; i++ ) {
-      this.addChild( new Page1Node( pages[i], i, levelProperty, pageProperty, scoreArray, pageOptions ) );
+      this.addChild( new LevelSelectionScreenNode( pages[i], i, levelProperty, pageProperty, scoreArray, pageOptions ) );
     }
   }
 
