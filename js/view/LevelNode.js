@@ -171,7 +171,8 @@ define( function( require ) {
         allowTouchSnag: true,
         start: startDrag,
         drag: moveDrag,
-        end: endDrag
+        end: endDrag,
+        dragCursor:null
       };
 
     //container for all shapes on the screen
