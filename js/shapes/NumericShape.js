@@ -32,8 +32,7 @@ define( function( require ) {
       integralPartWidth,
       integralPartLength;
 
-    AbstractShape.call( this, options );
-    options = this.options;
+    Node.call( this, options );
     numerator = options.numerator;
     denominator = options.denominator;
     integralPart = Math.floor( numerator / denominator );
@@ -72,7 +71,7 @@ define( function( require ) {
     }
   }
 
-  return inherit( AbstractShape, NumericShape, {
+  return inherit( Node, NumericShape, {
     getFractionNode: function( numerator, denominator, side, fontSizeSmall ) {
       var line = new Shape().moveTo( -fontSizeSmall / 2, 0 ).lineTo( fontSizeSmall / 2, 0 ),
         fractionNode = new Node( {children: [

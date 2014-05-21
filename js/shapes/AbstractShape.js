@@ -16,37 +16,18 @@ define( function( require ) {
 
   function AbstractShape( options ) {
     options = _.extend( {
-        x: 0,
-        y: 0,
-        width: 100,
-        height: 100,
-        numerator: 1,  // numerator / denominator
-        denominator: 1, // numerator <= denominator
-        fill: "#F00",
-        freeFill: "#FFF",
-        fillType: FILL_TYPE.SEQUENTIAL,
-        stroke: "#000"
+        fillType: FILL_TYPE.SEQUENTIAL
       },
       options );
     HBox.call( this, {resize: false, x: options.x, y: options.y} );
     this.options = options;
 
-    if ( options.create ) {
-      this.arrayToShapes( options.create.shapes, options.create.margin, options.create.outlines );
-    }
+    //created all paths from pattern, fill with colors and add to container
+    this.arrayToShapes( options.createdPaths.shapes, options.createdPaths.margin, options.createdPaths.outlines );
 
   }
 
   return inherit( HBox, AbstractShape, {
-    // function for drawing shapes
-    pointsToShape: function( s, array, size ) {
-      size = size || 1;
-      for ( var i = 0; i < array.length; i++ ) {
-        s.lineTo( array[i].x * size, array[i].y * size );
-      }
-      s.close();
-      return s;
-    },
     // fill shapes depending on fillType value
     fillShapes: function( arrays ) {
       if ( arrays.length ) {

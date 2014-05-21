@@ -11,15 +11,8 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-
-  var map = {
-    GRID: require( 'FRACTION_COMMON/shapes/GridShape' ),
-    INTERLEAVED_L_SHAPES: require( 'FRACTION_COMMON/shapes/InterleavedLShape' ),
-    TETRIS: require( 'FRACTION_COMMON/shapes/TetrisPieceShape' ),
-    NUMBER: require( 'FRACTION_COMMON/shapes/NumericShape' )
-  };
-
-  var Pattern = require('FRACTION_COMMON/shapes/Pattern');
+  var NumericShape = require( 'FRACTION_COMMON/shapes/NumericShape' );
+  var Pattern = require( 'FRACTION_COMMON/shapes/Pattern' );
   var AbstractShape = require( 'FRACTION_COMMON/shapes/AbstractShape' );
 
   function ShapeNode( options ) {
@@ -41,19 +34,18 @@ define( function( require ) {
 
     Node.call( this );
 
-    this.addChild( this.createShapeFromPattern(options.type, options));
+    this.addChild( this.createShapeFromPattern( options.type, options ) );
   }
 
   return inherit( Node, ShapeNode, {
-    createShapeFromPattern: function(shapeType, options) {
-      if(Pattern[shapeType]) {
-        options.create = Pattern.createShapes(options);
-        return new AbstractShape(options);
+    createShapeFromPattern: function( shapeType, options ) {
+      if ( shapeType === 'NUMBER' ) {
+        return new NumericShape( options );
       }
       else {
-        return new map[shapeType]( options );
+        options.createdPaths = Pattern.createShapes( options );
+        return new AbstractShape( options );
       }
-
     }
   } );
 } );

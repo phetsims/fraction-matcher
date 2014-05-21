@@ -435,6 +435,124 @@ define( function( require ) {
         shapes: shapes,
         outlines: outlines
       };
+    },
+    GRID: function( shapes, outlines, options ) {
+      var d = Math.sqrt( options.denominator ); // dimension of grid
+      var size = options.diameter / d; // size of one piece
+      for ( var i = 0, l = shapes.length; i < l; i++ ) {
+        for ( var j = 0; j < options.denominator; j++ ) {
+          shapes[i].push( new Path( new Shape.rect( 0, 0, size, size ), {
+            x: j % d * size, y: Math.floor( j / d ) * size, fill: 'white', stroke: options.stroke, lineWidth: 1
+          } ) );
+        }
+        //outlines
+        outlines.push( new Path( new Shape.rect( 0, 0, options.width, options.height ), {stroke: options.stroke, lineWidth: options.outlineWidth} ) );
+      }
+      return {
+        shapes: shapes,
+        outlines: outlines
+      };
+    },
+    TETRIS: function( shapes, outlines, options ) {
+      var size = options.diameter / 4; //size of 1 square, each tetris piece contains 4 squares
+      var pointsMap = [
+        [
+          {x: 0, y: 0},
+          {x: 3, y: 0},
+          {x: 3, y: 1},
+          {x: 2, y: 1},
+          {x: 2, y: 2},
+          {x: 1, y: 2},
+          {x: 1, y: 1},
+          {x: 0, y: 1},
+          {x: 0, y: 0}
+        ],
+        [
+          {x: 3, y: 0},
+          {x: 4, y: 0},
+          {x: 4, y: 3},
+          {x: 3, y: 3},
+          {x: 3, y: 2},
+          {x: 2, y: 2},
+          {x: 2, y: 1},
+          {x: 3, y: 1},
+          {x: 3, y: 0}
+        ],
+        [
+          {x: 4, y: 3},
+          {x: 4, y: 4},
+          {x: 1, y: 4},
+          {x: 1, y: 3},
+          {x: 2, y: 3},
+          {x: 2, y: 2},
+          {x: 3, y: 2},
+          {x: 3, y: 3},
+          {x: 4, y: 3}
+        ],
+        [
+          {x: 0, y: 4},
+          {x: 0, y: 1},
+          {x: 1, y: 1},
+          {x: 1, y: 2},
+          {x: 2, y: 2},
+          {x: 2, y: 3},
+          {x: 1, y: 3},
+          {x: 1, y: 4},
+          {x: 0, y: 4}
+        ]
+      ];
+      for ( var i = 0, l = shapes.length; i < l; i++ ) {
+        for ( var j = 0; j < options.denominator; j++ ) {
+          shapes[i].push( new Path( Pattern.pointsToShape( new Shape(), pointsMap[j], size ), {
+            fill: 'white', stroke: options.stroke, lineWidth: 1
+          } ) );
+        }
+        //outlines
+        outlines.push( new Path( new Shape.rect( 0, 0, options.width, options.height ), {stroke: options.stroke, lineWidth: options.outlineWidth} ) );
+      }
+      return {
+        shapes: shapes,
+        outlines: outlines
+      };
+    },
+    INTERLEAVED_L_SHAPES: function( shapes, outlines, options ) {
+      var size = 2 * options.diameter / options.denominator; //size of 1 square, each tetris piece contains 4 squares
+      var pointsMap = {
+        left: [
+          {x: 0, y: 0},
+          {x: 1 / 3, y: 0},
+          {x: 1 / 3, y: 1 / 2},
+          {x: 2 / 3, y: 1 / 2},
+          {x: 2 / 3, y: 1},
+          {x: 0, y: 1},
+          {x: 0, y: 0}
+        ],
+        right: [
+          {x: 1, y: 0},
+          {x: 1, y: 1},
+          {x: 2 / 3, y: 1},
+          {x: 2 / 3, y: 1 / 2},
+          {x: 1 / 3, y: 1 / 2},
+          {x: 1 / 3, y: 0},
+          {x: 1, y: 0}
+        ]
+      };
+      for ( var i = 0, l = shapes.length; i < l; i++ ) {
+        for ( var j = 0; j < options.denominator / 2; j++ ) {
+          shapes[i].push( new Path( Pattern.pointsToShape( new Shape(), pointsMap.left, size ), {
+            x: j * size, fill: 'white', stroke: options.stroke, lineWidth: 1
+          } ) );
+          shapes[i].push( new Path( Pattern.pointsToShape( new Shape(), pointsMap.right, size ), {
+            x: j * size, fill: 'white', stroke: options.stroke, lineWidth: 1
+          } ) );
+        }
+        //outlines
+        outlines.push( new Path( new Shape.rect( 0, 0, options.width, options.height / 2 ), {stroke: options.stroke, lineWidth: options.outlineWidth} ) );
+      }
+      return {
+        shapes: shapes,
+        outlines: outlines
+      };
     }
   };
 
