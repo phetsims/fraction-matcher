@@ -15,6 +15,7 @@ define( function( require ) {
   var YellowButton = require( 'FRACTION_MATCHER/view/YellowButton' );
   var Image = require( 'SCENERY/nodes/Image' );
 
+  // images
   var backImage = require( 'image!FRACTION_MATCHER/images/back-button.png' );
 
   function BackButton( options, callback ) {
