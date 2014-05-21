@@ -11,9 +11,9 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var NumericShape = require( 'FRACTION_COMMON/shapes/NumericShape' );
-  var Pattern = require( 'FRACTION_COMMON/shapes/Pattern' );
-  var AbstractShape = require( 'FRACTION_COMMON/shapes/AbstractShape' );
+  var NumericShape = require( 'FRACTION_MATCHER/shapes/NumericShape' );
+  var Pattern = require( 'FRACTION_MATCHER/shapes/Pattern' );
+  var AbstractShape = require( 'FRACTION_MATCHER/shapes/AbstractShape' );
 
   function ShapeNode( options ) {
     //default parameters

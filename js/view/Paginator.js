@@ -13,10 +13,10 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  var PaginatorNode = require( 'FRACTION_COMMON/paginator/PaginatorNode' );
+  var PaginatorNode = require( 'FRACTION_MATCHER/paginator/PaginatorNode' );
 
   // strings
-  var patternLevelString = require( 'string!FRACTION_COMMON/patternLevel' );
+  var patternLevelString = require( 'string!FRACTION_MATCHER/patternLevel' );
   var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
 
   function Paginator( model, options ) {

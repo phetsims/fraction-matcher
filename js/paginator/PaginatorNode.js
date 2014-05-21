@@ -11,8 +11,8 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var Page1Node = require( 'FRACTION_COMMON/paginator/Page1Node' );
-  var NavigationBar = require( 'FRACTION_COMMON/paginator/NavigationBar' );
+  var Page1Node = require( 'FRACTION_MATCHER/paginator/Page1Node' );
+  var NavigationBar = require( 'FRACTION_MATCHER/paginator/NavigationBar' );
 
   function PaginatorNode( options, pages, levelProperty, scoreArray, pageProperty, pageOptions ) {
     var self = this,

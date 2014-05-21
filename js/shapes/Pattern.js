@@ -558,9 +558,9 @@ define( function( require ) {
   };
 
   /*
-   GRID: require( 'FRACTION_COMMON/shapes/GridShape' ),
-   INTERLEAVED_L_SHAPES: require( 'FRACTION_COMMON/shapes/InterleavedLShape' ),
-   TETRIS: require( 'FRACTION_COMMON/shapes/TetrisPieceShape' ),
+   GRID: require( 'FRACTION_MATCHER/shapes/GridShape' ),
+   INTERLEAVED_L_SHAPES: require( 'FRACTION_MATCHER/shapes/InterleavedLShape' ),
+   TETRIS: require( 'FRACTION_MATCHER/shapes/TetrisPieceShape' ),
    */
 
 

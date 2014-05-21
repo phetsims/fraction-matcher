@@ -13,7 +13,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var StarNode = require( 'FRACTION_COMMON/paginator/StarNode' );
+  var StarNode = require( 'FRACTION_MATCHER/paginator/StarNode' );
 
   function StarBoxNode( options ) {
     var starNode = new Node(),

@@ -16,8 +16,8 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Image = require( 'SCENERY/nodes/Image' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var BackButton = require( 'FRACTION_COMMON/yellow-buttons/BackButton' );
-  var RefreshButton = require( 'FRACTION_COMMON/yellow-buttons/RefreshButton' );
+  var BackButton = require( 'FRACTION_MATCHER/yellow-buttons/BackButton' );
+  var RefreshButton = require( 'FRACTION_MATCHER/yellow-buttons/RefreshButton' );
   var LevelNode = require( 'FRACTION_MATCHER/view/LevelNode' );
 
   // strings
@@ -83,9 +83,9 @@ define( function( require ) {
         if ( !model.levels[newLevel - 1].shapes[0].view ) {
           thisNode.levelNodes[newLevel - 1 ].generateNewLevel();
         }
-        thisNode.levelNodes.forEach(function(levelNode,i) {
-          levelNode.visible= (newLevel - 1===i);
-        });
+        thisNode.levelNodes.forEach( function( levelNode, i ) {
+          levelNode.visible = (newLevel - 1 === i);
+        } );
       }
     } );
 

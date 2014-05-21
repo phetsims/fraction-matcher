@@ -16,11 +16,11 @@ define( function( require ) {
 
   function StarNode( options ) {
     var star = [ // view for different score
-      new Image( require( 'image!FRACTION_COMMON/images/star-0.png' ) ),
-      new Image( require( 'image!FRACTION_COMMON/images/star-1.png' ) ),
-      new Image( require( 'image!FRACTION_COMMON/images/star-2.png' ) ),
-      new Image( require( 'image!FRACTION_COMMON/images/star-3.png' ) ),
-      new Image( require( 'image!FRACTION_COMMON/images/star-4.png' ) )
+      new Image( require( 'image!FRACTION_MATCHER/images/star-0.png' ) ),
+      new Image( require( 'image!FRACTION_MATCHER/images/star-1.png' ) ),
+      new Image( require( 'image!FRACTION_MATCHER/images/star-2.png' ) ),
+      new Image( require( 'image!FRACTION_MATCHER/images/star-3.png' ) ),
+      new Image( require( 'image!FRACTION_MATCHER/images/star-4.png' ) )
     ];
 
     Node.call( this, {x: options.x, y: options.y} );

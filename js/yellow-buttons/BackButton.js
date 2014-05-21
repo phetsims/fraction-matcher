@@ -12,10 +12,10 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var YellowButton = require( 'FRACTION_COMMON/yellow-buttons/YellowButton' );
+  var YellowButton = require( 'FRACTION_MATCHER/yellow-buttons/YellowButton' );
   var Image = require( 'SCENERY/nodes/Image' );
 
-  var backImage = require( 'image!FRACTION_COMMON/images/back-button.png' );
+  var backImage = require( 'image!FRACTION_MATCHER/images/back-button.png' );
 
   function BackButton( options, callback ) {
     Node.call( this, options );

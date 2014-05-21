@@ -9,7 +9,7 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var FILL_TYPE = require( 'FRACTION_COMMON/FillType' );
+  var FILL_TYPE = require( 'FRACTION_MATCHER/FillType' );
 
   //colors
   var COLORS = {

@@ -12,7 +12,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var HBox = require( 'SCENERY/nodes/HBox' );
-  var FILL_TYPE = require( 'FRACTION_COMMON/FillType' );
+  var FILL_TYPE = require( 'FRACTION_MATCHER/FillType' );
 
   function AbstractShape( options ) {
     options = _.extend( {

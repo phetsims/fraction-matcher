@@ -16,7 +16,7 @@ define( function( require ) {
   var HBox = require( 'SCENERY/nodes/HBox' );
   var Text = require( 'SCENERY/nodes/Text' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var CircleButton = require( 'FRACTION_COMMON/paginator/CircleButton' );
+  var CircleButton = require( 'FRACTION_MATCHER/paginator/CircleButton' );
 
   function NavigationBar( pages, options, pageProperty ) {
     var FONT = new PhetFont( {size: 16, weight: 'bold'} );

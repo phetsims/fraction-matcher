@@ -16,7 +16,7 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var PushButtonDeprecated = require( 'SUN/PushButtonDeprecated' );
-  var StarBoxNode = require( 'FRACTION_COMMON/paginator/StarBoxNode' );
+  var StarBoxNode = require( 'FRACTION_MATCHER/paginator/StarBoxNode' );
 
   var FONT = new PhetFont( { size: 14, weight: 'bold'} );
 

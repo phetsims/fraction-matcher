@@ -13,7 +13,7 @@ define( function( require ) {
    *  @param {Array} fraction of shape [1,2] corresponds for 1/2 fraction
    *  @param {Number} scale, multiply numerator and denominator by scaleFactor
    *  @param {String} fill color of shape
-   *  @param {FRACTION_COMMON/FillType} type of filling piece(SEQUENTIAL, MIXED, etc)
+   *  @param {FRACTION_MATCHER/FillType} type of filling piece(SEQUENTIAL, MIXED, etc)
    *  @param {Boolean} whether we must show shape in form of 13/5 or 2 3/5
    * */
 

@@ -12,11 +12,11 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var YellowButton = require( 'FRACTION_COMMON/yellow-buttons/YellowButton' );
+  var YellowButton = require( 'FRACTION_MATCHER/yellow-buttons/YellowButton' );
   var Image = require( 'SCENERY/nodes/Image' );
 
   //images
-  var refreshImage = require( 'image!FRACTION_COMMON/images/view-refresh.png' );
+  var refreshImage = require( 'image!FRACTION_MATCHER/images/view-refresh.png' );
 
   function RefreshButton( options, callback ) {
     var image = new Image( refreshImage, {scale: 0.25} );

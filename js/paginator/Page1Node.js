@@ -15,8 +15,8 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var HBox = require( 'SCENERY/nodes/HBox' );
   var VBox = require( 'SCENERY/nodes/VBox' );
-  var LevelButtonNode = require( 'FRACTION_COMMON/paginator/LevelButtonNode' );
-  var ShapeNode = require( 'FRACTION_COMMON/shapes/ShapeNode' );
+  var LevelButtonNode = require( 'FRACTION_MATCHER/paginator/LevelButtonNode' );
+  var ShapeNode = require( 'FRACTION_MATCHER/shapes/ShapeNode' );
 
   function Page1Node( pages, number, targetProperty, pageProperty, scoreArray, options ) {
     var self = this,

@@ -15,7 +15,7 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var equallyAnswerSymbolString = require( 'string!FRACTION_MATCHER/equallyAnswerSymbol' );
-  var ShapeNode = require( 'FRACTION_COMMON/shapes/ShapeNode' );
+  var ShapeNode = require( 'FRACTION_MATCHER/shapes/ShapeNode' );
   var TextPushButton = require( 'SUN/buttons/TextPushButton' );
   var FaceWithScoreNode = require( 'SCENERY_PHET/FaceWithScoreNode' );
   var ComparisonChartNode = require( 'FRACTION_MATCHER/view/ComparisonChartNode' );
