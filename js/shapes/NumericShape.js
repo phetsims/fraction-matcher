@@ -33,8 +33,8 @@ define( function( require ) {
       integralPartLength;
 
     Node.call( this, options );
-    numerator = options.numerator;
-    denominator = options.denominator;
+    numerator = options.numerator*options.scaleFactor;
+    denominator = options.denominator*options.scaleFactor;
     integralPart = Math.floor( numerator / denominator );
     fontSizeSmall = options.fontSize || 32;
     fontSizeBig = fontSizeSmall * 2.2;
