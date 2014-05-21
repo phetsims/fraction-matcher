@@ -11,17 +11,19 @@ define( function( require ) {
   /**
    *  @param {String}  type of shape (PIES, HORIZONTAL_BARS, etc)
    *  @param {Array} fraction of shape [1,2] corresponds for 1/2 fraction
+   *  @param {Number} scale, multiply numerator and denominator by scaleFactor
    *  @param {String} fill color of shape
    *  @param {FRACTION_COMMON/FillType} type of filling piece(SEQUENTIAL, MIXED, etc)
    *  @param {Boolean} whether we must show shape in form of 13/5 or 2 3/5
    * */
 
-  function SingleShapeModel( type, fraction, fill, fillType, toSimplify ) {
+  function SingleShapeModel( type, fraction, scaleFactor, fill, fillType, toSimplify ) {
     this.x = 0;
     this.y = 0;
     this.type = type;
     this.numerator = fraction[0];
     this.denominator = fraction[1];
+    this.scaleFactor = scaleFactor;
     this.toSimplify = toSimplify;
     this.fill = fill;
     this.fillType = fillType;
