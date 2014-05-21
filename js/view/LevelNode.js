@@ -17,7 +17,7 @@ define( function( require ) {
   var equallyAnswerSymbolString = require( 'string!FRACTION_MATCHER/equallyAnswerSymbol' );
   var ShapeNode = require( 'FRACTION_COMMON/shapes/ShapeNode' );
   var TextPushButton = require( 'SUN/buttons/TextPushButton' );
-  var SmileNode = require( 'FRACTION_MATCHER/view/SmileNode' );
+  var FaceWithScoreNode = require( 'SCENERY_PHET/FaceWithScoreNode' );
   var ComparisonChartNode = require( 'FRACTION_MATCHER/view/ComparisonChartNode' );
   var GameOverNode = require( 'FRACTION_MATCHER/view/GameOverNode' );
   var VBox = require( 'SCENERY/nodes/VBox' );
@@ -25,7 +25,7 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
   var Vector2 = require( 'DOT/Vector2' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
-  var platform = require('PHET_CORE/platform');
+  var platform = require( 'PHET_CORE/platform' );
 
   // strings
   var buttonCheckString = require( 'string!FRACTION_MATCHER/buttonCheck' );
@@ -59,7 +59,16 @@ define( function( require ) {
     thisNode.addChild( vBox );
 
     //drawing smile
-    var smile = new SmileNode( {centerX: 105, centerY: 190} );
+    var smile = new FaceWithScoreNode( {
+      faceDiameter: 100,
+      faceOpacity: 1,
+      scoreFill: 'black',
+      centerX: 105,
+      centerY: 190,
+      scoreAlignment: 'bottom',
+      scoreTextSize: 20,
+      scoreStroke: null
+    } );
     thisNode.addChild( smile );
 
     //drawing left part buttons: check, ok, tryAgain, showAnswer
@@ -132,8 +141,8 @@ define( function( require ) {
           event.currentTarget.moveToFront();
           offsetCursor = {x: thisNode.globalToParentPoint( event.pointer.point ).x - event.currentTarget.x, y: thisNode.globalToParentPoint( event.pointer.point ).y - event.currentTarget.y};
           //if touch device show shape above the pointer
-          if(platform.mobileSafari) {
-            offsetCursor.y+=50;
+          if ( platform.mobileSafari ) {
+            offsetCursor.y += 50;
           }
           model.dropZone[model.shapes[event.currentTarget.indexShape].dropZone] = -1;
           if ( model.lastChangedZone === model.shapes[event.currentTarget.indexShape].dropZone ) {
@@ -173,7 +182,7 @@ define( function( require ) {
         start: startDrag,
         drag: moveDrag,
         end: endDrag,
-        dragCursor:null
+        dragCursor: null
       };
 
     //container for all shapes on the screen
@@ -218,10 +227,12 @@ define( function( require ) {
       buttonTryAgain.setVisible( value === 'tryAgain' );
       buttonShowAnswer.setVisible( value === 'showAnswer' );
       if ( model.buttonStatus === 'ok' ) {
-        smile.setValue( model.stepScore );
+        smile.setScore( model.stepScore );
+        smile.visible = model.stepScore > 0;
       }
       else {
-        smile.setValue( 0 );
+        smile.setScore( 0 );
+        smile.visible = false;
       }
       if ( model.buttonStatus !== 'none' ) {
         thisNode.comparisonChart.reset();
@@ -254,9 +265,9 @@ define( function( require ) {
 
     model.canDragProperty.lazyLink( function( canDrag ) {
       var cursor = canDrag ? 'pointer' : 'default';
-      model.shapes.forEach(function(shape){
+      model.shapes.forEach( function( shape ) {
         shape.view.cursor = cursor;
-      })
+      } )
     } );
 
     this.mutate( options );
@@ -333,7 +344,7 @@ define( function( require ) {
         [0, 1].forEach( function( i ) {
           var shape = thisNode.model.shapes[thisNode.model.dropZone[thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i]];
           var newPosition = thisNode.getShapeAnswerPosition( thisNode.model.answers.length );
-          new TWEEN.Tween( shape.view ).to( { x: newPosition.x, y: newPosition.y }, thisNode.model.gameModel.ANIMATION_TIME ).onUpdate(function( step ) {
+          new TWEEN.Tween( shape.view ).to( { x: newPosition.x, y: newPosition.y }, thisNode.model.gameModel.ANIMATION_TIME ).onUpdate( function( step ) {
             shape.view.scale( (1 - step * 0.5) / shape.view.matrix.scaleVector.x );
           } ).start();
           thisNode.model.answers.push( thisNode.model.dropZone[thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i] );
