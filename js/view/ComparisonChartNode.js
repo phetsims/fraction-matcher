@@ -120,10 +120,10 @@ define( function( require ) {
       var targetLeftY = left.getAnswer() * 70;
       var targetRightY = right.getAnswer() * 70;
 
-      rectLeftTween.to( { y: -targetLeftY  }, gameModel.ANIMATION_TIME ).onUpdate(function( step ) {
+      rectLeftTween.to( { y: -targetLeftY  }, gameModel.ANIMATION_TIME ).onUpdate( function( step ) {
         rectLeft.setRectHeight( targetLeftY * step );
       } ).start();
-      rectRightTween.to( { y: -targetRightY}, gameModel.ANIMATION_TIME ).onUpdate(function( step ) {
+      rectRightTween.to( { y: -targetRightY}, gameModel.ANIMATION_TIME ).onUpdate( function( step ) {
         rectRight.setRectHeight( targetRightY * step );
       } ).start();
 
