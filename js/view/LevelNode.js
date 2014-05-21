@@ -268,7 +268,7 @@ define( function( require ) {
       var cursor = canDrag ? 'pointer' : 'default';
       model.shapes.forEach( function( shape ) {
         shape.view.cursor = cursor;
-      } )
+      } );
     } );
 
     this.mutate( options );
