@@ -26,7 +26,7 @@ define( function( require ) {
 
   function MatchingGameModel( width, height, game ) {
     var self = this,
-      CONSTANTS = (this.game === mixedNumbersTitleString) ? MixedNumbersConstants : Constants;
+      CONSTANTS = (game === mixedNumbersTitleString) ? MixedNumbersConstants : Constants;
 
     // dimensions of the model's space
     this.width = width;
