@@ -14,13 +14,20 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Image = require( 'SCENERY/nodes/Image' );
 
+  // images
+  var star0Image = require( 'image!FRACTION_MATCHER/images/star-0.png' );
+  var star1Image = require( 'image!FRACTION_MATCHER/images/star-1.png' );
+  var star2Image = require( 'image!FRACTION_MATCHER/images/star-2.png' );
+  var star3Image = require( 'image!FRACTION_MATCHER/images/star-3.png' );
+  var star4Image = require( 'image!FRACTION_MATCHER/images/star-4.png' );
+
   function StarNode( options ) {
     var star = [ // view for different score
-      new Image( require( 'image!FRACTION_MATCHER/images/star-0.png' ) ),
-      new Image( require( 'image!FRACTION_MATCHER/images/star-1.png' ) ),
-      new Image( require( 'image!FRACTION_MATCHER/images/star-2.png' ) ),
-      new Image( require( 'image!FRACTION_MATCHER/images/star-3.png' ) ),
-      new Image( require( 'image!FRACTION_MATCHER/images/star-4.png' ) )
+      new Image( star0Image ),
+      new Image( star1Image ),
+      new Image( star2Image ),
+      new Image( star3Image ),
+      new Image( star4Image )
     ];
 
     Node.call( this, {x: options.x, y: options.y} );
