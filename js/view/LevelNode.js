@@ -250,6 +250,13 @@ define( function( require ) {
       vBox.right = model.gameModel.width - margin;
     } );
 
+    model.canDragProperty.lazyLink( function( canDrag ) {
+      var cursor = canDrag ? 'pointer' : 'default';
+      model.shapes.forEach(function(shape){
+        shape.view.cursor = cursor;
+      })
+    } );
+
     this.mutate( options );
   }
 
