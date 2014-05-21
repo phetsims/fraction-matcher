@@ -557,12 +557,5 @@ define( function( require ) {
     }
   };
 
-  /*
-   GRID: require( 'FRACTION_MATCHER/shapes/GridShape' ),
-   INTERLEAVED_L_SHAPES: require( 'FRACTION_MATCHER/shapes/InterleavedLShape' ),
-   TETRIS: require( 'FRACTION_MATCHER/shapes/TetrisPieceShape' ),
-   */
-
-
   return Pattern;
 } );
