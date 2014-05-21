@@ -16,8 +16,8 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Image = require( 'SCENERY/nodes/Image' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var BackButton = require( 'FRACTION_MATCHER/yellow-buttons/BackButton' );
-  var RefreshButton = require( 'FRACTION_MATCHER/yellow-buttons/RefreshButton' );
+  var BackButton = require( 'FRACTION_MATCHER/view/BackButton' );
+  var RefreshButton = require( 'FRACTION_MATCHER/view/RefreshButton' );
   var LevelNode = require( 'FRACTION_MATCHER/view/LevelNode' );
 
   // strings
