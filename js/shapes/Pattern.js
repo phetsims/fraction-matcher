@@ -282,6 +282,8 @@ define( function( require ) {
       var baseVector = new Vector2( 0, -1 );
       var halfVector = new Vector2( 0, -0.5 );
       var pattern = [];
+      var i = 0;
+      var l = 0;
 
       for ( i = 0; i < options.denominator / 2; i++ ) {
         pattern.push( baseVector.rotated( -2 * i * radiansPerSlice ) );
@@ -300,7 +302,7 @@ define( function( require ) {
         return Pattern.pointsToShape( new Shape(), pattern, options.diameter / 2 );
       };
 
-      for ( var i = 0, l = shapes.length; i < l; i++ ) {
+      for ( i = 0, l = shapes.length; i < l; i++ ) {
         for ( var j = 0; j < options.denominator; j++ ) {
           shapes[i].push( new Path( getSlice( j ), {fill: 'white', stroke: options.stroke, lineWidth: 1} ) );
         }
