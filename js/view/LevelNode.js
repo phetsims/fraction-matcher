@@ -25,6 +25,7 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
   var Vector2 = require( 'DOT/Vector2' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
+  var platform = require('PHET_CORE/platform');
 
   // strings
   var buttonCheckString = require( 'string!FRACTION_MATCHER/buttonCheck' );
@@ -131,7 +132,7 @@ define( function( require ) {
           event.currentTarget.moveToFront();
           offsetCursor = {x: thisNode.globalToParentPoint( event.pointer.point ).x - event.currentTarget.x, y: thisNode.globalToParentPoint( event.pointer.point ).y - event.currentTarget.y};
           //if touch device show shape above the pointer
-          if(navigator.userAgent.match(/(iPad|Android)/)) {
+          if(platform.mobileSafari) {
             offsetCursor.y+=50;
           }
           model.dropZone[model.shapes[event.currentTarget.indexShape].dropZone] = -1;
