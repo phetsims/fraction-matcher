@@ -548,7 +548,7 @@ define( function( require ) {
           } ) );
         }
         //outlines
-        outlines.push( new Path( new Shape.rect( 0, 0, options.width, options.height / 2 ), {stroke: options.stroke, lineWidth: options.outlineWidth} ) );
+        outlines.push( new Path( new Shape.rect( 0, 0, options.width, options.height / (options.denominator/2) ), {stroke: options.stroke, lineWidth: options.outlineWidth} ) );
       }
       return {
         shapes: shapes,
