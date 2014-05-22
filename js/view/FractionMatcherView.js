@@ -21,6 +21,7 @@ define( function( require ) {
   var TimerToggleButton = require( 'SCENERY_PHET/TimerToggleButton' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var StartGameLevelNode = require( 'FRACTION_MATCHER/view/StartGameLevelNode' );
+  var HBox = require( 'SCENERY/nodes/HBox' );
 
   // strings
   var matchingGameHeaderString = require( 'string!FRACTION_MATCHER/matchingGameHeader' );
@@ -58,8 +59,14 @@ define( function( require ) {
           x: model.width - 40,
           y: model.height - 40
         } ),
-        new TimerToggleButton( model.isTimerProperty, {x: 20, y: model.height - 120} ),
-        new SoundToggleButton( model.isSoundProperty, {x: 20, y: model.height - 60} )
+        new HBox( {
+          children: [
+            new TimerToggleButton( model.isTimerProperty ),
+            new SoundToggleButton( model.isSoundProperty )
+          ],
+          spacing: 10,
+          x: 20,
+          bottom: model.height - 20} ),
       ]} );
 
     this.addChild( levelsContainerNode );
