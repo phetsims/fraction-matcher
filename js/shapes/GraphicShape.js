@@ -28,34 +28,38 @@ define( function( require ) {
 
   return inherit( HBox, AbstractShape, {
     // fill shapes depending on fillType value
-    fillShapes: function( arrays ) {
-      if ( arrays.length ) {
-        var filled = 0, i = 0, j = 0, len1 = arrays.length, len2 = arrays[0].length;
+    // shapes - array of shapes, shapes[i] - array of pieces, which created shape
+    fillShapes: function( shapes ) {
+      if ( shapes.length ) {
+        var filled = 0, i = 0, j = 0, len1 = shapes.length, len2 = shapes[0].length;
 
-        while ( filled < this.options.numerator ) {
+        while ( filled < this.options.numerator ) { //while number of filled pieces < required (numerator)
           if ( this.options.fillType === FILL_TYPE.SEQUENTIAL ) {
-            arrays[Math.floor( i / len2 ) % len1][i++ % len2].fill = this.options.fill;
+            //fill first shape, then second, etc.
+            shapes[Math.floor( i / len2 ) % len1][i++ % len2].fill = this.options.fill;
             filled++;
           }
           else if ( this.options.fillType === FILL_TYPE.MIXED ) {
+            //fill first shape always, then random piece in random shape
             if ( filled < len2 ) {
-              arrays[Math.floor( i / len2 ) % len1][i++ % len2].fill = this.options.fill;
+              shapes[Math.floor( i / len2 ) % len1][i++ % len2].fill = this.options.fill;
               filled++;
             }
             else {
               i = _.random( 1, len1 - 1 );
               j = _.random( len2 - 1 );
-              if ( arrays[i][j].fill === 'white' ) {
-                arrays[i][j].fill = this.options.fill;
+              if ( shapes[i][j].fill === 'white' ) {
+                shapes[i][j].fill = this.options.fill;
                 filled++;
               }
             }
           }
           else if ( this.options.fillType === FILL_TYPE.RANDOM ) {
+            //random shape, random piece in shape, fill if not filled yet
             i = _.random( len1 - 1 );
             j = _.random( len2 - 1 );
-            if ( arrays[i][j].fill === 'white' ) {
-              arrays[i][j].fill = this.options.fill;
+            if ( shapes[i][j].fill === 'white' ) {
+              shapes[i][j].fill = this.options.fill;
               filled++;
             }
           }
