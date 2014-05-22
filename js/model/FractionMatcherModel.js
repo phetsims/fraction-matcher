@@ -12,21 +12,16 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
   var Property = require( 'AXON/Property' );
-  var Constants = require( 'FRACTION_MATCHER/model/Constants' );
-  var MixedNumbersConstants = require( 'FRACTION_MATCHER/model/MixedNumbersConstants' );
   var LevelModel = require( 'FRACTION_MATCHER/model/LevelModel' );
   var Sound = require( 'VIBE/Sound' );
-
-  // strings
-  var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
 
   // audio
   var correctAudio = require( 'audio!VEGAS/correctAnswer' );
   var wrongAudio = require( 'audio!VEGAS/incorrectAnswer' );
 
-  function FractionMatcherModel( width, height, game ) {
-    var self = this,
-      CONSTANTS = (game === mixedNumbersTitleString) ? MixedNumbersConstants : Constants;
+  function FractionMatcherModel( width, height, game, CONSTANTS, // flag for simplifying number shapes
+                                 toSimplify ) {
+    var self = this;
 
     // dimensions of the model's space
     this.width = width;
@@ -35,7 +30,7 @@ define( function( require ) {
     this.game = game;
     this.CONSTANTS = CONSTANTS;
     this.colorScheme = [CONSTANTS.COLORS.LIGHT_BLUE, CONSTANTS.COLORS.LIGHT_GREEN, CONSTANTS.COLORS.LIGHT_RED];
-    this.toSimplify = (this.game === mixedNumbersTitleString); // flag for simplifying number shapes
+    this.toSimplify = toSimplify;
     this.ANIMATION_TIME = 500;
     this.MAXIMUM_PAIRS = 6;
 
