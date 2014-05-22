@@ -185,7 +185,7 @@ define( function( require ) {
         baseVector.rotated( -11 * angle / 2 )
       ];
 
-      var getHex = function( hexDiameter ) {
+      var getHex = function() {
         return Pattern.pointsToShape( new Shape(), hexPoints );
       };
 
