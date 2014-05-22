@@ -45,7 +45,7 @@ define( function( require ) {
         new StartGameLevelNode( model )
       ]
     } );
-    var StartGameLevel = new Node( {
+    var levelSelectionScreen = new Node( {
       children: [
         StartGameLevelBox,
         new ResetAllButton( {
@@ -63,10 +63,10 @@ define( function( require ) {
       ]} );
 
     this.addChild( levelsContainerNode );
-    this.addChild( StartGameLevel );
+    this.addChild( levelSelectionScreen );
 
-    var startGameButtonsTween = new TWEEN.Tween( StartGameLevel ).onComplete( function() {
-      StartGameLevel.visible = (StartGameLevel.x === 0);
+    var startGameButtonsTween = new TWEEN.Tween( levelSelectionScreen ).onComplete( function() {
+      levelSelectionScreen.visible = (levelSelectionScreen.x === 0);
     } );
     var levelsTween = new TWEEN.Tween( levelsContainerNode ).onComplete( function() {
       levelsContainerNode.visible = (levelsContainerNode.x === 0);
@@ -82,7 +82,7 @@ define( function( require ) {
     var animateFromLevels = function( oldLevel ) {
       levelsTween.stop().to( {x: model.width}, model.ANIMATION_TIME ).start();
 
-      StartGameLevel.visible = true;
+      levelSelectionScreen.visible = true;
       startGameButtonsTween.stop().to( {x: 0}, model.ANIMATION_TIME ).start();
       model.previousLevel = oldLevel;
     };
