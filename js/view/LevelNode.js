@@ -52,7 +52,7 @@ define( function( require ) {
     var vBox = new VBox( {
       children: [levelLabel, scoreLabel, timeLabel],
       spacing: 5,
-      y: 85,
+      y: 90,
       right: model.gameModel.width - margin,
       align: 'right'
     } );
