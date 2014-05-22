@@ -73,23 +73,23 @@ define( function( require ) {
       levelsTween.stop().to( {x: 0}, model.ANIMATION_TIME ).start();
     };
 
-    var animateFromLevels = function() {
+    var animateFromLevels = function(oldLevel) {
       levelsTween.stop().to( {x: model.width}, model.ANIMATION_TIME ).start();
 
       StartGameLevel.visible = true;
       startGameButtonsTween.stop().to( {x: 0}, model.ANIMATION_TIME ).start();
+      model.previousLevel = oldLevel;
     };
 
 
-    model.currentLevelProperty.lazyLink( function( newLevel ) {
+    model.currentLevelProperty.lazyLink( function( newLevel, oldLevel ) {
       if ( newLevel > 0 ) {
         animateToLevels();
       }
       else {
-        animateFromLevels();
+        animateFromLevels(oldLevel);
       }
     } );
-
 
   }
 

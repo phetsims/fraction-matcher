@@ -74,21 +74,40 @@ define( function( require ) {
     }
 
     this.levelNodes = [];
-    model.levels.forEach( function( levelModel, index ) {
-      thisNode.levelNodes[index] = new LevelNode( levelModel, thisNode, {visible: false} );
-      thisNode.addChild( thisNode.levelNodes[index] );
-    } );
+    /*model.levels.forEach( function( levelModel, index ) {
+     thisNode.levelNodes[index] = new LevelNode( levelModel, thisNode, {visible: false} );
+     thisNode.addChild( thisNode.levelNodes[index] );
+     } );*/
 
     model.currentLevelProperty.link( function( newLevel ) {
       if ( newLevel > 0 ) {
+        //generate each node levelNode on demand, to make loading faster
+        if ( !thisNode.levelNodes[newLevel - 1] ) {
+          thisNode.levelNodes[newLevel - 1] = new LevelNode( model.levels[newLevel - 1], thisNode );
+        }
+
+        //if we keep it in memory - append to dom
+        if ( !thisNode.levelNodes[newLevel - 1].getParent() ) {
+          thisNode.addChild( thisNode.levelNodes[newLevel - 1] );
+        }
+
         //if shapes not drawn, draw shapes then show level. Made this to not generate all levels at once as it freeze simulation for 1-2 seconds
         if ( !model.levels[newLevel - 1].shapes[0].view ) {
           thisNode.levelNodes[newLevel - 1 ].generateNewLevel();
         }
-        thisNode.levelNodes.forEach( function( levelNode, i ) {
-          levelNode.visible = (newLevel - 1 === i);
-        } );
+
       }
+    } );
+
+    model.previousLevelProperty.link( function( newLevel ) {
+      //remove oldLevelNode to keep svg small and fast
+      if ( newLevel ) {
+        var parentNode = thisNode.levelNodes[newLevel - 1].getParent();
+        if ( parentNode ) {
+          thisNode.levelNodes[newLevel - 1].getParent().removeChild( thisNode.levelNodes[newLevel - 1] );
+        }
+      }
+
     } );
 
   }

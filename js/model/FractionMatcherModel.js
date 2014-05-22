@@ -45,6 +45,7 @@ define( function( require ) {
 
     PropertySet.call( this, {
       currentLevel: 0,
+      previousLevel: 0, // keep previous level to remove corresponding levelNode from dom, needed for performance improvement
       isSound: true,
       isTimer: false
     } );
