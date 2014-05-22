@@ -33,6 +33,7 @@ define( function( require ) {
     this.toSimplify = toSimplify;
     this.ANIMATION_TIME = 500;
     this.MAXIMUM_PAIRS = 6;
+    this.MAX_POINTS_PER_GAME_LEVEL = 12;
 
     this.sounds = {
       correct: new Sound( correctAudio ),

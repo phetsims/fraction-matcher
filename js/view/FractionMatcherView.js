@@ -16,11 +16,11 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Node = require( "SCENERY/nodes/Node" );
-  var Paginator = require( 'FRACTION_MATCHER/view/Paginator' );
   var LevelsContainerNode = require( 'FRACTION_MATCHER/view/LevelsContainerNode' );
   var SoundToggleButton = require( 'SCENERY_PHET/SoundToggleButton' );
   var TimerToggleButton = require( 'SCENERY_PHET/TimerToggleButton' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
+  var StartGameLevelNode = require( 'FRACTION_MATCHER/view/StartGameLevelNode');
 
   // strings
   var matchingGameHeaderString = require( 'string!FRACTION_MATCHER/matchingGameHeader' );
@@ -34,14 +34,14 @@ define( function( require ) {
     levelsContainerNode.visible = false;
     levelsContainerNode.x = model.width;
 
-    var paginatorBox = new VBox( {centerX: model.width / 2, y: 10, spacing: 40, children: [
+    var StartGameLevelBox = new VBox( {centerX: model.width / 2, y: 10, spacing: 40, children: [
       // add header
       new Text( (model.game === mixedNumbersTitleString ? mixedNumbersHeaderString : matchingGameHeaderString), { font: new PhetFont( { size: 28, weight: 'bold'} )  } ),
-      // add pagination
-      new Paginator( model )
+      //add buttons
+      new StartGameLevelNode( model )
     ]} );
-    var paginatorNode = new Node( {children: [
-      paginatorBox,
+    var StartGameLevel = new Node( {children: [
+      StartGameLevelBox,
       new ResetAllButton( {
         listener: function() {
           model.reset();
@@ -57,17 +57,17 @@ define( function( require ) {
     ]} );
 
     this.addChild( levelsContainerNode );
-    this.addChild( paginatorNode );
+    this.addChild( StartGameLevel );
 
-    var paginatorTween = new TWEEN.Tween( paginatorNode ).onComplete( function() {
-      paginatorNode.visible = (paginatorNode.x === 0);
+    var startGameButtonsTween = new TWEEN.Tween( StartGameLevel ).onComplete( function() {
+      StartGameLevel.visible = (StartGameLevel.x === 0);
     } );
     var levelsTween = new TWEEN.Tween( levelsContainerNode ).onComplete( function() {
       levelsContainerNode.visible = (levelsContainerNode.x === 0);
     } );
 
     var animateToLevels = function() {
-      paginatorTween.stop().to( {x: -model.width}, model.ANIMATION_TIME ).start();
+      startGameButtonsTween.stop().to( {x: -model.width}, model.ANIMATION_TIME ).start();
 
       levelsContainerNode.visible = true;
       levelsTween.stop().to( {x: 0}, model.ANIMATION_TIME ).start();
@@ -76,8 +76,8 @@ define( function( require ) {
     var animateFromLevels = function() {
       levelsTween.stop().to( {x: model.width}, model.ANIMATION_TIME ).start();
 
-      paginatorNode.visible = true;
-      paginatorTween.stop().to( {x: 0}, model.ANIMATION_TIME ).start();
+      StartGameLevel.visible = true;
+      startGameButtonsTween.stop().to( {x: 0}, model.ANIMATION_TIME ).start();
     };
 
 
