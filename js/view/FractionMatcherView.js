@@ -23,11 +23,6 @@ define( function( require ) {
   var StartGameLevelNode = require( 'FRACTION_MATCHER/view/StartGameLevelNode' );
   var HBox = require( 'SCENERY/nodes/HBox' );
 
-  // strings
-  var matchingGameHeaderString = require( 'string!FRACTION_MATCHER/matchingGameHeader' );
-  var mixedNumbersHeaderString = require( 'string!FRACTION_MATCHER/mixedNumbersHeader' );
-  var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
-
   function MatchingGameView( model ) {
     ScreenView.call( this, { renderer: 'svg' } );
 
@@ -35,20 +30,13 @@ define( function( require ) {
     levelsContainerNode.visible = false;
     levelsContainerNode.x = model.width;
 
-    var StartGameLevelBox = new VBox( {
+    var startGameLevelNode = new StartGameLevelNode( model ).mutate( {
       centerX: model.width / 2,
-      y: 10,
-      spacing: 40,
-      children: [
-        // add header
-        new Text( (model.game === mixedNumbersTitleString ? mixedNumbersHeaderString : matchingGameHeaderString), { font: new PhetFont( { size: 28, weight: 'bold'} )  } ),
-        //add buttons
-        new StartGameLevelNode( model )
-      ]
+      y: 58
     } );
     var levelSelectionScreen = new Node( {
       children: [
-        StartGameLevelBox,
+        startGameLevelNode,
         new ResetAllButton( {
           listener: function() {
             model.reset();

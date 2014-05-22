@@ -26,7 +26,7 @@ define( function( require ) {
 
   // strings
   var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
-  var matchingGameTitleString = require( 'string!FRACTION_MATCHER/matchingGameTitle' );
+  var matchingGameTitleString = require( 'string!FRACTION_MATCHER/introTitle' );
   var simTitleString = require( 'string!FRACTION_MATCHER/simTitle' );
 
   var simOptions = {
