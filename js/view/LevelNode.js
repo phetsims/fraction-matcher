@@ -73,7 +73,7 @@ define( function( require ) {
 
     //drawing left part buttons: check, ok, tryAgain, showAnswer
     var commonButtonStyle = {
-      font: new PhetFont( { size: 14, weight: "bold"} ),
+      font: new PhetFont( { size: 18, weight: "bold"} ),
       centerX: smile.centerX,
       centerY: smile.bottom + margin
     };
