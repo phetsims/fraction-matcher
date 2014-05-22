@@ -18,6 +18,7 @@ define( function( require ) {
   var PushButtonDeprecated = require( 'SUN/PushButtonDeprecated' );
   var StarBoxNode = require( 'FRACTION_MATCHER/paginator/StarBoxNode' );
 
+  // constants
   var FONT = new PhetFont( { size: 14, weight: 'bold'} );
 
   function LevelButtonNode( highScoreProperty, options ) {

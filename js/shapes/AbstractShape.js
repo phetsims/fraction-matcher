@@ -24,7 +24,6 @@ define( function( require ) {
 
     //created all paths from pattern, fill with colors and add to container
     this.arrayToShapes( options.createdPaths.shapes, options.createdPaths.margin, options.createdPaths.outlines );
-
   }
 
   return inherit( HBox, AbstractShape, {
@@ -63,12 +62,14 @@ define( function( require ) {
         }
       }
     },
+
     // convert array to shapes and add them to main container
     arrayToShapes: function( array, offset, outlines ) {
       this.fillShapes( array );
       var nodes = this.getNodesFromArray( array, outlines );
       this.addNodes( nodes, offset );
     },
+
     // add nodes to main container
     addNodes: function( nodes, offset ) {
       var self = this,
@@ -91,6 +92,7 @@ define( function( require ) {
       this.centerX = 0;
       this.centerY = 0;
     },
+
     // convert array to nodes
     getNodesFromArray: function( array, outlines ) {
       var nodes = [];

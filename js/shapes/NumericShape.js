@@ -45,7 +45,7 @@ define( function( require ) {
         fractionNode = this.getFractionNode( numerator % denominator, denominator, side, fontSizeSmall );
         this.addChild( fractionNode );
 
-        // correct it's position
+        // correct its position
         spaceX = fractionNode.shapeWidth / 2 + 3; // space between fraction node and integral node
       }
 
