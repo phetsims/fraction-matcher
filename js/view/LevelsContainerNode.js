@@ -16,8 +16,8 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Image = require( 'SCENERY/nodes/Image' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var BackButton = require( 'FRACTION_MATCHER/view/BackButton' );
-  var RefreshButton = require( 'FRACTION_MATCHER/view/RefreshButton' );
+  var ReturnToLevelSelectButton = require( 'SCENERY_PHET/ReturnToLevelSelectButton' );
+  var RefreshButton = require( 'SCENERY_PHET/RefreshButton' );
   var LevelNode = require( 'FRACTION_MATCHER/view/LevelNode' );
 
   // strings
@@ -43,14 +43,16 @@ define( function( require ) {
     thisNode.addChild( new Text( myMatchesString, { font: new PhetFont( { size: 14, weight: "bold"} ), x: 15, y: 100  } ) );
 
     //right buttons, reset and toLevelSelection
-    var backButton = new BackButton( {y: 150}, function() {model.currentLevel = 0;} );
+    var backButton = new ReturnToLevelSelectButton( {listener: function() {model.currentLevel = 0;}, y: 150} );
     backButton.x = model.width - backButton.width - margin;
     thisNode.addChild( backButton );
 
-    var refreshButton = new RefreshButton( {y: 190}, function() {
-      model.levels[model.currentLevel - 1].reset();
-      thisNode.levelNodes[model.currentLevel - 1].generateNewLevel();
-    } );
+    var refreshButton = new RefreshButton( {
+      listener: function() {
+        model.levels[model.currentLevel - 1].reset();
+        thisNode.levelNodes[model.currentLevel - 1].generateNewLevel();
+      },
+      y: 190} );
     refreshButton.x = model.width - refreshButton.width - margin;
     thisNode.addChild( refreshButton );
 
