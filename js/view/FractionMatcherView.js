@@ -20,7 +20,7 @@ define( function( require ) {
   var SoundToggleButton = require( 'SCENERY_PHET/SoundToggleButton' );
   var TimerToggleButton = require( 'SCENERY_PHET/TimerToggleButton' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
-  var StartGameLevelNode = require( 'FRACTION_MATCHER/view/StartGameLevelNode');
+  var StartGameLevelNode = require( 'FRACTION_MATCHER/view/StartGameLevelNode' );
 
   // strings
   var matchingGameHeaderString = require( 'string!FRACTION_MATCHER/matchingGameHeader' );
@@ -34,27 +34,33 @@ define( function( require ) {
     levelsContainerNode.visible = false;
     levelsContainerNode.x = model.width;
 
-    var StartGameLevelBox = new VBox( {centerX: model.width / 2, y: 10, spacing: 40, children: [
-      // add header
-      new Text( (model.game === mixedNumbersTitleString ? mixedNumbersHeaderString : matchingGameHeaderString), { font: new PhetFont( { size: 28, weight: 'bold'} )  } ),
-      //add buttons
-      new StartGameLevelNode( model )
-    ]} );
-    var StartGameLevel = new Node( {children: [
-      StartGameLevelBox,
-      new ResetAllButton( {
-        listener: function() {
-          model.reset();
-          model.levels.forEach( function( levelModel ) {
-            levelModel.reset();
-          } );
-        },
-        x: model.width - 40,
-        y: model.height - 40
-      } ),
-      new TimerToggleButton( model.isTimerProperty, {x: 20, y: model.height - 120} ),
-      new SoundToggleButton( model.isSoundProperty, {x: 20, y: model.height - 60} )
-    ]} );
+    var StartGameLevelBox = new VBox( {
+      centerX: model.width / 2,
+      y: 10,
+      spacing: 40,
+      children: [
+        // add header
+        new Text( (model.game === mixedNumbersTitleString ? mixedNumbersHeaderString : matchingGameHeaderString), { font: new PhetFont( { size: 28, weight: 'bold'} )  } ),
+        //add buttons
+        new StartGameLevelNode( model )
+      ]
+    } );
+    var StartGameLevel = new Node( {
+      children: [
+        StartGameLevelBox,
+        new ResetAllButton( {
+          listener: function() {
+            model.reset();
+            model.levels.forEach( function( levelModel ) {
+              levelModel.reset();
+            } );
+          },
+          x: model.width - 40,
+          y: model.height - 40
+        } ),
+        new TimerToggleButton( model.isTimerProperty, {x: 20, y: model.height - 120} ),
+        new SoundToggleButton( model.isSoundProperty, {x: 20, y: model.height - 60} )
+      ]} );
 
     this.addChild( levelsContainerNode );
     this.addChild( StartGameLevel );
@@ -73,7 +79,7 @@ define( function( require ) {
       levelsTween.stop().to( {x: 0}, model.ANIMATION_TIME ).start();
     };
 
-    var animateFromLevels = function(oldLevel) {
+    var animateFromLevels = function( oldLevel ) {
       levelsTween.stop().to( {x: model.width}, model.ANIMATION_TIME ).start();
 
       StartGameLevel.visible = true;
@@ -87,7 +93,7 @@ define( function( require ) {
         animateToLevels();
       }
       else {
-        animateFromLevels(oldLevel);
+        animateFromLevels( oldLevel );
       }
     } );
 
