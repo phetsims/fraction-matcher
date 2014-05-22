@@ -98,10 +98,10 @@ define( function( require ) {
 
       // add shapes
       for ( var i = 0; i < this.gameModel.MAXIMUM_PAIRS; i++ ) {
-        var fraction = fractions[i]; // [numerator, denominator] pair
+        var fraction = fractions[i]; // Fraction object
         var scaleFactor = numericScaleFactors[_.random( numericScaleFactors.length - 1 )]; //random scaleFactor
 
-        var shapes = this.filterShapes( shapesAll, fraction[1] ); //filter only shapes for current denominator
+        var shapes = this.filterShapes( shapesAll, fraction.denominator ); //filter only shapes for current denominator
         var fillType = this.levelDescription.fillType[_.random( this.levelDescription.fillType.length - 1 )];
 
         // first 3 fractions - number, last 3 fractions - shapes with different colors (3 numbers and 3 shapes at least)
@@ -109,7 +109,7 @@ define( function( require ) {
         var color = (type === numberType) ? 'rgb(0,0,0)' : this.gameModel.colorScheme[i % 3];
         newShapes.push( new SingleShapeModel( type, fraction, scaleFactor, color, fillType, this.gameModel.toSimplify ) );
 
-        // add partner: if was number - add shape, if was shape - add number or shape with another color
+        // add partner: if was number - add shape, if was shape - add number or random shape with another color
         type = shapes[_.random( shapes.length - (type === numberType ? 2 : 1) )];
         color = (type === numberType) ? 'rgb(0,0,0)' : this.gameModel.colorScheme[(i + 1) % 3];
         newShapes.push( new SingleShapeModel( type, fraction, scaleFactor, color, fillType, this.gameModel.toSimplify ) );
@@ -164,7 +164,7 @@ define( function( require ) {
       }
     },
     isShapesEqual: function( shape1, shape2 ) {
-      return Math.abs( shape1.getAnswer() - shape2.getAnswer() ) < 0.001;
+      return Math.abs( shape1.getValue() - shape2.getValue() ) < 0.001;
     }
   } );
 

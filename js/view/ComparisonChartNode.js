@@ -117,8 +117,8 @@ define( function( require ) {
       // set indicator's height
       rectLeft.fill = left.fill;
       rectRight.fill = right.fill;
-      var targetLeftY = left.getAnswer() * 70;
-      var targetRightY = right.getAnswer() * 70;
+      var targetLeftY = left.getValue() * 70;
+      var targetRightY = right.getValue() * 70;
 
       rectLeftTween.to( { y: -targetLeftY  }, gameModel.ANIMATION_TIME ).onUpdate( function( step ) {
         rectLeft.setRectHeight( targetLeftY * step );
@@ -127,9 +127,9 @@ define( function( require ) {
         rectRight.setRectHeight( targetRightY * step );
       } ).start();
 
-      less.setVisible( left.getAnswer() < right.getAnswer() );
-      eq.setVisible( left.getAnswer() === right.getAnswer() );
-      more.setVisible( left.getAnswer() > right.getAnswer() );
+      less.setVisible( left.getValue() < right.getValue() );
+      eq.setVisible( left.getValue() === right.getValue() );
+      more.setVisible( left.getValue() > right.getValue() );
     };
 
     // reset all nodes
