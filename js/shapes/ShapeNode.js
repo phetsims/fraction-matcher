@@ -13,7 +13,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var NumericShape = require( 'FRACTION_MATCHER/shapes/NumericShape' );
   var Pattern = require( 'FRACTION_MATCHER/shapes/Pattern' );
-  var AbstractShape = require( 'FRACTION_MATCHER/shapes/AbstractShape' );
+  var GraphicShape = require( 'FRACTION_MATCHER/shapes/GraphicShape' );
 
   function ShapeNode( options ) {
     //default parameters
@@ -44,7 +44,7 @@ define( function( require ) {
       }
       else {
         options.createdPaths = Pattern.createShapes( options );
-        return new AbstractShape( options );
+        return new GraphicShape( options );
       }
     }
   } );
