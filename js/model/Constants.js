@@ -10,7 +10,7 @@ define( function( require ) {
 
   // modules
   var FILL_TYPE = require( 'FRACTION_MATCHER/model/FillType' );
-  var Fraction = require('FRACTION_MATCHER/model/Fraction');
+  var Fraction = require( 'FRACTION_MATCHER/model/Fraction' );
 
   //colors
   var COLORS = {
@@ -47,12 +47,12 @@ define( function( require ) {
      */
       {
         fractions: [
-          Fraction.fraction(1, 2),
-          Fraction.fraction(1, 3),
-          Fraction.fraction(2, 3),
-          Fraction.fraction(1, 4),
-          Fraction.fraction(3, 4),
-          Fraction.fraction(1, 1)
+          Fraction.fraction( 1, 2 ),
+          Fraction.fraction( 1, 3 ),
+          Fraction.fraction( 2, 3 ),
+          Fraction.fraction( 1, 4 ),
+          Fraction.fraction( 3, 4 ),
+          Fraction.fraction( 1, 1 )
         ],
         numericScaleFactors: [1],
         fillType: [FILL_TYPE.SEQUENTIAL],
@@ -66,13 +66,13 @@ define( function( require ) {
      */
       {
         fractions: [
-          Fraction.fraction(1, 2),
-          Fraction.fraction(1, 3),
-          Fraction.fraction(2, 3),
-          Fraction.fraction(2, 4),
-          Fraction.fraction(3, 4),
-          Fraction.fraction(2, 6),
-          Fraction.fraction(3, 6)
+          Fraction.fraction( 1, 2 ),
+          Fraction.fraction( 1, 3 ),
+          Fraction.fraction( 2, 3 ),
+          Fraction.fraction( 2, 4 ),
+          Fraction.fraction( 3, 4 ),
+          Fraction.fraction( 2, 6 ),
+          Fraction.fraction( 3, 6 )
         ],
         numericScaleFactors: [1],
         fillType: [FILL_TYPE.SEQUENTIAL],
@@ -86,22 +86,22 @@ define( function( require ) {
      */
       {
         fractions: [
-          Fraction.fraction(3, 2),
-          Fraction.fraction(4, 3),
-          Fraction.fraction(5, 4),
-          Fraction.fraction(6, 4),
-          Fraction.fraction(7, 4),
-          Fraction.fraction(4, 5),
-          Fraction.fraction(2, 6),
-          Fraction.fraction(3, 6),
-          Fraction.fraction(4, 6),
-          Fraction.fraction(5, 6),
-          Fraction.fraction(7, 6),
-          Fraction.fraction(3, 8),
-          Fraction.fraction(4, 8),
-          Fraction.fraction(5, 8),
-          Fraction.fraction(6, 8),
-          Fraction.fraction(7, 8)
+          Fraction.fraction( 3, 2 ),
+          Fraction.fraction( 4, 3 ),
+          Fraction.fraction( 5, 4 ),
+          Fraction.fraction( 6, 4 ),
+          Fraction.fraction( 7, 4 ),
+          Fraction.fraction( 4, 5 ),
+          Fraction.fraction( 2, 6 ),
+          Fraction.fraction( 3, 6 ),
+          Fraction.fraction( 4, 6 ),
+          Fraction.fraction( 5, 6 ),
+          Fraction.fraction( 7, 6 ),
+          Fraction.fraction( 3, 8 ),
+          Fraction.fraction( 4, 8 ),
+          Fraction.fraction( 5, 8 ),
+          Fraction.fraction( 6, 8 ),
+          Fraction.fraction( 7, 8 )
         ],
         numericScaleFactors: [1],
         fillType: [FILL_TYPE.SEQUENTIAL],
@@ -113,18 +113,18 @@ define( function( require ) {
      */
       {
         fractions: [
-          Fraction.fraction(13, 7),
-          Fraction.fraction(13, 7),
-          Fraction.fraction(6, 3),
-          Fraction.fraction(9, 5),
-          Fraction.fraction(9, 7),
-          Fraction.fraction(9, 8),
-          Fraction.fraction(14, 8),
-          Fraction.fraction(2, 9),
-          Fraction.fraction(3, 9),
-          Fraction.fraction(4, 9),
-          Fraction.fraction(6, 9),
-          Fraction.fraction(8, 9)
+          Fraction.fraction( 13, 7 ),
+          Fraction.fraction( 13, 7 ),
+          Fraction.fraction( 6, 3 ),
+          Fraction.fraction( 9, 5 ),
+          Fraction.fraction( 9, 7 ),
+          Fraction.fraction( 9, 8 ),
+          Fraction.fraction( 14, 8 ),
+          Fraction.fraction( 2, 9 ),
+          Fraction.fraction( 3, 9 ),
+          Fraction.fraction( 4, 9 ),
+          Fraction.fraction( 6, 9 ),
+          Fraction.fraction( 8, 9 )
         ],
         numericScaleFactors: [1, 2],
         fillType: [FILL_TYPE.SEQUENTIAL],
@@ -136,18 +136,18 @@ define( function( require ) {
      */
       {
         fractions: [
-          Fraction.fraction(13, 7),
-          Fraction.fraction(13, 7),
-          Fraction.fraction(6, 3),
-          Fraction.fraction(9, 5),
-          Fraction.fraction(9, 7),
-          Fraction.fraction(9, 8),
-          Fraction.fraction(14, 8),
-          Fraction.fraction(2, 9),
-          Fraction.fraction(3, 9),
-          Fraction.fraction(4, 9),
-          Fraction.fraction(6, 9),
-          Fraction.fraction(8, 9)
+          Fraction.fraction( 13, 7 ),
+          Fraction.fraction( 13, 7 ),
+          Fraction.fraction( 6, 3 ),
+          Fraction.fraction( 9, 5 ),
+          Fraction.fraction( 9, 7 ),
+          Fraction.fraction( 9, 8 ),
+          Fraction.fraction( 14, 8 ),
+          Fraction.fraction( 2, 9 ),
+          Fraction.fraction( 3, 9 ),
+          Fraction.fraction( 4, 9 ),
+          Fraction.fraction( 6, 9 ),
+          Fraction.fraction( 8, 9 )
         ],
         numericScaleFactors: [1, 2, 3],
         fillType: [FILL_TYPE.SEQUENTIAL, FILL_TYPE.MIXED],
@@ -159,25 +159,25 @@ define( function( require ) {
      */
       {
         fractions: [
-          Fraction.fraction(6, 5),
-          Fraction.fraction(7, 5),
-          Fraction.fraction(8, 5),
-          Fraction.fraction(9, 5),
-          Fraction.fraction(7, 6),
-          Fraction.fraction(8, 6),
-          Fraction.fraction(9, 6),
-          Fraction.fraction(9, 7),
-          Fraction.fraction(10, 7),
-          Fraction.fraction(13, 7),
-          Fraction.fraction(9, 8),
-          Fraction.fraction(10, 8),
-          Fraction.fraction(11, 8),
-          Fraction.fraction(14, 8),
-          Fraction.fraction(4, 9),
-          Fraction.fraction(6, 9),
-          Fraction.fraction(8, 9),
-          Fraction.fraction(10, 9),
-          Fraction.fraction(11, 9)
+          Fraction.fraction( 6, 5 ),
+          Fraction.fraction( 7, 5 ),
+          Fraction.fraction( 8, 5 ),
+          Fraction.fraction( 9, 5 ),
+          Fraction.fraction( 7, 6 ),
+          Fraction.fraction( 8, 6 ),
+          Fraction.fraction( 9, 6 ),
+          Fraction.fraction( 9, 7 ),
+          Fraction.fraction( 10, 7 ),
+          Fraction.fraction( 13, 7 ),
+          Fraction.fraction( 9, 8 ),
+          Fraction.fraction( 10, 8 ),
+          Fraction.fraction( 11, 8 ),
+          Fraction.fraction( 14, 8 ),
+          Fraction.fraction( 4, 9 ),
+          Fraction.fraction( 6, 9 ),
+          Fraction.fraction( 8, 9 ),
+          Fraction.fraction( 10, 9 ),
+          Fraction.fraction( 11, 9 )
         ],
         numericScaleFactors: [1, 4, 5],
         fillType: [FILL_TYPE.SEQUENTIAL, FILL_TYPE.RANDOM],
@@ -189,17 +189,17 @@ define( function( require ) {
      */
       {
         fractions: [
-          Fraction.fraction(3, 2),
-          Fraction.fraction(4, 3),
-          Fraction.fraction(5, 3),
-          Fraction.fraction(5, 4),
-          Fraction.fraction(7, 4),
-          Fraction.fraction(6, 5),
-          Fraction.fraction(7, 5),
-          Fraction.fraction(8, 5),
-          Fraction.fraction(9, 5),
-          Fraction.fraction(7, 6),
-          Fraction.fraction(11, 6)
+          Fraction.fraction( 3, 2 ),
+          Fraction.fraction( 4, 3 ),
+          Fraction.fraction( 5, 3 ),
+          Fraction.fraction( 5, 4 ),
+          Fraction.fraction( 7, 4 ),
+          Fraction.fraction( 6, 5 ),
+          Fraction.fraction( 7, 5 ),
+          Fraction.fraction( 8, 5 ),
+          Fraction.fraction( 9, 5 ),
+          Fraction.fraction( 7, 6 ),
+          Fraction.fraction( 11, 6 )
         ],
         numericScaleFactors: [1, 6, 7],
         fillType: [FILL_TYPE.SEQUENTIAL, FILL_TYPE.RANDOM],
@@ -211,27 +211,27 @@ define( function( require ) {
      */
       {
         fractions: [
-          Fraction.fraction(8, 7),
-          Fraction.fraction(9, 7),
-          Fraction.fraction(10, 7),
-          Fraction.fraction(11, 7),
-          Fraction.fraction(12, 7),
-          Fraction.fraction(13, 7),
-          Fraction.fraction(9, 8),
-          Fraction.fraction(10, 8),
-          Fraction.fraction(11, 8),
-          Fraction.fraction(12, 8),
-          Fraction.fraction(13, 8),
-          Fraction.fraction(14, 8),
-          Fraction.fraction(15, 8),
-          Fraction.fraction(10, 9),
-          Fraction.fraction(11, 9),
-          Fraction.fraction(12, 9),
-          Fraction.fraction(13, 9),
-          Fraction.fraction(14, 9),
-          Fraction.fraction(15, 9),
-          Fraction.fraction(16, 9),
-          Fraction.fraction(17, 9)
+          Fraction.fraction( 8, 7 ),
+          Fraction.fraction( 9, 7 ),
+          Fraction.fraction( 10, 7 ),
+          Fraction.fraction( 11, 7 ),
+          Fraction.fraction( 12, 7 ),
+          Fraction.fraction( 13, 7 ),
+          Fraction.fraction( 9, 8 ),
+          Fraction.fraction( 10, 8 ),
+          Fraction.fraction( 11, 8 ),
+          Fraction.fraction( 12, 8 ),
+          Fraction.fraction( 13, 8 ),
+          Fraction.fraction( 14, 8 ),
+          Fraction.fraction( 15, 8 ),
+          Fraction.fraction( 10, 9 ),
+          Fraction.fraction( 11, 9 ),
+          Fraction.fraction( 12, 9 ),
+          Fraction.fraction( 13, 9 ),
+          Fraction.fraction( 14, 9 ),
+          Fraction.fraction( 15, 9 ),
+          Fraction.fraction( 16, 9 ),
+          Fraction.fraction( 17, 9 )
         ],
         numericScaleFactors: [1, 2, 3, 4, 5, 6, 7, 8, 9],
         fillType: [FILL_TYPE.SEQUENTIAL, FILL_TYPE.RANDOM],
