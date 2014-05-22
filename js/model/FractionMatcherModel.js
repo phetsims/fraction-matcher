@@ -24,7 +24,7 @@ define( function( require ) {
   var correctAudio = require( 'audio!VEGAS/correctAnswer' );
   var wrongAudio = require( 'audio!VEGAS/incorrectAnswer' );
 
-  function MatchingGameModel( width, height, game ) {
+  function FractionMatcherModel( width, height, game ) {
     var self = this,
       CONSTANTS = (game === mixedNumbersTitleString) ? MixedNumbersConstants : Constants;
 
@@ -60,7 +60,7 @@ define( function( require ) {
 
   }
 
-  inherit( PropertySet, MatchingGameModel, {
+  inherit( PropertySet, FractionMatcherModel, {
 
     // Resets all model elements
     reset: function() {
@@ -77,5 +77,5 @@ define( function( require ) {
     }
   } );
 
-  return MatchingGameModel;
+  return FractionMatcherModel;
 } );
