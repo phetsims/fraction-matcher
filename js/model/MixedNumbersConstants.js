@@ -13,7 +13,8 @@ define( function( require ) {
   var Fraction = require( 'FRACTION_MATCHER/model/Fraction' );
   var CONSTANTS = require( 'FRACTION_MATCHER/model/Constants' );
 
-  var MixedNumbersConstantsConstants = _.clone( CONSTANTS );
+  //Make a deep coy of the constants before modifying them, see #43
+  var MixedNumbersConstantsConstants = JSON.parse( JSON.stringify( CONSTANTS ) );
 
   //mixed numbers added some more fractions or remove extra
   MixedNumbersConstantsConstants.LEVEL_DESCRIPTION[0].fractions.pop();
