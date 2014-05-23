@@ -15,14 +15,14 @@ define( function( require ) {
   var FractionMatcherModel = require( 'FRACTION_MATCHER/model/FractionMatcherModel' );
   var FractionMatcherView = require( 'FRACTION_MATCHER/view/FractionMatcherView' );
   var Constants = require( 'FRACTION_MATCHER/model/Constants' );
-  var IntroIcon = require( 'FRACTION_MATCHER/view/IntroIcon' );
+  var IntroHomeScreenIcon = require( 'FRACTION_MATCHER/view/IntroHomeScreenIcon' );
   var inherit = require( 'PHET_CORE/inherit' );
 
   // strings
   var matchingGameTitleString = require( 'string!FRACTION_MATCHER/introTitle' );
 
   function IntroScreen() {
-    Screen.call( this, matchingGameTitleString, new IntroIcon(),
+    Screen.call( this, matchingGameTitleString, new IntroHomeScreenIcon(),
       function() { return new FractionMatcherModel( ScreenView.DEFAULT_LAYOUT_BOUNDS.width, ScreenView.DEFAULT_LAYOUT_BOUNDS.height, matchingGameTitleString, Constants, false ); },
       function( model ) { return new FractionMatcherView( model ); }
     );

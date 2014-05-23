@@ -1,7 +1,7 @@
 //  Copyright 2002-2014, University of Colorado Boulder
 
 /**
- * IntroIcon - for navbar and homepage icons
+ * IntroHomeScreenIcon - for navbar and homepage icons
  *
  * @author Aaron Davis (PhET Interactive Simulations)
  */
@@ -20,7 +20,7 @@ define( function( require ) {
   /**
    * @constructor
    */
-  function IntroIcon() {
+  function IntroHomeScreenIcon() {
     Rectangle.call( this, 0, 0, 548, 373, {fill: '#e7e9cc'} );
 
     var shapeNode = new ShapeNode( {
@@ -58,5 +58,5 @@ define( function( require ) {
     } ) );
   }
 
-  return inherit( Rectangle, IntroIcon );
+  return inherit( Rectangle, IntroHomeScreenIcon );
 } );
