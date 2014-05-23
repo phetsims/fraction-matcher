@@ -357,8 +357,14 @@ define( function( require ) {
         if ( this.model.answers.length === this.model.gameModel.MAXIMUM_PAIRS * 2 ) {
 
           var levelNode = this;
-//          level, score, perfectScore, numStars, timerEnabled, elapsedTime, bestTimeAtThisLevel, isNewBestTime, continueFunction, options
-          this.levelCompletedNode = new LevelCompletedNode( this.model.levelNumber - 1, this.model.score, 12, 3, this.model.gameModel.isTimer, this.model.time, 100, false,
+          var completedTime = this.model.time;
+          var lastBestForThisLevel = this.model.gameModel.bestTimes[this.model.levelNumber - 1].get();
+          var newBestTime = false;
+          if ( lastBestForThisLevel && completedTime < lastBestForThisLevel && model.score === 12 ) {
+            newBestTime = true;
+            this.model.gameModel.bestTimes[this.model.levelNumber - 1].set( completedTime );
+          }
+          this.levelCompletedNode = new LevelCompletedNode( this.model.levelNumber - 1, this.model.score, 12, 3, this.model.gameModel.isTimer, completedTime, lastBestForThisLevel, newBestTime,
             function() {
               var model = levelNode.model;
               model.gameModel.highScores[model.levelNumber - 1].set( Math.max( model.gameModel.highScores[model.levelNumber - 1].get(), model.score ) );

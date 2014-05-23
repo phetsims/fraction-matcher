@@ -42,6 +42,7 @@ define( function( require ) {
 
     this.levels = [];
     this.highScores = [];
+    this.bestTimes = [];
 
     PropertySet.call( this, {
       currentLevel: 0,
@@ -51,6 +52,7 @@ define( function( require ) {
     this.CONSTANTS.LEVEL_DESCRIPTION.forEach( function( levelDescription, index ) {
       self.levels.push( new LevelModel( self, levelDescription, index + 1 ) );
       self.highScores.push( new Property( 0 ) );
+      self.bestTimes.push( new Property( null ) );
     } );
 
   }
@@ -65,6 +67,9 @@ define( function( require ) {
       } );
       this.levels.forEach( function( levelModel ) {
         levelModel.reset();
+      } );
+      this.bestTimes.forEach( function( bestTime ) {
+        bestTime.reset();
       } );
     },
 
