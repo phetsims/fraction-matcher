@@ -13,6 +13,12 @@ define( function( require ) {
   var PropertySet = require( 'AXON/PropertySet' );
   var SingleShapeModel = require( 'FRACTION_MATCHER/model/SingleShapeModel' );
 
+  /**
+   * @param gameModel
+   * @param levelDescription
+   * @param {Number} levelNumber 1-based level that is displayed to the user (starts at 1, not zero)
+   * @constructor
+   */
   function LevelModel( gameModel, levelDescription, levelNumber ) {
     this.gameModel = gameModel;
     this.levelNumber = levelNumber;
