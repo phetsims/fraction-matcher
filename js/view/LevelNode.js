@@ -354,7 +354,7 @@ define( function( require ) {
           thisNode.model.dropZone[thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i] = -1;
           shape.view.removeInputListener( shape.view.getInputListeners()[0] );
         } );
-        if ( this.model.answers.length === this.model.gameModel.MAXIMUM_PAIRS * 2 || true ) {
+        if ( this.model.answers.length === this.model.gameModel.MAXIMUM_PAIRS * 2 ) {
 
           var levelNode = this;
 //          level, score, perfectScore, numStars, timerEnabled, elapsedTime, bestTimeAtThisLevel, isNewBestTime, continueFunction, options
