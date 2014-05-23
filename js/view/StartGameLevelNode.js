@@ -115,12 +115,12 @@ define( function( require ) {
           START_BUTTON_OPTIONS ) );
 
       if ( index % BUTTONS_PER_LINE === BUTTONS_PER_LINE - 1 || index === shapes.length - 1 ) { //end of row
-        vBoxChildren.push( new HBox( {children: hBoxChildren, spacing: 45} ) );
+        vBoxChildren.push( new HBox( {resize: false, children: hBoxChildren, spacing: 45} ) );
         hBoxChildren = [];
       }
     } );
 
-    this.addChild( new VBox( {children: vBoxChildren, spacing: 30} ) );
+    this.addChild( new VBox( {resize: false, children: vBoxChildren, spacing: 30} ) );
 
 
   }
