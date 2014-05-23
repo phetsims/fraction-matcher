@@ -358,7 +358,7 @@ define( function( require ) {
 
           var levelNode = this;
 //          level, score, perfectScore, numStars, timerEnabled, elapsedTime, bestTimeAtThisLevel, isNewBestTime, continueFunction, options
-          this.levelCompletedNode = new LevelCompletedNode( this.model.levelNumber, this.model.score, 12, 4, this.model.gameModel.isTimer, this.model.time, 100, false,
+          this.levelCompletedNode = new LevelCompletedNode( this.model.levelNumber, this.model.score, 12, 3, this.model.gameModel.isTimer, this.model.time, 100, false,
             function() {
               var model = levelNode.model;
               model.gameModel.highScores[model.levelNumber - 1].set( Math.max( model.gameModel.highScores[model.levelNumber - 1].get(), model.score ) );
