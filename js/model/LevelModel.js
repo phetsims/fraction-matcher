@@ -139,15 +139,11 @@ define( function( require ) {
             //answer correct
             this.buttonStatus = "ok";
             self.score += self.stepScore;
-            if ( self.gameModel.isSound ) {
-              self.gameModel.sounds.correct.play();
-            }
+            self.gameModel.sounds.correct.play();
           }
           else {
             //answer incorrect
-            if ( self.gameModel.isSound ) {
-              self.gameModel.sounds.incorrect.play();
-            }
+            self.gameModel.sounds.incorrect.play();
             self.stepScore--;
             this.buttonStatus = (self.stepScore) ? "tryAgain" : "showAnswer";
             this.lastPair = [this.dropZone[12], this.dropZone[13]];

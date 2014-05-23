@@ -45,7 +45,6 @@ define( function( require ) {
 
     PropertySet.call( this, {
       currentLevel: 0,
-      isSound: true,
       isTimer: false
     } );
 

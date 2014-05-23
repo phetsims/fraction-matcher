@@ -19,6 +19,7 @@ define( function( require ) {
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var StartGameLevelNode = require( 'FRACTION_MATCHER/view/StartGameLevelNode' );
   var HBox = require( 'SCENERY/nodes/HBox' );
+  var Sound = require( 'VIBE/Sound' );
 
   function MatchingGameView( model ) {
     ScreenView.call( this, { renderer: 'svg' } );
@@ -44,7 +45,7 @@ define( function( require ) {
         new HBox( {
           children: [
             new TimerToggleButton( model.isTimerProperty ),
-            new SoundToggleButton( model.isSoundProperty )
+            new SoundToggleButton( Sound.audioEnabledProperty )
           ],
           spacing: 10,
           x: 20,
