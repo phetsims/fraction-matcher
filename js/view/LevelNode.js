@@ -19,7 +19,7 @@ define( function( require ) {
   var TextPushButton = require( 'SUN/buttons/TextPushButton' );
   var FaceWithScoreNode = require( 'SCENERY_PHET/FaceWithScoreNode' );
   var ComparisonChartNode = require( 'FRACTION_MATCHER/view/ComparisonChartNode' );
-  var GameOverNode = require( 'FRACTION_MATCHER/view/GameOverNode' );
+  var LevelCompletedNode = require( 'VEGAS/LevelCompletedNode' );
   var VBox = require( 'SCENERY/nodes/VBox' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Util = require( 'DOT/Util' );
@@ -123,10 +123,6 @@ define( function( require ) {
     this.comparisonChart = new ComparisonChartNode( model.gameModel, {centerX: model.gameModel.width / 2, y: 250} );
     thisNode.addChild( this.comparisonChart );
 
-    //drawing gameOverNode
-    this.gameOverNode = new GameOverNode( model, thisNode, {visible: false} );
-    thisNode.addChild( this.gameOverNode );
-
     //equal signs at the top for six gray answer rectangles
     this.equallyAnswerSymbol = [];
     this.levelsContainer.answerRects.forEach( function( answerRect, i ) {
@@ -218,7 +214,10 @@ define( function( require ) {
       for ( var j = 0; j < model.gameModel.MAXIMUM_PAIRS; j++ ) {
         thisNode.equallyAnswerSymbol[j].setVisible( false );
       }
-      this.gameOverNode.setVisible( false );
+      if ( this.levelCompletedNode !== null ) {
+        this.levelCompletedNode.detach();
+        this.levelCompletedNode = null;
+      }
     };
 
     //show correct button depending on the previous actions
@@ -271,6 +270,7 @@ define( function( require ) {
       } );
     } );
 
+    this.levelCompletedNode = null;
     this.mutate( options );
   }
 
@@ -347,18 +347,31 @@ define( function( require ) {
         [0, 1].forEach( function( i ) {
           var shape = thisNode.model.shapes[thisNode.model.dropZone[thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i]];
           var newPosition = thisNode.getShapeAnswerPosition( thisNode.model.answers.length );
-          new TWEEN.Tween( shape.view ).to( { x: newPosition.x, y: newPosition.y }, thisNode.model.gameModel.ANIMATION_TIME ).onUpdate(function( step ) {
+          new TWEEN.Tween( shape.view ).to( { x: newPosition.x, y: newPosition.y }, thisNode.model.gameModel.ANIMATION_TIME ).onUpdate( function( step ) {
             shape.view.scale( (1 - step * 0.5) / shape.view.matrix.scaleVector.x );
           } ).start();
           thisNode.model.answers.push( thisNode.model.dropZone[thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i] );
           thisNode.model.dropZone[thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i] = -1;
           shape.view.removeInputListener( shape.view.getInputListeners()[0] );
         } );
-        if ( this.model.answers.length === this.model.gameModel.MAXIMUM_PAIRS * 2 ) {
-          this.gameOverNode.showGameOver();
+        if ( this.model.answers.length === this.model.gameModel.MAXIMUM_PAIRS * 2 || true ) {
+
+          var levelNode = this;
+//          level, score, perfectScore, numStars, timerEnabled, elapsedTime, bestTimeAtThisLevel, isNewBestTime, continueFunction, options
+          this.levelCompletedNode = new LevelCompletedNode( this.model.levelNumber, this.model.score, 12, 4, this.model.gameModel.isTimer, this.model.time, 100, false,
+            function() {
+              var model = levelNode.model;
+              model.gameModel.highScores[model.levelNumber - 1].set( Math.max( model.gameModel.highScores[model.levelNumber - 1].get(), model.score ) );
+              model.gameModel.currentLevel = 0;
+              model.reset();
+              levelNode.generateNewLevel();
+            }, {
+              centerX: this.model.gameModel.width / 2,
+              centerY: this.model.gameModel.height / 2
+            } );
+          this.addChild( this.levelCompletedNode );
         }
       }
     }
   );
-
 } );
