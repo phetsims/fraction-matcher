@@ -13,9 +13,6 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var ShapeNode = require( 'FRACTION_MATCHER/shapes/ShapeNode' );
   var Constants = require( 'FRACTION_MATCHER/model/Constants' );
-  var HBox = require( 'SCENERY/nodes/HBox' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
   /**
    * @constructor

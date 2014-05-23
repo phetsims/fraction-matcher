@@ -25,8 +25,10 @@ define( function( require ) {
   function IntroScreen() {
     Screen.call( this, mixedNumbersTitleString, new MixedNumbersHomeScreenIcon(),
       function() { return new FractionMatcherModel( ScreenView.DEFAULT_LAYOUT_BOUNDS.width, ScreenView.DEFAULT_LAYOUT_BOUNDS.height, mixedNumbersTitleString, MixedNumbersConstants, true ); },
-      function( model ) { return new FractionMatcherView( model ); }
-      , {navigationBarIcon: new MixedNumbersNavigationBarIcon()} );
+      function( model ) { return new FractionMatcherView( model ); },
+      {
+        navigationBarIcon: new MixedNumbersNavigationBarIcon()
+      } );
   }
 
   return inherit( Screen, IntroScreen );
