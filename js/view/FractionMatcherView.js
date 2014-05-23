@@ -12,9 +12,6 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var ScreenView = require( 'JOIST/ScreenView' );
-  var VBox = require( 'SCENERY/nodes/VBox' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Node = require( "SCENERY/nodes/Node" );
   var LevelsContainerNode = require( 'FRACTION_MATCHER/view/LevelsContainerNode' );
   var SoundToggleButton = require( 'SCENERY_PHET/SoundToggleButton' );
@@ -51,7 +48,7 @@ define( function( require ) {
           ],
           spacing: 10,
           x: 20,
-          bottom: model.height - 20} ),
+          bottom: model.height - 20} )
       ]} );
 
     this.addChild( levelsContainerNode );
