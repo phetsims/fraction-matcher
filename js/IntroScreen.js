@@ -16,6 +16,7 @@ define( function( require ) {
   var FractionMatcherView = require( 'FRACTION_MATCHER/view/FractionMatcherView' );
   var Constants = require( 'FRACTION_MATCHER/model/Constants' );
   var IntroHomeScreenIcon = require( 'FRACTION_MATCHER/view/IntroHomeScreenIcon' );
+  var IntroNavigationBarIcon = require( 'FRACTION_MATCHER/view/IntroNavigationBarIcon' );
   var inherit = require( 'PHET_CORE/inherit' );
 
   // strings
@@ -24,7 +25,8 @@ define( function( require ) {
   function IntroScreen() {
     Screen.call( this, matchingGameTitleString, new IntroHomeScreenIcon(),
       function() { return new FractionMatcherModel( ScreenView.DEFAULT_LAYOUT_BOUNDS.width, ScreenView.DEFAULT_LAYOUT_BOUNDS.height, matchingGameTitleString, Constants, false ); },
-      function( model ) { return new FractionMatcherView( model ); }
+      function( model ) { return new FractionMatcherView( model ); },
+      {navigationBarIcon: new IntroNavigationBarIcon()}
     );
   }
 
