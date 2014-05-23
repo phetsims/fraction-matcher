@@ -360,7 +360,7 @@ define( function( require ) {
           var completedTime = this.model.time;
           var lastBestForThisLevel = this.model.gameModel.bestTimes[this.model.levelNumber - 1].get();
           var newBestTime = false;
-          if ( lastBestForThisLevel && completedTime < lastBestForThisLevel && model.score === 12 ) {
+          if ( lastBestForThisLevel && completedTime < lastBestForThisLevel && this.model.score === 12 ) {
             newBestTime = true;
             this.model.gameModel.bestTimes[this.model.levelNumber - 1].set( completedTime );
           }
