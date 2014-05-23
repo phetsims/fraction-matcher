@@ -99,16 +99,6 @@ define( function( require ) {
       }
     } );
 
-    model.previousLevelProperty.link( function( newLevel ) {
-      //remove oldLevelNode to keep svg small and fast
-      if ( newLevel ) {
-        var parentNode = thisNode.levelNodes[newLevel - 1].getParent();
-        if ( parentNode ) {
-          thisNode.levelNodes[newLevel - 1].getParent().removeChild( thisNode.levelNodes[newLevel - 1] );
-        }
-      }
-
-    } );
 
   }
 

@@ -60,8 +60,17 @@ define( function( require ) {
     var startGameButtonsTween = new TWEEN.Tween( levelSelectionScreen ).onComplete( function() {
       levelSelectionScreen.visible = (levelSelectionScreen.x === 0);
     } );
+
+    var fromLevelNumber; //level from which we return to main screen. keep this to remove corresponging Node from DOM
     var levelsTween = new TWEEN.Tween( levelsContainerNode ).onComplete( function() {
       levelsContainerNode.visible = (levelsContainerNode.x === 0);
+      //remove levelnode from DOM to keep it simple and fast
+      if ( fromLevelNumber && fromLevelNumber !== model.currentLevel ) {
+        var parentNode = levelsContainerNode.levelNodes[fromLevelNumber - 1].getParent();
+        if ( parentNode ) {
+          levelsContainerNode.levelNodes[fromLevelNumber - 1].getParent().removeChild( levelsContainerNode.levelNodes[fromLevelNumber - 1] );
+        }
+      }
     } );
 
     var animateToLevels = function() {
@@ -69,14 +78,14 @@ define( function( require ) {
 
       levelsContainerNode.visible = true;
       levelsTween.stop().to( {x: 0}, model.ANIMATION_TIME ).start();
+
     };
 
-    var animateFromLevels = function( oldLevel ) {
+    var animateFromLevels = function() {
       levelsTween.stop().to( {x: model.width}, model.ANIMATION_TIME ).start();
 
       levelSelectionScreen.visible = true;
       startGameButtonsTween.stop().to( {x: 0}, model.ANIMATION_TIME ).start();
-      model.previousLevel = oldLevel;
     };
 
 
@@ -85,7 +94,8 @@ define( function( require ) {
         animateToLevels();
       }
       else {
-        animateFromLevels( oldLevel );
+        fromLevelNumber = oldLevel;
+        animateFromLevels();
       }
     } );
 
