@@ -318,6 +318,7 @@ define( function( require ) {
         if ( zoneIndex > this.model.gameModel.MAXIMUM_PAIRS * 2 - 1 ) {
           targetPosition.y -= shape.view.height / 2 - 13; //adjust position on scales
         }
+        shape.view.moveToFront();
         new TWEEN.Tween( shape.view ).to( { centerX: targetPosition.x, centerY: targetPosition.y }, this.model.gameModel.ANIMATION_TIME ).start();
       },
       //move correct shape to scales
@@ -336,6 +337,7 @@ define( function( require ) {
         this.model.dropZone[secondCorrectShape.dropZone] = -1;
         this.dropShapeToZone( secondCorrectShape, this.model.lastChangedZone );
         this.dropShapeToZone( lastShapeOnScale, this.getClosestDropZone( lastShapeOnScale.view.center, false ) );
+        secondCorrectShape.view.moveToFront();
         thisNode.comparisonChart.compare( thisNode.model.shapes[thisNode.model.dropZone[12]], thisNode.model.shapes[thisNode.model.dropZone[13]] );
       },
       //move shapes from scales to answer zone and disable them
