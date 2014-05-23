@@ -17,7 +17,7 @@ define( function( require ) {
     this.denominator = denominator;
   };
 
-  return inherit( {}, Fraction, {
+  return inherit( Object, Fraction, {
     getValue: function() {
       return this.numerator / this.denominator;
     }
