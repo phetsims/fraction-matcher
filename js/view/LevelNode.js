@@ -14,7 +14,6 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Text = require( 'SCENERY/nodes/Text' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var equallyAnswerSymbolString = require( 'string!FRACTION_MATCHER/equallyAnswerSymbol' );
   var ShapeNode = require( 'FRACTION_MATCHER/shapes/ShapeNode' );
   var TextPushButton = require( 'SUN/buttons/TextPushButton' );
   var FaceWithScoreNode = require( 'SCENERY_PHET/FaceWithScoreNode' );
@@ -28,6 +27,7 @@ define( function( require ) {
   var platform = require( 'PHET_CORE/platform' );
 
   // strings
+  var equallyAnswerSymbolString = require( 'string!FRACTION_MATCHER/equallyAnswerSymbol' );
   var buttonCheckString = require( 'string!FRACTION_MATCHER/buttonCheck' );
   var buttonOkString = require( 'string!FRACTION_MATCHER/buttonOk' );
   var buttonTryAgainString = require( 'string!FRACTION_MATCHER/buttonTryAgain' );

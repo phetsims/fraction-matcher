@@ -19,10 +19,8 @@ define( function( require ) {
   var FractionMatcherView = require( 'FRACTION_MATCHER/view/FractionMatcherView' );
   var Constants = require( 'FRACTION_MATCHER/model/Constants' );
   var MixedNumbersConstants = require( 'FRACTION_MATCHER/model/MixedNumbersConstants' );
-
-  // images
-  var imageMixedNumber = require( 'image!FRACTION_MATCHER/MixedNumbers-icon.png' );
-  var imageMatchingGame = require( 'image!FRACTION_MATCHER/MatchingGame-icon.png' );
+  var IntroIcon = require( 'FRACTION_MATCHER/view/IntroIcon' );
+  var MixedNumbersIcon = require( 'FRACTION_MATCHER/view/MixedNumbersIcon' );
 
   // strings
   var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
@@ -37,11 +35,11 @@ define( function( require ) {
   SimLauncher.launch( function() {
     // create and start the sim
     new Sim( simTitleString, [
-      new Screen( matchingGameTitleString, new Image( imageMatchingGame ),
+      new Screen( matchingGameTitleString, new IntroIcon(),
         function() { return new FractionMatcherModel( ScreenView.DEFAULT_LAYOUT_BOUNDS.width, ScreenView.DEFAULT_LAYOUT_BOUNDS.height, matchingGameTitleString, Constants, false ); },
         function( model ) { return new FractionMatcherView( model ); }
       ),
-      new Screen( mixedNumbersTitleString, new Image( imageMixedNumber ),
+      new Screen( mixedNumbersTitleString, new MixedNumbersIcon(),
         function() { return new FractionMatcherModel( ScreenView.DEFAULT_LAYOUT_BOUNDS.width, ScreenView.DEFAULT_LAYOUT_BOUNDS.height, mixedNumbersTitleString, MixedNumbersConstants, true ); },
         function( model ) { return new FractionMatcherView( model ); }
       )
