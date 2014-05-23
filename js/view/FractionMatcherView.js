@@ -40,9 +40,6 @@ define( function( require ) {
         new ResetAllButton( {
           listener: function() {
             model.reset();
-            model.levels.forEach( function( levelModel ) {
-              levelModel.reset();
-            } );
           },
           x: model.width - 40,
           y: model.height - 40

@@ -65,6 +65,9 @@ define( function( require ) {
       this.highScores.forEach( function( highScore ) {
         highScore.reset();
       } );
+      this.levels.forEach( function( levelModel ) {
+        levelModel.reset();
+      } );
     },
 
     step: function( dt ) {
