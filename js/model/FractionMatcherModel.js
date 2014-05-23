@@ -19,8 +19,15 @@ define( function( require ) {
   var correctAudio = require( 'audio!VEGAS/correctAnswer' );
   var wrongAudio = require( 'audio!VEGAS/incorrectAnswer' );
 
-  function FractionMatcherModel( width, height, game, CONSTANTS, // flag for simplifying number shapes
-                                 toSimplify ) {
+  /**
+   * @param width
+   * @param height
+   * @param game
+   * @param {Constants} CONSTANTS
+   * @param {Boolean} toSimplify flag for simplifying number shapes
+   * @constructor
+   */
+  function FractionMatcherModel( width, height, game, CONSTANTS, toSimplify ) {
     var self = this;
 
     // dimensions of the model's space
