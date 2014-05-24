@@ -347,7 +347,7 @@ define( function( require ) {
         [0, 1].forEach( function( i ) {
           var shape = thisNode.model.shapes[thisNode.model.dropZone[thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i]];
           var newPosition = thisNode.getShapeAnswerPosition( thisNode.model.answers.length );
-          new TWEEN.Tween( shape.view ).easing( TWEEN.Easing.Cubic.InOut ).to( { x: newPosition.x, y: newPosition.y }, thisNode.model.gameModel.ANIMATION_TIME ).onUpdate( function( step ) {
+          new TWEEN.Tween( shape.view ).easing( TWEEN.Easing.Cubic.InOut ).to( { centerX: newPosition.x, centerY: newPosition.y }, thisNode.model.gameModel.ANIMATION_TIME ).onUpdate( function( step ) {
             shape.view.scale( (1 - step * 0.5) / shape.view.matrix.scaleVector.x );
           } ).start();
           thisNode.model.answers.push( thisNode.model.dropZone[thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i] );
