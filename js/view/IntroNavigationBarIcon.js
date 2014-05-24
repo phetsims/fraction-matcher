@@ -20,7 +20,7 @@ define( function( require ) {
   function IntroNavigationBarIcon() {
     Rectangle.call( this, 0, 0, 548, 373, {fill: 'black'} );
 
-    var shapeNode = new ShapeNode( {
+    var shapeNode = ShapeNode.create( {
       x: 0,
       y: 0,
       type: 'PIES',

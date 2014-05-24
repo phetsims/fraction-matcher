@@ -23,7 +23,7 @@ define( function( require ) {
   function IntroHomeScreenIcon() {
     Rectangle.call( this, 0, 0, 548, 373, {fill: '#e7e9cc'} );
 
-    var shapeNode = new ShapeNode( {
+    var shapeNode = ShapeNode.create( {
       x: 0,
       y: 0,
       type: 'PIES',
@@ -35,7 +35,7 @@ define( function( require ) {
       height: 180
     } );
 
-    var shapeNode2 = new ShapeNode( {
+    var shapeNode2 = ShapeNode.create( {
       x: 0,
       y: 0,
       type: 'VERTICAL_BARS',

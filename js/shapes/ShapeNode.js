@@ -15,37 +15,37 @@ define( function( require ) {
   var Pattern = require( 'FRACTION_MATCHER/shapes/Pattern' );
   var GraphicShape = require( 'FRACTION_MATCHER/shapes/GraphicShape' );
 
-  function ShapeNode( options ) {
-    //default parameters
-    options = _.extend( {
-        type: 'PIES',
-        x: 0,
-        y: 0,
-        width: 100,
-        height: 100,
-        numerator: 1,
-        denominator: 1,
-        toSimplify: false,
-        fill: '#F00',
-        outlineWidth: 2,
-        stroke: "#000"
-      },
-      options );
-
-    Node.call( this );
-
-    this.addChild( this.createShapeFromPattern( options.type, options ) );
+  function ShapeNode() {
   }
 
-  return inherit( Node, ShapeNode, {
-    createShapeFromPattern: function( shapeType, options ) {
-      if ( shapeType === 'NUMBER' ) {
-        return new NumericShape( options );
+  return inherit( Node, ShapeNode,
+
+    //instance methods
+    { },
+
+    //statics
+    {
+      create: function( options ) {
+        //default parameters
+        options = _.extend( {
+            type: 'PIES',
+            x: 0,
+            y: 0,
+            width: 100,
+            height: 100,
+            numerator: 1,
+            denominator: 1,
+            toSimplify: false,
+            fill: '#F00',
+            outlineWidth: 2,
+            stroke: "#000"
+          },
+          options );
+
+        if ( options.type !== 'NUMBER' ) {
+          options.createdPaths = Pattern.createShapes( options );
+        }
+        return options.type === 'NUMBER' ? new NumericShape( options ) : new GraphicShape( options );
       }
-      else {
-        options.createdPaths = Pattern.createShapes( options );
-        return new GraphicShape( options );
-      }
-    }
-  } );
+    } );
 } );

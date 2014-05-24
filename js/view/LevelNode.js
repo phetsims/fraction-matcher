@@ -195,7 +195,7 @@ define( function( require ) {
         singleShapeModel = model.shapes[i];
         //new shapeView
         if ( singleShapeModel.view === undefined ) {
-          singleShapeModel.view = new ShapeNode( singleShapeModel );
+          singleShapeModel.view = ShapeNode.create( singleShapeModel );
           singleShapeModel.view.cursor = "pointer";
           //handler for new single shape
           singleShapeModel.view.addInputListener( new SimpleDragHandler( dragParamers ) );

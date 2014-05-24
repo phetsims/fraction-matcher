@@ -86,7 +86,7 @@ define( function( require ) {
     var createButtonContent = function( shape, index ) {
       var children = [
         new Text( StringUtils.format( patternLevelString, index + 1 ), { font: FONT, centerX: 0 } ),
-        new ShapeNode( {
+        ShapeNode.create( {
           x: 0,
           y: -5,
           type: shape.type,
