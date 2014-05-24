@@ -25,6 +25,7 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var platform = require( 'PHET_CORE/platform' );
+  var LinearFunction = require( 'DOT/LinearFunction' );
 
   // strings
   var equallyAnswerSymbolString = require( 'string!FRACTION_MATCHER/equallyAnswerSymbol' );
@@ -347,8 +348,12 @@ define( function( require ) {
         [0, 1].forEach( function( i ) {
           var shape = thisNode.model.shapes[thisNode.model.dropZone[thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i]];
           var newPosition = thisNode.getShapeAnswerPosition( thisNode.model.answers.length );
-          new TWEEN.Tween( shape.view ).easing( TWEEN.Easing.Cubic.InOut ).to( { centerX: newPosition.x, centerY: newPosition.y }, thisNode.model.gameModel.ANIMATION_TIME ).onUpdate( function( step ) {
-            shape.view.scale( (1 - step * 0.5) / shape.view.matrix.scaleVector.x );
+          var initialScale = shape.view.matrix.scaleVector.x;
+          var targetScale = initialScale / 2;
+          var linearFunction = new LinearFunction( 0, 1, initialScale, targetScale );
+          new TWEEN.Tween( shape.view ).easing( TWEEN.Easing.Cubic.InOut ).to( { scale: 0.5, centerX: newPosition.x, centerY: newPosition.y }, thisNode.model.gameModel.ANIMATION_TIME ).onUpdate( function( step ) {
+            var scale = linearFunction( step );
+            shape.view.setScaleMagnitude( scale, scale );
           } ).start();
           thisNode.model.answers.push( thisNode.model.dropZone[thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i] );
           thisNode.model.dropZone[thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i] = -1;
