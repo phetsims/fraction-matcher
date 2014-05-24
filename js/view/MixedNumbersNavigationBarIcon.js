@@ -27,7 +27,7 @@ define( function( require ) {
       numerator: 9,
       denominator: 6,
       value: 1.5,
-      fill: Constants.COLORS.LIGHT_RED,
+      fill: new Constants().COLORS.LIGHT_RED,
       width: 180,
       height: 180
     } );

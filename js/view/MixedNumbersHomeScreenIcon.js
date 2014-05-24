@@ -30,7 +30,7 @@ define( function( require ) {
       numerator: 9,
       denominator: 6,
       value: 1.5,
-      fill: Constants.COLORS.LIGHT_RED,
+      fill: new Constants().COLORS.LIGHT_RED,
       width: 180,
       height: 180
     } );
@@ -42,7 +42,7 @@ define( function( require ) {
       numerator: 3,
       denominator: 2,
       value: 1.5,
-      fill: Constants.COLORS.GREEN,
+      fill: new Constants().COLORS.GREEN,
       width: 180,
       height: 180
     } );

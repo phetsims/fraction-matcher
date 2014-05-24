@@ -24,7 +24,7 @@ define( function( require ) {
 
   function IntroScreen() {
     Screen.call( this, matchingGameTitleString, new IntroHomeScreenIcon(),
-      function() { return new FractionMatcherModel( ScreenView.DEFAULT_LAYOUT_BOUNDS.width, ScreenView.DEFAULT_LAYOUT_BOUNDS.height, matchingGameTitleString, Constants, false ); },
+      function() { return new FractionMatcherModel( ScreenView.DEFAULT_LAYOUT_BOUNDS.width, ScreenView.DEFAULT_LAYOUT_BOUNDS.height, matchingGameTitleString, new Constants(), false ); },
       function( model ) { return new FractionMatcherView( model ); },
       {navigationBarIcon: new IntroNavigationBarIcon()}
     );

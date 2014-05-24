@@ -31,13 +31,14 @@ define( function( require ) {
   //list of all possible shapes
   var SHAPES = ['PIES', 'HORIZONTAL_BARS', 'VERTICAL_BARS', 'PLUSES', 'GRID', 'PYRAMID', 'POLYGON', 'TETRIS', 'FLOWER', 'LETTER_L_SHAPES', 'INTERLEAVED_L_SHAPES', 'RING_OF_HEXAGONS', 'NINJA_STAR'];
 
-  var Constants = {
+  function Constants() {
     // color constants
-    COLORS: COLORS,
-    // shapes type constants
-    SHAPES: SHAPES,
+    this.COLORS = COLORS;
 
-    LEVEL_DESCRIPTION: [
+    // shapes type constants
+    this.SHAPES = SHAPES;
+
+    this.LEVEL_DESCRIPTION = [
     /**
      * Level 1
      * No mixed numbers
@@ -238,7 +239,7 @@ define( function( require ) {
         shapes: SHAPES.slice( 0 )
       }
     ]
+  }
 
-  };
   return Constants;
 } );
