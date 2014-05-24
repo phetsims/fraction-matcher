@@ -23,11 +23,11 @@ define( function( require ) {
    * @param width
    * @param height
    * @param game
-   * @param {Constants} CONSTANTS
+   * @param {Constants} constants
    * @param {Boolean} toSimplify flag for simplifying number shapes
    * @constructor
    */
-  function FractionMatcherModel( width, height, game, CONSTANTS, toSimplify ) {
+  function FractionMatcherModel( width, height, game, constants, toSimplify ) {
     var self = this;
 
     // dimensions of the model's space
@@ -35,8 +35,8 @@ define( function( require ) {
     this.height = height;
 
     this.game = game;
-    this.CONSTANTS = CONSTANTS;
-    this.colorScheme = [CONSTANTS.COLORS.LIGHT_BLUE, CONSTANTS.COLORS.LIGHT_GREEN, CONSTANTS.COLORS.LIGHT_RED];
+    this.constants = constants;
+    this.colorScheme = [constants.COLORS.LIGHT_BLUE, constants.COLORS.LIGHT_GREEN, constants.COLORS.LIGHT_RED];
     this.toSimplify = toSimplify;
     this.ANIMATION_TIME = 500;
     this.MAXIMUM_PAIRS = 6;
@@ -56,7 +56,7 @@ define( function( require ) {
       isTimer: false
     } );
 
-    this.CONSTANTS.LEVEL_DESCRIPTION.forEach( function( levelDescription, index ) {
+    this.constants.LEVEL_DESCRIPTION.forEach( function( levelDescription, index ) {
       self.levels.push( new LevelModel( self, levelDescription, index + 1 ) );
       self.highScores.push( new Property( 0 ) );
       self.bestTimes.push( new Property( null ) );

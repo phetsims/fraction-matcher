@@ -43,7 +43,7 @@ define( function( require ) {
       highlightedBackgroundColor: 'rgb( 242, 242, 242)'
     };
 
-    var colors = model.CONSTANTS.COLORS;
+    var colors = model.constants.COLORS;
     var shapes = [
       {
         type: 'PIES',
