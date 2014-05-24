@@ -239,7 +239,7 @@ define( function( require ) {
         fillType: [FILL_TYPE.SEQUENTIAL, FILL_TYPE.RANDOM],
         shapes: SHAPES.slice( 0 )
       }
-    ]
+    ];
   }
 
   return Constants;
