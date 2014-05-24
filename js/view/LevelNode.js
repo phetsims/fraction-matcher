@@ -26,6 +26,7 @@ define( function( require ) {
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var platform = require( 'PHET_CORE/platform' );
   var LinearFunction = require( 'DOT/LinearFunction' );
+  var NumericShape = require( 'FRACTION_MATCHER/shapes/NumericShape' );
 
   // strings
   var equallyAnswerSymbolString = require( 'string!FRACTION_MATCHER/equallyAnswerSymbol' );
@@ -318,6 +319,11 @@ define( function( require ) {
         var targetPosition = this.getShapeDropPosition( zoneIndex );
         if ( zoneIndex > this.model.gameModel.MAXIMUM_PAIRS * 2 - 1 ) {
           targetPosition.y -= shape.view.height / 2 - 13; //adjust position on scales
+
+          //Adjust numeric mixed fractions down a bit because they are too high by default.  See https://github.com/phetsims/fraction-matcher/issues/46
+          if ( shape.view instanceof NumericShape && shape.numerator / shape.denominator > 1 ) {
+            targetPosition.y += 7;
+          }
         }
         shape.view.moveToFront();
         new TWEEN.Tween( shape.view ).easing( TWEEN.Easing.Cubic.InOut ).to( { centerX: targetPosition.x, centerY: targetPosition.y }, this.model.gameModel.ANIMATION_TIME ).start();
