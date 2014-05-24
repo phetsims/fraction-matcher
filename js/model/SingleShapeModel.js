@@ -41,8 +41,7 @@ define( function() {
     }
 
     this.getValue = function() {
-      //Use numerator/denominator for MixedNumber screen because they aren't fraction instances after going through JSON
-      return fraction.numerator / fraction.denominator;
+      return fraction.getValue();
     };
   }
 
