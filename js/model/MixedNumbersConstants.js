@@ -2,7 +2,7 @@
 
 
 /**
- * General constants for Mixed Number Game, extends Constants.
+ * General constants for Mixed Number Game, extends Constants.  See https://github.com/phetsims/fraction-matcher/issues/43
  *
  * @author Andrey Zelenkov (Mlearner)
  */

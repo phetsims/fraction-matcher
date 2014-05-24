@@ -1,7 +1,8 @@
 // Copyright 2002-2014, University of Colorado Boulder
 
 /**
- * General constants for Fraction Matcher.
+ * General constants for Fraction Matcher.  While constants, they are extended by MixedNumberConstants, so they should be instantiated
+ * like instance objects.  See https://github.com/phetsims/fraction-matcher/issues/43
  *
  * @author Andrey Zelenkov (Mlearner)
  */
