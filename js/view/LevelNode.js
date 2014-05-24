@@ -319,7 +319,7 @@ define( function( require ) {
           targetPosition.y -= shape.view.height / 2 - 13; //adjust position on scales
         }
         shape.view.moveToFront();
-        new TWEEN.Tween( shape.view ).to( { centerX: targetPosition.x, centerY: targetPosition.y }, this.model.gameModel.ANIMATION_TIME ).start();
+        new TWEEN.Tween( shape.view ).easing( TWEEN.Easing.Cubic.InOut ).to( { centerX: targetPosition.x, centerY: targetPosition.y }, this.model.gameModel.ANIMATION_TIME ).start();
       },
       //move correct shape to scales
       showCorrectAnswer: function() {
@@ -347,7 +347,7 @@ define( function( require ) {
         [0, 1].forEach( function( i ) {
           var shape = thisNode.model.shapes[thisNode.model.dropZone[thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i]];
           var newPosition = thisNode.getShapeAnswerPosition( thisNode.model.answers.length );
-          new TWEEN.Tween( shape.view ).to( { x: newPosition.x, y: newPosition.y }, thisNode.model.gameModel.ANIMATION_TIME ).onUpdate( function( step ) {
+          new TWEEN.Tween( shape.view ).easing( TWEEN.Easing.Cubic.InOut ).to( { x: newPosition.x, y: newPosition.y }, thisNode.model.gameModel.ANIMATION_TIME ).onUpdate( function( step ) {
             shape.view.scale( (1 - step * 0.5) / shape.view.matrix.scaleVector.x );
           } ).start();
           thisNode.model.answers.push( thisNode.model.dropZone[thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i] );

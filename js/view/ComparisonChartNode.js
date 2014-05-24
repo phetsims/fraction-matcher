@@ -111,8 +111,8 @@ define( function( require ) {
     thisNode.addChild( more );
 
     // function for comparing shapes on scales
-    var rectLeftTween = new TWEEN.Tween( rectLeft );
-    var rectRightTween = new TWEEN.Tween( rectRight );
+    var rectLeftTween = new TWEEN.Tween( rectLeft ).easing( TWEEN.Easing.Cubic.InOut );
+    var rectRightTween = new TWEEN.Tween( rectRight ).easing( TWEEN.Easing.Cubic.InOut );
     this.compare = function( left, right ) {
       // set indicator's height
       rectLeft.fill = left.fill;

@@ -55,12 +55,12 @@ define( function( require ) {
     this.addChild( levelsContainerNode );
     this.addChild( levelSelectionScreen );
 
-    var startGameButtonsTween = new TWEEN.Tween( levelSelectionScreen ).onComplete( function() {
+    var startGameButtonsTween = new TWEEN.Tween( levelSelectionScreen ).easing( TWEEN.Easing.Cubic.InOut ).onComplete( function() {
       levelSelectionScreen.visible = (levelSelectionScreen.x === 0);
     } );
 
     var fromLevelNumber; //level from which we return to main screen. keep this to remove corresponging Node from DOM
-    var levelsTween = new TWEEN.Tween( levelsContainerNode ).onComplete( function() {
+    var levelsTween = new TWEEN.Tween( levelsContainerNode ).easing( TWEEN.Easing.Cubic.InOut ).onComplete( function() {
       levelsContainerNode.visible = (levelsContainerNode.x === 0);
       //remove levelnode from DOM to keep it simple and fast
       if ( fromLevelNumber && fromLevelNumber !== model.currentLevel ) {
