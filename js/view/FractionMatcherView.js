@@ -30,7 +30,7 @@ define( function( require ) {
 
     var startGameLevelNode = new StartGameLevelNode( model ).mutate( {
       centerX: model.width / 2,
-      y: 58
+      y: 20
     } );
     var levelSelectionScreen = new Node( {
       children: [

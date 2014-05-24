@@ -23,18 +23,20 @@ define( function( require ) {
   // strings
   var patternLevelString = require( 'string!FRACTION_MATCHER/patternLevel' );
   var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
+  var mixedNumbersChooseYourLevelString = require( 'string!FRACTION_MATCHER/mixedNumbersChooseYourLevel' );
+  var introChooseYourLevelString = require( 'string!FRACTION_MATCHER/introChooseYourLevel' );
 
   //constants
   var NUM_STARS_ON_BUTTON = 3; //number of stars on StartLevelButton
   var BUTTONS_PER_LINE = 4; //number on buttons in a single row
   var FONT = new PhetFont( { size: 14, weight: 'bold'} );
 
-
   function StartGameLevelNode( model, options ) {
     var mixedNumber = (model.game === mixedNumbersTitleString);
     Node.call( this, options );
 
     var vBoxChildren = [];
+    vBoxChildren.push( new Text( mixedNumber ? mixedNumbersChooseYourLevelString : introChooseYourLevelString, {font: new PhetFont( {size: 28} )} ) );
 
     var START_BUTTON_OPTIONS = {
       buttonWidth: 90,
@@ -121,8 +123,6 @@ define( function( require ) {
     } );
 
     this.addChild( new VBox( {resize: false, children: vBoxChildren, spacing: 30} ) );
-
-
   }
 
   return inherit( Node, StartGameLevelNode );

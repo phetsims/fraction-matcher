@@ -17,6 +17,7 @@
   "patternGameOverScore": "Score: {0} out  of 12",
   "patternGameOverScorePrefect": "Score: {0} out of 12 (Perfect!)",
   "buttonNewGame": "New game",
-  "time.pattern": "Time: {0} sec"
-
+  "time.pattern": "Time: {0} sec",
+  "mixedNumbersChooseYourLevel": "Mixed Numbers: Choose your level!",
+  "introNumbersChooseYourLevel": "Intro: Choose your level!"
 }
