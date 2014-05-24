@@ -16,6 +16,7 @@ define( function( require ) {
   var HBox = require( 'SCENERY/nodes/HBox' );
   var Text = require( 'SCENERY/nodes/Text' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var NumericShape = require( 'FRACTION_MATCHER/shapes/NumericShape' );
 
   /**
    * @constructor
@@ -35,17 +36,18 @@ define( function( require ) {
       height: 180
     } );
 
-    var shapeNode2 = ShapeNode.create( {
+    var shapeNode2 = new NumericShape( {
       x: 0,
       y: 0,
-      type: 'VERTICAL_BARS',
+      type: 'NUMERIC',
       numerator: 1,
       denominator: 2,
+      scaleFactor: 1,
       value: 0.5,
-      fill: new Constants().COLORS.GREEN,
+      toSimplify: true,
       width: 180,
       height: 180
-    } );
+    } ).mutate( {scale: 2.8} );
 
     this.addChild( new HBox( {
       spacing: 20,

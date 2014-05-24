@@ -12,6 +12,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var ShapeNode = require( 'FRACTION_MATCHER/shapes/ShapeNode' );
+  var NumericShape = require( 'FRACTION_MATCHER/shapes/NumericShape' );
   var Constants = require( 'FRACTION_MATCHER/model/Constants' );
   var HBox = require( 'SCENERY/nodes/HBox' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -31,24 +32,25 @@ define( function( require ) {
       denominator: 6,
       value: 1.5,
       fill: new Constants().COLORS.LIGHT_RED,
-      width: 180,
-      height: 180
+      width: 200,
+      height: 200
     } );
 
-    var shapeNode2 = ShapeNode.create( {
+    var shapeNode2 = new NumericShape( {
       x: 0,
       y: 0,
-      type: 'INTERLEAVED_L_SHAPES',
+      type: 'NUMERIC',
       numerator: 3,
       denominator: 2,
+      scaleFactor: 1,
       value: 1.5,
-      fill: new Constants().COLORS.GREEN,
+      toSimplify: true,
       width: 180,
       height: 180
-    } );
+    } ).mutate( {scale: 2.4} );
 
     this.addChild( new HBox( {
-      spacing: 20,
+      spacing: 15,
       children: [
         shapeNode,
         new Text( '=', {fill: 'black', font: new PhetFont( 160 )} ),
