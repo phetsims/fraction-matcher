@@ -20,7 +20,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
 
   // strings
-  var matchingGameTitleString = require( 'string!FRACTION_MATCHER/introTitle' );
+  var matchingGameTitleString = require( 'string!FRACTION_MATCHER/improperFractionsTitle' );
 
   function IntroScreen() {
     Screen.call( this, matchingGameTitleString, new IntroHomeScreenIcon(),
