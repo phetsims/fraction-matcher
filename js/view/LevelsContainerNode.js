@@ -52,7 +52,7 @@ define( function( require ) {
         model.levels[model.currentLevel - 1].reset();
         thisNode.levelNodes[model.currentLevel - 1].generateNewLevel();
       },
-      y: 190} );
+      y: backButton.bottom + 8} );
     refreshButton.x = model.width - refreshButton.width - margin;
     thisNode.addChild( refreshButton );
 
