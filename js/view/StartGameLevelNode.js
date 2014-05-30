@@ -24,7 +24,7 @@ define( function( require ) {
   var patternLevelString = require( 'string!FRACTION_MATCHER/patternLevel' );
   var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
   var mixedNumbersChooseYourLevelString = require( 'string!FRACTION_MATCHER/mixedNumbersChooseYourLevel' );
-  var improperFractionsChooseYourLevelString = require( 'string!FRACTION_MATCHER/improperFractionsChooseYourLevel' );
+  var fractionsChooseYourLevelString = require( 'string!FRACTION_MATCHER/fractionsChooseYourLevel' );
 
   //constants
   var NUM_STARS_ON_BUTTON = 3; //number of stars on StartLevelButton
@@ -36,7 +36,7 @@ define( function( require ) {
     Node.call( this, options );
 
     var vBoxChildren = [];
-    vBoxChildren.push( new Text( mixedNumber ? mixedNumbersChooseYourLevelString : improperFractionsChooseYourLevelString, {font: new PhetFont( {size: 28} )} ) );
+    vBoxChildren.push( new Text( mixedNumber ? mixedNumbersChooseYourLevelString : fractionsChooseYourLevelString, {font: new PhetFont( {size: 28} )} ) );
 
     var START_BUTTON_OPTIONS = {
       buttonWidth: 90,

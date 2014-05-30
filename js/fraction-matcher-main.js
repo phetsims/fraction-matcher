@@ -12,7 +12,7 @@ define( function( require ) {
   // modules
   var SimLauncher = require( 'JOIST/SimLauncher' );
   var Sim = require( 'JOIST/Sim' );
-  var IntroScreen = require( 'FRACTION_MATCHER/IntroScreen' );
+  var FractionsScreen = require( 'FRACTION_MATCHER/FractionsScreen' );
   var MixedNumbersScreen = require( 'FRACTION_MATCHER/MixedNumbersScreen' );
 
   // strings
@@ -30,7 +30,7 @@ define( function( require ) {
   SimLauncher.launch( function() {
     // create and start the sim
     new Sim( simTitleString, [
-      new IntroScreen(),
+      new FractionsScreen(),
       new MixedNumbersScreen()
     ], simOptions ).start();
   } );

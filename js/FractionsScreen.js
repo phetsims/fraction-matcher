@@ -20,15 +20,15 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
 
   // strings
-  var matchingGameTitleString = require( 'string!FRACTION_MATCHER/improperFractionsTitle' );
+  var fractionsTitleString = require( 'string!FRACTION_MATCHER/fractionsTitle' );
 
-  function IntroScreen() {
-    Screen.call( this, matchingGameTitleString, new IntroHomeScreenIcon(),
-      function() { return new FractionMatcherModel( ScreenView.DEFAULT_LAYOUT_BOUNDS.width, ScreenView.DEFAULT_LAYOUT_BOUNDS.height, matchingGameTitleString, new Constants(), false ); },
+  function FractionsScreen() {
+    Screen.call( this, fractionsTitleString, new IntroHomeScreenIcon(),
+      function() { return new FractionMatcherModel( ScreenView.DEFAULT_LAYOUT_BOUNDS.width, ScreenView.DEFAULT_LAYOUT_BOUNDS.height, fractionsTitleString, new Constants(), false ); },
       function( model ) { return new FractionMatcherView( model ); },
       {navigationBarIcon: new IntroNavigationBarIcon()}
     );
   }
 
-  return inherit( Screen, IntroScreen );
+  return inherit( Screen, FractionsScreen );
 } );

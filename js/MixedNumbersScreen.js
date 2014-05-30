@@ -22,7 +22,7 @@ define( function( require ) {
   // strings
   var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
 
-  function IntroScreen() {
+  function MixedNumbersScreen() {
     Screen.call( this, mixedNumbersTitleString, new MixedNumbersHomeScreenIcon(),
       function() { return new FractionMatcherModel( ScreenView.DEFAULT_LAYOUT_BOUNDS.width, ScreenView.DEFAULT_LAYOUT_BOUNDS.height, mixedNumbersTitleString, new MixedNumbersConstants(), true ); },
       function( model ) { return new FractionMatcherView( model ); },
@@ -31,5 +31,5 @@ define( function( require ) {
       } );
   }
 
-  return inherit( Screen, IntroScreen );
+  return inherit( Screen, MixedNumbersScreen );
 } );

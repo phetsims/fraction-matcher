@@ -1,6 +1,6 @@
 {
   "simTitle": "Fraction Matcher",
-  "improperFractionsTitle": "Improper Fractions",
+  "fractionsTitle": "Fractions",
   "mixedNumbersTitle": "Mixed Numbers",
   "matchingGameHeader": "Fraction Matcher",
   "mixedNumbersHeader": "Fraction Matcher: Mixed Numbers",
@@ -19,5 +19,5 @@
   "buttonNewGame": "New game",
   "time.pattern": "Time: {0} sec",
   "mixedNumbersChooseYourLevel": "Mixed Numbers: Choose your level!",
-  "improperFractionsChooseYourLevel": "Improper Fractions: Choose your level!"
+  "fractionsChooseYourLevel": "Fractions: Choose your level!"
 }
