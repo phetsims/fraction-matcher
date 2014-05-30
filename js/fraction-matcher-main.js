@@ -19,8 +19,12 @@ define( function( require ) {
   var simTitleString = require( 'string!FRACTION_MATCHER/simTitle' );
 
   var simOptions = {
-    credits: '',
-    thanks: ''
+    credits: {
+      leadDesign: 'Ariel Paul',
+      softwareDevelopment: 'Sam Reid',
+      designTeam: 'Karina Hensberry, Patricia Loeblein, Kathy Perkins, Mike Dubson, Noah Podolefsky',
+      thanks: '\u2022 Thanks to Mobile Learner Labs for working with the PhET development team to convert this\nsimulation to HTML5.'
+    }
   };
 
   SimLauncher.launch( function() {
