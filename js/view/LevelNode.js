@@ -67,9 +67,9 @@ define( function( require ) {
       scoreFill: 'black',
       centerX: 105,
       centerY: 190,
-      scoreAlignment: 'centerBottom',
-      scoreTextSize: 20,
-      scoreStroke: null
+      pointsAlignment: 'centerBottom',
+      pointsTextSize: 20,
+      pointsStroke: null
     } );
     thisNode.addChild( smile );
 
@@ -229,7 +229,7 @@ define( function( require ) {
       buttonTryAgain.setVisible( value === 'tryAgain' );
       buttonShowAnswer.setVisible( value === 'showAnswer' );
       if ( model.buttonStatus === 'ok' ) {
-        smile.setScore( model.stepScore );
+        smile.setPoints( model.stepScore );
         smile.visible = model.stepScore > 0;
       }
       else {
