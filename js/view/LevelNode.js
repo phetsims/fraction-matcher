@@ -67,7 +67,7 @@ define( function( require ) {
       scoreFill: 'black',
       centerX: 105,
       centerY: 190,
-      scoreAlignment: 'bottom',
+      scoreAlignment: 'centerBottom',
       scoreTextSize: 20,
       scoreStroke: null
     } );
