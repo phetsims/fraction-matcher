@@ -63,7 +63,6 @@ define( function( require ) {
     //drawing smile
     var smile = new FaceWithScoreNode( {
       faceDiameter: 100,
-      faceOpacity: 1,
       scoreFill: 'black',
       centerX: 105,
       centerY: 190,
