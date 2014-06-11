@@ -63,12 +63,10 @@ define( function( require ) {
     //drawing smile
     var smile = new FaceWithScoreNode( {
       faceDiameter: 100,
-      scoreFill: 'black',
-      centerX: 105,
-      centerY: 190,
       pointsAlignment: 'centerBottom',
-      pointsTextSize: 20,
-      pointsStroke: null
+      pointsFont: new PhetFont( { size: 20, weight: 'bold' } ),
+      centerX: 105,
+      centerY: 190
     } );
     thisNode.addChild( smile );
 
