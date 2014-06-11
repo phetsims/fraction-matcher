@@ -16,7 +16,7 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var ShapeNode = require( 'FRACTION_MATCHER/shapes/ShapeNode' );
   var TextPushButton = require( 'SUN/buttons/TextPushButton' );
-  var FaceWithScoreNode = require( 'SCENERY_PHET/FaceWithScoreNode' );
+  var FaceWithPointsNode = require( 'SCENERY_PHET/FaceWithPointsNode' );
   var ComparisonChartNode = require( 'FRACTION_MATCHER/view/ComparisonChartNode' );
   var LevelCompletedNode = require( 'VEGAS/LevelCompletedNode' );
   var VBox = require( 'SCENERY/nodes/VBox' );
@@ -61,7 +61,7 @@ define( function( require ) {
     thisNode.addChild( vBox );
 
     //drawing smile
-    var smile = new FaceWithScoreNode( {
+    var smile = new FaceWithPointsNode( {
       faceDiameter: 100,
       pointsFont: new PhetFont( { size: 20, weight: 'bold' } ),
       centerX: 105,
@@ -229,7 +229,7 @@ define( function( require ) {
         smile.visible = model.stepScore > 0;
       }
       else {
-        smile.setScore( 0 );
+        smile.setPoints( 0 );
         smile.visible = false;
       }
       if ( model.buttonStatus !== 'none' ) {
