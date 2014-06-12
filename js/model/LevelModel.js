@@ -60,9 +60,7 @@ define( function( require ) {
       this.lastPair = [-1, -1];
     },
     step: function( dt ) {
-      if ( this.gameModel.isTimer ) {
-        this.time += dt;
-      }
+      this.time += dt;
     },
     // return filtered shapes set for the selected denominator, from java model
     filterShapes: function( shapes, d ) {
