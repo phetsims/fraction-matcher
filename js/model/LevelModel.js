@@ -60,6 +60,8 @@ define( function( require ) {
       this.lastPair = [-1, -1];
     },
     step: function( dt ) {
+
+      //Always increase time, even when the timer is hidden because the timer should be shown at any time, see https://github.com/phetsims/fraction-matcher/issues/57
       this.time += dt;
     },
     // return filtered shapes set for the selected denominator, from java model
