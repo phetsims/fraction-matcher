@@ -38,7 +38,7 @@ define( function( require ) {
   var patternTimeString = require( 'string!FRACTION_MATCHER/time.pattern' );
   var buttonShowAnswerString = require( 'string!FRACTION_MATCHER/buttonShowAnswer' );
 
-  function LevelNode( model, levelsContainer, options ) {
+  function LevelNode( model, levelsContainer, layoutBounds, options ) {
     var margin = 15;
     var thisNode = this;
 
@@ -64,7 +64,7 @@ define( function( require ) {
     var smile = new FaceWithPointsNode( {
       faceDiameter: 100,
       pointsFont: new PhetFont( { size: 20, weight: 'bold' } ),
-      centerX: 105,
+      centerX: layoutBounds.right - 105,
       centerY: 190
     } );
     thisNode.addChild( smile );

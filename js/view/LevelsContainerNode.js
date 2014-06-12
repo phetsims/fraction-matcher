@@ -26,7 +26,7 @@ define( function( require ) {
   // images
   var scaleImage = require( 'image!FRACTION_MATCHER/scale.png' );
 
-  function LevelsContainerNode( model ) {
+  function LevelsContainerNode( model, layoutBounds ) {
     var margin = 15;
 
     var thisNode = this, i, j;
@@ -43,17 +43,17 @@ define( function( require ) {
     thisNode.addChild( new Text( myMatchesString, { font: new PhetFont( { size: 14, weight: "bold"} ), x: 15, y: 100  } ) );
 
     //right buttons, reset and toLevelSelection
-    var backButton = new ReturnToLevelSelectButton( {listener: function() {model.currentLevel = 0;}, y: 150} );
-    backButton.x = model.width - backButton.width - margin;
-    thisNode.addChild( backButton );
+    var returnToLevelSelectButton = new ReturnToLevelSelectButton( {listener: function() {model.currentLevel = 0;}, y: 120} );
+    returnToLevelSelectButton.left = margin;
+    thisNode.addChild( returnToLevelSelectButton );
 
     var refreshButton = new RefreshButton( {
       listener: function() {
         model.levels[model.currentLevel - 1].reset();
         thisNode.levelNodes[model.currentLevel - 1].generateNewLevel();
       },
-      y: backButton.bottom + 8} );
-    refreshButton.x = model.width - refreshButton.width - margin;
+      y: returnToLevelSelectButton.bottom + 8} );
+    refreshButton.left = margin;
     thisNode.addChild( refreshButton );
 
     //scales
@@ -74,16 +74,12 @@ define( function( require ) {
     }
 
     this.levelNodes = [];
-    /*model.levels.forEach( function( levelModel, index ) {
-     thisNode.levelNodes[index] = new LevelNode( levelModel, thisNode, {visible: false} );
-     thisNode.addChild( thisNode.levelNodes[index] );
-     } );*/
 
     model.currentLevelProperty.link( function( newLevel ) {
       if ( newLevel > 0 ) {
         //generate each node levelNode on demand, to make loading faster
         if ( !thisNode.levelNodes[newLevel - 1] ) {
-          thisNode.levelNodes[newLevel - 1] = new LevelNode( model.levels[newLevel - 1], thisNode );
+          thisNode.levelNodes[newLevel - 1] = new LevelNode( model.levels[newLevel - 1], thisNode, layoutBounds );
         }
 
         //if we keep it in memory - append to dom
