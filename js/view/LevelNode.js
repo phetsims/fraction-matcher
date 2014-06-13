@@ -406,10 +406,6 @@ define( function( require ) {
             this.rewardNode = new RewardNode( {
               stepSource: this.stepSource,
               nodes: rewardNodes,
-              completionListener: function() {
-                levelNode.rewardNode.detach();
-                levelNode.rewardNode = null;
-              }
             } );
             this.addChild( this.rewardNode );
           }
