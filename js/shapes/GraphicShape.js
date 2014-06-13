@@ -74,11 +74,8 @@ define( function( require ) {
     arrayToShapes: function( array, offset, outlines ) {
       this.fillShapes( array );
       var nodes = this.getNodesFromArray( array, outlines );
-      this.addNodes( nodes, offset );
-    },
 
-    // add nodes to main container
-    addNodes: function( nodes, offset ) {
+      // add nodes to main container
       var self = this,
         scaleFactor;
 
