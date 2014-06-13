@@ -11,7 +11,6 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
   var VBox = require( 'SCENERY/nodes/VBox' );
   var HBox = require( 'SCENERY/nodes/HBox' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
@@ -34,7 +33,6 @@ define( function( require ) {
 
   function LevelSelectButtonsAndTitleNode( model, options ) {
     var mixedNumber = (model.game === mixedNumbersTitleString);
-    Node.call( this, options );
 
     var vBoxChildren = [];
     vBoxChildren.push( new Text( mixedNumber ? mixedNumbersChooseYourLevelString : fractionsChooseYourLevelString, {font: new PhetFont( {size: 28, family: HomeScreen.TITLE_FONT_FAMILY} )} ) );
@@ -123,8 +121,8 @@ define( function( require ) {
       }
     } );
 
-    this.addChild( new VBox( {resize: false, children: vBoxChildren, spacing: 30} ) );
+    VBox.call( this, _.extend( {resize: false, children: vBoxChildren, spacing: 30}, options ) );
   }
 
-  return inherit( Node, LevelSelectButtonsAndTitleNode );
+  return inherit( VBox, LevelSelectButtonsAndTitleNode );
 } );
