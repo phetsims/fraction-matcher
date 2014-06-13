@@ -28,13 +28,13 @@ define( function( require ) {
     levelsContainerNode.visible = false;
     levelsContainerNode.x = model.width;
 
-    var startGameLevelNode = new LevelSelectButtonsAndTitleNode( model ).mutate( {
+    var levelSelectButtonsAndTitleNode = new LevelSelectButtonsAndTitleNode( model ).mutate( {
       centerX: model.width / 2,
       y: 20
     } );
     var levelSelectionScreen = new Node( {
       children: [
-        startGameLevelNode,
+        levelSelectButtonsAndTitleNode,
         new ResetAllButton( {
           listener: function() {
             model.reset();
