@@ -10,6 +10,8 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var StarNode = require( 'SCENERY_PHET/StarNode' );
+  var FaceNode = require( 'SCENERY_PHET/FaceNode' );
   var RewardNode = require( 'VEGAS/RewardNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -397,6 +399,10 @@ define( function( require ) {
             var rewardNodes = this.model.shapes.map( function( shape ) {return shape.view;} );
 
             //Create and attach the new Reward Node
+
+            var face = new FaceNode( 40, {headStroke: 'black', headLineWidth: 1.5} );
+            var star = new StarNode();
+            var rewardNodes = RewardNode.createRandomNodes( rewardNodes, 100 ).concat( face, face, face, face, star, star, star, star );
             this.rewardNode = new RewardNode( {
               stepSource: this.stepSource,
               nodes: rewardNodes,
