@@ -75,10 +75,12 @@ define( function( require ) {
 
     //drawing smile
     var smile = new FaceWithPointsNode( {
+      spacing: 6,
+      pointsAlignment: 'rightCenter',
       faceDiameter: 100,
       pointsFont: new PhetFont( { size: 20, weight: 'bold' } ),
       centerX: layoutBounds.right - 105,
-      centerY: 190
+      centerY: 205
     } );
     thisNode.addChild( smile );
 
@@ -86,7 +88,7 @@ define( function( require ) {
     var commonButtonStyle = {
       font: new PhetFont( { size: 18, weight: 'bold'} ),
       centerX: smile.centerX,
-      centerY: smile.bottom + margin
+      centerY: smile.bottom + 27
     };
 
     var buttonCheck = new TextPushButton(
