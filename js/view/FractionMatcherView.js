@@ -59,10 +59,11 @@ define( function( require ) {
       levelSelectionScreen.visible = (levelSelectionScreen.x === 0);
     } );
 
-    var fromLevelNumber; //level from which we return to main screen. keep this to remove corresponging Node from DOM
+    var fromLevelNumber; //level from which we return to main screen. keep this to remove corresponding Node from the scene graph
     var levelsTween = new TWEEN.Tween( levelsContainerNode ).easing( TWEEN.Easing.Cubic.InOut ).onComplete( function() {
       levelsContainerNode.visible = (levelsContainerNode.x === 0);
-      //remove levelnode from DOM to keep it simple and fast
+
+      //remove LevelNode from scene graph to keep it simple and fast
       if ( fromLevelNumber && fromLevelNumber !== model.currentLevel ) {
         var parentNode = levelsContainerNode.levelNodes[fromLevelNumber - 1].getParent();
         if ( parentNode ) {
