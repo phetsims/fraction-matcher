@@ -8,7 +8,7 @@
  */
 
 define( function( require ) {
-  "use strict";
+  'use strict';
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
@@ -25,9 +25,9 @@ define( function( require ) {
       eqShape = new Shape();
 
     options = _.extend( {
-        symbolFill: "#FFFF00",
+        symbolFill: '#FFFF00',
         symbolWidth: 2,
-        stroke: "#000",
+        stroke: '#000',
         lineBaseWidth: 2,
         lineOtherWidth: 1,
         lineWeight: 70,
@@ -88,20 +88,20 @@ define( function( require ) {
     thisNode.addChild( new Path( Shape.lineSegment( -options.lineWeight / 4, -7 * options.lineHeight / 8, options.lineWeight / 4, -7 * options.lineHeight / 8 ), {stroke: options.stroke, lineWidth: options.lineOtherWidth} ) );
 
     //labels 0,1,2
-    thisNode.addChild( new Text( "0", { font: new PhetFont( { size: 18, weight: "normal"} ), centerX: -options.lineWeight / 2 - 10, centerY: 0 } ) );
-    thisNode.addChild( new Text( "0", { font: new PhetFont( { size: 18, weight: "normal"} ), centerX: options.lineWeight / 2 + 10, centerY: 0 } ) );
+    thisNode.addChild( new Text( '0', { font: new PhetFont( { size: 18, weight: 'normal'} ), centerX: -options.lineWeight / 2 - 10, centerY: 0 } ) );
+    thisNode.addChild( new Text( '0', { font: new PhetFont( { size: 18, weight: 'normal'} ), centerX: options.lineWeight / 2 + 10, centerY: 0 } ) );
 
-    thisNode.addChild( new Text( "1", { font: new PhetFont( { size: 18, weight: "normal"} ), centerX: -options.lineWeight / 2 - 10, centerY: -options.lineHeight / 2  } ) );
-    thisNode.addChild( new Text( "1", { font: new PhetFont( { size: 18, weight: "normal"} ), centerX: options.lineWeight / 2 + 10, centerY: -options.lineHeight / 2  } ) );
+    thisNode.addChild( new Text( '1', { font: new PhetFont( { size: 18, weight: 'normal'} ), centerX: -options.lineWeight / 2 - 10, centerY: -options.lineHeight / 2  } ) );
+    thisNode.addChild( new Text( '1', { font: new PhetFont( { size: 18, weight: 'normal'} ), centerX: options.lineWeight / 2 + 10, centerY: -options.lineHeight / 2  } ) );
 
-    thisNode.addChild( new Text( "2", { font: new PhetFont( { size: 18, weight: "normal"} ), centerX: -options.lineWeight / 2 - 10, centerY: -options.lineHeight } ) );
-    thisNode.addChild( new Text( "2", { font: new PhetFont( { size: 18, weight: "normal"} ), centerX: options.lineWeight / 2 + 10, centerY: -options.lineHeight } ) );
+    thisNode.addChild( new Text( '2', { font: new PhetFont( { size: 18, weight: 'normal'} ), centerX: -options.lineWeight / 2 - 10, centerY: -options.lineHeight } ) );
+    thisNode.addChild( new Text( '2', { font: new PhetFont( { size: 18, weight: 'normal'} ), centerX: options.lineWeight / 2 + 10, centerY: -options.lineHeight } ) );
 
 
     //compare rectangles
     var widthRect = options.lineWeight / 4 * 0.6;
-    var rectLeft = new Rectangle( -options.lineWeight / 8 - widthRect / 2, 0, widthRect, 0, {stroke: options.stroke, lineWidth: options.lineOtherWidth, fill: "#F00"} ),
-      rectRight = new Rectangle( options.lineWeight / 8 - widthRect / 2, 0, widthRect, 0, {stroke: options.stroke, lineWidth: options.lineOtherWidth, fill: "#0F0"} );
+    var rectLeft = new Rectangle( -options.lineWeight / 8 - widthRect / 2, 0, widthRect, 0, {stroke: options.stroke, lineWidth: options.lineOtherWidth, fill: '#F00'} ),
+      rectRight = new Rectangle( options.lineWeight / 8 - widthRect / 2, 0, widthRect, 0, {stroke: options.stroke, lineWidth: options.lineOtherWidth, fill: '#0F0'} );
 
 
     thisNode.addChild( rectLeft );

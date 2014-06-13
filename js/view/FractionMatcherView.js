@@ -7,12 +7,12 @@
  */
 
 define( function( require ) {
-  "use strict";
+  'use strict';
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var ScreenView = require( 'JOIST/ScreenView' );
-  var Node = require( "SCENERY/nodes/Node" );
+  var Node = require( 'SCENERY/nodes/Node' );
   var LevelsContainerNode = require( 'FRACTION_MATCHER/view/LevelsContainerNode' );
   var SoundToggleButton = require( 'SCENERY_PHET/SoundToggleButton' );
   var TimerToggleButton = require( 'SCENERY_PHET/TimerToggleButton' );

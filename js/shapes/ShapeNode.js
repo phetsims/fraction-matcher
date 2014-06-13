@@ -6,7 +6,7 @@
  * @author Andrey Zelenkov (Mlearner)
  */
 define( function( require ) {
-  "use strict";
+  'use strict';
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
@@ -38,7 +38,7 @@ define( function( require ) {
             toSimplify: false,
             fill: '#F00',
             outlineWidth: 2,
-            stroke: "#000"
+            stroke: '#000'
           },
           options );
 

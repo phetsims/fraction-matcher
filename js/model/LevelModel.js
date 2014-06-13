@@ -33,7 +33,7 @@ define( function( require ) {
       lastChangedZone: -1, //when showing correct answer, change only last dragged shape position
       shapes: [], //array of SingleShapeModels
       canDrag: true,
-      buttonStatus: "none" // ['none','ok','check','tryAgain','showAnswer']
+      buttonStatus: 'none' // ['none','ok','check','tryAgain','showAnswer']
     } );
 
     this.dropZone = []; //contains indexes of shapes, which are placed in current zone, -1 if empty
@@ -131,19 +131,19 @@ define( function( require ) {
     answerButton: function( buttonName ) {
       var self = this;
       switch( buttonName ) { //['none','ok','check','tryAgain','showAnswer']
-        case "ok":
+        case 'ok':
           this.lastChangedZone = -1;
           self.stepScore = 2;
           this.canDrag = true;
-          this.buttonStatus = "none";
+          this.buttonStatus = 'none';
           if ( self.answers.length === self.gameModel.MAXIMUM_PAIRS ) {
             self.hiScore = Math.max( self.hiScore, self.score );
           }
           break;
-        case "check":
+        case 'check':
           if ( self.isShapesEqual( self.shapes[this.dropZone[12]], self.shapes[this.dropZone[13]] ) ) {
             //answer correct
-            this.buttonStatus = "ok";
+            this.buttonStatus = 'ok';
             self.score += self.stepScore;
             self.gameModel.sounds.correct.play();
           }
@@ -151,17 +151,17 @@ define( function( require ) {
             //answer incorrect
             self.gameModel.sounds.incorrect.play();
             self.stepScore--;
-            this.buttonStatus = (self.stepScore) ? "tryAgain" : "showAnswer";
+            this.buttonStatus = (self.stepScore) ? 'tryAgain' : 'showAnswer';
             this.lastPair = [this.dropZone[12], this.dropZone[13]];
           }
           this.canDrag = false;
           break;
-        case "tryAgain" :
+        case 'tryAgain' :
           this.canDrag = true;
-          this.buttonStatus = "none";
+          this.buttonStatus = 'none';
           break;
-        case "showAnswer" :
-          this.buttonStatus = "ok";
+        case 'showAnswer' :
+          this.buttonStatus = 'ok';
           break;
       }
     },

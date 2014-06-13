@@ -7,7 +7,7 @@
  */
 
 define( function( require ) {
-  "use strict";
+  'use strict';
 
   // modules
   var RewardNode = require( 'VEGAS/RewardNode' );
@@ -61,9 +61,9 @@ define( function( require ) {
     this.model = model;
 
     //drawing labels at the right
-    var levelLabel = new Text( StringUtils.format( patternLevelString, model.levelNumber ), { font: new PhetFont( { size: 12, weight: "bold"} )} );
-    var scoreLabel = new Text( StringUtils.format( patternScoreString, 0 ), { font: new PhetFont( { size: 12, weight: "bold"} )} );
-    var timeLabel = new Text( StringUtils.format( patternScoreString, 0 ), { font: new PhetFont( { size: 12, weight: "bold"} )} );
+    var levelLabel = new Text( StringUtils.format( patternLevelString, model.levelNumber ), { font: new PhetFont( { size: 12, weight: 'bold'} )} );
+    var scoreLabel = new Text( StringUtils.format( patternScoreString, 0 ), { font: new PhetFont( { size: 12, weight: 'bold'} )} );
+    var timeLabel = new Text( StringUtils.format( patternScoreString, 0 ), { font: new PhetFont( { size: 12, weight: 'bold'} )} );
     var vBox = new VBox( {
       children: [levelLabel, scoreLabel, timeLabel],
       spacing: 5,
@@ -84,7 +84,7 @@ define( function( require ) {
 
     //drawing left part buttons: check, ok, tryAgain, showAnswer
     var commonButtonStyle = {
-      font: new PhetFont( { size: 18, weight: "bold"} ),
+      font: new PhetFont( { size: 18, weight: 'bold'} ),
       centerX: smile.centerX,
       centerY: smile.bottom + margin
     };
@@ -92,17 +92,17 @@ define( function( require ) {
     var buttonCheck = new TextPushButton(
       buttonCheckString,
       _.extend( commonButtonStyle, {
-        baseColor: "#FFD63F",
-        listener: function() {model.answerButton( "check" );}
+        baseColor: '#FFD63F',
+        listener: function() {model.answerButton( 'check' );}
       } ) );
     thisNode.addChild( buttonCheck );
 
     var buttonOk = new TextPushButton(
       buttonOkString,
       _.extend( commonButtonStyle, {
-        baseColor: "#44FF44",
+        baseColor: '#44FF44',
         listener: function() {
-          model.answerButton( "ok" );
+          model.answerButton( 'ok' );
           //animate to answers area and remove listeners
           thisNode.moveShapesOnScalesToAnswer();
         }
@@ -112,9 +112,9 @@ define( function( require ) {
     var buttonTryAgain = new TextPushButton(
       buttonTryAgainString,
       _.extend( commonButtonStyle, {
-        baseColor: "#FF7C3B",
+        baseColor: '#FF7C3B',
         listener: function() {
-          model.answerButton( "tryAgain" );
+          model.answerButton( 'tryAgain' );
         }
       } ) );
     thisNode.addChild( buttonTryAgain );
@@ -122,9 +122,9 @@ define( function( require ) {
     var buttonShowAnswer = new TextPushButton(
       buttonShowAnswerString,
       _.extend( commonButtonStyle, {
-        baseColor: "#FF7C3B",
+        baseColor: '#FF7C3B',
         listener: function() {
-          model.answerButton( "showAnswer" );
+          model.answerButton( 'showAnswer' );
           thisNode.showCorrectAnswer();
         }
       } ) );
@@ -137,7 +137,7 @@ define( function( require ) {
     //equal signs at the top for six gray answer rectangles
     this.equallyAnswerSymbol = [];
     this.levelsContainer.answerRects.forEach( function( answerRect, i ) {
-      thisNode.equallyAnswerSymbol[i] = new Text( equallyAnswerSymbolString, { font: new PhetFont( { size: 22, _weight: "bold"} ), center: answerRect.center, visible: false  } );
+      thisNode.equallyAnswerSymbol[i] = new Text( equallyAnswerSymbolString, { font: new PhetFont( { size: 22, _weight: 'bold'} ), center: answerRect.center, visible: false  } );
       thisNode.addChild( thisNode.equallyAnswerSymbol[i] );
     } );
 
@@ -207,7 +207,7 @@ define( function( require ) {
         //new shapeView
         if ( singleShapeModel.view === undefined ) {
           singleShapeModel.view = ShapeNode.create( singleShapeModel );
-          singleShapeModel.view.cursor = "pointer";
+          singleShapeModel.view.cursor = 'pointer';
           //handler for new single shape
           singleShapeModel.view.addInputListener( new SimpleDragHandler( dragParamers ) );
           singleShapeModel.view.indexShape = i;
@@ -320,7 +320,7 @@ define( function( require ) {
         }
         return closestZone;
       },
-      //animation for "snapping" shape to correct position
+      //animation for 'snapping' shape to correct position
       dropShapeToZone: function( shape, zoneIndex ) {
         //target dropZone now = indexShape
         this.model.dropZone[zoneIndex] = shape.view.indexShape;

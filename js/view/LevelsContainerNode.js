@@ -7,11 +7,11 @@
  */
 
 define( function( require ) {
-  "use strict";
+  'use strict';
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( "SCENERY/nodes/Node" );
+  var Node = require( 'SCENERY/nodes/Node' );
   var Text = require( 'SCENERY/nodes/Text' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Image = require( 'SCENERY/nodes/Image' );
@@ -42,12 +42,12 @@ define( function( require ) {
     //top gray targets                                          f
     this.answerRects = [];
     for ( i = 0; i < 6; i++ ) {
-      this.answerRects.push( new Rectangle( margin + i * 125, margin, 115, 70, 10, 10, {fill: "#C0C0C0"} ) );
+      this.answerRects.push( new Rectangle( margin + i * 125, margin, 115, 70, 10, 10, {fill: '#C0C0C0'} ) );
       thisNode.addChild( this.answerRects[i] );
     }
 
     //My matches string
-    thisNode.addChild( new Text( myMatchesString, { font: new PhetFont( { size: 14, weight: "bold"} ), x: 15, y: 100  } ) );
+    thisNode.addChild( new Text( myMatchesString, { font: new PhetFont( { size: 14, weight: 'bold'} ), x: 15, y: 100  } ) );
 
     //right buttons, reset and toLevelSelection
     var returnToLevelSelectButton = new ReturnToLevelSelectButton( {listener: function() {model.currentLevel = 0;}, y: 120} );
@@ -75,7 +75,7 @@ define( function( require ) {
     this.sourceRectangles = [];
     for ( i = 0; i < 6; i++ ) {
       for ( j = 0; j < 2; j++ ) {
-        this.sourceRectangles.push( new Rectangle( 85 + i * 96, 315 + j * 90, 96, 90, 0, 0, { stroke: "#C0C0C0", lineWidth: 1} ) );
+        this.sourceRectangles.push( new Rectangle( 85 + i * 96, 315 + j * 90, 96, 90, 0, 0, { stroke: '#C0C0C0', lineWidth: 1} ) );
         thisNode.addChild( this.sourceRectangles[this.sourceRectangles.length - 1] );
       }
     }
