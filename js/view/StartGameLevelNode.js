@@ -19,6 +19,7 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
   var LevelStartButton = require( 'VEGAS/LevelStartButton' );
+  var HomeScreen = require( 'JOIST/HomeScreen' );
 
   // strings
   var patternLevelString = require( 'string!FRACTION_MATCHER/patternLevel' );
@@ -36,7 +37,7 @@ define( function( require ) {
     Node.call( this, options );
 
     var vBoxChildren = [];
-    vBoxChildren.push( new Text( mixedNumber ? mixedNumbersChooseYourLevelString : fractionsChooseYourLevelString, {font: new PhetFont( {size: 28} )} ) );
+    vBoxChildren.push( new Text( mixedNumber ? mixedNumbersChooseYourLevelString : fractionsChooseYourLevelString, {font: new PhetFont( {size: 28, family: HomeScreen.TITLE_FONT_FAMILY} )} ) );
 
     var START_BUTTON_OPTIONS = {
       buttonWidth: 90,
