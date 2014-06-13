@@ -17,7 +17,7 @@ define( function( require ) {
   var SoundToggleButton = require( 'SCENERY_PHET/SoundToggleButton' );
   var TimerToggleButton = require( 'SCENERY_PHET/TimerToggleButton' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
-  var StartGameLevelNode = require( 'FRACTION_MATCHER/view/StartGameLevelNode' );
+  var LevelSelectNode = require( 'FRACTION_MATCHER/view/LevelSelectNode' );
   var HBox = require( 'SCENERY/nodes/HBox' );
   var Sound = require( 'VIBE/Sound' );
 
@@ -28,7 +28,7 @@ define( function( require ) {
     levelsContainerNode.visible = false;
     levelsContainerNode.x = model.width;
 
-    var startGameLevelNode = new StartGameLevelNode( model ).mutate( {
+    var startGameLevelNode = new LevelSelectNode( model ).mutate( {
       centerX: model.width / 2,
       y: 20
     } );

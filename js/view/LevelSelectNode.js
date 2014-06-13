@@ -32,7 +32,7 @@ define( function( require ) {
   var BUTTONS_PER_LINE = 4; //number on buttons in a single row
   var FONT = new PhetFont( { size: 14, weight: 'bold'} );
 
-  function StartGameLevelNode( model, options ) {
+  function LevelSelectNode( model, options ) {
     var mixedNumber = (model.game === mixedNumbersTitleString);
     Node.call( this, options );
 
@@ -126,5 +126,5 @@ define( function( require ) {
     this.addChild( new VBox( {resize: false, children: vBoxChildren, spacing: 30} ) );
   }
 
-  return inherit( Node, StartGameLevelNode );
+  return inherit( Node, LevelSelectNode );
 } );
