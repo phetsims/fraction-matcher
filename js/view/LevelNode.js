@@ -402,7 +402,7 @@ define( function( require ) {
 
             var face = new FaceNode( 40, {headStroke: 'black', headLineWidth: 1.5} );
             var star = new StarNode();
-            var rewardNodes = RewardNode.createRandomNodes( rewardNodes, 100 ).concat( face, face, face, face, star, star, star, star );
+            rewardNodes = RewardNode.createRandomNodes( rewardNodes, 100 ).concat( _.times( 6, _.constant( face ) ), _.times( 6, _.constant( star ) ) );
             this.rewardNode = new RewardNode( {
               stepSource: this.stepSource,
               nodes: rewardNodes,
