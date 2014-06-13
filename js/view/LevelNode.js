@@ -405,7 +405,7 @@ define( function( require ) {
             rewardNodes = RewardNode.createRandomNodes( rewardNodes, 100 ).concat( _.times( 6, _.constant( face ) ), _.times( 6, _.constant( star ) ) );
             this.rewardNode = new RewardNode( {
               stepSource: this.stepSource,
-              nodes: rewardNodes,
+              nodes: rewardNodes
             } );
             this.addChild( this.rewardNode );
           }
