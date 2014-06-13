@@ -68,6 +68,9 @@ define( function( require ) {
       // add fraction node
       this.addChild( this.getFractionNode( numerator, denominator, side, fontSizeSmall ) );
     }
+
+    //Expand the touch and mouse areas for the numeric fractions, so there are no "gaps", see #56
+    this.mouseArea = this.touchArea = this.localBounds.dilatedXY( 2, 2 );
   }
 
   return inherit( Node, NumericShape, {
