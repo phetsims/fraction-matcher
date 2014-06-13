@@ -12,21 +12,26 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var HBox = require( 'SCENERY/nodes/HBox' );
-  var FILL_TYPE = require( 'FRACTION_MATCHER/model/FillType' );
+  var FillType = require( 'FRACTION_MATCHER/model/FillType' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
 
   function AbstractShape( options ) {
     options = _.extend( {
-        fillType: FILL_TYPE.SEQUENTIAL
+        fillType: FillType.SEQUENTIAL
       },
       options );
     HBox.call( this, {resize: false, x: options.x, y: options.y} );
     this.options = options;
 
     //created all paths from pattern, fill with colors and add to container
-    this.arrayToShapes( options.createdPaths.shapes, options.createdPaths.margin, options.createdPaths.outlines );
+    this.addShapeChildren( options.createdPaths.shapes, options.createdPaths.margin, options.createdPaths.outlines );
 
     //Expand the touch areas for the graphical fractions, see #56
     this.touchArea = this.localBounds.dilatedXY( 4, 4 );
+
+    //Add a transparent rectangle that is used to make sure there are no litter left behind when using SVG to render the shapes, see #54
+    var clearingRegion = this.localBounds.dilatedXY( 1, 1 );
+    this.addChild( new Rectangle( clearingRegion.x, clearingRegion.y, clearingRegion.width, clearingRegion.height, {fill: 'rgba(0,0,0,0)'} ) );
   }
 
   return inherit( HBox, AbstractShape, {
@@ -37,12 +42,12 @@ define( function( require ) {
         var filled = 0, i = 0, j = 0, len1 = shapes.length, len2 = shapes[0].length;
 
         while ( filled < this.options.numerator ) { //while number of filled pieces < required (numerator)
-          if ( this.options.fillType === FILL_TYPE.SEQUENTIAL ) {
+          if ( this.options.fillType === FillType.SEQUENTIAL ) {
             //fill first shape, then second, etc.
             shapes[Math.floor( i / len2 ) % len1][i++ % len2].fill = this.options.fill;
             filled++;
           }
-          else if ( this.options.fillType === FILL_TYPE.MIXED ) {
+          else if ( this.options.fillType === FillType.MIXED ) {
             //fill first shape always, then random piece in random shape
             if ( filled < len2 ) {
               shapes[Math.floor( i / len2 ) % len1][i++ % len2].fill = this.options.fill;
@@ -57,7 +62,7 @@ define( function( require ) {
               }
             }
           }
-          else if ( this.options.fillType === FILL_TYPE.RANDOM ) {
+          else if ( this.options.fillType === FillType.RANDOM ) {
             //random shape, random piece in shape, fill if not filled yet
             i = _.random( len1 - 1 );
             j = _.random( len2 - 1 );
@@ -71,7 +76,7 @@ define( function( require ) {
     },
 
     // convert array to shapes and add them to main container
-    arrayToShapes: function( array, offset, outlines ) {
+    addShapeChildren: function( array, offset, outlines ) {
       this.fillShapes( array );
       var nodes = this.getNodesFromArray( array, outlines );
 
