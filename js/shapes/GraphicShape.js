@@ -24,6 +24,9 @@ define( function( require ) {
 
     //created all paths from pattern, fill with colors and add to container
     this.arrayToShapes( options.createdPaths.shapes, options.createdPaths.margin, options.createdPaths.outlines );
+
+    //Expand the touch areas for the graphical fractions, see #56
+    this.touchArea = this.localBounds.dilatedXY( 4, 4 );
   }
 
   return inherit( HBox, AbstractShape, {
