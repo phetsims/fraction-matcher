@@ -10,6 +10,7 @@ define( function( require ) {
   "use strict";
 
   // modules
+  var RewardNode = require( 'VEGAS/RewardNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -38,10 +39,22 @@ define( function( require ) {
   var patternTimeString = require( 'string!FRACTION_MATCHER/time.pattern' );
   var buttonShowAnswerString = require( 'string!FRACTION_MATCHER/buttonShowAnswer' );
 
-  function LevelNode( model, levelsContainer, layoutBounds, options ) {
+  //Toggle this to true to make the rewards show after any shape comparison, for debugging
+  var debugRewards = false;
+
+  /**
+   *
+   * @param {LevelModel} model
+   * @param levelsContainer
+   * @param layoutBounds
+   * @param {Events} stepSource used for animating the RewardNode
+   * @param options
+   * @constructor
+   */
+  function LevelNode( model, levelsContainer, layoutBounds, stepSource, options ) {
     var margin = 15;
     var thisNode = this;
-
+    this.stepSource = stepSource;
     Node.call( this );
 
     this.levelsContainer = levelsContainer;
@@ -361,7 +374,7 @@ define( function( require ) {
           thisNode.model.dropZone[thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i] = -1;
           shape.view.removeInputListener( shape.view.getInputListeners()[0] );
         } );
-        if ( this.model.answers.length === this.model.gameModel.MAXIMUM_PAIRS * 2 ) {
+        if ( this.model.answers.length === this.model.gameModel.MAXIMUM_PAIRS * 2 || debugRewards ) {
 
           var levelNode = this;
           var completedTime = this.model.time;
@@ -371,6 +384,29 @@ define( function( require ) {
             newBestTime = true;
             this.model.gameModel.bestTimes[this.model.levelNumber - 1].set( completedTime );
           }
+
+          //If a perfect score, show the reward node
+          if ( this.model.score === 12 || debugRewards ) {
+
+            //If there was already a reward node, get rid of it before creating the new one.
+            this.rewardNode && this.rewardNode.detach();
+
+            //Use the shapes from the level in the RewardNode
+            var rewardNodes = this.model.shapes.map( function( shape ) {return shape.view;} );
+
+            //Create and attach the new Reward Node
+            this.rewardNode = new RewardNode( {
+              stepSource: this.stepSource,
+              nodes: rewardNodes,
+              completionListener: function() {
+                levelNode.rewardNode.detach();
+                levelNode.rewardNode = null;
+              }
+            } );
+            this.addChild( this.rewardNode );
+          }
+
+          //Show the level completed dialog which shows scores, etc.
           this.levelCompletedNode = new LevelCompletedNode( this.model.levelNumber - 1, this.model.score, 12, 3, this.model.gameModel.isTimer, completedTime, lastBestForThisLevel, newBestTime,
             function() {
               var model = levelNode.model;

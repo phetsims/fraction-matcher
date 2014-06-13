@@ -84,6 +84,9 @@ define( function( require ) {
       if ( this.currentLevel > 0 ) {
         this.levels[this.currentLevel - 1].step( dt );
       }
+
+      //Signify that a step occurred: used in animating the RewardNodes
+      this.trigger1( 'step', dt );
     }
   } );
 

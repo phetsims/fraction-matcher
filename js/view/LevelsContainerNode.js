@@ -26,8 +26,15 @@ define( function( require ) {
   // images
   var scaleImage = require( 'image!FRACTION_MATCHER/scale.png' );
 
+  /**
+   *
+   * @param {FractionMatcherModel} model
+   * @param layoutBounds
+   * @constructor
+   */
   function LevelsContainerNode( model, layoutBounds ) {
     var margin = 15;
+    this.model = model;
 
     var thisNode = this, i, j;
     Node.call( this );
@@ -79,7 +86,7 @@ define( function( require ) {
       if ( newLevel > 0 ) {
         //generate each node levelNode on demand, to make loading faster
         if ( !thisNode.levelNodes[newLevel - 1] ) {
-          thisNode.levelNodes[newLevel - 1] = new LevelNode( model.levels[newLevel - 1], thisNode, layoutBounds );
+          thisNode.levelNodes[newLevel - 1] = new LevelNode( model.levels[newLevel - 1], thisNode, layoutBounds, thisNode.model );
         }
 
         //if we keep it in memory - append to dom
