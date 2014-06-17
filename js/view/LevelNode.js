@@ -45,7 +45,7 @@ define( function( require ) {
   var buttonShowAnswerString = require( 'string!FRACTION_MATCHER/buttonShowAnswer' );
 
   //Toggle this to true to make the rewards show after any shape comparison, for debugging
-  var debugRewards = true;
+  var debugRewards = false;
 
   // audio
   var cheerSound = new Sound( cheerAudio );
