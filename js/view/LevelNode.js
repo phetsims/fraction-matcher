@@ -398,6 +398,14 @@ define( function( require ) {
             //Use the shapes from the level in the RewardNode
             var rewardNodes = this.model.shapes.map( function( shape ) {return shape.view;} );
 
+            //Set the scale for each node to be the same, since some may not have animated to the "my matches" boxes yet, and may be a different size
+            var scale = 0.9;
+            for ( var i = 0; i < rewardNodes.length; i++ ) {
+              var rewardNode = rewardNodes[i];
+              rewardNode.previousScale = rewardNode.getScaleVector();
+              rewardNode.setScaleMagnitude( scale * scale );
+            }
+
             //Create and attach the new Reward Node
 
             var face = new FaceNode( 40, {headStroke: 'black', headLineWidth: 1.5} );
@@ -408,6 +416,14 @@ define( function( require ) {
               nodes: rewardNodes
             } );
             this.addChild( this.rewardNode );
+
+            // Restore the sizes of the nodes after toImage completed
+            for ( i = 0; i < rewardNodes.length; i++ ) {
+              rewardNode = rewardNodes[i];
+              if ( rewardNode.previousScale ) {
+                rewardNode.setScaleMagnitude( rewardNode.previousScale.x, rewardNode.previousScale.y );
+              }
+            }
           }
 
           //Show the level completed dialog which shows scores, etc.
