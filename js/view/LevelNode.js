@@ -22,6 +22,7 @@ define( function( require ) {
   var FaceWithPointsNode = require( 'SCENERY_PHET/FaceWithPointsNode' );
   var ComparisonChartNode = require( 'FRACTION_MATCHER/view/ComparisonChartNode' );
   var LevelCompletedNode = require( 'VEGAS/LevelCompletedNode' );
+  var Plane = require( 'SCENERY/nodes/Plane' );
   var VBox = require( 'SCENERY/nodes/VBox' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Util = require( 'DOT/Util' );
@@ -229,9 +230,9 @@ define( function( require ) {
       for ( var j = 0; j < model.gameModel.MAXIMUM_PAIRS; j++ ) {
         thisNode.equallyAnswerSymbol[j].setVisible( false );
       }
-      if ( this.levelCompletedNode !== null ) {
-        this.levelCompletedNode.detach();
-        this.levelCompletedNode = null;
+      if ( this.levelCompletedNodeContainer !== null ) {
+        this.levelCompletedNodeContainer.detach();
+        this.levelCompletedNodeContainer = null;
       }
     };
 
@@ -285,7 +286,7 @@ define( function( require ) {
       } );
     } );
 
-    this.levelCompletedNode = null;
+    this.levelCompletedNodeContainer = null;
     this.mutate( options );
   }
 
@@ -427,18 +428,25 @@ define( function( require ) {
           }
 
           //Show the level completed dialog which shows scores, etc.
-          this.levelCompletedNode = new LevelCompletedNode( this.model.levelNumber - 1, this.model.score, 12, 3, this.model.gameModel.isTimer, completedTime, lastBestForThisLevel, newBestTime,
-            function() {
-              var model = levelNode.model;
-              model.gameModel.highScores[model.levelNumber - 1].set( Math.max( model.gameModel.highScores[model.levelNumber - 1].get(), model.score ) );
-              model.gameModel.currentLevel = 0;
-              model.reset();
-              levelNode.generateNewLevel();
-            }, {
-              centerX: this.model.gameModel.width / 2,
-              centerY: this.model.gameModel.height / 2
-            } );
-          this.addChild( this.levelCompletedNode );
+          this.levelCompletedNodeContainer = new Node( {children: [
+
+            //Prevent the user from pressing anything other than the "continue" button
+            new Plane( {fill: 'black', opacity: 0, pickable: true} ),
+
+            //Show the dialog with scores
+            new LevelCompletedNode( this.model.levelNumber - 1, this.model.score, 12, 3, this.model.gameModel.isTimer, completedTime, lastBestForThisLevel, newBestTime,
+              function() {
+                var model = levelNode.model;
+                model.gameModel.highScores[model.levelNumber - 1].set( Math.max( model.gameModel.highScores[model.levelNumber - 1].get(), model.score ) );
+                model.gameModel.currentLevel = 0;
+                model.reset();
+                levelNode.generateNewLevel();
+              }, {
+                centerX: this.model.gameModel.width / 2,
+                centerY: this.model.gameModel.height / 2
+              } )
+          ]} );
+          this.addChild( this.levelCompletedNodeContainer );
         }
       }
     }
