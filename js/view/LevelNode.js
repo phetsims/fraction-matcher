@@ -10,6 +10,8 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var cheerAudio = require( 'audio!VEGAS/cheer' );
+  var Sound = require( 'VIBE/Sound' );
   var StarNode = require( 'SCENERY_PHET/StarNode' );
   var FaceNode = require( 'SCENERY_PHET/FaceNode' );
   var RewardNode = require( 'VEGAS/RewardNode' );
@@ -43,7 +45,10 @@ define( function( require ) {
   var buttonShowAnswerString = require( 'string!FRACTION_MATCHER/buttonShowAnswer' );
 
   //Toggle this to true to make the rewards show after any shape comparison, for debugging
-  var debugRewards = false;
+  var debugRewards = true;
+
+  // audio
+  var cheerSound = new Sound( cheerAudio );
 
   /**
    *
@@ -393,6 +398,9 @@ define( function( require ) {
           //If a perfect score, show the reward node
           if ( this.model.score === 12 || debugRewards ) {
 
+            //Play the "cheer" sound for a perfect score
+            cheerSound.play();
+
             //If there was already a reward node, get rid of it before creating the new one.
             this.rewardNode && this.rewardNode.detach();
 
@@ -441,6 +449,11 @@ define( function( require ) {
                 model.gameModel.currentLevel = 0;
                 model.reset();
                 levelNode.generateNewLevel();
+                levelNode.rewardNode.stop();
+
+                //TODO: only detach after animation transition away complete?
+                levelNode.rewardNode.detach();
+                levelNode.rewardNode = null;
               }, {
                 centerX: this.model.gameModel.width / 2,
                 centerY: this.model.gameModel.height / 2
