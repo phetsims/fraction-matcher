@@ -66,8 +66,9 @@ define( function( require ) {
     //scales
     var scalesMarginFromCenter = 150;
     this.scales = [];
-    this.scales[0] = new Image( scaleImage, {centerX: model.width / 2 - scalesMarginFromCenter, y: 230, scale: 0.33} );
-    this.scales[1] = new Image( scaleImage, {centerX: model.width / 2 + scalesMarginFromCenter, y: 230, scale: 0.33} );
+    var scalePositionY = 222;
+    this.scales[0] = new Image( scaleImage, {centerX: model.width / 2 - scalesMarginFromCenter, y: scalePositionY, scale: 0.33} );
+    this.scales[1] = new Image( scaleImage, {centerX: model.width / 2 + scalesMarginFromCenter, y: scalePositionY, scale: 0.33} );
     thisNode.addChild( this.scales[0] );
     thisNode.addChild( this.scales[1] );
 

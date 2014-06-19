@@ -305,7 +305,7 @@ define( function( require ) {
         else {
           //one of two scales
           var scale = this.levelsContainer.scales[position - this.model.gameModel.MAXIMUM_PAIRS * 2];
-          return new Vector2( scale.centerX, scale.top );
+          return new Vector2( scale.centerX, scale.top + 7 );
         }
       },
       //get Vector2(x,y) - position in answer gray rect at the top
@@ -341,6 +341,9 @@ define( function( require ) {
 
           //Adjust numeric mixed fractions down a bit because they are too high by default.  See https://github.com/phetsims/fraction-matcher/issues/46
           if ( shape.view instanceof NumericShape && shape.numerator / shape.denominator > 1 ) {
+            targetPosition.y += 11;
+          }
+          else if ( shape.view instanceof NumericShape ) {
             targetPosition.y += 7;
           }
         }
