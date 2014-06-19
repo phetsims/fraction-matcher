@@ -305,7 +305,7 @@ define( function( require ) {
         else {
           //one of two scales
           var scale = this.levelsContainer.scales[position - this.model.gameModel.MAXIMUM_PAIRS * 2];
-          return new Vector2( scale.centerX, scale.top + 7 );
+          return new Vector2( scale.centerX, scale.top + 6 );
         }
       },
       //get Vector2(x,y) - position in answer gray rect at the top
