@@ -109,7 +109,11 @@ define( function( require ) {
           createButtonContent( shape, index ),
           NUM_STARS_ON_BUTTON,
           function() {
-            model.currentLevel = (index + 1);
+
+            //Switch to the selected level, but only if the user was on the level selection screen, see #66
+            if ( model.currentLevel === 0 ) {
+              model.currentLevel = (index + 1);
+            }
           },
           model.highScores[index],
           model.MAX_POINTS_PER_GAME_LEVEL,
