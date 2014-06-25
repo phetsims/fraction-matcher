@@ -78,6 +78,7 @@ define( function( require ) {
       this.bestTimes.forEach( function( bestTime ) {
         bestTime.reset();
       } );
+      Sound.audioEnabledProperty.reset();
     },
 
     step: function( dt ) {
