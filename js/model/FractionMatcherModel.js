@@ -16,8 +16,8 @@ define( function( require ) {
   var Sound = require( 'VIBE/Sound' );
 
   // audio
-  var correctAudio = require( 'audio!VEGAS/correctAnswer' );
-  var wrongAudio = require( 'audio!VEGAS/incorrectAnswer' );
+  var correctAudio = require( 'audio!VEGAS/ding' );
+  var wrongAudio = require( 'audio!VEGAS/boing' );
 
   /**
    * @param width
