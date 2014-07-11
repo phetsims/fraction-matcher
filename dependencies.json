@@ -1,6 +1,6 @@
 {
   "chipper": {
-    "sha": "2ac1a91f2a254ad59343be7821aacd71ac07f539",
+    "sha": "a70478047e72540d937907951d184c8d874543a3",
     "branch": "master"
   },
   "vibe": {
@@ -12,11 +12,11 @@
     "branch": "master"
   },
   "sun": {
-    "sha": "fff921ebdb3fb710559d0ce0656d374e667fd926",
+    "sha": "2602b501374e578e3a890a2c00f2223a17ecbaef",
     "branch": "master"
   },
   "scenery-phet": {
-    "sha": "e0871bc12a5615428654666d905569010f90c307",
+    "sha": "d91779707c10a63723af38fd74092770cda16aa2",
     "branch": "master"
   },
   "scenery": {
@@ -28,19 +28,19 @@
     "branch": "master"
   },
   "phet-core": {
-    "sha": "034d4c189683042dfacd317251c35a11b1e59038",
+    "sha": "29272a5ba61442021dfc10ff5fbef6cd7ce66456",
     "branch": "master"
   },
   "kite": {
-    "sha": "c6a85af1513f2a9126a50dca4c03fb76e09a92fe",
+    "sha": "28cacb2824575b7f947de0a0cc54c79437b7b4b0",
     "branch": "master"
   },
   "joist": {
-    "sha": "b8d9c5d1bbf746f24ebba5c129e47d22e6e14da0",
+    "sha": "d54bb2e9f3e94df8b778f146cb49270ffa8f782a",
     "branch": "master"
   },
   "dot": {
-    "sha": "f2ae1ed4f3e63a9fb313bdd4be6e7a3ea1ad3ac3",
+    "sha": "fd75efc81325bff24c825d55be1d016125ef0821",
     "branch": "master"
   },
   "brand": {
@@ -48,12 +48,12 @@
     "branch": "master"
   },
   "axon": {
-    "sha": "4fa196d25b5d54c8befd53070d85e49683e1784e",
+    "sha": "9dfe22ecfb7fd220489f0751c5a2c7dd0cd967f0",
     "branch": "master"
   },
   "assert": {
-    "sha": "aed00968d94640815e81e2f8f4a6fa67582010db",
+    "sha": "e4595f5eae375c15fa9aaba9511c52dbc1b0f2c6",
     "branch": "master"
   },
-  "comment": "# fraction-matcher 1.0.0-rc.1 Fri Jun 20 2014 14:58:49 GMT-0600 (Mountain Daylight Time)"
+  "comment": "# fraction-matcher 1.0.0-rc.3 Fri Jul 11 2014 09:01:19 GMT-0600 (Mountain Daylight Time)"
 }
