@@ -60,7 +60,6 @@ define( function( require ) {
       },
       y: backButton.bottom + 8, left: margin} );
     thisNode.addChild( refreshButton );
-    console.log( refreshButton.height, backButton.height );
 
     //scales
     var scalesMarginFromCenter = 150;
