@@ -16,7 +16,7 @@ define( function( require ) {
   var MixedNumbersScreen = require( 'FRACTION_MATCHER/MixedNumbersScreen' );
 
   // strings
-  var simTitleString = require( 'string!FRACTION_MATCHER/simTitle' );
+  var simTitleString = require( 'string!FRACTION_MATCHER/fraction-matcher.name' );
 
   var simOptions = {
     credits: {
