@@ -10,7 +10,7 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var Fraction = require( 'FRACTION_MATCHER/model/Fraction' );
+  var Fraction = require( 'PHETCOMMON/model/Fraction' );
   var Constants = require( 'FRACTION_MATCHER/model/Constants' );
   var inherit = require( 'PHET_CORE/inherit' );
 

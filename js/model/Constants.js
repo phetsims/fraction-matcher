@@ -11,7 +11,7 @@ define( function( require ) {
 
   // modules
   var FILL_TYPE = require( 'FRACTION_MATCHER/model/FillType' );
-  var Fraction = require( 'FRACTION_MATCHER/model/Fraction' );
+  var Fraction = require( 'PHETCOMMON/model/Fraction' );
 
   //colors
   var COLORS = {
