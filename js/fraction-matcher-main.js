@@ -22,7 +22,7 @@ define( function( require ) {
     credits: {
       leadDesign: 'Ariel Paul',
       softwareDevelopment: 'Sam Reid',
-      designTeam: 'Karina Hensberry, Patricia Loeblein, Kathy Perkins, Mike Dubson, Noah Podolefsky',
+      team: 'Mike Dubson, Karina Hensberry, Patricia Loeblein, Kathy Perkins, Noah Podolefsky',
       thanks: '\u2022 Thanks to Mobile Learner Labs for working with the PhET development team to convert this\nsimulation to HTML5.'
     }
   };
