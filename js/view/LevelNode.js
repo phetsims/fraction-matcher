@@ -56,7 +56,7 @@ define( function( require ) {
    * @param levelsContainer
    * @param layoutBounds
    * @param {Events} stepSource used for animating the RewardNode
-   * @param options
+   * @param {Object} [options]
    * @constructor
    */
   function LevelNode( model, levelsContainer, layoutBounds, stepSource, options ) {
