@@ -17,7 +17,7 @@ define( function( require ) {
   var Image = require( 'SCENERY/nodes/Image' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var BackButton = require( 'FRACTION_MATCHER/view/BackButton' );
-  var RefreshButton = require( 'SCENERY_PHET/RefreshButton' );
+  var RefreshButton = require( 'SCENERY_PHET/buttons/RefreshButton' );
   var LevelNode = require( 'FRACTION_MATCHER/view/LevelNode' );
 
   // strings

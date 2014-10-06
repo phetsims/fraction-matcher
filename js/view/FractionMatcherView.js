@@ -14,9 +14,9 @@ define( function( require ) {
   var ScreenView = require( 'JOIST/ScreenView' );
   var Node = require( 'SCENERY/nodes/Node' );
   var LevelsContainerNode = require( 'FRACTION_MATCHER/view/LevelsContainerNode' );
-  var SoundToggleButton = require( 'SCENERY_PHET/SoundToggleButton' );
-  var TimerToggleButton = require( 'SCENERY_PHET/TimerToggleButton' );
-  var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
+  var SoundToggleButton = require( 'SCENERY_PHET/buttons/SoundToggleButton' );
+  var TimerToggleButton = require( 'SCENERY_PHET/buttons/TimerToggleButton' );
+  var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var LevelSelectButtonsAndTitleNode = require( 'FRACTION_MATCHER/view/LevelSelectButtonsAndTitleNode' );
   var HBox = require( 'SCENERY/nodes/HBox' );
   var Sound = require( 'VIBE/Sound' );
