@@ -11,7 +11,6 @@ define( function( require ) {
 
   // modules
   var Screen = require( 'JOIST/Screen' );
-  var ScreenView = require( 'JOIST/ScreenView' );
   var FractionMatcherModel = require( 'FRACTION_MATCHER/model/FractionMatcherModel' );
   var FractionMatcherView = require( 'FRACTION_MATCHER/view/FractionMatcherView' );
   var Constants = require( 'FRACTION_MATCHER/model/Constants' );
@@ -24,7 +23,7 @@ define( function( require ) {
 
   function FractionsScreen() {
     Screen.call( this, fractionsTitleString, new IntroHomeScreenIcon(),
-      function() { return new FractionMatcherModel( ScreenView.DEFAULT_LAYOUT_BOUNDS.width, ScreenView.DEFAULT_LAYOUT_BOUNDS.height, fractionsTitleString, new Constants(), false ); },
+      function() { return new FractionMatcherModel( FractionMatcherView.LAYOUT_BOUNDS.width, FractionMatcherView.LAYOUT_BOUNDS.height, fractionsTitleString, new Constants(), false ); },
       function( model ) { return new FractionMatcherView( model ); },
       {navigationBarIcon: new IntroNavigationBarIcon()}
     );

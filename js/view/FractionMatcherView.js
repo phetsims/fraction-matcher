@@ -10,6 +10,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var Bounds2 = require( 'DOT/Bounds2' );
   var inherit = require( 'PHET_CORE/inherit' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -21,8 +22,10 @@ define( function( require ) {
   var HBox = require( 'SCENERY/nodes/HBox' );
   var Sound = require( 'VIBE/Sound' );
 
+  var LAYOUT_BOUNDS = new Bounds2( 0, 0, 768, 504 );
+
   function MatchingGameView( model ) {
-    ScreenView.call( this, { renderer: 'svg' } );
+    ScreenView.call( this, { renderer: 'svg', layoutBounds: LAYOUT_BOUNDS } );
 
     var levelsContainerNode = new LevelsContainerNode( model, this.layoutBounds );
     levelsContainerNode.visible = false;
@@ -100,5 +103,7 @@ define( function( require ) {
 
   }
 
-  return inherit( ScreenView, MatchingGameView );
+  return inherit( ScreenView, MatchingGameView, {}, {
+    LAYOUT_BOUNDS: LAYOUT_BOUNDS
+  } );
 } );
