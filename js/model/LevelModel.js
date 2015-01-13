@@ -29,7 +29,7 @@ define( function( require ) {
       time: 0,
       stepScore: 2,
       answers: [], //shapes, which moved to answer zone
-      lastPair: [-1, -1], //pair of shapes on scales, user can't compare the same pair two times
+      lastPair: [ -1, -1 ], //pair of shapes on scales, user can't compare the same pair two times
       lastChangedZone: -1, //when showing correct answer, change only last dragged shape position
       shapes: [], //array of SingleShapeModels
       canDrag: true,
@@ -39,7 +39,7 @@ define( function( require ) {
     this.dropZone = []; //contains indexes of shapes, which are placed in current zone, -1 if empty
 
     for ( var i = 0; i < 2 * this.gameModel.MAXIMUM_PAIRS; i++ ) {
-      this.dropZone[i] = -1;
+      this.dropZone[ i ] = -1;
     }
 
     //two more dropZones 12 and 13 - scales
@@ -54,10 +54,10 @@ define( function( require ) {
       PropertySet.prototype.reset.call( this );
       this.generateLevel();
       for ( var i = 0; i < this.dropZone.length; i++ ) {
-        this.dropZone[i] = -1;
+        this.dropZone[ i ] = -1;
       }
       this.answers = [];
-      this.lastPair = [-1, -1];
+      this.lastPair = [ -1, -1 ];
     },
     step: function( dt ) {
 
@@ -70,22 +70,22 @@ define( function( require ) {
       //rules if shape_type can be used for denominator d
         map = {
           PIES: true,
-          HORIZONTAL_BARS: d < 9,
-          VERTICAL_BARS: d < 9,
-          PLUSES: d === 6,
-          GRID: d === 4 || d === 9,
-          PYRAMID: d === 1 || d === 4 || d === 9,
-          TETRIS: d === 4,
-          FLOWER: d === 6,
-          LETTER_L_SHAPES: d % 2 === 0,
+          HORIZONTAL_BARS:  d < 9,
+          VERTICAL_BARS:    d < 9,
+          PLUSES:           d === 6,
+          GRID:             d === 4 || d === 9,
+          PYRAMID:          d === 1 || d === 4 || d === 9,
+          TETRIS:           d === 4,
+          FLOWER:           d === 6,
+          LETTER_L_SHAPES:  d % 2 === 0,
           INTERLEAVED_L_SHAPES: d === 2 || d === 4,
           RING_OF_HEXAGONS: d === 7,
-          NINJA_STAR: d === 8
+          NINJA_STAR:       d === 8
         };
 
       // move through all possible shapes and add it if filter through map
       shapes.forEach( function( shape ) {
-        if ( map[shape] ) {
+        if ( map[ shape ] ) {
           arr.push( shape );
         }
       } );
@@ -104,26 +104,26 @@ define( function( require ) {
 
       // add shapes
       for ( var i = 0; i < this.gameModel.MAXIMUM_PAIRS; i++ ) {
-        var fraction = fractions[i]; // Fraction object
-        var scaleFactor = numericScaleFactors[_.random( numericScaleFactors.length - 1 )]; //random scaleFactor
+        var fraction = fractions[ i ]; // Fraction object
+        var scaleFactor = numericScaleFactors[ _.random( numericScaleFactors.length - 1 ) ]; //random scaleFactor
 
         var shapes = this.filterShapes( shapesAll, fraction.denominator ); //filter only shapes for current denominator
-        var fillType = this.levelDescription.fillType[_.random( this.levelDescription.fillType.length - 1 )];
+        var fillType = this.levelDescription.fillType[ _.random( this.levelDescription.fillType.length - 1 ) ];
 
         // first 3 fractions - number, last 3 fractions - shapes with different colors (3 numbers and 3 shapes at least)
         var type = (i < this.gameModel.MAXIMUM_PAIRS / 2) ? numberType : shapes[ i % (shapes.length - 1) ];
-        var color = (type === numberType) ? 'rgb(0,0,0)' : this.gameModel.colorScheme[i % 3];
+        var color = (type === numberType) ? 'rgb(0,0,0)' : this.gameModel.colorScheme[ i % 3 ];
         newShapes.push( new SingleShapeModel( type, fraction, scaleFactor, color, fillType, this.gameModel.toSimplify ) );
 
         // add partner: if was number - add shape, if was shape - add number or random shape with another color
-        type = shapes[_.random( shapes.length - (type === numberType ? 2 : 1) )];
-        color = (type === numberType) ? 'rgb(0,0,0)' : this.gameModel.colorScheme[(i + 1) % 3];
+        type = shapes[ _.random( shapes.length - (type === numberType ? 2 : 1) ) ];
+        color = (type === numberType) ? 'rgb(0,0,0)' : this.gameModel.colorScheme[ (i + 1) % 3 ];
         newShapes.push( new SingleShapeModel( type, fraction, scaleFactor, color, fillType, this.gameModel.toSimplify ) );
       }
 
       newShapes = _.shuffle( newShapes );
       for ( i = 0; i < newShapes.length; i++ ) {
-        newShapes[i].dropZone = i;
+        newShapes[ i ].dropZone = i;
       }
 
       this.shapes = newShapes;
@@ -141,7 +141,7 @@ define( function( require ) {
           }
           break;
         case 'check':
-          if ( self.isShapesEqual( self.shapes[this.dropZone[12]], self.shapes[this.dropZone[13]] ) ) {
+          if ( self.isShapesEqual( self.shapes[ this.dropZone[ 12 ] ], self.shapes[ this.dropZone[ 13 ] ] ) ) {
             //answer correct
             this.buttonStatus = 'ok';
             self.score += self.stepScore;
@@ -152,7 +152,7 @@ define( function( require ) {
             self.gameModel.sounds.incorrect.play();
             self.stepScore--;
             this.buttonStatus = (self.stepScore) ? 'tryAgain' : 'showAnswer';
-            this.lastPair = [this.dropZone[12], this.dropZone[13]];
+            this.lastPair = [ this.dropZone[ 12 ], this.dropZone[ 13 ] ];
           }
           this.canDrag = false;
           break;

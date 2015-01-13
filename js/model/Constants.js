@@ -30,7 +30,7 @@ define( function( require ) {
   COLORS.NUMBER_LINE = COLORS.LIGHT_GREEN;
 
   //list of all possible shapes
-  var SHAPES = ['PIES', 'HORIZONTAL_BARS', 'VERTICAL_BARS', 'PLUSES', 'GRID', 'PYRAMID', 'POLYGON', 'TETRIS', 'FLOWER', 'LETTER_L_SHAPES', 'INTERLEAVED_L_SHAPES', 'RING_OF_HEXAGONS', 'NINJA_STAR'];
+  var SHAPES = [ 'PIES', 'HORIZONTAL_BARS', 'VERTICAL_BARS', 'PLUSES', 'GRID', 'PYRAMID', 'POLYGON', 'TETRIS', 'FLOWER', 'LETTER_L_SHAPES', 'INTERLEAVED_L_SHAPES', 'RING_OF_HEXAGONS', 'NINJA_STAR' ];
 
   function Constants() {
     // color constants
@@ -56,8 +56,8 @@ define( function( require ) {
           Fraction.fraction( 3, 4 ),
           Fraction.fraction( 1, 1 )
         ],
-        numericScaleFactors: [1],
-        fillType: [FILL_TYPE.SEQUENTIAL],
+        numericScaleFactors: [ 1 ],
+        fillType: [ FILL_TYPE.SEQUENTIAL ],
         shapes: SHAPES.slice( 0, 3 )
       },
     /**
@@ -76,8 +76,8 @@ define( function( require ) {
           Fraction.fraction( 2, 6 ),
           Fraction.fraction( 3, 6 )
         ],
-        numericScaleFactors: [1],
-        fillType: [FILL_TYPE.SEQUENTIAL],
+        numericScaleFactors: [ 1 ],
+        fillType: [ FILL_TYPE.SEQUENTIAL ],
         shapes: SHAPES.slice( 0 )
       },
     /**
@@ -105,8 +105,8 @@ define( function( require ) {
           Fraction.fraction( 6, 8 ),
           Fraction.fraction( 7, 8 )
         ],
-        numericScaleFactors: [1],
-        fillType: [FILL_TYPE.SEQUENTIAL],
+        numericScaleFactors: [ 1 ],
+        fillType: [ FILL_TYPE.SEQUENTIAL ],
         shapes: SHAPES.slice( 0 )
       },
     /**
@@ -128,8 +128,8 @@ define( function( require ) {
           Fraction.fraction( 6, 9 ),
           Fraction.fraction( 8, 9 )
         ],
-        numericScaleFactors: [1, 2],
-        fillType: [FILL_TYPE.SEQUENTIAL],
+        numericScaleFactors: [ 1, 2 ],
+        fillType: [ FILL_TYPE.SEQUENTIAL ],
         shapes: SHAPES.slice( 0 )
       },
     /**
@@ -151,8 +151,8 @@ define( function( require ) {
           Fraction.fraction( 6, 9 ),
           Fraction.fraction( 8, 9 )
         ],
-        numericScaleFactors: [1, 2, 3],
-        fillType: [FILL_TYPE.SEQUENTIAL, FILL_TYPE.MIXED],
+        numericScaleFactors: [ 1, 2, 3 ],
+        fillType: [ FILL_TYPE.SEQUENTIAL, FILL_TYPE.MIXED ],
         shapes: SHAPES.slice( 0 )
       },
     /**
@@ -181,8 +181,8 @@ define( function( require ) {
           Fraction.fraction( 10, 9 ),
           Fraction.fraction( 11, 9 )
         ],
-        numericScaleFactors: [1, 4, 5],
-        fillType: [FILL_TYPE.SEQUENTIAL, FILL_TYPE.RANDOM],
+        numericScaleFactors: [ 1, 4, 5 ],
+        fillType: [ FILL_TYPE.SEQUENTIAL, FILL_TYPE.RANDOM ],
         shapes: SHAPES.slice( 0 )
       },
     /**
@@ -203,8 +203,8 @@ define( function( require ) {
           Fraction.fraction( 7, 6 ),
           Fraction.fraction( 11, 6 )
         ],
-        numericScaleFactors: [1, 6, 7],
-        fillType: [FILL_TYPE.SEQUENTIAL, FILL_TYPE.RANDOM],
+        numericScaleFactors: [ 1, 6, 7 ],
+        fillType: [ FILL_TYPE.SEQUENTIAL, FILL_TYPE.RANDOM ],
         shapes: SHAPES.slice( 0 )
       },
     /**
@@ -235,8 +235,8 @@ define( function( require ) {
           Fraction.fraction( 16, 9 ),
           Fraction.fraction( 17, 9 )
         ],
-        numericScaleFactors: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-        fillType: [FILL_TYPE.SEQUENTIAL, FILL_TYPE.RANDOM],
+        numericScaleFactors: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
+        fillType: [ FILL_TYPE.SEQUENTIAL, FILL_TYPE.RANDOM ],
         shapes: SHAPES.slice( 0 )
       }
     ];

@@ -52,8 +52,10 @@ define( function( require ) {
           ],
           spacing: 10,
           x: 20,
-          bottom: model.height - 20} )
-      ]} );
+          bottom: model.height - 20
+        } )
+      ]
+    } );
 
     this.addChild( levelsContainerNode );
     this.addChild( levelSelectionScreen );
@@ -68,26 +70,26 @@ define( function( require ) {
 
       //remove LevelNode from scene graph to keep it simple and fast
       if ( fromLevelNumber && fromLevelNumber !== model.currentLevel ) {
-        var parentNode = levelsContainerNode.levelNodes[fromLevelNumber - 1].getParent();
+        var parentNode = levelsContainerNode.levelNodes[ fromLevelNumber - 1 ].getParent();
         if ( parentNode ) {
-          levelsContainerNode.levelNodes[fromLevelNumber - 1].getParent().removeChild( levelsContainerNode.levelNodes[fromLevelNumber - 1] );
+          levelsContainerNode.levelNodes[ fromLevelNumber - 1 ].getParent().removeChild( levelsContainerNode.levelNodes[ fromLevelNumber - 1 ] );
         }
       }
     } );
 
     var animateToLevels = function() {
-      startGameButtonsTween.stop().to( {x: -model.width}, model.ANIMATION_TIME ).start();
+      startGameButtonsTween.stop().to( { x: -model.width }, model.ANIMATION_TIME ).start();
 
       levelsContainerNode.visible = true;
-      levelsTween.stop().to( {x: 0}, model.ANIMATION_TIME ).start();
+      levelsTween.stop().to( { x: 0 }, model.ANIMATION_TIME ).start();
 
     };
 
     var animateFromLevels = function() {
-      levelsTween.stop().to( {x: model.width}, model.ANIMATION_TIME ).start();
+      levelsTween.stop().to( { x: model.width }, model.ANIMATION_TIME ).start();
 
       levelSelectionScreen.visible = true;
-      startGameButtonsTween.stop().to( {x: 0}, model.ANIMATION_TIME ).start();
+      startGameButtonsTween.stop().to( { x: 0 }, model.ANIMATION_TIME ).start();
     };
 
 

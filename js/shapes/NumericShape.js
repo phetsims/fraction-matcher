@@ -50,7 +50,7 @@ define( function( require ) {
       }
 
       // add integral part
-      this.addChild( integralPartNode = new Text( integralPart + '', {font: new PhetFont( fontSizeBig ), centerY: 0 } ) );
+      this.addChild( integralPartNode = new Text( integralPart + '', { font: new PhetFont( fontSizeBig ), centerY: 0 } ) );
 
       // add additional offset taking into account whole part width
       integralPartWidth = integralPartNode.getWidth();
@@ -76,11 +76,13 @@ define( function( require ) {
   return inherit( Node, NumericShape, {
     getFractionNode: function( numerator, denominator, side, fontSizeSmall ) {
       var line = new Shape().moveTo( -fontSizeSmall / 2, 0 ).lineTo( fontSizeSmall / 2, 0 ),
-        fractionNode = new Node( {children: [
-          new Text( numerator + '', { font: new PhetFont( fontSizeSmall ), centerX: 0, centerY: -side / 4  } ),
-          new Text( denominator + '', { font: new PhetFont( fontSizeSmall ), centerX: 0, centerY: +side / 4  } ),
-          new Path( line, {stroke: 'black', lineWidth: 3, lineCap: 'round'} )
-        ]} );
+        fractionNode = new Node( {
+          children: [
+            new Text( numerator + '', { font: new PhetFont( fontSizeSmall ), centerX: 0, centerY: -side / 4 } ),
+            new Text( denominator + '', { font: new PhetFont( fontSizeSmall ), centerX: 0, centerY: +side / 4 } ),
+            new Path( line, { stroke: 'black', lineWidth: 3, lineCap: 'round' } )
+          ]
+        } );
 
       fractionNode.shapeWidth = line.bounds.width;
       return fractionNode;

@@ -18,7 +18,7 @@ define( function( require ) {
    * @constructor
    */
   function MixedNumbersNavigationBarIcon() {
-    Rectangle.call( this, 0, 0, 548, 373, {fill: 'black'} );
+    Rectangle.call( this, 0, 0, 548, 373, { fill: 'black' } );
 
     var shapeNode = ShapeNode.create( {
       x: 0,
@@ -31,7 +31,7 @@ define( function( require ) {
       width: 180,
       height: 180
     } );
-    this.addChild( shapeNode.mutate( {scale: 2.9, center: this.center} ) );
+    this.addChild( shapeNode.mutate( { scale: 2.9, center: this.center } ) );
   }
 
   return inherit( Rectangle, MixedNumbersNavigationBarIcon );

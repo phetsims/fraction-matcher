@@ -22,14 +22,14 @@ define( function( require ) {
       }
       options.diameter = Math.min( options.width, options.height );
 
-      var createdPaths = this[options.type]( shapes, outlines, options ); // {shapes:[Array], outlines:[]}
-      return _.extend( {margin: options.diameter / 10}, createdPaths );
+      var createdPaths = this[ options.type ]( shapes, outlines, options ); // {shapes:[Array], outlines:[]}
+      return _.extend( { margin: options.diameter / 10 }, createdPaths );
     },
     //array of points to Shape
     pointsToShape: function( s, array, size ) {
       size = size || 1;
       for ( var i = 0; i < array.length; i++ ) {
-        s.lineTo( array[i].x * size, array[i].y * size );
+        s.lineTo( array[ i ].x * size, array[ i ].y * size );
       }
       s.close();
       return s;
@@ -37,12 +37,15 @@ define( function( require ) {
     VERTICAL_BARS: function( shapes, outlines, options ) {
       for ( var i = 0, l = shapes.length; i < l; i++ ) {
         for ( var j = 0; j < options.denominator; j++ ) {
-          shapes[i].push( new Path( new Shape.rect( 0, 0, options.width / options.denominator, options.height ), {
+          shapes[ i ].push( new Path( new Shape.rect( 0, 0, options.width / options.denominator, options.height ), {
             x: j / options.denominator * options.width, fill: 'white', stroke: options.stroke, lineWidth: 1
           } ) );
         }
         //outlines
-        outlines.push( new Path( new Shape.rect( 0, 0, options.width, options.height ), {stroke: options.stroke, lineWidth: options.outlineWidth} ) );
+        outlines.push( new Path( new Shape.rect( 0, 0, options.width, options.height ), {
+          stroke: options.stroke,
+          lineWidth: options.outlineWidth
+        } ) );
       }
       return {
         shapes: shapes,
@@ -52,12 +55,15 @@ define( function( require ) {
     HORIZONTAL_BARS: function( shapes, outlines, options ) {
       for ( var i = 0, l = shapes.length; i < l; i++ ) {
         for ( var j = 0; j < options.denominator; j++ ) {
-          shapes[i].push( new Path( new Shape.rect( 0, 0, options.width, options.height / options.denominator ), {
+          shapes[ i ].push( new Path( new Shape.rect( 0, 0, options.width, options.height / options.denominator ), {
             y: j / options.denominator * options.height, fill: 'white', stroke: options.stroke, lineWidth: 1
           } ) );
         }
         //outlines
-        outlines.push( new Path( new Shape.rect( 0, 0, options.width, options.height ), {stroke: options.stroke, lineWidth: options.outlineWidth} ) );
+        outlines.push( new Path( new Shape.rect( 0, 0, options.width, options.height ), {
+          stroke: options.stroke,
+          lineWidth: options.outlineWidth
+        } ) );
       }
       return {
         shapes: shapes,
@@ -83,10 +89,17 @@ define( function( require ) {
 
       for ( var i = 0, l = shapes.length; i < l; i++ ) {
         for ( var j = 0; j < options.denominator; j++ ) {
-          shapes[i].push( new Path( getSlice( radiansPerSlice * j, radiansPerSlice * ( j + 1 ) ), {fill: 'white', stroke: options.stroke, lineWidth: 1} ) );
+          shapes[ i ].push( new Path( getSlice( radiansPerSlice * j, radiansPerSlice * ( j + 1 ) ), {
+            fill: 'white',
+            stroke: options.stroke,
+            lineWidth: 1
+          } ) );
         }
         //outlines
-        outlines.push( new Path( getSlice( 0, radiansPerSlice * options.denominator ), {stroke: options.stroke, lineWidth: options.outlineWidth} ) );
+        outlines.push( new Path( getSlice( 0, radiansPerSlice * options.denominator ), {
+          stroke: options.stroke,
+          lineWidth: options.outlineWidth
+        } ) );
       }
       return {
         shapes: shapes,
@@ -115,10 +128,14 @@ define( function( require ) {
 
       for ( var i = 0, l = shapes.length; i < l; i++ ) {
         for ( var j = 0; j < options.denominator; j++ ) {
-          shapes[i].push( new Path( getSlice( radiansPerSlice * j, radiansPerSlice * ( j + 1 ) ), {fill: 'white', stroke: options.stroke, lineWidth: 1} ) );
+          shapes[ i ].push( new Path( getSlice( radiansPerSlice * j, radiansPerSlice * ( j + 1 ) ), {
+            fill: 'white',
+            stroke: options.stroke,
+            lineWidth: 1
+          } ) );
         }
         //outlines
-        outlines.push( new Path( getOutline(), {stroke: options.stroke, lineWidth: options.outlineWidth} ) );
+        outlines.push( new Path( getOutline(), { stroke: options.stroke, lineWidth: options.outlineWidth } ) );
       }
       return {
         shapes: shapes,
@@ -151,10 +168,10 @@ define( function( require ) {
 
       for ( var i = 0, l = shapes.length; i < l; i++ ) {
         for ( var j = 0; j < options.denominator; j++ ) {
-          shapes[i].push( new Path( getSlice( j ), {fill: 'white', stroke: options.stroke, lineWidth: 1} ) );
+          shapes[ i ].push( new Path( getSlice( j ), { fill: 'white', stroke: options.stroke, lineWidth: 1 } ) );
         }
         //outlines
-        outlines.push( new Path( getOutline(), {stroke: options.stroke, lineWidth: options.outlineWidth} ) );
+        outlines.push( new Path( getOutline(), { stroke: options.stroke, lineWidth: options.outlineWidth } ) );
       }
       return {
         shapes: shapes,
@@ -193,7 +210,7 @@ define( function( require ) {
         var keyPoints = [];
         for ( var i = 1; i < 7; i++ ) {
           for ( var j = -1; j < 2; j++ ) {
-            keyPoints.push( hexPoints[(j + 6 + i - 1) % 6].plus( hexCenterPoints[i] ) );
+            keyPoints.push( hexPoints[ (j + 6 + i - 1) % 6 ].plus( hexCenterPoints[ i ] ) );
           }
         }
         return Pattern.pointsToShape( new Shape(), keyPoints );
@@ -201,10 +218,16 @@ define( function( require ) {
 
       for ( var i = 0, l = shapes.length; i < l; i++ ) {
         for ( var j = 0; j < 7; j++ ) {
-          shapes[i].push( new Path( getHex( hexDiameter ), {x: hexCenterPoints[j].x, y: hexCenterPoints[j].y, fill: 'white', stroke: options.stroke, lineWidth: 1} ) );
+          shapes[ i ].push( new Path( getHex( hexDiameter ), {
+            x: hexCenterPoints[ j ].x,
+            y: hexCenterPoints[ j ].y,
+            fill: 'white',
+            stroke: options.stroke,
+            lineWidth: 1
+          } ) );
         }
         //outlines
-        outlines.push( new Path( getOutline(), {stroke: options.stroke, lineWidth: options.outlineWidth} ) );
+        outlines.push( new Path( getOutline(), { stroke: options.stroke, lineWidth: options.outlineWidth } ) );
       }
       return {
         shapes: shapes,
@@ -228,49 +251,49 @@ define( function( require ) {
 
       var shapeDefinition = {
         top: [
-          {x: 0, y: 0},
-          {x: 2, y: 0},
-          {x: 2, y: 3},
-          {x: 1, y: 3},
-          {x: 1, y: 1},
-          {x: 0, y: 1},
-          {x: 0, y: 0}
+          { x: 0, y: 0 },
+          { x: 2, y: 0 },
+          { x: 2, y: 3 },
+          { x: 1, y: 3 },
+          { x: 1, y: 1 },
+          { x: 0, y: 1 },
+          { x: 0, y: 0 }
         ],
         bottom: [
-          {x: 0, y: 1},
-          {x: 1, y: 1},
-          {x: 1, y: 3},
-          {x: 2, y: 3},
-          {x: 2, y: 4},
-          {x: 0, y: 4},
-          {x: 0, y: 1}
+          { x: 0, y: 1 },
+          { x: 1, y: 1 },
+          { x: 1, y: 3 },
+          { x: 2, y: 3 },
+          { x: 2, y: 4 },
+          { x: 0, y: 4 },
+          { x: 0, y: 1 }
         ]
       };
 
       var getOutline = function() {
         var keyPoints = [];
         for ( var j = 0; j < options.denominator / 2; j++ ) {
-          keyPoints.push( {x: j * 2 * size, y: j * size} );
-          keyPoints.push( {x: (j + 1) * 2 * size, y: j * size} );
+          keyPoints.push( { x: j * 2 * size, y: j * size } );
+          keyPoints.push( { x: (j + 1) * 2 * size, y: j * size } );
         }
         for ( j = options.denominator / 2 - 1; j > -1; j-- ) {
-          keyPoints.push( {x: (j + 1) * 2 * size, y: j * size + 4 * size} );
-          keyPoints.push( {x: j * 2 * size, y: j * size + 4 * size} );
+          keyPoints.push( { x: (j + 1) * 2 * size, y: j * size + 4 * size } );
+          keyPoints.push( { x: j * 2 * size, y: j * size + 4 * size } );
         }
         return Pattern.pointsToShape( new Shape(), keyPoints );
       };
 
       for ( var i = 0, l = shapes.length; i < l; i++ ) {
         for ( var j = 0; j < options.denominator / 2; j++ ) {
-          shapes[i].push( new Path( Pattern.pointsToShape( new Shape(), shapeDefinition.top, size ), {
+          shapes[ i ].push( new Path( Pattern.pointsToShape( new Shape(), shapeDefinition.top, size ), {
             x: j * 2 * size, y: j * size, fill: 'white', stroke: options.stroke, lineWidth: 1
           } ) );
-          shapes[i].push( new Path( Pattern.pointsToShape( new Shape(), shapeDefinition.bottom, size ), {
+          shapes[ i ].push( new Path( Pattern.pointsToShape( new Shape(), shapeDefinition.bottom, size ), {
             x: j * 2 * size, y: j * size, fill: 'white', stroke: options.stroke, lineWidth: 1
           } ) );
         }
         //outlines
-        outlines.push( new Path( getOutline(), {stroke: options.stroke, lineWidth: options.outlineWidth} ) );
+        outlines.push( new Path( getOutline(), { stroke: options.stroke, lineWidth: options.outlineWidth } ) );
       }
       return {
         shapes: shapes,
@@ -292,9 +315,9 @@ define( function( require ) {
 
       var getSlice = function( position ) {
         return Pattern.pointsToShape( new Shape(), [
-          {x: 0, y: 0},
-          pattern[position % options.denominator],
-          pattern[(position + 1) % options.denominator]
+          { x: 0, y: 0 },
+          pattern[ position % options.denominator ],
+          pattern[ (position + 1) % options.denominator ]
         ], options.diameter / 2 );
       };
 
@@ -304,10 +327,10 @@ define( function( require ) {
 
       for ( i = 0, l = shapes.length; i < l; i++ ) {
         for ( var j = 0; j < options.denominator; j++ ) {
-          shapes[i].push( new Path( getSlice( j ), {fill: 'white', stroke: options.stroke, lineWidth: 1} ) );
+          shapes[ i ].push( new Path( getSlice( j ), { fill: 'white', stroke: options.stroke, lineWidth: 1 } ) );
         }
         //outlines
-        outlines.push( new Path( getOutline(), {stroke: options.stroke, lineWidth: options.outlineWidth} ) );
+        outlines.push( new Path( getOutline(), { stroke: options.stroke, lineWidth: options.outlineWidth } ) );
       }
       return {
         shapes: shapes,
@@ -334,11 +357,11 @@ define( function( require ) {
       var plusSignOutlinePattern = [];
 
       plusSign.forEach( function( direction ) {
-        plusSignPattern.push( position.add( DIRECTIONS[direction] ).copy() );
+        plusSignPattern.push( position.add( DIRECTIONS[ direction ] ).copy() );
       } );
 
       plusSignOutline.forEach( function( direction ) {
-        plusSignOutlinePattern.push( positionOutline.add( DIRECTIONS[direction] ).copy() );
+        plusSignOutlinePattern.push( positionOutline.add( DIRECTIONS[ direction ] ).copy() );
       } );
 
 
@@ -348,15 +371,15 @@ define( function( require ) {
 
       for ( var i = 0, l = shapes.length; i < l; i++ ) {
         for ( var j = 0; j < options.denominator / 2; j++ ) {
-          shapes[i].push( new Path( Pattern.pointsToShape( new Shape(), plusSignPattern, size ), {
+          shapes[ i ].push( new Path( Pattern.pointsToShape( new Shape(), plusSignPattern, size ), {
             x: 4 * size * j, y: 2 * size * j, fill: 'white', stroke: options.stroke, lineWidth: 1
           } ) );
-          shapes[i].push( new Path( Pattern.pointsToShape( new Shape(), plusSignPattern, size ), {
+          shapes[ i ].push( new Path( Pattern.pointsToShape( new Shape(), plusSignPattern, size ), {
             x: (4 * j + 2) * size, y: (2 * j - 4) * size, fill: 'white', stroke: options.stroke, lineWidth: 1
           } ) );
         }
         //outlines
-        outlines.push( new Path( getOutline(), {stroke: options.stroke, lineWidth: options.outlineWidth} ) );
+        outlines.push( new Path( getOutline(), { stroke: options.stroke, lineWidth: options.outlineWidth } ) );
       }
       return {
         shapes: shapes,
@@ -370,24 +393,24 @@ define( function( require ) {
       var SQRT_3 = Math.sqrt( 3 );
       var map = { // positions of triangles in pyramid
         1: [
-          {x: 0, y: 0, type: 'top'}
+          { x: 0, y: 0, type: 'top' }
         ],
         4: [
-          {x: 0, y: -0.5, type: 'top'},
-          {x: -SQRT_3 / 4, y: 0.25, type: 'top'},
-          {x: 0, y: 0, type: 'bottom'},
-          {x: SQRT_3 / 4, y: 0.25, type: 'top'}
+          { x: 0, y: -0.5, type: 'top' },
+          { x: -SQRT_3 / 4, y: 0.25, type: 'top' },
+          { x: 0, y: 0, type: 'bottom' },
+          { x: SQRT_3 / 4, y: 0.25, type: 'top' }
         ],
         9: [
-          {x: 0, y: -1, type: 'top'},
-          {x: -SQRT_3 / 4, y: -0.25, type: 'top'},
-          {x: 0, y: -0.5, type: 'bottom'},
-          {x: SQRT_3 / 4, y: -0.25, type: 'top'},
-          {x: -SQRT_3 / 2, y: 0.5, type: 'top'},
-          {x: -SQRT_3 / 4, y: 0.25, type: 'bottom'},
-          {x: 0, y: 0.5, type: 'top'},
-          {x: SQRT_3 / 4, y: 0.25, type: 'bottom'},
-          {x: SQRT_3 / 2, y: 0.5, type: 'top'}
+          { x: 0, y: -1, type: 'top' },
+          { x: -SQRT_3 / 4, y: -0.25, type: 'top' },
+          { x: 0, y: -0.5, type: 'bottom' },
+          { x: SQRT_3 / 4, y: -0.25, type: 'top' },
+          { x: -SQRT_3 / 2, y: 0.5, type: 'top' },
+          { x: -SQRT_3 / 4, y: 0.25, type: 'bottom' },
+          { x: 0, y: 0.5, type: 'top' },
+          { x: SQRT_3 / 4, y: 0.25, type: 'bottom' },
+          { x: SQRT_3 / 2, y: 0.5, type: 'top' }
         ]
       };
 
@@ -395,18 +418,18 @@ define( function( require ) {
         var points = [];
         if ( orientation === 'top' ) {
           points = [
-            {x: 0, y: -0.5},
-            {x: SQRT_3 / 4, y: 0.25},
-            {x: -SQRT_3 / 4, y: 0.25},
-            {x: 0, y: -0.5}
+            { x: 0, y: -0.5 },
+            { x: SQRT_3 / 4, y: 0.25 },
+            { x: -SQRT_3 / 4, y: 0.25 },
+            { x: 0, y: -0.5 }
           ];
         }
         else if ( orientation === 'bottom' ) {
           points = [
-            {x: 0, y: 0.5},
-            {x: SQRT_3 / 4, y: -0.25},
-            {x: -SQRT_3 / 4, y: -0.25},
-            {x: 0, y: 0.5}
+            { x: 0, y: 0.5 },
+            { x: SQRT_3 / 4, y: -0.25 },
+            { x: -SQRT_3 / 4, y: -0.25 },
+            { x: 0, y: 0.5 }
           ];
         }
 
@@ -415,22 +438,26 @@ define( function( require ) {
 
       var getOutline = function() {
         var keyPoints = [
-          {x: 0, y: -options.diameter / 2},
-          {x: -options.diameter / 2, y: options.diameter / (2 * SQRT_3)},
-          {x: options.diameter / 2, y: options.diameter / (2 * SQRT_3)}
+          { x: 0, y: -options.diameter / 2 },
+          { x: -options.diameter / 2, y: options.diameter / (2 * SQRT_3) },
+          { x: options.diameter / 2, y: options.diameter / (2 * SQRT_3) }
         ];
         return Pattern.pointsToShape( new Shape(), keyPoints );
       };
 
       for ( var i = 0, l = shapes.length; i < l; i++ ) {
         for ( var j = 0; j < options.denominator; j++ ) {
-          var path = new Path( getSlice( map[options.denominator][j].type, size ), {
-            x: map[options.denominator][j].x * size, y: map[options.denominator][j].y * size, fill: 'white', stroke: options.stroke, lineWidth: 1
+          var path = new Path( getSlice( map[ options.denominator ][ j ].type, size ), {
+            x: map[ options.denominator ][ j ].x * size,
+            y: map[ options.denominator ][ j ].y * size,
+            fill: 'white',
+            stroke: options.stroke,
+            lineWidth: 1
           } );
-          shapes[i].push( path );
+          shapes[ i ].push( path );
         }
         //outlines
-        outlines.push( new Path( getOutline(), {stroke: options.stroke, lineWidth: options.outlineWidth} ) );
+        outlines.push( new Path( getOutline(), { stroke: options.stroke, lineWidth: options.outlineWidth } ) );
       }
       return {
         shapes: shapes,
@@ -442,12 +469,15 @@ define( function( require ) {
       var size = options.diameter / d; // size of one piece
       for ( var i = 0, l = shapes.length; i < l; i++ ) {
         for ( var j = 0; j < options.denominator; j++ ) {
-          shapes[i].push( new Path( new Shape.rect( 0, 0, size, size ), {
+          shapes[ i ].push( new Path( new Shape.rect( 0, 0, size, size ), {
             x: j % d * size, y: Math.floor( j / d ) * size, fill: 'white', stroke: options.stroke, lineWidth: 1
           } ) );
         }
         //outlines
-        outlines.push( new Path( new Shape.rect( 0, 0, options.width, options.height ), {stroke: options.stroke, lineWidth: options.outlineWidth} ) );
+        outlines.push( new Path( new Shape.rect( 0, 0, options.width, options.height ), {
+          stroke: options.stroke,
+          lineWidth: options.outlineWidth
+        } ) );
       }
       return {
         shapes: shapes,
@@ -458,58 +488,61 @@ define( function( require ) {
       var size = options.diameter / 4; //size of 1 square, each tetris piece contains 4 squares
       var pointsMap = [
         [
-          {x: 0, y: 0},
-          {x: 3, y: 0},
-          {x: 3, y: 1},
-          {x: 2, y: 1},
-          {x: 2, y: 2},
-          {x: 1, y: 2},
-          {x: 1, y: 1},
-          {x: 0, y: 1},
-          {x: 0, y: 0}
+          { x: 0, y: 0 },
+          { x: 3, y: 0 },
+          { x: 3, y: 1 },
+          { x: 2, y: 1 },
+          { x: 2, y: 2 },
+          { x: 1, y: 2 },
+          { x: 1, y: 1 },
+          { x: 0, y: 1 },
+          { x: 0, y: 0 }
         ],
         [
-          {x: 3, y: 0},
-          {x: 4, y: 0},
-          {x: 4, y: 3},
-          {x: 3, y: 3},
-          {x: 3, y: 2},
-          {x: 2, y: 2},
-          {x: 2, y: 1},
-          {x: 3, y: 1},
-          {x: 3, y: 0}
+          { x: 3, y: 0 },
+          { x: 4, y: 0 },
+          { x: 4, y: 3 },
+          { x: 3, y: 3 },
+          { x: 3, y: 2 },
+          { x: 2, y: 2 },
+          { x: 2, y: 1 },
+          { x: 3, y: 1 },
+          { x: 3, y: 0 }
         ],
         [
-          {x: 4, y: 3},
-          {x: 4, y: 4},
-          {x: 1, y: 4},
-          {x: 1, y: 3},
-          {x: 2, y: 3},
-          {x: 2, y: 2},
-          {x: 3, y: 2},
-          {x: 3, y: 3},
-          {x: 4, y: 3}
+          { x: 4, y: 3 },
+          { x: 4, y: 4 },
+          { x: 1, y: 4 },
+          { x: 1, y: 3 },
+          { x: 2, y: 3 },
+          { x: 2, y: 2 },
+          { x: 3, y: 2 },
+          { x: 3, y: 3 },
+          { x: 4, y: 3 }
         ],
         [
-          {x: 0, y: 4},
-          {x: 0, y: 1},
-          {x: 1, y: 1},
-          {x: 1, y: 2},
-          {x: 2, y: 2},
-          {x: 2, y: 3},
-          {x: 1, y: 3},
-          {x: 1, y: 4},
-          {x: 0, y: 4}
+          { x: 0, y: 4 },
+          { x: 0, y: 1 },
+          { x: 1, y: 1 },
+          { x: 1, y: 2 },
+          { x: 2, y: 2 },
+          { x: 2, y: 3 },
+          { x: 1, y: 3 },
+          { x: 1, y: 4 },
+          { x: 0, y: 4 }
         ]
       ];
       for ( var i = 0, l = shapes.length; i < l; i++ ) {
         for ( var j = 0; j < options.denominator; j++ ) {
-          shapes[i].push( new Path( Pattern.pointsToShape( new Shape(), pointsMap[j], size ), {
+          shapes[ i ].push( new Path( Pattern.pointsToShape( new Shape(), pointsMap[ j ], size ), {
             fill: 'white', stroke: options.stroke, lineWidth: 1
           } ) );
         }
         //outlines
-        outlines.push( new Path( new Shape.rect( 0, 0, options.width, options.height ), {stroke: options.stroke, lineWidth: options.outlineWidth} ) );
+        outlines.push( new Path( new Shape.rect( 0, 0, options.width, options.height ), {
+          stroke: options.stroke,
+          lineWidth: options.outlineWidth
+        } ) );
       }
       return {
         shapes: shapes,
@@ -520,35 +553,38 @@ define( function( require ) {
       var size = 2 * options.diameter / options.denominator; //size of 1 square, each tetris piece contains 4 squares
       var pointsMap = {
         left: [
-          {x: 0, y: 0},
-          {x: 1 / 3, y: 0},
-          {x: 1 / 3, y: 1 / 2},
-          {x: 2 / 3, y: 1 / 2},
-          {x: 2 / 3, y: 1},
-          {x: 0, y: 1},
-          {x: 0, y: 0}
+          { x: 0, y: 0 },
+          { x: 1 / 3, y: 0 },
+          { x: 1 / 3, y: 1 / 2 },
+          { x: 2 / 3, y: 1 / 2 },
+          { x: 2 / 3, y: 1 },
+          { x: 0, y: 1 },
+          { x: 0, y: 0 }
         ],
         right: [
-          {x: 1, y: 0},
-          {x: 1, y: 1},
-          {x: 2 / 3, y: 1},
-          {x: 2 / 3, y: 1 / 2},
-          {x: 1 / 3, y: 1 / 2},
-          {x: 1 / 3, y: 0},
-          {x: 1, y: 0}
+          { x: 1, y: 0 },
+          { x: 1, y: 1 },
+          { x: 2 / 3, y: 1 },
+          { x: 2 / 3, y: 1 / 2 },
+          { x: 1 / 3, y: 1 / 2 },
+          { x: 1 / 3, y: 0 },
+          { x: 1, y: 0 }
         ]
       };
       for ( var i = 0, l = shapes.length; i < l; i++ ) {
         for ( var j = 0; j < options.denominator / 2; j++ ) {
-          shapes[i].push( new Path( Pattern.pointsToShape( new Shape(), pointsMap.left, size ), {
+          shapes[ i ].push( new Path( Pattern.pointsToShape( new Shape(), pointsMap.left, size ), {
             x: j * size, fill: 'white', stroke: options.stroke, lineWidth: 1
           } ) );
-          shapes[i].push( new Path( Pattern.pointsToShape( new Shape(), pointsMap.right, size ), {
+          shapes[ i ].push( new Path( Pattern.pointsToShape( new Shape(), pointsMap.right, size ), {
             x: j * size, fill: 'white', stroke: options.stroke, lineWidth: 1
           } ) );
         }
         //outlines
-        outlines.push( new Path( new Shape.rect( 0, 0, options.width, options.height / (options.denominator / 2) ), {stroke: options.stroke, lineWidth: options.outlineWidth} ) );
+        outlines.push( new Path( new Shape.rect( 0, 0, options.width, options.height / (options.denominator / 2) ), {
+          stroke: options.stroke,
+          lineWidth: options.outlineWidth
+        } ) );
       }
       return {
         shapes: shapes,

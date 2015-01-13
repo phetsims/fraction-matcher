@@ -69,11 +69,11 @@ define( function( require ) {
     this.model = model;
 
     //drawing labels at the right
-    var levelLabel = new Text( StringUtils.format( patternLevelString, model.levelNumber ), { font: new PhetFont( { size: 12, weight: 'bold'} )} );
-    var scoreLabel = new Text( StringUtils.format( patternScoreString, 0 ), { font: new PhetFont( { size: 12, weight: 'bold'} )} );
-    var timeLabel = new Text( StringUtils.format( patternScoreString, 0 ), { font: new PhetFont( { size: 12, weight: 'bold'} )} );
+    var levelLabel = new Text( StringUtils.format( patternLevelString, model.levelNumber ), { font: new PhetFont( { size: 12, weight: 'bold' } ) } );
+    var scoreLabel = new Text( StringUtils.format( patternScoreString, 0 ), { font: new PhetFont( { size: 12, weight: 'bold' } ) } );
+    var timeLabel = new Text( StringUtils.format( patternScoreString, 0 ), { font: new PhetFont( { size: 12, weight: 'bold' } ) } );
     var vBox = new VBox( {
-      children: [levelLabel, scoreLabel, timeLabel],
+      children: [ levelLabel, scoreLabel, timeLabel ],
       spacing: 5,
       y: 90,
       right: model.gameModel.width - margin,
@@ -94,7 +94,7 @@ define( function( require ) {
 
     //drawing left part buttons: check, ok, tryAgain, showAnswer
     var commonButtonStyle = {
-      font: new PhetFont( { size: 18, weight: 'bold'} ),
+      font: new PhetFont( { size: 18, weight: 'bold' } ),
       centerX: smile.centerX,
       centerY: smile.bottom + 27
     };
@@ -141,14 +141,18 @@ define( function( require ) {
     thisNode.addChild( buttonShowAnswer );
 
     //drawing comparisonChart
-    this.comparisonChart = new ComparisonChartNode( model.gameModel, {centerX: model.gameModel.width / 2, y: 250} );
+    this.comparisonChart = new ComparisonChartNode( model.gameModel, { centerX: model.gameModel.width / 2, y: 250 } );
     thisNode.addChild( this.comparisonChart );
 
     //equal signs at the top for six gray answer rectangles
     this.equallyAnswerSymbol = [];
     this.levelsContainer.answerRects.forEach( function( answerRect, i ) {
-      thisNode.equallyAnswerSymbol[i] = new Text( equallyAnswerSymbolString, { font: new PhetFont( { size: 22, _weight: 'bold'} ), center: answerRect.center, visible: false  } );
-      thisNode.addChild( thisNode.equallyAnswerSymbol[i] );
+      thisNode.equallyAnswerSymbol[ i ] = new Text( equallyAnswerSymbolString, {
+        font: new PhetFont( { size: 22, _weight: 'bold' } ),
+        center: answerRect.center,
+        visible: false
+      } );
+      thisNode.addChild( thisNode.equallyAnswerSymbol[ i ] );
     } );
 
     //drag handler for shapes
@@ -156,14 +160,17 @@ define( function( require ) {
     var startDrag = function( event ) {
         if ( model.canDrag ) {
           event.currentTarget.moveToFront();
-          offsetCursor = {x: thisNode.globalToParentPoint( event.pointer.point ).x - event.currentTarget.x, y: thisNode.globalToParentPoint( event.pointer.point ).y - event.currentTarget.y};
+          offsetCursor = {
+            x: thisNode.globalToParentPoint( event.pointer.point ).x - event.currentTarget.x,
+            y: thisNode.globalToParentPoint( event.pointer.point ).y - event.currentTarget.y
+          };
 
           //if touch device show shape above the pointer
           if ( platform.mobileSafari || platform.android ) {
             offsetCursor.y += 50;
           }
-          model.dropZone[model.shapes[event.currentTarget.indexShape].dropZone] = -1;
-          if ( model.lastChangedZone === model.shapes[event.currentTarget.indexShape].dropZone ) {
+          model.dropZone[ model.shapes[ event.currentTarget.indexShape ].dropZone ] = -1;
+          if ( model.lastChangedZone === model.shapes[ event.currentTarget.indexShape ].dropZone ) {
             model.lastChangedZone = -1;
           }
         }
@@ -177,16 +184,16 @@ define( function( require ) {
       endDrag = function( event ) {
         if ( model.canDrag ) {
           var zone = thisNode.getClosestDropZone( event.currentTarget.center, true );
-          if ( zone >= 12 && model.dropZone[zone] >= 0 ) { //if scale and scale not empty
-            var zone2 = thisNode.getClosestDropZone( model.shapes[model.dropZone[zone]].view.center, false ); //get free zone, not scale
-            thisNode.dropShapeToZone( model.shapes[model.dropZone[zone]], zone2 );
+          if ( zone >= 12 && model.dropZone[ zone ] >= 0 ) { //if scale and scale not empty
+            var zone2 = thisNode.getClosestDropZone( model.shapes[ model.dropZone[ zone ] ].view.center, false ); //get free zone, not scale
+            thisNode.dropShapeToZone( model.shapes[ model.dropZone[ zone ] ], zone2 );
           }
           if ( zone === 12 || zone === 13 ) {
             model.lastChangedZone = zone;
           }
-          thisNode.dropShapeToZone( model.shapes[event.currentTarget.indexShape], zone );
+          thisNode.dropShapeToZone( model.shapes[ event.currentTarget.indexShape ], zone );
           if ( model.buttonStatus === 'check' || model.buttonStatus === 'none' ) {
-            if ( model.dropZone[12] >= 0 && model.dropZone[13] >= 0 && (model.dropZone[12] !== model.lastPair[0] || model.dropZone[13] !== model.lastPair[1]) ) {
+            if ( model.dropZone[ 12 ] >= 0 && model.dropZone[ 13 ] >= 0 && (model.dropZone[ 12 ] !== model.lastPair[ 0 ] || model.dropZone[ 13 ] !== model.lastPair[ 1 ]) ) {
               model.buttonStatus = 'check';
             }
             else {
@@ -213,7 +220,7 @@ define( function( require ) {
       shapeNode.removeAllChildren();
 
       for ( i = 0; i < model.shapes.length; i++ ) {
-        singleShapeModel = model.shapes[i];
+        singleShapeModel = model.shapes[ i ];
         //new shapeView
         if ( singleShapeModel.view === undefined ) {
           singleShapeModel.view = ShapeNode.create( singleShapeModel );
@@ -227,13 +234,13 @@ define( function( require ) {
         //placing at the correct position (dropZone)
         if ( singleShapeModel.dropZone >= 0 ) {
           singleShapeModel.view.center = thisNode.getShapeDropPosition( singleShapeModel.dropZone );
-          thisNode.model.dropZone[singleShapeModel.dropZone] = singleShapeModel.view.indexShape;
+          thisNode.model.dropZone[ singleShapeModel.dropZone ] = singleShapeModel.view.indexShape;
         }
       }
 
       //hiding equal signs at the answer zone
       for ( var j = 0; j < model.gameModel.MAXIMUM_PAIRS; j++ ) {
-        thisNode.equallyAnswerSymbol[j].setVisible( false );
+        thisNode.equallyAnswerSymbol[ j ].setVisible( false );
       }
       if ( this.levelCompletedNodeContainer !== null ) {
         this.levelCompletedNodeContainer.detach();
@@ -258,7 +265,7 @@ define( function( require ) {
       if ( model.buttonStatus !== 'none' ) {
         thisNode.comparisonChart.reset();
         if ( model.buttonStatus !== 'check' ) {
-          thisNode.comparisonChart.compare( model.shapes[model.dropZone[12]], model.shapes[model.dropZone[13]] );
+          thisNode.comparisonChart.compare( model.shapes[ model.dropZone[ 12 ] ], model.shapes[ model.dropZone[ 13 ] ] );
         }
       }
       else {
@@ -300,17 +307,17 @@ define( function( require ) {
       getShapeDropPosition: function( position ) {
         //inside dropZones at the bottom
         if ( position < this.model.gameModel.MAXIMUM_PAIRS * 2 ) {
-          return this.levelsContainer.sourceRectangles[position].center;
+          return this.levelsContainer.sourceRectangles[ position ].center;
         }
         else {
           //one of two scales
-          var scale = this.levelsContainer.scales[position - this.model.gameModel.MAXIMUM_PAIRS * 2];
+          var scale = this.levelsContainer.scales[ position - this.model.gameModel.MAXIMUM_PAIRS * 2 ];
           return new Vector2( scale.centerX, scale.top + 6 );
         }
       },
       //get Vector2(x,y) - position in answer gray rect at the top
       getShapeAnswerPosition: function( position ) {
-        var targetRect = this.levelsContainer.answerRects[Math.floor( position / 2 )];
+        var targetRect = this.levelsContainer.answerRects[ Math.floor( position / 2 ) ];
         var diff = (position % 2 === 0) ? -targetRect.width / 4 : targetRect.width / 4;
         return new Vector2( targetRect.centerX + diff, targetRect.centerY );
       },
@@ -320,7 +327,7 @@ define( function( require ) {
           min = 1e10;
         for ( var i = 0; i < this.model.dropZone.length; i++ ) {
           //if empty or one of two scales and canDropOnScale
-          if ( this.model.dropZone[i] < 0 || (canDropOnScale && (i === 12 || i === 13)) ) {
+          if ( this.model.dropZone[ i ] < 0 || (canDropOnScale && (i === 12 || i === 13)) ) {
             var dist = coord.distanceSquared( this.getShapeDropPosition( i ) );
             if ( min > dist ) {
               min = dist;
@@ -333,7 +340,7 @@ define( function( require ) {
       //animation for 'snapping' shape to correct position
       dropShapeToZone: function( shape, zoneIndex ) {
         //target dropZone now = indexShape
-        this.model.dropZone[zoneIndex] = shape.view.indexShape;
+        this.model.dropZone[ zoneIndex ] = shape.view.indexShape;
         shape.dropZone = zoneIndex;
         var targetPosition = this.getShapeDropPosition( zoneIndex );
         if ( zoneIndex > this.model.gameModel.MAXIMUM_PAIRS * 2 - 1 ) {
@@ -348,54 +355,61 @@ define( function( require ) {
           }
         }
         shape.view.moveToFront();
-        new TWEEN.Tween( shape.view ).easing( TWEEN.Easing.Cubic.InOut ).to( { centerX: targetPosition.x, centerY: targetPosition.y }, this.model.gameModel.ANIMATION_TIME ).start();
+        new TWEEN.Tween( shape.view ).easing( TWEEN.Easing.Cubic.InOut ).to( {
+          centerX: targetPosition.x,
+          centerY: targetPosition.y
+        }, this.model.gameModel.ANIMATION_TIME ).start();
       },
       //move correct shape to scales
       showCorrectAnswer: function() {
         var thisNode = this;
         //the unchanged shape on scale
-        var correctShape = this.model.shapes[this.model.dropZone[this.model.lastChangedZone === 12 ? 13 : 12]];
+        var correctShape = this.model.shapes[ this.model.dropZone[ this.model.lastChangedZone === 12 ? 13 : 12 ] ];
         var secondCorrectShape;
         for ( var i = 0; i < this.model.dropZone.length; i++ ) {
-          if ( this.model.dropZone[i] !== -1 && thisNode.model.isShapesEqual( correctShape, this.model.shapes[this.model.dropZone[i]] ) ) {
-            secondCorrectShape = this.model.shapes[this.model.dropZone[i]];
+          if ( this.model.dropZone[ i ] !== -1 && thisNode.model.isShapesEqual( correctShape, this.model.shapes[ this.model.dropZone[ i ] ] ) ) {
+            secondCorrectShape = this.model.shapes[ this.model.dropZone[ i ] ];
             break;
           }
         }
-        var lastShapeOnScale = this.model.shapes[this.model.dropZone[this.model.lastChangedZone]];
-        this.model.dropZone[secondCorrectShape.dropZone] = -1;
+        var lastShapeOnScale = this.model.shapes[ this.model.dropZone[ this.model.lastChangedZone ] ];
+        this.model.dropZone[ secondCorrectShape.dropZone ] = -1;
         this.dropShapeToZone( secondCorrectShape, this.model.lastChangedZone );
         this.dropShapeToZone( lastShapeOnScale, this.getClosestDropZone( lastShapeOnScale.view.center, false ) );
         secondCorrectShape.view.moveToFront();
-        thisNode.comparisonChart.compare( thisNode.model.shapes[thisNode.model.dropZone[12]], thisNode.model.shapes[thisNode.model.dropZone[13]] );
+        thisNode.comparisonChart.compare( thisNode.model.shapes[ thisNode.model.dropZone[ 12 ] ], thisNode.model.shapes[ thisNode.model.dropZone[ 13 ] ] );
       },
       //move shapes from scales to answer zone and disable them
       moveShapesOnScalesToAnswer: function() {
         var thisNode = this;
-        thisNode.equallyAnswerSymbol[thisNode.model.answers.length / 2].setVisible( true );
-        [0, 1].forEach( function( i ) {
-          var shape = thisNode.model.shapes[thisNode.model.dropZone[thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i]];
+        thisNode.equallyAnswerSymbol[ thisNode.model.answers.length / 2 ].setVisible( true );
+        [ 0, 1 ].forEach( function( i ) {
+          var shape = thisNode.model.shapes[ thisNode.model.dropZone[ thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i ] ];
           var newPosition = thisNode.getShapeAnswerPosition( thisNode.model.answers.length );
           var initialScale = shape.view.matrix.scaleVector.x;
           var targetScale = initialScale / 2;
           var linearFunction = new LinearFunction( 0, 1, initialScale, targetScale );
-          new TWEEN.Tween( shape.view ).easing( TWEEN.Easing.Cubic.InOut ).to( { scale: 0.5, centerX: newPosition.x, centerY: newPosition.y }, thisNode.model.gameModel.ANIMATION_TIME ).onUpdate( function( step ) {
+          new TWEEN.Tween( shape.view ).easing( TWEEN.Easing.Cubic.InOut ).to( {
+            scale: 0.5,
+            centerX: newPosition.x,
+            centerY: newPosition.y
+          }, thisNode.model.gameModel.ANIMATION_TIME ).onUpdate( function( step ) {
             var scale = linearFunction( step );
             shape.view.setScaleMagnitude( scale, scale );
           } ).start();
-          thisNode.model.answers.push( thisNode.model.dropZone[thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i] );
-          thisNode.model.dropZone[thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i] = -1;
-          shape.view.removeInputListener( shape.view.getInputListeners()[0] );
+          thisNode.model.answers.push( thisNode.model.dropZone[ thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i ] );
+          thisNode.model.dropZone[ thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i ] = -1;
+          shape.view.removeInputListener( shape.view.getInputListeners()[ 0 ] );
         } );
         if ( this.model.answers.length === this.model.gameModel.MAXIMUM_PAIRS * 2 || debugRewards ) {
 
           var levelNode = this;
           var completedTime = this.model.time;
-          var lastBestForThisLevel = this.model.gameModel.bestTimes[this.model.levelNumber - 1].get();
+          var lastBestForThisLevel = this.model.gameModel.bestTimes[ this.model.levelNumber - 1 ].get();
           var newBestTime = false;
           if ( this.model.score === 12 && (lastBestForThisLevel === null || completedTime < lastBestForThisLevel) ) {
             newBestTime = true;
-            this.model.gameModel.bestTimes[this.model.levelNumber - 1].set( completedTime );
+            this.model.gameModel.bestTimes[ this.model.levelNumber - 1 ].set( completedTime );
           }
 
           //If a perfect score, show the reward node
@@ -413,13 +427,13 @@ define( function( require ) {
             //Set the scale for each node to be the same, since some may not have animated to the "my matches" boxes yet, and may be a different size
             var scale = 0.9;
             for ( var i = 0; i < rewardNodes.length; i++ ) {
-              rewardNodes[i].previousScale = rewardNodes[i].getScaleVector();
-              rewardNodes[i].setScaleMagnitude( scale * scale );
+              rewardNodes[ i ].previousScale = rewardNodes[ i ].getScaleVector();
+              rewardNodes[ i ].setScaleMagnitude( scale * scale );
             }
 
             //Create and attach the new Reward Node
 
-            var face = new FaceNode( 40, {headStroke: 'black', headLineWidth: 1.5} );
+            var face = new FaceNode( 40, { headStroke: 'black', headLineWidth: 1.5 } );
             var star = new StarNode();
             rewardNodes = RewardNode.createRandomNodes( rewardNodes, 100 ).concat( _.times( 6, _.constant( face ) ), _.times( 6, _.constant( star ) ) );
             this.rewardNode = new RewardNode( {
@@ -430,36 +444,38 @@ define( function( require ) {
 
             // Restore the sizes of the nodes after toImage completed
             for ( i = 0; i < rewardNodes.length; i++ ) {
-              if ( rewardNodes[i].previousScale ) {
-                rewardNodes[i].setScaleMagnitude( rewardNodes[i].previousScale.x, rewardNodes[i].previousScale.y );
+              if ( rewardNodes[ i ].previousScale ) {
+                rewardNodes[ i ].setScaleMagnitude( rewardNodes[ i ].previousScale.x, rewardNodes[ i ].previousScale.y );
               }
             }
           }
 
           //Show the level completed dialog which shows scores, etc.
-          this.levelCompletedNodeContainer = new Node( {children: [
+          this.levelCompletedNodeContainer = new Node( {
+            children: [
 
-            //Prevent the user from pressing anything other than the "continue" button
-            new Plane( {fill: 'black', opacity: 0, pickable: true} ),
+              //Prevent the user from pressing anything other than the "continue" button
+              new Plane( { fill: 'black', opacity: 0, pickable: true } ),
 
-            //Show the dialog with scores
-            new LevelCompletedNode( this.model.levelNumber - 1, this.model.score, 12, 3, this.model.gameModel.isTimer, completedTime, lastBestForThisLevel, newBestTime,
-              function() {
-                var model = levelNode.model;
-                model.gameModel.highScores[model.levelNumber - 1].set( Math.max( model.gameModel.highScores[model.levelNumber - 1].get(), model.score ) );
-                model.gameModel.currentLevel = 0;
-                model.reset();
-                levelNode.generateNewLevel();
-                levelNode.rewardNode.stop();
+              //Show the dialog with scores
+              new LevelCompletedNode( this.model.levelNumber - 1, this.model.score, 12, 3, this.model.gameModel.isTimer, completedTime, lastBestForThisLevel, newBestTime,
+                function() {
+                  var model = levelNode.model;
+                  model.gameModel.highScores[ model.levelNumber - 1 ].set( Math.max( model.gameModel.highScores[ model.levelNumber - 1 ].get(), model.score ) );
+                  model.gameModel.currentLevel = 0;
+                  model.reset();
+                  levelNode.generateNewLevel();
+                  levelNode.rewardNode.stop();
 
-                //TODO: only detach after animation transition away complete?
-                levelNode.rewardNode.detach();
-                levelNode.rewardNode = null;
-              }, {
-                centerX: this.model.gameModel.width / 2,
-                centerY: this.model.gameModel.height / 2
-              } )
-          ]} );
+                  //TODO: only detach after animation transition away complete?
+                  levelNode.rewardNode.detach();
+                  levelNode.rewardNode = null;
+                }, {
+                  centerX: this.model.gameModel.width / 2,
+                  centerY: this.model.gameModel.height / 2
+                } )
+            ]
+          } );
           this.addChild( this.levelCompletedNodeContainer );
         }
       }

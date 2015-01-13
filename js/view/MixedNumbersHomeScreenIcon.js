@@ -22,7 +22,7 @@ define( function( require ) {
    * @constructor
    */
   function MixedNumbersHomeScreenIcon() {
-    Rectangle.call( this, 0, 0, 548, 373, {fill: '#e7e9cc'} );
+    Rectangle.call( this, 0, 0, 548, 373, { fill: '#e7e9cc' } );
 
     var shapeNode = ShapeNode.create( {
       x: 0,
@@ -47,13 +47,13 @@ define( function( require ) {
       toSimplify: true,
       width: 180,
       height: 180
-    } ).mutate( {scale: 2.4} );
+    } ).mutate( { scale: 2.4 } );
 
     this.addChild( new HBox( {
       spacing: 15,
       children: [
         shapeNode,
-        new Text( '=', {fill: 'black', font: new PhetFont( 160 )} ),
+        new Text( '=', { fill: 'black', font: new PhetFont( 160 ) } ),
         shapeNode2
       ],
       center: this.center

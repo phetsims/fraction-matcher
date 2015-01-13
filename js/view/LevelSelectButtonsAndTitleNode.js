@@ -29,13 +29,18 @@ define( function( require ) {
   //constants
   var NUM_STARS_ON_BUTTON = 3; //number of stars on StartLevelButton
   var BUTTONS_PER_LINE = 4; //number on buttons in a single row
-  var FONT = new PhetFont( { size: 14, weight: 'bold'} );
+  var FONT = new PhetFont( { size: 14, weight: 'bold' } );
 
   function LevelSelectButtonsAndTitleNode( model, options ) {
     var mixedNumber = (model.game === mixedNumbersTitleString);
 
     var vBoxChildren = [];
-    vBoxChildren.push( new Text( mixedNumber ? mixedNumbersChooseYourLevelString : fractionsChooseYourLevelString, {font: new PhetFont( {size: 28, family: HomeScreen.TITLE_FONT_FAMILY} )} ) );
+    vBoxChildren.push( new Text( mixedNumber ? mixedNumbersChooseYourLevelString : fractionsChooseYourLevelString, {
+      font: new PhetFont( {
+        size: 28,
+        family: HomeScreen.TITLE_FONT_FAMILY
+      } )
+    } ) );
 
     var START_BUTTON_OPTIONS = {
       buttonWidth: 90,
@@ -99,7 +104,7 @@ define( function( require ) {
           height: shape.height ? shape.height : 60
         } )
       ];
-      return new VBox( {children: children, spacing: 20} );
+      return new VBox( { children: children, spacing: 20 } );
     };
 
     var hBoxChildren = [];
@@ -115,17 +120,17 @@ define( function( require ) {
               model.currentLevel = (index + 1);
             }
           },
-          model.highScores[index],
+          model.highScores[ index ],
           model.MAX_POINTS_PER_GAME_LEVEL,
           START_BUTTON_OPTIONS ) );
 
       if ( index % BUTTONS_PER_LINE === BUTTONS_PER_LINE - 1 || index === shapes.length - 1 ) { //end of row
-        vBoxChildren.push( new HBox( {resize: false, children: hBoxChildren, spacing: 45} ) );
+        vBoxChildren.push( new HBox( { resize: false, children: hBoxChildren, spacing: 45 } ) );
         hBoxChildren = [];
       }
     } );
 
-    VBox.call( this, _.extend( {resize: false, children: vBoxChildren, spacing: 30}, options ) );
+    VBox.call( this, _.extend( { resize: false, children: vBoxChildren, spacing: 30 }, options ) );
   }
 
   return inherit( VBox, LevelSelectButtonsAndTitleNode );

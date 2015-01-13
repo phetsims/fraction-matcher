@@ -10,7 +10,7 @@
 
 require.config( {
 
-  deps: ['fraction-matcher-main'],
+  deps: [ 'fraction-matcher-main' ],
 
   config: {
     i18n: {

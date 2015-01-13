@@ -21,7 +21,7 @@ define( function( require ) {
   return inherit( Node, ShapeNode,
 
     //instance methods
-    { },
+    {},
 
     //statics
     {

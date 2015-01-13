@@ -36,7 +36,7 @@ define( function( require ) {
 
     this.game = game;
     this.constants = constants;
-    this.colorScheme = [constants.COLORS.LIGHT_BLUE, constants.COLORS.LIGHT_GREEN, constants.COLORS.LIGHT_RED];
+    this.colorScheme = [ constants.COLORS.LIGHT_BLUE, constants.COLORS.LIGHT_GREEN, constants.COLORS.LIGHT_RED ];
     this.toSimplify = toSimplify;
     this.ANIMATION_TIME = 500;
     this.MAXIMUM_PAIRS = 6;
@@ -83,7 +83,7 @@ define( function( require ) {
 
     step: function( dt ) {
       if ( this.currentLevel > 0 ) {
-        this.levels[this.currentLevel - 1].step( dt );
+        this.levels[ this.currentLevel - 1 ].step( dt );
       }
 
       //Signify that a step occurred: used in animating the RewardNodes

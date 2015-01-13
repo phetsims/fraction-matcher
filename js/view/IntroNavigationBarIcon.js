@@ -18,7 +18,7 @@ define( function( require ) {
    * @constructor
    */
   function IntroNavigationBarIcon() {
-    Rectangle.call( this, 0, 0, 548, 373, {fill: 'black'} );
+    Rectangle.call( this, 0, 0, 548, 373, { fill: 'black' } );
 
     var shapeNode = ShapeNode.create( {
       x: 0,
@@ -32,7 +32,7 @@ define( function( require ) {
       height: 180
     } );
 
-    this.addChild( shapeNode.mutate( {scale: 1.6, center: this.center} ) );
+    this.addChild( shapeNode.mutate( { scale: 1.6, center: this.center } ) );
   }
 
   return inherit( Rectangle, IntroNavigationBarIcon );
