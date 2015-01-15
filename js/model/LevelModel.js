@@ -70,17 +70,17 @@ define( function( require ) {
       //rules if shape_type can be used for denominator d
         map = {
           PIES: true,
-          HORIZONTAL_BARS:  d < 9,
-          VERTICAL_BARS:    d < 9,
-          PLUSES:           d === 6,
-          GRID:             d === 4 || d === 9,
-          PYRAMID:          d === 1 || d === 4 || d === 9,
-          TETRIS:           d === 4,
-          FLOWER:           d === 6,
-          LETTER_L_SHAPES:  d % 2 === 0,
+          HORIZONTAL_BARS:      d < 9,
+          VERTICAL_BARS:        d < 9,
+          PLUSES:               d === 6,
+          GRID:                 d === 4 || d === 9,
+          PYRAMID:              d === 1 || d === 4 || d === 9,
+          TETRIS:               d === 4,
+          FLOWER:               d === 6,
+          LETTER_L_SHAPES:      d % 2 === 0,
           INTERLEAVED_L_SHAPES: d === 2 || d === 4,
-          RING_OF_HEXAGONS: d === 7,
-          NINJA_STAR:       d === 8
+          RING_OF_HEXAGONS:     d === 7,
+          NINJA_STAR:           d === 8
         };
 
       // move through all possible shapes and add it if filter through map

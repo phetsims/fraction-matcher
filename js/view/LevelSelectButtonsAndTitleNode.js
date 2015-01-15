@@ -98,7 +98,7 @@ define( function( require ) {
           type: shape.type,
           numerator: mixedNumber ? index + 2 : index + 1,
           denominator: index + 1,
-          value: index + 1,
+          value:       index + 1,
           fill: shape.color,
           width: shape.width ? shape.width : 60,
           height: shape.height ? shape.height : 60
