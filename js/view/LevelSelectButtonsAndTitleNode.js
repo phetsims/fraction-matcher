@@ -17,7 +17,7 @@ define( function( require ) {
   var ShapeNode = require( 'FRACTION_MATCHER/shapes/ShapeNode' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
-  var LevelStartButtonDeprecated = require( 'VEGAS/LevelStartButtonDeprecated' );
+  var LevelSelectionButton = require( 'VEGAS/LevelSelectionButton' );
   var HomeScreen = require( 'JOIST/HomeScreen' );
 
   // strings
@@ -110,7 +110,7 @@ define( function( require ) {
     var hBoxChildren = [];
     shapes.forEach( function( shape, index ) {
       hBoxChildren.push(
-        new LevelStartButtonDeprecated(
+        new LevelSelectionButton(
           createButtonContent( shape, index ),
           NUM_STARS_ON_BUTTON,
           function() {
@@ -122,7 +122,8 @@ define( function( require ) {
           },
           model.highScores[ index ],
           model.MAX_POINTS_PER_GAME_LEVEL,
-          START_BUTTON_OPTIONS ) );
+          START_BUTTON_OPTIONS
+        ) );
 
       if ( index % BUTTONS_PER_LINE === BUTTONS_PER_LINE - 1 || index === shapes.length - 1 ) { //end of row
         vBoxChildren.push( new HBox( { resize: false, children: hBoxChildren, spacing: 45 } ) );
