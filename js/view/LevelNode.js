@@ -340,6 +340,9 @@ define( function( require ) {
       //animation for 'snapping' shape to correct position
       dropShapeToZone: function( shape, zoneIndex ) {
         //target dropZone now = indexShape
+        if ( !shape.view ) {
+          return;
+        }
         this.model.dropZone[ zoneIndex ] = shape.view.indexShape;
         shape.dropZone = zoneIndex;
         var targetPosition = this.getShapeDropPosition( zoneIndex );

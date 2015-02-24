@@ -55,8 +55,12 @@ define( function( require ) {
 
     var refreshButton = new RefreshButton( {
       listener: function() {
-        model.levels[ model.currentLevel - 1 ].reset();
-        thisNode.levelNodes[ model.currentLevel - 1 ].generateNewLevel();
+        if ( model.levels[ model.currentLevel - 1 ] ) {
+          model.levels[ model.currentLevel - 1 ].reset();
+        }
+        if ( thisNode.levelNodes[ model.currentLevel - 1 ] ) {
+          thisNode.levelNodes[ model.currentLevel - 1 ].generateNewLevel();
+        }
       },
       y: backButton.bottom + 8, left: margin
     } );
