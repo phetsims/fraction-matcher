@@ -25,7 +25,7 @@ define( function( require ) {
   var LAYOUT_BOUNDS = new Bounds2( 0, 0, 768, 504 );
 
   function MatchingGameView( model ) {
-    ScreenView.call( this, { renderer: 'svg', layoutBounds: LAYOUT_BOUNDS } );
+    ScreenView.call( this, { layoutBounds: LAYOUT_BOUNDS } );
 
     var levelsContainerNode = new LevelsContainerNode( model, this.layoutBounds );
     levelsContainerNode.visible = false;
