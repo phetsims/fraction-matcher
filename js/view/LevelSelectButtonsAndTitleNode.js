@@ -18,7 +18,7 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
   var LevelSelectionButton = require( 'VEGAS/LevelSelectionButton' );
-  var HomeScreen = require( 'JOIST/HomeScreen' );
+  var HomeScreenView = require( 'JOIST/HomeScreenView' );
 
   // strings
   var patternLevelString = require( 'string!FRACTION_MATCHER/patternLevel' );
@@ -38,7 +38,7 @@ define( function( require ) {
     vBoxChildren.push( new Text( mixedNumber ? mixedNumbersChooseYourLevelString : fractionsChooseYourLevelString, {
       font: new PhetFont( {
         size: 28,
-        family: HomeScreen.TITLE_FONT_FAMILY
+        family: HomeScreenView.TITLE_FONT_FAMILY
       } )
     } ) );
 
