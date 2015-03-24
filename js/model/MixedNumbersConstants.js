@@ -20,21 +20,21 @@ define( function( require ) {
     //mixed numbers added some more fractions or remove extra
     this.LEVEL_DESCRIPTION[ 0 ].fractions.pop();
     // add mixed fractions
-    this.LEVEL_DESCRIPTION[ 0 ].fractions.push( Fraction.fraction( 3, 2 ), Fraction.fraction( 4, 3 ) );
+    this.LEVEL_DESCRIPTION[ 0 ].fractions.push( new Fraction( 3, 2 ), new Fraction( 4, 3 ) );
 
     // level 2
     // add more mixed fractions
-    this.LEVEL_DESCRIPTION[ 1 ].fractions.push( Fraction.fraction( 3, 2 ), Fraction.fraction( 4, 3 ), Fraction.fraction( 5, 3 ), Fraction.fraction( 5, 4 ), Fraction.fraction( 6, 4 ), Fraction.fraction( 6, 5 ) );
+    this.LEVEL_DESCRIPTION[ 1 ].fractions.push( new Fraction( 3, 2 ), new Fraction( 4, 3 ), new Fraction( 5, 3 ), new Fraction( 5, 4 ), new Fraction( 6, 4 ), new Fraction( 6, 5 ) );
 
     // level 3
     // add more mixed fractions
-    this.LEVEL_DESCRIPTION[ 2 ].fractions.push( Fraction.fraction( 5, 3 ), Fraction.fraction( 6, 5 ), Fraction.fraction( 7, 5 ), Fraction.fraction( 8, 5 ), Fraction.fraction( 9, 5 ), Fraction.fraction( 8, 6 ), Fraction.fraction( 9, 6 ), Fraction.fraction( 10, 6 ), Fraction.fraction( 11, 6 ), Fraction.fraction( 8, 7 ), Fraction.fraction( 9, 7 ), Fraction.fraction( 10, 7 ), Fraction.fraction( 11, 7 ), Fraction.fraction( 12, 7 ), Fraction.fraction( 13, 7 ), Fraction.fraction( 9, 8 ), Fraction.fraction( 10, 8 ), Fraction.fraction( 11, 8 ), Fraction.fraction( 12, 8 ), Fraction.fraction( 13, 8 ), Fraction.fraction( 14, 8 ), Fraction.fraction( 15, 8 ) );
+    this.LEVEL_DESCRIPTION[ 2 ].fractions.push( new Fraction( 5, 3 ), new Fraction( 6, 5 ), new Fraction( 7, 5 ), new Fraction( 8, 5 ), new Fraction( 9, 5 ), new Fraction( 8, 6 ), new Fraction( 9, 6 ), new Fraction( 10, 6 ), new Fraction( 11, 6 ), new Fraction( 8, 7 ), new Fraction( 9, 7 ), new Fraction( 10, 7 ), new Fraction( 11, 7 ), new Fraction( 12, 7 ), new Fraction( 13, 7 ), new Fraction( 9, 8 ), new Fraction( 10, 8 ), new Fraction( 11, 8 ), new Fraction( 12, 8 ), new Fraction( 13, 8 ), new Fraction( 14, 8 ), new Fraction( 15, 8 ) );
 
     // level 4
     // remove one 13/7 fraction
     this.LEVEL_DESCRIPTION[ 3 ].fractions.shift();
     // add more mixed fractions
-    this.LEVEL_DESCRIPTION[ 3 ].fractions.push( Fraction.fraction( 6, 5 ), Fraction.fraction( 7, 5 ), Fraction.fraction( 8, 5 ), Fraction.fraction( 7, 6 ), Fraction.fraction( 8, 6 ), Fraction.fraction( 9, 6 ), Fraction.fraction( 10, 6 ), Fraction.fraction( 11, 6 ), Fraction.fraction( 8, 7 ), Fraction.fraction( 10, 7 ), Fraction.fraction( 11, 7 ), Fraction.fraction( 12, 7 ), Fraction.fraction( 10, 8 ), Fraction.fraction( 11, 8 ), Fraction.fraction( 12, 8 ), Fraction.fraction( 13, 8 ), Fraction.fraction( 15, 8 ), Fraction.fraction( 10, 9 ), Fraction.fraction( 11, 9 ), Fraction.fraction( 12, 9 ), Fraction.fraction( 13, 9 ), Fraction.fraction( 14, 9 ), Fraction.fraction( 15, 9 ), Fraction.fraction( 16, 9 ), Fraction.fraction( 17, 9 ) );
+    this.LEVEL_DESCRIPTION[ 3 ].fractions.push( new Fraction( 6, 5 ), new Fraction( 7, 5 ), new Fraction( 8, 5 ), new Fraction( 7, 6 ), new Fraction( 8, 6 ), new Fraction( 9, 6 ), new Fraction( 10, 6 ), new Fraction( 11, 6 ), new Fraction( 8, 7 ), new Fraction( 10, 7 ), new Fraction( 11, 7 ), new Fraction( 12, 7 ), new Fraction( 10, 8 ), new Fraction( 11, 8 ), new Fraction( 12, 8 ), new Fraction( 13, 8 ), new Fraction( 15, 8 ), new Fraction( 10, 9 ), new Fraction( 11, 9 ), new Fraction( 12, 9 ), new Fraction( 13, 9 ), new Fraction( 14, 9 ), new Fraction( 15, 9 ), new Fraction( 16, 9 ), new Fraction( 17, 9 ) );
     this.LEVEL_DESCRIPTION[ 3 ].numericScaleFactors = [ 1 ];
 
     // level 5
@@ -42,16 +42,16 @@ define( function( require ) {
 
     // level 6
     // add more mixed fractions
-    this.LEVEL_DESCRIPTION[ 5 ].fractions.push( Fraction.fraction( 10, 6 ), Fraction.fraction( 11, 6 ), Fraction.fraction( 8, 7 ), Fraction.fraction( 11, 7 ), Fraction.fraction( 12, 7 ), Fraction.fraction( 12, 8 ), Fraction.fraction( 13, 8 ), Fraction.fraction( 15, 8 ), Fraction.fraction( 12, 9 ), Fraction.fraction( 13, 9 ), Fraction.fraction( 14, 9 ), Fraction.fraction( 15, 9 ), Fraction.fraction( 16, 9 ), Fraction.fraction( 17, 9 ) );
+    this.LEVEL_DESCRIPTION[ 5 ].fractions.push( new Fraction( 10, 6 ), new Fraction( 11, 6 ), new Fraction( 8, 7 ), new Fraction( 11, 7 ), new Fraction( 12, 7 ), new Fraction( 12, 8 ), new Fraction( 13, 8 ), new Fraction( 15, 8 ), new Fraction( 12, 9 ), new Fraction( 13, 9 ), new Fraction( 14, 9 ), new Fraction( 15, 9 ), new Fraction( 16, 9 ), new Fraction( 17, 9 ) );
 
     // level 7
     // add more mixed fractions
-    this.LEVEL_DESCRIPTION[ 6 ].fractions.push( Fraction.fraction( 8, 6 ), Fraction.fraction( 9, 6 ), Fraction.fraction( 10, 6 ), Fraction.fraction( 8, 7 ), Fraction.fraction( 9, 7 ), Fraction.fraction( 10, 7 ), Fraction.fraction( 11, 7 ), Fraction.fraction( 12, 7 ), Fraction.fraction( 13, 7 ), Fraction.fraction( 9, 8 ), Fraction.fraction( 10, 8 ), Fraction.fraction( 11, 8 ), Fraction.fraction( 12, 8 ), Fraction.fraction( 13, 8 ), Fraction.fraction( 14, 8 ), Fraction.fraction( 15, 8 ), Fraction.fraction( 10, 9 ), Fraction.fraction( 11, 9 ), Fraction.fraction( 12, 9 ), Fraction.fraction( 13, 9 ), Fraction.fraction( 14, 9 ), Fraction.fraction( 15, 9 ), Fraction.fraction( 16, 9 ), Fraction.fraction( 17, 9 ) );
+    this.LEVEL_DESCRIPTION[ 6 ].fractions.push( new Fraction( 8, 6 ), new Fraction( 9, 6 ), new Fraction( 10, 6 ), new Fraction( 8, 7 ), new Fraction( 9, 7 ), new Fraction( 10, 7 ), new Fraction( 11, 7 ), new Fraction( 12, 7 ), new Fraction( 13, 7 ), new Fraction( 9, 8 ), new Fraction( 10, 8 ), new Fraction( 11, 8 ), new Fraction( 12, 8 ), new Fraction( 13, 8 ), new Fraction( 14, 8 ), new Fraction( 15, 8 ), new Fraction( 10, 9 ), new Fraction( 11, 9 ), new Fraction( 12, 9 ), new Fraction( 13, 9 ), new Fraction( 14, 9 ), new Fraction( 15, 9 ), new Fraction( 16, 9 ), new Fraction( 17, 9 ) );
     this.LEVEL_DESCRIPTION[ 6 ].numericScaleFactors = [ 3, 6, 7 ];
 
     // level 8
     // add more mixed fractions
-    this.LEVEL_DESCRIPTION[ 7 ].fractions.push( Fraction.fraction( 6, 5 ), Fraction.fraction( 7, 5 ), Fraction.fraction( 8, 5 ), Fraction.fraction( 9, 5 ), Fraction.fraction( 7, 6 ), Fraction.fraction( 8, 6 ), Fraction.fraction( 9, 6 ), Fraction.fraction( 10, 6 ), Fraction.fraction( 11, 6 ) );
+    this.LEVEL_DESCRIPTION[ 7 ].fractions.push( new Fraction( 6, 5 ), new Fraction( 7, 5 ), new Fraction( 8, 5 ), new Fraction( 9, 5 ), new Fraction( 7, 6 ), new Fraction( 8, 6 ), new Fraction( 9, 6 ), new Fraction( 10, 6 ), new Fraction( 11, 6 ) );
     this.LEVEL_DESCRIPTION[ 7 ].numericScaleFactors = [ 3, 4, 5, 6, 7, 8, 9 ];
   }
 
