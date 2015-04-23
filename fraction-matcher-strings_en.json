@@ -1,0 +1,65 @@
+{
+  "fraction-matcher.name": {
+    "value": "Fraction Matcher"
+  },
+  "fractionsTitle": {
+    "value": "Fractions"
+  },
+  "mixedNumbersTitle": {
+    "value": "Mixed Numbers"
+  },
+  "matchingGameHeader": {
+    "value": "Fraction Matcher"
+  },
+  "mixedNumbersHeader": {
+    "value": "Fraction Matcher: Mixed Numbers"
+  },
+  "patternLevel": {
+    "value": "Level {0}"
+  },
+  "patternScore": {
+    "value": "Score: {0}"
+  },
+  "myMatches": {
+    "value": "My Matches"
+  },
+  "buttonCheck": {
+    "value": "Check"
+  },
+  "buttonOk": {
+    "value": "OK"
+  },
+  "buttonTryAgain": {
+    "value": "Try Again"
+  },
+  "buttonShowAnswer": {
+    "value": "Show Answer"
+  },
+  "equallyAnswerSymbol": {
+    "value": "="
+  },
+  "gameOver": {
+    "value": "Game Over"
+  },
+  "patternGameOverLevel": {
+    "value": "Level: {0}"
+  },
+  "patternGameOverScore": {
+    "value": "Score: {0} out  of 12"
+  },
+  "patternGameOverScorePrefect": {
+    "value": "Score: {0} out of 12 (Perfect!)"
+  },
+  "buttonNewGame": {
+    "value": "New game"
+  },
+  "time.pattern": {
+    "value": "Time: {0} sec"
+  },
+  "mixedNumbersChooseYourLevel": {
+    "value": "Mixed Numbers: Choose your level!"
+  },
+  "fractionsChooseYourLevel": {
+    "value": "Fractions: Choose your level!"
+  }
+}
