@@ -20,7 +20,7 @@ require.config( {
 
   paths: {
 // third-party libs
-    text: '../../sherpa/text',
+    text: '../../sherpa/text-2.0.12',
     image: '../../chipper/js/requirejs-plugins/image',
     audio: '../../chipper/js/requirejs-plugins/audio',
     string: '../../chipper/js/requirejs-plugins/string',
