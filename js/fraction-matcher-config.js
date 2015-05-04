@@ -33,6 +33,7 @@ require.config( {
     KITE: '../../kite/js',
     PHET_CORE: '../../phet-core/js',
     PHETCOMMON: '../../phetcommon/js',
+    REPOSITORY: '..',
     SHERPA: '../../sherpa',
     SCENERY: '../../scenery/js',
     SCENERY_PHET: '../../scenery-phet/js',
