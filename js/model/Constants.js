@@ -10,7 +10,7 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var FILL_TYPE = require( 'FRACTION_MATCHER/model/FillType' );
+  var FillType = require( 'FRACTION_MATCHER/model/FillType' );
   var Fraction = require( 'PHETCOMMON/model/Fraction' );
 
   //colors
@@ -57,7 +57,7 @@ define( function( require ) {
           new Fraction( 1, 1 )
         ],
         numericScaleFactors: [ 1 ],
-        fillType: [ FILL_TYPE.SEQUENTIAL ],
+        fillType: [ FillType.SEQUENTIAL ],
         shapes: SHAPES.slice( 0, 3 )
       },
     /**
@@ -77,7 +77,7 @@ define( function( require ) {
           new Fraction( 3, 6 )
         ],
         numericScaleFactors: [ 1 ],
-        fillType: [ FILL_TYPE.SEQUENTIAL ],
+        fillType: [ FillType.SEQUENTIAL ],
         shapes: SHAPES.slice( 0 )
       },
     /**
@@ -106,7 +106,7 @@ define( function( require ) {
           new Fraction( 7, 8 )
         ],
         numericScaleFactors: [ 1 ],
-        fillType: [ FILL_TYPE.SEQUENTIAL ],
+        fillType: [ FillType.SEQUENTIAL ],
         shapes: SHAPES.slice( 0 )
       },
     /**
@@ -129,7 +129,7 @@ define( function( require ) {
           new Fraction( 8, 9 )
         ],
         numericScaleFactors: [ 1, 2 ],
-        fillType: [ FILL_TYPE.SEQUENTIAL ],
+        fillType: [ FillType.SEQUENTIAL ],
         shapes: SHAPES.slice( 0 )
       },
     /**
@@ -152,7 +152,7 @@ define( function( require ) {
           new Fraction( 8, 9 )
         ],
         numericScaleFactors: [ 1, 2, 3 ],
-        fillType: [ FILL_TYPE.SEQUENTIAL, FILL_TYPE.MIXED ],
+        fillType: [ FillType.SEQUENTIAL, FillType.MIXED ],
         shapes: SHAPES.slice( 0 )
       },
     /**
@@ -182,7 +182,7 @@ define( function( require ) {
           new Fraction( 11, 9 )
         ],
         numericScaleFactors: [ 1, 4, 5 ],
-        fillType: [ FILL_TYPE.SEQUENTIAL, FILL_TYPE.RANDOM ],
+        fillType: [ FillType.SEQUENTIAL, FillType.RANDOM ],
         shapes: SHAPES.slice( 0 )
       },
     /**
@@ -204,7 +204,7 @@ define( function( require ) {
           new Fraction( 11, 6 )
         ],
         numericScaleFactors: [ 1, 6, 7 ],
-        fillType: [ FILL_TYPE.SEQUENTIAL, FILL_TYPE.RANDOM ],
+        fillType: [ FillType.SEQUENTIAL, FillType.RANDOM ],
         shapes: SHAPES.slice( 0 )
       },
     /**
@@ -236,7 +236,7 @@ define( function( require ) {
           new Fraction( 17, 9 )
         ],
         numericScaleFactors: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
-        fillType: [ FILL_TYPE.SEQUENTIAL, FILL_TYPE.RANDOM ],
+        fillType: [ FillType.SEQUENTIAL, FillType.RANDOM ],
         shapes: SHAPES.slice( 0 )
       }
     ];
