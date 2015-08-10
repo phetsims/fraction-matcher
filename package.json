@@ -2,6 +2,7 @@
   "name": "fraction-matcher",
   "version": "1.0.0",
   "license": "GPLv3",
+  "requirejsNamespace": "FRACTION_MATCHER",
   "simTitleStringKey": "FRACTION_MATCHER/fraction-matcher.name",
   "phetLibs": [
     "fraction-matcher",
