@@ -17,7 +17,6 @@
     "requirejsNamespace": "FRACTION_MATCHER",
     "simTitleStringKey": "FRACTION_MATCHER/fraction-matcher.name",
     "phetLibs": [
-      "fraction-matcher",
       "vegas",
       "vibe"
     ],
