@@ -2,16 +2,6 @@
   "name": "fraction-matcher",
   "version": "1.0.0",
   "license": "GPLv3",
-  "requirejsNamespace": "FRACTION_MATCHER",
-  "simTitleStringKey": "FRACTION_MATCHER/fraction-matcher.name",
-  "phetLibs": [
-    "fraction-matcher",
-    "vegas",
-    "vibe"
-  ],
-  "preload": [
-    "../sherpa/lib/Tween-r12.js"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/phetsims/fraction-matcher.git"
@@ -22,5 +12,17 @@
     "grunt-contrib-jshint": "~0.6.4",
     "uglify-js": "~2.4.0",
     "requirejs": "~2.1.8"
+  },
+  "phet": {
+    "requirejsNamespace": "FRACTION_MATCHER",
+    "simTitleStringKey": "FRACTION_MATCHER/fraction-matcher.name",
+    "phetLibs": [
+      "fraction-matcher",
+      "vegas",
+      "vibe"
+    ],
+    "preload": [
+      "../sherpa/lib/Tween-r12.js"
+    ]
   }
 }
