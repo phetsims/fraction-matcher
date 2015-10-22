@@ -37,12 +37,12 @@ define( function( require ) {
     VERTICAL_BARS: function( shapes, outlines, options ) {
       for ( var i = 0, l = shapes.length; i < l; i++ ) {
         for ( var j = 0; j < options.denominator; j++ ) {
-          shapes[ i ].push( new Path( new Shape.rect( 0, 0, options.width / options.denominator, options.height ), {
+          shapes[ i ].push( new Path( Shape.rect( 0, 0, options.width / options.denominator, options.height ), {
             x: j / options.denominator * options.width, fill: 'white', stroke: options.stroke, lineWidth: 1
           } ) );
         }
         //outlines
-        outlines.push( new Path( new Shape.rect( 0, 0, options.width, options.height ), {
+        outlines.push( new Path( Shape.rect( 0, 0, options.width, options.height ), {
           stroke: options.stroke,
           lineWidth: options.outlineWidth
         } ) );
@@ -55,12 +55,12 @@ define( function( require ) {
     HORIZONTAL_BARS: function( shapes, outlines, options ) {
       for ( var i = 0, l = shapes.length; i < l; i++ ) {
         for ( var j = 0; j < options.denominator; j++ ) {
-          shapes[ i ].push( new Path( new Shape.rect( 0, 0, options.width, options.height / options.denominator ), {
+          shapes[ i ].push( new Path( Shape.rect( 0, 0, options.width, options.height / options.denominator ), {
             y: j / options.denominator * options.height, fill: 'white', stroke: options.stroke, lineWidth: 1
           } ) );
         }
         //outlines
-        outlines.push( new Path( new Shape.rect( 0, 0, options.width, options.height ), {
+        outlines.push( new Path( Shape.rect( 0, 0, options.width, options.height ), {
           stroke: options.stroke,
           lineWidth: options.outlineWidth
         } ) );
@@ -469,12 +469,12 @@ define( function( require ) {
       var size = options.diameter / d; // size of one piece
       for ( var i = 0, l = shapes.length; i < l; i++ ) {
         for ( var j = 0; j < options.denominator; j++ ) {
-          shapes[ i ].push( new Path( new Shape.rect( 0, 0, size, size ), {
+          shapes[ i ].push( new Path( Shape.rect( 0, 0, size, size ), {
             x: j % d * size, y: Math.floor( j / d ) * size, fill: 'white', stroke: options.stroke, lineWidth: 1
           } ) );
         }
         //outlines
-        outlines.push( new Path( new Shape.rect( 0, 0, options.width, options.height ), {
+        outlines.push( new Path( Shape.rect( 0, 0, options.width, options.height ), {
           stroke: options.stroke,
           lineWidth: options.outlineWidth
         } ) );
@@ -539,7 +539,7 @@ define( function( require ) {
           } ) );
         }
         //outlines
-        outlines.push( new Path( new Shape.rect( 0, 0, options.width, options.height ), {
+        outlines.push( new Path( Shape.rect( 0, 0, options.width, options.height ), {
           stroke: options.stroke,
           lineWidth: options.outlineWidth
         } ) );
@@ -581,7 +581,7 @@ define( function( require ) {
           } ) );
         }
         //outlines
-        outlines.push( new Path( new Shape.rect( 0, 0, options.width, options.height / (options.denominator / 2) ), {
+        outlines.push( new Path( Shape.rect( 0, 0, options.width, options.height / (options.denominator / 2) ), {
           stroke: options.stroke,
           lineWidth: options.outlineWidth
         } ) );
