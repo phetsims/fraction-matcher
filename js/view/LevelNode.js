@@ -158,57 +158,57 @@ define( function( require ) {
     //drag handler for shapes
     var offsetCursor = {};
     var startDrag = function( event ) {
-        if ( model.canDrag ) {
-          event.currentTarget.moveToFront();
-          offsetCursor = {
-            x: thisNode.globalToParentPoint( event.pointer.point ).x - event.currentTarget.x,
-            y: thisNode.globalToParentPoint( event.pointer.point ).y - event.currentTarget.y
-          };
+      if ( model.canDrag ) {
+        event.currentTarget.moveToFront();
+        offsetCursor = {
+          x: thisNode.globalToParentPoint( event.pointer.point ).x - event.currentTarget.x,
+          y: thisNode.globalToParentPoint( event.pointer.point ).y - event.currentTarget.y
+        };
 
-          //if touch device show shape above the pointer
-          if ( platform.mobileSafari || platform.android ) {
-            offsetCursor.y += 50;
+        //if touch device show shape above the pointer
+        if ( platform.mobileSafari || platform.android ) {
+          offsetCursor.y += 50;
+        }
+        model.dropZone[ model.shapes[ event.currentTarget.indexShape ].dropZone ] = -1;
+        if ( model.lastChangedZone === model.shapes[ event.currentTarget.indexShape ].dropZone ) {
+          model.lastChangedZone = -1;
+        }
+      }
+    };
+    var moveDrag = function( event ) {
+      if ( model.canDrag ) {
+        event.currentTarget.x = thisNode.globalToParentPoint( event.pointer.point ).x - offsetCursor.x;
+        event.currentTarget.y = thisNode.globalToParentPoint( event.pointer.point ).y - offsetCursor.y;
+      }
+    };
+    var endDrag = function( event ) {
+      if ( model.canDrag ) {
+        var zone = thisNode.getClosestDropZone( event.currentTarget.center, true );
+        if ( zone >= 12 && model.dropZone[ zone ] >= 0 ) { //if scale and scale not empty
+          var zone2 = thisNode.getClosestDropZone( model.shapes[ model.dropZone[ zone ] ].view.center, false ); //get free zone, not scale
+          thisNode.dropShapeToZone( model.shapes[ model.dropZone[ zone ] ], zone2 );
+        }
+        if ( zone === 12 || zone === 13 ) {
+          model.lastChangedZone = zone;
+        }
+        thisNode.dropShapeToZone( model.shapes[ event.currentTarget.indexShape ], zone );
+        if ( model.buttonStatus === 'check' || model.buttonStatus === 'none' ) {
+          if ( model.dropZone[ 12 ] >= 0 && model.dropZone[ 13 ] >= 0 && (model.dropZone[ 12 ] !== model.lastPair[ 0 ] || model.dropZone[ 13 ] !== model.lastPair[ 1 ]) ) {
+            model.buttonStatus = 'check';
           }
-          model.dropZone[ model.shapes[ event.currentTarget.indexShape ].dropZone ] = -1;
-          if ( model.lastChangedZone === model.shapes[ event.currentTarget.indexShape ].dropZone ) {
-            model.lastChangedZone = -1;
+          else {
+            model.buttonStatus = 'none';
           }
         }
-      },
-      moveDrag = function( event ) {
-        if ( model.canDrag ) {
-          event.currentTarget.x = thisNode.globalToParentPoint( event.pointer.point ).x - offsetCursor.x;
-          event.currentTarget.y = thisNode.globalToParentPoint( event.pointer.point ).y - offsetCursor.y;
-        }
-      },
-      endDrag = function( event ) {
-        if ( model.canDrag ) {
-          var zone = thisNode.getClosestDropZone( event.currentTarget.center, true );
-          if ( zone >= 12 && model.dropZone[ zone ] >= 0 ) { //if scale and scale not empty
-            var zone2 = thisNode.getClosestDropZone( model.shapes[ model.dropZone[ zone ] ].view.center, false ); //get free zone, not scale
-            thisNode.dropShapeToZone( model.shapes[ model.dropZone[ zone ] ], zone2 );
-          }
-          if ( zone === 12 || zone === 13 ) {
-            model.lastChangedZone = zone;
-          }
-          thisNode.dropShapeToZone( model.shapes[ event.currentTarget.indexShape ], zone );
-          if ( model.buttonStatus === 'check' || model.buttonStatus === 'none' ) {
-            if ( model.dropZone[ 12 ] >= 0 && model.dropZone[ 13 ] >= 0 && (model.dropZone[ 12 ] !== model.lastPair[ 0 ] || model.dropZone[ 13 ] !== model.lastPair[ 1 ]) ) {
-              model.buttonStatus = 'check';
-            }
-            else {
-              model.buttonStatus = 'none';
-            }
-          }
-        }
-      },
-      dragParamers = {
-        allowTouchSnag: true,
-        start: startDrag,
-        drag: moveDrag,
-        end: endDrag,
-        dragCursor: null
-      };
+      }
+    };
+    var dragParamers = {
+      allowTouchSnag: true,
+      start: startDrag,
+      drag: moveDrag,
+      end: endDrag,
+      dragCursor: null
+    };
 
     //container for all shapes on the screen
     var shapeNode = new Node();
@@ -216,7 +216,8 @@ define( function( require ) {
 
     //drawing new level shapes, placing them and adding drag handler
     this.generateNewLevel = function() {
-      var i, singleShapeModel;
+      var i;
+      var singleShapeModel;
       shapeNode.removeAllChildren();
 
       for ( i = 0; i < model.shapes.length; i++ ) {
@@ -323,8 +324,8 @@ define( function( require ) {
       },
       //get closest dropZone for shape when drag ends
       getClosestDropZone: function( coord, canDropOnScale ) {
-        var closestZone = -1,
-          min = 1e10;
+        var closestZone = -1;
+        var min = 1e10;
         for ( var i = 0; i < this.model.dropZone.length; i++ ) {
           //if empty or one of two scales and canDropOnScale
           if ( this.model.dropZone[ i ] < 0 || (canDropOnScale && (i === 12 || i === 13)) ) {

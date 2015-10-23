@@ -66,22 +66,22 @@ define( function( require ) {
     },
     // return filtered shapes set for the selected denominator, from java model
     filterShapes: function( shapes, d ) {
-      var arr = [],
+      var arr = [];
       //rules if shape_type can be used for denominator d
-        map = {
-          PIES: true,
-          HORIZONTAL_BARS:      d < 9,
-          VERTICAL_BARS:        d < 9,
-          PLUSES:               d === 6,
-          GRID:                 d === 4 || d === 9,
-          PYRAMID:              d === 1 || d === 4 || d === 9,
-          TETRIS:               d === 4,
-          FLOWER:               d === 6,
-          LETTER_L_SHAPES:      d % 2 === 0,
-          INTERLEAVED_L_SHAPES: d === 2 || d === 4,
-          RING_OF_HEXAGONS:     d === 7,
-          NINJA_STAR:           d === 8
-        };
+      var map = {
+        PIES: true,
+        HORIZONTAL_BARS: d < 9,
+        VERTICAL_BARS: d < 9,
+        PLUSES: d === 6,
+        GRID: d === 4 || d === 9,
+        PYRAMID: d === 1 || d === 4 || d === 9,
+        TETRIS: d === 4,
+        FLOWER: d === 6,
+        LETTER_L_SHAPES: d % 2 === 0,
+        INTERLEAVED_L_SHAPES: d === 2 || d === 4,
+        RING_OF_HEXAGONS: d === 7,
+        NINJA_STAR: d === 8
+      };
 
       // move through all possible shapes and add it if filter through map
       shapes.forEach( function( shape ) {
@@ -94,10 +94,10 @@ define( function( require ) {
     },
     // generate new level
     generateLevel: function() {
-      var fractions = _.shuffle( this.levelDescription.fractions.slice( 0 ) ).splice( 0, this.gameModel.MAXIMUM_PAIRS ), //get random MAXIMUM_PAIRS fractions
-        numericScaleFactors = this.levelDescription.numericScaleFactors.slice( 0 ), //scaleFactors to multiply fractions
-        numberType = 'NUMBER',
-        newShapes = [];
+      var fractions = _.shuffle( this.levelDescription.fractions.slice( 0 ) ).splice( 0, this.gameModel.MAXIMUM_PAIRS ); //get random MAXIMUM_PAIRS fractions
+      var numericScaleFactors = this.levelDescription.numericScaleFactors.slice( 0 ); //scaleFactors to multiply fractions
+      var numberType = 'NUMBER';
+      var newShapes = [];
 
       var shapesAll = this.levelDescription.shapes.slice( 0 ); // get possible shapes for selected level
       shapesAll.push( numberType ); // add fractions to possible shapes

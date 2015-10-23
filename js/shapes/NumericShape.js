@@ -18,18 +18,18 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
 
   function NumericShape( options ) {
-    var fractionNode = new Node(),
-      spaceX = 0,
-      offsetX = 0,
-      side,
-      fontSizeBig,
-      fontSizeSmall,
-      numerator,
-      denominator,
-      integralPart,
-      integralPartNode,
-      integralPartWidth,
-      integralPartLength;
+    var fractionNode = new Node();
+    var spaceX = 0;
+    var offsetX = 0;
+    var side;
+    var fontSizeBig;
+    var fontSizeSmall;
+    var numerator;
+    var denominator;
+    var integralPart;
+    var integralPartNode;
+    var integralPartWidth;
+    var integralPartLength;
 
     Node.call( this, options );
     numerator = options.numerator * options.scaleFactor;
@@ -75,14 +75,14 @@ define( function( require ) {
 
   return inherit( Node, NumericShape, {
     getFractionNode: function( numerator, denominator, side, fontSizeSmall ) {
-      var line = new Shape().moveTo( -fontSizeSmall / 2, 0 ).lineTo( fontSizeSmall / 2, 0 ),
-        fractionNode = new Node( {
-          children: [
-            new Text( numerator + '', { font: new PhetFont( fontSizeSmall ), centerX: 0, centerY: -side / 4 } ),
-            new Text( denominator + '', { font: new PhetFont( fontSizeSmall ), centerX: 0, centerY: +side / 4 } ),
-            new Path( line, { stroke: 'black', lineWidth: 3, lineCap: 'round' } )
-          ]
-        } );
+      var line = new Shape().moveTo( -fontSizeSmall / 2, 0 ).lineTo( fontSizeSmall / 2, 0 );
+      var fractionNode = new Node( {
+        children: [
+          new Text( numerator + '', { font: new PhetFont( fontSizeSmall ), centerX: 0, centerY: -side / 4 } ),
+          new Text( denominator + '', { font: new PhetFont( fontSizeSmall ), centerX: 0, centerY: +side / 4 } ),
+          new Path( line, { stroke: 'black', lineWidth: 3, lineCap: 'round' } )
+        ]
+      } );
 
       fractionNode.shapeWidth = line.bounds.width;
       return fractionNode;

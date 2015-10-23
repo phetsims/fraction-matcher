@@ -20,9 +20,9 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
   function ComparisonChartNode( gameModel, options ) {
-    var thisNode = this,
-      lessShape = new Shape(),
-      eqShape = new Shape();
+    var thisNode = this;
+    var lessShape = new Shape();
+    var eqShape = new Shape();
 
     options = _.extend( {
         symbolFill: '#FFFF00',
@@ -61,20 +61,20 @@ define( function( require ) {
 
 
     var less = new Path( lessShape, {
-        visible: false,
-        y: options.lineWeight / 4 + 10,
-        stroke: options.stroke,
-        lineWidth: options.symbolWidth,
-        fill: options.symbolFill
-      } ),
-      eq = new Path( eqShape, {
-        visible: false,
-        y: options.lineWeight / 4 + 10,
-        stroke: options.stroke,
-        lineWidth: options.symbolWidth,
-        fill: options.symbolFill
-      } ),
-      more = new Node( { visible: false } );
+      visible: false,
+      y: options.lineWeight / 4 + 10,
+      stroke: options.stroke,
+      lineWidth: options.symbolWidth,
+      fill: options.symbolFill
+    } );
+    var eq = new Path( eqShape, {
+      visible: false,
+      y: options.lineWeight / 4 + 10,
+      stroke: options.stroke,
+      lineWidth: options.symbolWidth,
+      fill: options.symbolFill
+    } );
+    var more = new Node( { visible: false } );
 
     // create more shape
     more.addChild( new Path( lessShape, {
@@ -164,15 +164,15 @@ define( function( require ) {
     //compare rectangles
     var widthRect = options.lineWeight / 4 * 0.6;
     var rectLeft = new Rectangle( -options.lineWeight / 8 - widthRect / 2, 0, widthRect, 0, {
-        stroke: options.stroke,
-        lineWidth: options.lineOtherWidth,
-        fill: '#F00'
-      } ),
-      rectRight = new Rectangle( options.lineWeight / 8 - widthRect / 2, 0, widthRect, 0, {
-        stroke: options.stroke,
-        lineWidth: options.lineOtherWidth,
-        fill: '#0F0'
-      } );
+      stroke: options.stroke,
+      lineWidth: options.lineOtherWidth,
+      fill: '#F00'
+    } );
+    var rectRight = new Rectangle( options.lineWeight / 8 - widthRect / 2, 0, widthRect, 0, {
+      stroke: options.stroke,
+      lineWidth: options.lineOtherWidth,
+      fill: '#0F0'
+    } );
 
 
     thisNode.addChild( rectLeft );

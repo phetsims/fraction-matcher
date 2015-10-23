@@ -39,7 +39,11 @@ define( function( require ) {
     // shapes - array of shapes, shapes[i] - array of pieces, which created shape
     fillShapes: function( shapes ) {
       if ( shapes.length ) {
-        var filled = 0, i = 0, j = 0, len1 = shapes.length, len2 = shapes[ 0 ].length;
+        var filled = 0;
+        var i = 0;
+        var j = 0;
+        var len1 = shapes.length;
+        var len2 = shapes[ 0 ].length;
 
         while ( filled < this.options.numerator ) { //while number of filled pieces < required (numerator)
           if ( this.options.fillType === FillType.SEQUENTIAL ) {
@@ -81,8 +85,8 @@ define( function( require ) {
       var nodes = this.getNodesFromArray( array, outlines );
 
       // add nodes to main container
-      var self = this,
-        scaleFactor;
+      var self = this;
+      var scaleFactor;
 
       // set spacing
       self.options.spacing = function() { return offset; };

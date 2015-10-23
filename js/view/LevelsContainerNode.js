@@ -36,7 +36,9 @@ define( function( require ) {
     var margin = 15;
     this.model = model;
 
-    var thisNode = this, i, j;
+    var thisNode = this;
+    var i;
+    var j;
     Node.call( this );
 
     //top gray targets                                          f
