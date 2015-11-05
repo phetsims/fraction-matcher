@@ -41,7 +41,7 @@ define( function( require ) {
   var buttonTryAgainString = require( 'string!FRACTION_MATCHER/buttonTryAgain' );
   var patternLevelString = require( 'string!FRACTION_MATCHER/patternLevel' );
   var patternScoreString = require( 'string!FRACTION_MATCHER/patternScore' );
-  var patternTimeString = require( 'string!FRACTION_MATCHER/time.pattern' );
+  var timePatternString = require( 'string!FRACTION_MATCHER/time.pattern' );
   var buttonShowAnswerString = require( 'string!FRACTION_MATCHER/buttonShowAnswer' );
 
   //Toggle this to true to make the rewards show after any shape comparison, for debugging
@@ -282,7 +282,7 @@ define( function( require ) {
 
     //update timer
     model.timeProperty.link( function( newTime ) {
-      timeLabel.text = StringUtils.format( patternTimeString, Util.toFixed( newTime, 0 ) );
+      timeLabel.text = StringUtils.format( timePatternString, Util.toFixed( newTime, 0 ) );
       vBox.right = model.gameModel.width - margin;
     } );
 
