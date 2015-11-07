@@ -1,4 +1,4 @@
-// Copyright 2014, University of Colorado Boulder
+// Copyright 2014-2015, University of Colorado Boulder
 
 /**
  * Model container for single shape. Responds for single piece in LevelNode screen, coordinates and view parameters
