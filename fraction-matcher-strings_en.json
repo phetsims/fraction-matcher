@@ -8,28 +8,28 @@
   "mixedNumbersTitle": {
     "value": "Mixed Numbers"
   },
-  "patternLevel": {
+  "levelNumber": {
     "value": "Level {0}"
   },
-  "patternScore": {
+  "scoreNumber": {
     "value": "Score: {0}"
   },
   "myMatches": {
     "value": "My Matches"
   },
-  "buttonCheck": {
+  "check": {
     "value": "Check"
   },
-  "buttonOk": {
+  "ok": {
     "value": "OK"
   },
-  "buttonTryAgain": {
+  "tryAgain": {
     "value": "Try Again"
   },
-  "buttonShowAnswer": {
+  "showAnswer": {
     "value": "Show Answer"
   },
-  "time.pattern": {
+  "timeNumberSec": {
     "value": "Time: {0} sec"
   },
   "mixedNumbersChooseYourLevel": {

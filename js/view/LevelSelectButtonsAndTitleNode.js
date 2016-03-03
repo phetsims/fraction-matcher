@@ -21,7 +21,7 @@ define( function( require ) {
   var HomeScreenView = require( 'JOIST/HomeScreenView' );
 
   // strings
-  var patternLevelString = require( 'string!FRACTION_MATCHER/patternLevel' );
+  var levelNumberString = require( 'string!FRACTION_MATCHER/levelNumber' );
   var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
   var mixedNumbersChooseYourLevelString = require( 'string!FRACTION_MATCHER/mixedNumbersChooseYourLevel' );
   var fractionsChooseYourLevelString = require( 'string!FRACTION_MATCHER/fractionsChooseYourLevel' );
@@ -91,14 +91,14 @@ define( function( require ) {
     //inner button view
     var createButtonContent = function( shape, index ) {
       var children = [
-        new Text( StringUtils.format( patternLevelString, index + 1 ), { font: FONT, centerX: 0 } ),
+        new Text( StringUtils.format( levelNumberString, index + 1 ), { font: FONT, centerX: 0 } ),
         ShapeNode.create( {
           x: 0,
           y: -5,
           type: shape.type,
           numerator: mixedNumber ? index + 2 : index + 1,
           denominator: index + 1,
-          value:       index + 1,
+          value: index + 1,
           fill: shape.color,
           width: shape.width ? shape.width : 60,
           height: shape.height ? shape.height : 60

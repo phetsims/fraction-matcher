@@ -35,13 +35,13 @@ define( function( require ) {
   var NumericShape = require( 'FRACTION_MATCHER/shapes/NumericShape' );
 
   // strings
-  var buttonCheckString = require( 'string!FRACTION_MATCHER/buttonCheck' );
-  var buttonOkString = require( 'string!FRACTION_MATCHER/buttonOk' );
-  var buttonTryAgainString = require( 'string!FRACTION_MATCHER/buttonTryAgain' );
-  var patternLevelString = require( 'string!FRACTION_MATCHER/patternLevel' );
-  var patternScoreString = require( 'string!FRACTION_MATCHER/patternScore' );
-  var timePatternString = require( 'string!FRACTION_MATCHER/time.pattern' );
-  var buttonShowAnswerString = require( 'string!FRACTION_MATCHER/buttonShowAnswer' );
+  var checkString = require( 'string!FRACTION_MATCHER/check' );
+  var okString = require( 'string!FRACTION_MATCHER/ok' );
+  var tryAgainString = require( 'string!FRACTION_MATCHER/tryAgain' );
+  var levelNumberString = require( 'string!FRACTION_MATCHER/levelNumber' );
+  var scoreNumberString = require( 'string!FRACTION_MATCHER/scoreNumber' );
+  var timeNumberSecString = require( 'string!FRACTION_MATCHER/timeNumberSec' );
+  var showAnswerString = require( 'string!FRACTION_MATCHER/showAnswer' );
 
   //Toggle this to true to make the rewards show after any shape comparison, for debugging
   var debugRewards = false;
@@ -68,9 +68,24 @@ define( function( require ) {
     this.model = model;
 
     //drawing labels at the right
-    var levelLabel = new Text( StringUtils.format( patternLevelString, model.levelNumber ), { font: new PhetFont( { size: 12, weight: 'bold' } ) } );
-    var scoreLabel = new Text( StringUtils.format( patternScoreString, 0 ), { font: new PhetFont( { size: 12, weight: 'bold' } ) } );
-    var timeLabel = new Text( StringUtils.format( patternScoreString, 0 ), { font: new PhetFont( { size: 12, weight: 'bold' } ) } );
+    var levelLabel = new Text( StringUtils.format( levelNumberString, model.levelNumber ), {
+      font: new PhetFont( {
+        size: 12,
+        weight: 'bold'
+      } )
+    } );
+    var scoreLabel = new Text( StringUtils.format( scoreNumberString, 0 ), {
+      font: new PhetFont( {
+        size: 12,
+        weight: 'bold'
+      } )
+    } );
+    var timeLabel = new Text( StringUtils.format( scoreNumberString, 0 ), {
+      font: new PhetFont( {
+        size: 12,
+        weight: 'bold'
+      } )
+    } );
     var vBox = new VBox( {
       children: [ levelLabel, scoreLabel, timeLabel ],
       spacing: 5,
@@ -99,7 +114,7 @@ define( function( require ) {
     };
 
     var buttonCheck = new TextPushButton(
-      buttonCheckString,
+      checkString,
       _.extend( commonButtonStyle, {
         baseColor: '#FFD63F',
         listener: function() {model.answerButton( 'check' );}
@@ -107,7 +122,7 @@ define( function( require ) {
     thisNode.addChild( buttonCheck );
 
     var buttonOk = new TextPushButton(
-      buttonOkString,
+      okString,
       _.extend( commonButtonStyle, {
         baseColor: '#44FF44',
         listener: function() {
@@ -119,7 +134,7 @@ define( function( require ) {
     thisNode.addChild( buttonOk );
 
     var buttonTryAgain = new TextPushButton(
-      buttonTryAgainString,
+      tryAgainString,
       _.extend( commonButtonStyle, {
         baseColor: '#FF7C3B',
         listener: function() {
@@ -129,7 +144,7 @@ define( function( require ) {
     thisNode.addChild( buttonTryAgain );
 
     var buttonShowAnswer = new TextPushButton(
-      buttonShowAnswerString,
+      showAnswerString,
       _.extend( commonButtonStyle, {
         baseColor: '#FF7C3B',
         listener: function() {
@@ -281,13 +296,13 @@ define( function( require ) {
 
     //update timer
     model.timeProperty.link( function( newTime ) {
-      timeLabel.text = StringUtils.format( timePatternString, Util.toFixed( newTime, 0 ) );
+      timeLabel.text = StringUtils.format( timeNumberSecString, Util.toFixed( newTime, 0 ) );
       vBox.right = model.gameModel.width - margin;
     } );
 
     //update score
     model.scoreProperty.link( function( newScore ) {
-      scoreLabel.text = StringUtils.format( patternScoreString, newScore );
+      scoreLabel.text = StringUtils.format( scoreNumberString, newScore );
       vBox.right = model.gameModel.width - margin;
     } );
 
