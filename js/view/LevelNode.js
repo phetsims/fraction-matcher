@@ -35,7 +35,6 @@ define( function( require ) {
   var NumericShape = require( 'FRACTION_MATCHER/shapes/NumericShape' );
 
   // strings
-  var equallyAnswerSymbolString = require( 'string!FRACTION_MATCHER/equallyAnswerSymbol' );
   var buttonCheckString = require( 'string!FRACTION_MATCHER/buttonCheck' );
   var buttonOkString = require( 'string!FRACTION_MATCHER/buttonOk' );
   var buttonTryAgainString = require( 'string!FRACTION_MATCHER/buttonTryAgain' );
@@ -147,7 +146,7 @@ define( function( require ) {
     //equal signs at the top for six gray answer rectangles
     this.equallyAnswerSymbol = [];
     this.levelsContainer.answerRects.forEach( function( answerRect, i ) {
-      thisNode.equallyAnswerSymbol[ i ] = new Text( equallyAnswerSymbolString, {
+      thisNode.equallyAnswerSymbol[ i ] = new Text( '=', { // Not translatable
         font: new PhetFont( { size: 22, _weight: 'bold' } ),
         center: answerRect.center,
         visible: false

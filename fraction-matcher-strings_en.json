@@ -29,9 +29,6 @@
   "buttonShowAnswer": {
     "value": "Show Answer"
   },
-  "equallyAnswerSymbol": {
-    "value": "="
-  },
   "time.pattern": {
     "value": "Time: {0} sec"
   },
