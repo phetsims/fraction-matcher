@@ -14,6 +14,7 @@ define( function( require ) {
   var HBox = require( 'SCENERY/nodes/HBox' );
   var FillType = require( 'FRACTION_MATCHER/model/FillType' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var HStrut = require( 'SCENERY/nodes/HStrut' );
 
   function AbstractShape( options ) {
     options = _.extend( {
@@ -88,13 +89,16 @@ define( function( require ) {
       var self = this;
       var scaleFactor;
 
-      // set spacing
-      self.options.spacing = function() { return offset; };
-
       // add nodes
-      nodes.forEach( function( node ) {
+      for ( var i = 0; i < nodes.length; i++ ) {
+        var node = nodes[ i ];
         self.addChild( node );
-      } );
+
+        // Add spacing between nodes
+        if ( i < nodes.length - 1 ) {
+          self.addChild( new HStrut( offset ) );
+        }
+      }
 
       // update layout
       self.updateLayout();
