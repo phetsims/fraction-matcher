@@ -1,5 +1,5 @@
 {
-  "comment": "# wave-on-a-string 1.1.1 Mon Mar 07 2016 17:11:58 GMT-0700 (MST)",
+  "comment": "# fraction-matcher 1.1.0-dev.1 Thu Mar 10 2016 06:06:58 GMT-0700 (MST)",
   "assert": {
     "sha": "7d27130a4d27da15aa7f8a21bbfb9245288c1b44",
     "branch": "HEAD"
@@ -19,6 +19,10 @@
   "dot": {
     "sha": "da78031b6f080d20bc8346beaa1d37148188371e",
     "branch": "HEAD"
+  },
+  "fraction-matcher": {
+    "sha": "e503657668940a0ae71a6a5c40b19f60ec45f76c",
+    "branch": "1.1"
   },
   "joist": {
     "sha": "28f510089c0f5312ca58526b10ff063466ebbc5a",
@@ -56,8 +60,12 @@
     "sha": "2441eec6b422cb20e08682da02ab2bf7bf73250c",
     "branch": "HEAD"
   },
-  "wave-on-a-string": {
-    "sha": "b341062ffa3dc4dbb3c302da43f9e3f6ca04af4f",
-    "branch": "1.1"
+  "vegas": {
+    "sha": "5df943280b0733a574dd3eb92e5f58fb05a73d8d",
+    "branch": "master"
+  },
+  "vibe": {
+    "sha": "c84b3c41d026d31e208243de7b5852e2d6df69a0",
+    "branch": "master"
   }
 }
