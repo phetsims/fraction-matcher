@@ -39,7 +39,8 @@ define( function( require ) {
       font: new PhetFont( {
         size: 28,
         family: HomeScreenView.TITLE_FONT_FAMILY
-      } )
+      } ),
+      maxWidth: 618
     } ) );
 
     var START_BUTTON_OPTIONS = {
