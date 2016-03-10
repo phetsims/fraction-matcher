@@ -110,7 +110,8 @@ define( function( require ) {
     var commonButtonStyle = {
       font: new PhetFont( { size: 18, weight: 'bold' } ),
       centerX: smile.centerX,
-      centerY: smile.bottom + 27
+      centerY: smile.bottom + 27,
+      maxTextWidth: 120
     };
 
     var buttonCheck = new TextPushButton(
