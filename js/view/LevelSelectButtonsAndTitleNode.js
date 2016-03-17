@@ -22,7 +22,6 @@ define( function( require ) {
 
   // strings
   var levelNumberString = require( 'string!FRACTION_MATCHER/levelNumber' );
-  var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
   var mixedNumbersChooseYourLevelString = require( 'string!FRACTION_MATCHER/mixedNumbersChooseYourLevel' );
   var fractionsChooseYourLevelString = require( 'string!FRACTION_MATCHER/fractionsChooseYourLevel' );
 
