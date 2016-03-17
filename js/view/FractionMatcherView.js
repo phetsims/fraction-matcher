@@ -24,7 +24,7 @@ define( function( require ) {
 
   var LAYOUT_BOUNDS = new Bounds2( 0, 0, 768, 504 );
 
-  function MatchingGameView( model ) {
+  function FractionMatcherView( model ) {
     ScreenView.call( this, { layoutBounds: LAYOUT_BOUNDS } );
 
     var levelsContainerNode = new LevelsContainerNode( model, this.layoutBounds );
@@ -105,7 +105,7 @@ define( function( require ) {
 
   }
 
-  return inherit( ScreenView, MatchingGameView, {}, {
+  return inherit( ScreenView, FractionMatcherView, {}, {
     LAYOUT_BOUNDS: LAYOUT_BOUNDS
   } );
 } );

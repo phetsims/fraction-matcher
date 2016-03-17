@@ -24,7 +24,7 @@ define( function( require ) {
 
   function FractionsScreen() {
     Screen.call( this, fractionsTitleString, new IntroHomeScreenIcon(),
-      function() { return new FractionMatcherModel( FractionMatcherView.LAYOUT_BOUNDS.width, FractionMatcherView.LAYOUT_BOUNDS.height, fractionsTitleString, new Constants(), false ); },
+      function() { return new FractionMatcherModel( FractionMatcherView.LAYOUT_BOUNDS.width, FractionMatcherView.LAYOUT_BOUNDS.height, fractionsTitleString, new Constants(), false, false ); },
       function( model ) { return new FractionMatcherView( model ); },
       { navigationBarIcon: new IntroNavigationBarIcon() }
     );

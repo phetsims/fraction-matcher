@@ -32,7 +32,8 @@ define( function( require ) {
   var FONT = new PhetFont( { size: 14, weight: 'bold' } );
 
   function LevelSelectButtonsAndTitleNode( model, options ) {
-    var mixedNumber = (model.game === mixedNumbersTitleString);
+    assert && assert( typeof model.isMixedNumbers !== 'undefined', 'Should declare whether it is mixed numbers or not.' );
+    var mixedNumber = model.isMixedNumbers;
 
     var vBoxChildren = [];
     vBoxChildren.push( new Text( mixedNumber ? mixedNumbersChooseYourLevelString : fractionsChooseYourLevelString, {

@@ -24,7 +24,7 @@ define( function( require ) {
 
   function MixedNumbersScreen() {
     Screen.call( this, mixedNumbersTitleString, new MixedNumbersHomeScreenIcon(),
-      function() { return new FractionMatcherModel( FractionMatcherView.LAYOUT_BOUNDS.width, FractionMatcherView.LAYOUT_BOUNDS.height, mixedNumbersTitleString, new MixedNumbersConstants(), true ); },
+      function() { return new FractionMatcherModel( FractionMatcherView.LAYOUT_BOUNDS.width, FractionMatcherView.LAYOUT_BOUNDS.height, mixedNumbersTitleString, new MixedNumbersConstants(), true, true ); },
       function( model ) { return new FractionMatcherView( model ); },
       {
         navigationBarIcon: new MixedNumbersNavigationBarIcon()
