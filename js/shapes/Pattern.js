@@ -5,7 +5,6 @@
  *
  * @author Vasily Shakhov (Mlearner)
  */
-
 define( function( require ) {
   'use strict';
 
