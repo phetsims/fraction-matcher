@@ -3,9 +3,9 @@
 /**
  * Main entry point for the 'Fraction Matcher sim.
  *
- * @author Anton Ulyanov, Andrew Zelenkov (Mlearner)
+ * @author Anton Ulyanov
+ * @author Andrew Zelenkov (Mlearner)
  */
-
 define( function( require ) {
   'use strict';
 

@@ -22,7 +22,6 @@ define( function( require ) {
 
   // strings
   var levelNumberString = require( 'string!FRACTION_MATCHER/levelNumber' );
-  var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
   var mixedNumbersChooseYourLevelString = require( 'string!FRACTION_MATCHER/mixedNumbersChooseYourLevel' );
   var fractionsChooseYourLevelString = require( 'string!FRACTION_MATCHER/fractionsChooseYourLevel' );
 
@@ -32,7 +31,8 @@ define( function( require ) {
   var FONT = new PhetFont( { size: 14, weight: 'bold' } );
 
   function LevelSelectButtonsAndTitleNode( model, options ) {
-    var mixedNumber = (model.game === mixedNumbersTitleString);
+    assert && assert( typeof model.isMixedNumbers !== 'undefined', 'Should declare whether it is mixed numbers or not.' );
+    var mixedNumber = model.isMixedNumbers;
 
     var vBoxChildren = [];
     vBoxChildren.push( new Text( mixedNumber ? mixedNumbersChooseYourLevelString : fractionsChooseYourLevelString, {

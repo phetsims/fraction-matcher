@@ -3,9 +3,10 @@
 /**
  * Main entry point for the 'Fraction Matcher sim.
  *
- * @author Anton Ulyanov, Andrew Zelenkov (Mlearner)
+ * @author Anton Ulyanov (Mlearner)
+ * @author Andrew Zelenkov (Mlearner)
+ * @author Sam Reid (PhET Interactive Simulations)
  */
-
 define( function( require ) {
   'use strict';
 
@@ -23,7 +24,7 @@ define( function( require ) {
 
   function FractionsScreen() {
     Screen.call( this, fractionsTitleString, new IntroHomeScreenIcon(),
-      function() { return new FractionMatcherModel( FractionMatcherView.LAYOUT_BOUNDS.width, FractionMatcherView.LAYOUT_BOUNDS.height, fractionsTitleString, new Constants(), false ); },
+      function() { return new FractionMatcherModel( FractionMatcherView.LAYOUT_BOUNDS.width, FractionMatcherView.LAYOUT_BOUNDS.height, fractionsTitleString, new Constants(), false, false ); },
       function( model ) { return new FractionMatcherView( model ); },
       { navigationBarIcon: new IntroNavigationBarIcon() }
     );

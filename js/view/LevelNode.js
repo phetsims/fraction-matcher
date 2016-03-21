@@ -408,13 +408,18 @@ define( function( require ) {
           var initialScale = shape.view.matrix.scaleVector.x;
           var targetScale = initialScale / 2;
           var linearFunction = new LinearFunction( 0, 1, initialScale, targetScale );
-          new TWEEN.Tween( shape.view ).easing( TWEEN.Easing.Cubic.InOut ).to( {
-            scale: 0.5,
+          var start = {
+            centerX: shape.view.centerX,
+            centerY: shape.view.centerY
+          };
+          new TWEEN.Tween( start ).easing( TWEEN.Easing.Cubic.InOut ).to( {
             centerX: newPosition.x,
             centerY: newPosition.y
           }, thisNode.model.gameModel.ANIMATION_TIME ).onUpdate( function( step ) {
             var scale = linearFunction( step );
             shape.view.setScaleMagnitude( scale, scale );
+            shape.view.centerX = this.centerX;
+            shape.view.centerY = this.centerY;
           } ).start();
           thisNode.model.answers.push( thisNode.model.dropZone[ thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i ] );
           thisNode.model.dropZone[ thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i ] = -1;

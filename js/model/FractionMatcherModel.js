@@ -24,11 +24,13 @@ define( function( require ) {
    * @param height
    * @param game
    * @param {Constants} constants
-   * @param {Boolean} toSimplify flag for simplifying number shapes
+   * @param {Boolean} toSimplify flag for simplifying number shapes,
+   * @param {boolean} isMixedNumbers
    * @constructor
    */
-  function FractionMatcherModel( width, height, game, constants, toSimplify ) {
+  function FractionMatcherModel( width, height, game, constants, toSimplify, isMixedNumbers ) {
     var self = this;
+    this.isMixedNumbers = isMixedNumbers;
 
     // dimensions of the model's space
     this.width = width;

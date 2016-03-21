@@ -20,16 +20,16 @@ require.config( {
 
   paths: {
 
-    // third-party plugins
+    // third-party libs
     text: '../../sherpa/lib/text-2.0.12',
 
-    // PhET plug-ins
+    // PhET plugins
     audio: '../../chipper/js/requirejs-plugins/audio',
     image: '../../chipper/js/requirejs-plugins/image',
     mipmap: '../../chipper/js/requirejs-plugins/mipmap',
     string: '../../chipper/js/requirejs-plugins/string',
 
-    // PhET libs, uppercase names to identify them in require.js imports
+    // common directories, uppercase names to identify them in require imports
     AXON: '../../axon/js',
     BRAND: '../../brand/' + phet.chipper.brand + '/js',
     DOT: '../../dot/js',
@@ -38,24 +38,14 @@ require.config( {
     PHET_CORE: '../../phet-core/js',
     PHETCOMMON: '../../phetcommon/js',
     REPOSITORY: '..',
-    SHERPA: '../../sherpa',
     SCENERY: '../../scenery/js',
     SCENERY_PHET: '../../scenery-phet/js',
     SUN: '../../sun/js',
     VIBE: '../../vibe/js',
     VEGAS: '../../vegas/js',
-    // contrib dependencies required by common directories
-    stats: '../../phetcommon/contrib/stats-r11',
 
     //Sim code
     FRACTION_MATCHER: '.'
-  },
-  // Configure the dependencies and exports for older, traditional 'browser globals' scripts
-  // that do not use define() to declare the dependencies and set a module value.
-  shim: {
-    stats: {
-      exports: 'Stats'
-    }
   },
 
   // optional cache buster to make browser refresh load all included scripts, can be disabled with ?cacheBuster=false
