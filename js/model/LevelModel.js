@@ -146,15 +146,16 @@ define( function( require ) {
             this.buttonStatus = 'ok';
             self.score += self.stepScore;
             self.gameModel.sounds.correct.play();
+            this.canDrag = false;
           }
           else {
             //answer incorrect
             self.gameModel.sounds.incorrect.play();
             self.stepScore--;
             this.buttonStatus = (self.stepScore) ? 'tryAgain' : 'showAnswer';
+            this.canDrag = this.buttonStatus === 'tryAgain';
             this.lastPair = [ this.dropZone[ 12 ], this.dropZone[ 13 ] ];
           }
-          this.canDrag = false;
           break;
         case 'tryAgain' :
           this.canDrag = true;

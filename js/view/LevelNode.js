@@ -207,7 +207,7 @@ define( function( require ) {
           model.lastChangedZone = zone;
         }
         thisNode.dropShapeToZone( model.shapes[ event.currentTarget.indexShape ], zone );
-        if ( model.buttonStatus === 'check' || model.buttonStatus === 'none' ) {
+        if ( model.buttonStatus === 'check' || model.buttonStatus === 'none' || model.buttonStatus === 'tryAgain' ) {
           if ( model.dropZone[ 12 ] >= 0 && model.dropZone[ 13 ] >= 0 && (model.dropZone[ 12 ] !== model.lastPair[ 0 ] || model.dropZone[ 13 ] !== model.lastPair[ 1 ]) ) {
             model.buttonStatus = 'check';
           }
