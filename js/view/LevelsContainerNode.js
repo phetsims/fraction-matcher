@@ -10,6 +10,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -107,9 +108,9 @@ define( function( require ) {
 
       }
     } );
-
-
   }
+
+  fractionMatcher.register( 'LevelsContainerNode', LevelsContainerNode );
 
   return inherit( Node, LevelsContainerNode );
 } );

@@ -11,6 +11,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
@@ -222,6 +223,8 @@ define( function( require ) {
     };
     this.mutate( options );
   }
+
+  fractionMatcher.register( 'ComparisonChartNode', ComparisonChartNode );
 
   return inherit( Node, ComparisonChartNode );
 } );

@@ -9,6 +9,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var ShapeNode = require( 'FRACTION_MATCHER/shapes/ShapeNode' );
@@ -34,6 +35,8 @@ define( function( require ) {
 
     this.addChild( shapeNode.mutate( { scale: 1.6, center: this.center } ) );
   }
+
+  fractionMatcher.register( 'IntroNavigationBarIcon', IntroNavigationBarIcon );
 
   return inherit( Rectangle, IntroNavigationBarIcon );
 } );

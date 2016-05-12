@@ -10,6 +10,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var inherit = require( 'PHET_CORE/inherit' );
   var VBox = require( 'SCENERY/nodes/VBox' );
   var HBox = require( 'SCENERY/nodes/HBox' );
@@ -134,6 +135,8 @@ define( function( require ) {
 
     VBox.call( this, _.extend( { resize: false, children: vBoxChildren, spacing: 30 }, options ) );
   }
+
+  fractionMatcher.register( 'LevelSelectButtonsAndTitleNode', LevelSelectButtonsAndTitleNode );
 
   return inherit( VBox, LevelSelectButtonsAndTitleNode );
 } );

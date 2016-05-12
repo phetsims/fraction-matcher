@@ -9,6 +9,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var HBox = require( 'SCENERY/nodes/HBox' );
@@ -16,7 +17,7 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var HStrut = require( 'SCENERY/nodes/HStrut' );
 
-  function AbstractShape( options ) {
+  function GraphicShape( options ) {
     options = _.extend( {
         fillType: FillType.SEQUENTIAL
       },
@@ -35,7 +36,9 @@ define( function( require ) {
     this.addChild( new Rectangle( clearingRegion.x, clearingRegion.y, clearingRegion.width, clearingRegion.height, { fill: 'rgba(0,0,0,0)' } ) );
   }
 
-  return inherit( HBox, AbstractShape, {
+  fractionMatcher.register( 'GraphicShape', GraphicShape );
+
+  return inherit( HBox, GraphicShape, {
     // fill shapes depending on fillType value
     // shapes - array of shapes, shapes[i] - array of pieces, which created shape
     fillShapes: function( shapes ) {

@@ -5,8 +5,11 @@
  *
  * @author Anton Ulyanov, Andrey Zelenkov (Mlearner)
  */
-define( function() {
+define( function( require ) {
   'use strict';
+
+  // modules
+  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
 
   /**
    *  @param {String}  type of shape (PIES, HORIZONTAL_BARS, etc)
@@ -15,8 +18,7 @@ define( function() {
    *  @param {String} fill color of shape
    *  @param {FillType} fillType of filling piece(SEQUENTIAL, MIXED, etc)
    *  @param {Boolean} toSimplify whether we must show shape in form of 13/5 or 2 3/5
-   * */
-
+   */
   function SingleShapeModel( type, fraction, scaleFactor, fill, fillType, toSimplify ) {
     this.x = 0;
     this.y = 0;
@@ -44,6 +46,8 @@ define( function() {
       return fraction.getValue();
     };
   }
+
+  fractionMatcher.register( 'SingleShapeModel', SingleShapeModel );
 
   return SingleShapeModel;
 } );

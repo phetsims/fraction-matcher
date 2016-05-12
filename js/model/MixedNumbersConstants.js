@@ -9,6 +9,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var Fraction = require( 'PHETCOMMON/model/Fraction' );
   var Constants = require( 'FRACTION_MATCHER/model/Constants' );
   var inherit = require( 'PHET_CORE/inherit' );
@@ -53,6 +54,8 @@ define( function( require ) {
     this.LEVEL_DESCRIPTION[ 7 ].fractions.push( new Fraction( 6, 5 ), new Fraction( 7, 5 ), new Fraction( 8, 5 ), new Fraction( 9, 5 ), new Fraction( 7, 6 ), new Fraction( 8, 6 ), new Fraction( 9, 6 ), new Fraction( 10, 6 ), new Fraction( 11, 6 ) );
     this.LEVEL_DESCRIPTION[ 7 ].numericScaleFactors = [ 3, 4, 5, 6, 7, 8, 9 ];
   }
+
+  fractionMatcher.register( 'MixedNumbersConstants', MixedNumbersConstants );
 
   return inherit( Constants, MixedNumbersConstants );
 } );

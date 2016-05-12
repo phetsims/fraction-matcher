@@ -8,6 +8,8 @@
 define( function( require ) {
   'use strict';
 
+  // modules
+  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var Path = require( 'SCENERY/nodes/Path' );
   var Shape = require( 'KITE/Shape' );
   var Vector2 = require( 'DOT/Vector2' );
@@ -591,6 +593,8 @@ define( function( require ) {
       };
     }
   };
+
+  fractionMatcher.register( 'Pattern', Pattern );
 
   return Pattern;
 } );

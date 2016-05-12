@@ -11,6 +11,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var Screen = require( 'JOIST/Screen' );
   var FractionMatcherModel = require( 'FRACTION_MATCHER/model/FractionMatcherModel' );
   var FractionMatcherView = require( 'FRACTION_MATCHER/view/FractionMatcherView' );
@@ -29,6 +30,8 @@ define( function( require ) {
       { navigationBarIcon: new IntroNavigationBarIcon() }
     );
   }
+
+  fractionMatcher.register( 'FractionsScreen', FractionsScreen );
 
   return inherit( Screen, FractionsScreen );
 } );

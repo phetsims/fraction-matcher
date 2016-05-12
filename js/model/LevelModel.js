@@ -9,6 +9,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
   var SingleShapeModel = require( 'FRACTION_MATCHER/model/SingleShapeModel' );
@@ -48,6 +49,8 @@ define( function( require ) {
 
     this.generateLevel();
   }
+
+  fractionMatcher.register( 'LevelModel', LevelModel );
 
   inherit( PropertySet, LevelModel, {
     reset: function() {

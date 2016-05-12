@@ -9,6 +9,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
   var Property = require( 'AXON/Property' );
@@ -66,7 +67,9 @@ define( function( require ) {
 
   }
 
-  inherit( PropertySet, FractionMatcherModel, {
+  fractionMatcher.register( 'FractionMatcherModel', FractionMatcherModel );
+
+  return inherit( PropertySet, FractionMatcherModel, {
 
     // Resets all model elements
     reset: function() {
@@ -92,6 +95,4 @@ define( function( require ) {
       this.trigger1( 'step', dt );
     }
   } );
-
-  return FractionMatcherModel;
 } );

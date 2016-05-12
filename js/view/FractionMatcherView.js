@@ -10,6 +10,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var Bounds2 = require( 'DOT/Bounds2' );
   var inherit = require( 'PHET_CORE/inherit' );
   var ScreenView = require( 'JOIST/ScreenView' );
@@ -104,6 +105,8 @@ define( function( require ) {
     } );
 
   }
+
+  fractionMatcher.register( 'FractionMatcherView', FractionMatcherView );
 
   return inherit( ScreenView, FractionMatcherView, {}, {
     LAYOUT_BOUNDS: LAYOUT_BOUNDS

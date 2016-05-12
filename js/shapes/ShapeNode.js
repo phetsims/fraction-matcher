@@ -9,6 +9,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var NumericShape = require( 'FRACTION_MATCHER/shapes/NumericShape' );
@@ -17,6 +18,8 @@ define( function( require ) {
 
   function ShapeNode() {
   }
+
+  fractionMatcher.register( 'ShapeNode', ShapeNode );
 
   return inherit( Node, ShapeNode,
 

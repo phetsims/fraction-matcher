@@ -10,6 +10,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var FillType = require( 'FRACTION_MATCHER/model/FillType' );
   var Fraction = require( 'PHETCOMMON/model/Fraction' );
 
@@ -241,6 +242,8 @@ define( function( require ) {
       }
     ];
   }
+
+  fractionMatcher.register( 'Constants', Constants );
 
   return Constants;
 } );

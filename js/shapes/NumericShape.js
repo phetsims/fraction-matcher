@@ -9,6 +9,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
@@ -71,6 +72,8 @@ define( function( require ) {
     //Expand the touch and mouse areas for the numeric fractions, so there are no "gaps", see #56
     this.mouseArea = this.touchArea = this.localBounds.dilatedXY( 2, 2 );
   }
+
+  fractionMatcher.register( 'NumericShape', NumericShape );
 
   return inherit( Node, NumericShape, {
     getFractionNode: function( numerator, denominator, side, fontSizeSmall ) {

@@ -10,7 +10,7 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var cheerAudio = require( 'audio!VEGAS/cheer' );
+  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var Sound = require( 'VIBE/Sound' );
   var StarNode = require( 'SCENERY_PHET/StarNode' );
   var FaceNode = require( 'SCENERY_PHET/FaceNode' );
@@ -33,6 +33,9 @@ define( function( require ) {
   var platform = require( 'PHET_CORE/platform' );
   var LinearFunction = require( 'DOT/LinearFunction' );
   var NumericShape = require( 'FRACTION_MATCHER/shapes/NumericShape' );
+
+  // audio
+  var cheerAudio = require( 'audio!VEGAS/cheer' );
 
   // strings
   var checkString = require( 'string!FRACTION_MATCHER/check' );
@@ -317,6 +320,8 @@ define( function( require ) {
     this.levelCompletedNodeContainer = null;
     this.mutate( options );
   }
+
+  fractionMatcher.register( 'LevelNode', LevelNode );
 
   return inherit( Node, LevelNode, {
       //get Vector2(x,y) - position in dropZones rect at the bottom
