@@ -92,21 +92,23 @@ define( function( require ) {
 
     //inner button view
     var createButtonContent = function( shape, index ) {
-      var children = [
-        new Text( StringUtils.format( levelNumberString, index + 1 ), { font: FONT, centerX: 0 } ),
-        ShapeNode.create( {
-          x: 0,
-          y: -5,
-          type: shape.type,
-          numerator: mixedNumber ? index + 2 : index + 1,
-          denominator: index + 1,
-          value: index + 1,
-          fill: shape.color,
-          width: shape.width ? shape.width : 60,
-          height: shape.height ? shape.height : 60
-        } )
-      ];
-      return new VBox( { children: children, spacing: 20 } );
+      var iconNode = ShapeNode.create( {
+        x: 0,
+        y: -5,
+        type: shape.type,
+        numerator: mixedNumber ? index + 2 : index + 1,
+        denominator: index + 1,
+        value: index + 1,
+        fill: shape.color,
+        width: shape.width ? shape.width : 60,
+        height: shape.height ? shape.height : 60
+      } );
+      var textNode = new Text( StringUtils.format( levelNumberString, index + 1 ), {
+        maxWidth: iconNode.width,
+        font: FONT,
+        centerX: 0
+      } );
+      return new VBox( { children: [ textNode, iconNode ], spacing: 20 } );
     };
 
     var hBoxChildren = [];
