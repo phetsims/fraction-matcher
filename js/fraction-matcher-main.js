@@ -14,9 +14,13 @@ define( function( require ) {
   var Sim = require( 'JOIST/Sim' );
   var FractionsScreen = require( 'FRACTION_MATCHER/FractionsScreen' );
   var MixedNumbersScreen = require( 'FRACTION_MATCHER/MixedNumbersScreen' );
+  var Tandem = require( 'TANDEM/Tandem' );
 
   // strings
   var fractionMatcherTitleString = require( 'string!FRACTION_MATCHER/fraction-matcher.title' );
+
+  // constants
+  var tandem = Tandem.createRootTandem();
 
   var simOptions = {
     credits: {
@@ -24,14 +28,15 @@ define( function( require ) {
       softwareDevelopment: 'Sam Reid',
       team: 'Mike Dubson, Karina K. R. Hensberry, Patricia Loeblein, Kathy Perkins, Noah Podolefsky',
       thanks: '\u2022 Thanks to Mobile Learner Labs for working with the PhET development team to convert this\nsimulation to HTML5.'
-    }
+    },
+    tandem: tandem
   };
 
   SimLauncher.launch( function() {
     // create and start the sim
     new Sim( fractionMatcherTitleString, [
-      new FractionsScreen(),
-      new MixedNumbersScreen()
+      new FractionsScreen( tandem.createTandem( 'fractionsScreen' ) ),
+      new MixedNumbersScreen( tandem.createTandem( 'mixedNumbersScreen' ) )
     ], simOptions ).start();
   } );
 } );

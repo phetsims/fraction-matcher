@@ -23,12 +23,12 @@ define( function( require ) {
   // strings
   var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
 
-  function MixedNumbersScreen() {
+  function MixedNumbersScreen( tandem ) {
     Screen.call( this, mixedNumbersTitleString, new MixedNumbersHomeScreenIcon(),
       function() { return new FractionMatcherModel( FractionMatcherView.LAYOUT_BOUNDS.width, FractionMatcherView.LAYOUT_BOUNDS.height, mixedNumbersTitleString, new MixedNumbersConstants(), true, true ); },
-      function( model ) { return new FractionMatcherView( model ); },
-      {
-        navigationBarIcon: new MixedNumbersNavigationBarIcon()
+      function( model ) { return new FractionMatcherView( model ); }, {
+        navigationBarIcon: new MixedNumbersNavigationBarIcon(),
+        tandem: tandem
       } );
   }
 
