@@ -62,8 +62,8 @@ define( function( require ) {
               filled++;
             }
             else {
-              i = _.random( 1, len1 - 1 );
-              j = _.random( len2 - 1 );
+              i = phet.joist.random.randomIntegerBetween( 1, len1 - 1 );
+              j = phet.joist.random.randomIntegerBetween( len2 - 1 );
               if ( shapes[ i ][ j ].fill === 'white' ) {
                 shapes[ i ][ j ].fill = this.options.fill;
                 filled++;
@@ -72,8 +72,8 @@ define( function( require ) {
           }
           else if ( this.options.fillType === FillType.RANDOM ) {
             //random shape, random piece in shape, fill if not filled yet
-            i = _.random( len1 - 1 );
-            j = _.random( len2 - 1 );
+            i = phet.joist.random.randomIntegerBetween( len1 - 1 );
+            j = phet.joist.random.randomIntegerBetween( len2 - 1 );
             if ( shapes[ i ][ j ].fill === 'white' ) {
               shapes[ i ][ j ].fill = this.options.fill;
               filled++;

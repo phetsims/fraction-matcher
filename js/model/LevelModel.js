@@ -97,7 +97,7 @@ define( function( require ) {
     },
     // generate new level
     generateLevel: function() {
-      var fractions = _.shuffle( this.levelDescription.fractions.slice( 0 ) ).splice( 0, this.gameModel.MAXIMUM_PAIRS ); //get random MAXIMUM_PAIRS fractions
+      var fractions = phet.joist.random.shuffle( this.levelDescription.fractions.slice( 0 ) ).splice( 0, this.gameModel.MAXIMUM_PAIRS ); //get random MAXIMUM_PAIRS fractions
       var numericScaleFactors = this.levelDescription.numericScaleFactors.slice( 0 ); //scaleFactors to multiply fractions
       var numberType = 'NUMBER';
       var newShapes = [];
@@ -108,10 +108,10 @@ define( function( require ) {
       // add shapes
       for ( var i = 0; i < this.gameModel.MAXIMUM_PAIRS; i++ ) {
         var fraction = fractions[ i ]; // Fraction object
-        var scaleFactor = numericScaleFactors[ _.random( numericScaleFactors.length - 1 ) ]; //random scaleFactor
+        var scaleFactor = numericScaleFactors[ phet.joist.random.randomIntegerBetween( numericScaleFactors.length - 1 ) ]; //random scaleFactor
 
         var shapes = this.filterShapes( shapesAll, fraction.denominator ); //filter only shapes for current denominator
-        var fillType = this.levelDescription.fillType[ _.random( this.levelDescription.fillType.length - 1 ) ];
+        var fillType = this.levelDescription.fillType[ phet.joist.random.randomIntegerBetween( this.levelDescription.fillType.length - 1 ) ];
 
         // first 3 fractions - number, last 3 fractions - shapes with different colors (3 numbers and 3 shapes at least)
         var type = (i < this.gameModel.MAXIMUM_PAIRS / 2) ? numberType : shapes[ i % (shapes.length - 1) ];
@@ -119,12 +119,12 @@ define( function( require ) {
         newShapes.push( new SingleShapeModel( type, fraction, scaleFactor, color, fillType, this.gameModel.toSimplify ) );
 
         // add partner: if was number - add shape, if was shape - add number or random shape with another color
-        type = shapes[ _.random( shapes.length - (type === numberType ? 2 : 1) ) ];
+        type = shapes[ phet.joist.random.randomIntegerBetween( shapes.length - (type === numberType ? 2 : 1) ) ];
         color = (type === numberType) ? 'rgb(0,0,0)' : this.gameModel.colorScheme[ (i + 1) % 3 ];
         newShapes.push( new SingleShapeModel( type, fraction, scaleFactor, color, fillType, this.gameModel.toSimplify ) );
       }
 
-      newShapes = _.shuffle( newShapes );
+      newShapes = phet.joist.random.shuffle( newShapes );
       for ( i = 0; i < newShapes.length; i++ ) {
         newShapes[ i ].dropZone = i;
       }
