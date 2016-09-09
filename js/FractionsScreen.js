@@ -24,13 +24,18 @@ define( function( require ) {
   var fractionsTitleString = require( 'string!FRACTION_MATCHER/fractionsTitle' );
 
   function FractionsScreen( tandem ) {
-    Screen.call( this, fractionsTitleString, new IntroHomeScreenIcon(),
+
+    var options = {
+      name: fractionsTitleString,
+      homeScreenIcon: new IntroHomeScreenIcon(),
+      navigationBarIcon: new IntroNavigationBarIcon(),
+      tandem: tandem
+    };
+
+    Screen.call( this,
       function() { return new FractionMatcherModel( FractionMatcherView.LAYOUT_BOUNDS.width, FractionMatcherView.LAYOUT_BOUNDS.height, fractionsTitleString, new Constants(), false, false ); },
-      function( model ) { return new FractionMatcherView( model ); }, {
-        navigationBarIcon: new IntroNavigationBarIcon(),
-        tandem: tandem
-      }
-    );
+      function( model ) { return new FractionMatcherView( model ); },
+      options );
   }
 
   fractionMatcher.register( 'FractionsScreen', FractionsScreen );

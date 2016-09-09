@@ -24,12 +24,18 @@ define( function( require ) {
   var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
 
   function MixedNumbersScreen( tandem ) {
-    Screen.call( this, mixedNumbersTitleString, new MixedNumbersHomeScreenIcon(),
+
+    var options = {
+      name: mixedNumbersTitleString,
+      homeScreenIcon: new MixedNumbersHomeScreenIcon(),
+      navigationBarIcon: new MixedNumbersNavigationBarIcon(),
+      tandem: tandem
+    };
+
+    Screen.call( this,
       function() { return new FractionMatcherModel( FractionMatcherView.LAYOUT_BOUNDS.width, FractionMatcherView.LAYOUT_BOUNDS.height, mixedNumbersTitleString, new MixedNumbersConstants(), true, true ); },
-      function( model ) { return new FractionMatcherView( model ); }, {
-        navigationBarIcon: new MixedNumbersNavigationBarIcon(),
-        tandem: tandem
-      } );
+      function( model ) { return new FractionMatcherView( model ); },
+      options );
   }
 
   fractionMatcher.register( 'MixedNumbersScreen', MixedNumbersScreen );
