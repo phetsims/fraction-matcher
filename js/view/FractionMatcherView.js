@@ -79,18 +79,18 @@ define( function( require ) {
     } );
 
     var animateToLevels = function() {
-      startGameButtonsTween.stop().to( { x: -model.width }, model.ANIMATION_TIME ).start();
+      startGameButtonsTween.stop().to( { x: -model.width }, model.ANIMATION_TIME ).start( phet.joist.elapsedTime );
 
       levelsContainerNode.visible = true;
-      levelsTween.stop().to( { x: 0 }, model.ANIMATION_TIME ).start();
+      levelsTween.stop().to( { x: 0 }, model.ANIMATION_TIME ).start( phet.joist.elapsedTime );
 
     };
 
     var animateFromLevels = function() {
-      levelsTween.stop().to( { x: model.width }, model.ANIMATION_TIME ).start();
+      levelsTween.stop().to( { x: model.width }, model.ANIMATION_TIME ).start( phet.joist.elapsedTime );
 
       levelSelectionScreen.visible = true;
-      startGameButtonsTween.stop().to( { x: 0 }, model.ANIMATION_TIME ).start();
+      startGameButtonsTween.stop().to( { x: 0 }, model.ANIMATION_TIME ).start( phet.joist.elapsedTime );
     };
 
 

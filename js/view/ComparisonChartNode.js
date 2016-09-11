@@ -136,8 +136,16 @@ define( function( require ) {
     } ) );
 
     //labels 0,1,2
-    thisNode.addChild( new Text( '0', { font: new PhetFont( { size: 18, weight: 'normal' } ), centerX: -options.lineWeight / 2 - 10, centerY: 0 } ) );
-    thisNode.addChild( new Text( '0', { font: new PhetFont( { size: 18, weight: 'normal' } ), centerX: options.lineWeight / 2 + 10, centerY: 0 } ) );
+    thisNode.addChild( new Text( '0', {
+      font: new PhetFont( { size: 18, weight: 'normal' } ),
+      centerX: -options.lineWeight / 2 - 10,
+      centerY: 0
+    } ) );
+    thisNode.addChild( new Text( '0', {
+      font: new PhetFont( { size: 18, weight: 'normal' } ),
+      centerX: options.lineWeight / 2 + 10,
+      centerY: 0
+    } ) );
 
     thisNode.addChild( new Text( '1', {
       font: new PhetFont( { size: 18, weight: 'normal' } ),
@@ -194,10 +202,10 @@ define( function( require ) {
 
       rectLeftTween.to( { y: -targetLeftY }, gameModel.ANIMATION_TIME ).onUpdate( function( step ) {
         rectLeft.setRectHeight( targetLeftY * step );
-      } ).start();
+      } ).start( phet.joist.elapsedTime );
       rectRightTween.to( { y: -targetRightY }, gameModel.ANIMATION_TIME ).onUpdate( function( step ) {
         rectRight.setRectHeight( targetRightY * step );
-      } ).start();
+      } ).start( phet.joist.elapsedTime );
 
       less.setVisible( left.getValue() < right.getValue() );
       eq.setVisible( left.getValue() === right.getValue() );

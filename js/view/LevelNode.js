@@ -382,7 +382,7 @@ define( function( require ) {
         new TWEEN.Tween( shape.view ).easing( TWEEN.Easing.Cubic.InOut ).to( {
           centerX: targetPosition.x,
           centerY: targetPosition.y
-        }, this.model.gameModel.ANIMATION_TIME ).start();
+        }, this.model.gameModel.ANIMATION_TIME ).start( phet.joist.elapsedTime );
       },
       //move correct shape to scales
       showCorrectAnswer: function() {
@@ -425,7 +425,7 @@ define( function( require ) {
             shape.view.setScaleMagnitude( scale, scale );
             shape.view.centerX = this.centerX;
             shape.view.centerY = this.centerY;
-          } ).start();
+          } ).start( phet.joist.elapsedTime );
           thisNode.model.answers.push( thisNode.model.dropZone[ thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i ] );
           thisNode.model.dropZone[ thisNode.model.gameModel.MAXIMUM_PAIRS * 2 + i ] = -1;
           shape.view.removeInputListener( shape.view.getInputListeners()[ 0 ] );
