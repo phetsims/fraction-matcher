@@ -432,7 +432,6 @@ define( function( require ) {
         } );
         if ( this.model.answers.length === this.model.gameModel.MAXIMUM_PAIRS * 2 || debugRewards ) {
 
-          var self = this;
           var completedTime = this.model.time;
           var lastBestForThisLevel = this.model.gameModel.bestTimes[ this.model.levelNumber - 1 ].get();
           var newBestTime = false;
