@@ -21,7 +21,7 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
   function ComparisonChartNode( gameModel, options ) {
-    var thisNode = this;
+    var self = this;
     var lessShape = new Shape();
     var eqShape = new Shape();
 
@@ -35,7 +35,7 @@ define( function( require ) {
         lineHeight: 140
       },
       options );
-    Node.call( thisNode );
+    Node.call( self );
 
 
     // create less shape
@@ -88,82 +88,82 @@ define( function( require ) {
 
 
     //center vertical line
-    thisNode.addChild( new Path( Shape.lineSegment( 0, 0, 0, -options.lineHeight - 20 ), {
+    self.addChild( new Path( Shape.lineSegment( 0, 0, 0, -options.lineHeight - 20 ), {
       stroke: options.stroke,
       lineWidth: options.lineBaseWidth
     } ) );
 
     //three horizontal lines  at 0,1,2
-    thisNode.addChild( new Path( Shape.lineSegment( -options.lineWeight / 2, 0, options.lineWeight / 2, 0 ), {
+    self.addChild( new Path( Shape.lineSegment( -options.lineWeight / 2, 0, options.lineWeight / 2, 0 ), {
       stroke: options.stroke,
       lineWidth: options.lineBaseWidth
     } ) );
-    thisNode.addChild( new Path( Shape.lineSegment( -options.lineWeight / 2, -options.lineHeight / 2, options.lineWeight / 2, -options.lineHeight / 2 ), {
+    self.addChild( new Path( Shape.lineSegment( -options.lineWeight / 2, -options.lineHeight / 2, options.lineWeight / 2, -options.lineHeight / 2 ), {
       stroke: options.stroke,
       lineWidth: options.lineBaseWidth
     } ) );
-    thisNode.addChild( new Path( Shape.lineSegment( -options.lineWeight / 2, -options.lineHeight, options.lineWeight / 2, -options.lineHeight ), {
+    self.addChild( new Path( Shape.lineSegment( -options.lineWeight / 2, -options.lineHeight, options.lineWeight / 2, -options.lineHeight ), {
       stroke: options.stroke,
       lineWidth: options.lineBaseWidth
     } ) );
 
     //three bottom ticks, between 0 and 1
-    thisNode.addChild( new Path( Shape.lineSegment( -options.lineWeight / 4, -options.lineHeight / 8, options.lineWeight / 4, -options.lineHeight / 8 ), {
+    self.addChild( new Path( Shape.lineSegment( -options.lineWeight / 4, -options.lineHeight / 8, options.lineWeight / 4, -options.lineHeight / 8 ), {
       stroke: options.stroke,
       lineWidth: options.lineOtherWidth
     } ) );
-    thisNode.addChild( new Path( Shape.lineSegment( -3 * options.lineWeight / 8, -2 * options.lineHeight / 8, 3 * options.lineWeight / 8, -2 * options.lineHeight / 8 ), {
+    self.addChild( new Path( Shape.lineSegment( -3 * options.lineWeight / 8, -2 * options.lineHeight / 8, 3 * options.lineWeight / 8, -2 * options.lineHeight / 8 ), {
       stroke: options.stroke,
       lineWidth: options.lineOtherWidth
     } ) );
-    thisNode.addChild( new Path( Shape.lineSegment( -options.lineWeight / 4, -3 * options.lineHeight / 8, options.lineWeight / 4, -3 * options.lineHeight / 8 ), {
+    self.addChild( new Path( Shape.lineSegment( -options.lineWeight / 4, -3 * options.lineHeight / 8, options.lineWeight / 4, -3 * options.lineHeight / 8 ), {
       stroke: options.stroke,
       lineWidth: options.lineOtherWidth
     } ) );
 
     //three top ticks, between 1 and 2
-    thisNode.addChild( new Path( Shape.lineSegment( -options.lineWeight / 4, -5 * options.lineHeight / 8, options.lineWeight / 4, -5 * options.lineHeight / 8 ), {
+    self.addChild( new Path( Shape.lineSegment( -options.lineWeight / 4, -5 * options.lineHeight / 8, options.lineWeight / 4, -5 * options.lineHeight / 8 ), {
       stroke: options.stroke,
       lineWidth: options.lineOtherWidth
     } ) );
-    thisNode.addChild( new Path( Shape.lineSegment( -3 * options.lineWeight / 8, -6 * options.lineHeight / 8, 3 * options.lineWeight / 8, -6 * options.lineHeight / 8 ), {
+    self.addChild( new Path( Shape.lineSegment( -3 * options.lineWeight / 8, -6 * options.lineHeight / 8, 3 * options.lineWeight / 8, -6 * options.lineHeight / 8 ), {
       stroke: options.stroke,
       lineWidth: options.lineOtherWidth
     } ) );
-    thisNode.addChild( new Path( Shape.lineSegment( -options.lineWeight / 4, -7 * options.lineHeight / 8, options.lineWeight / 4, -7 * options.lineHeight / 8 ), {
+    self.addChild( new Path( Shape.lineSegment( -options.lineWeight / 4, -7 * options.lineHeight / 8, options.lineWeight / 4, -7 * options.lineHeight / 8 ), {
       stroke: options.stroke,
       lineWidth: options.lineOtherWidth
     } ) );
 
     //labels 0,1,2
-    thisNode.addChild( new Text( '0', {
+    self.addChild( new Text( '0', {
       font: new PhetFont( { size: 18, weight: 'normal' } ),
       centerX: -options.lineWeight / 2 - 10,
       centerY: 0
     } ) );
-    thisNode.addChild( new Text( '0', {
+    self.addChild( new Text( '0', {
       font: new PhetFont( { size: 18, weight: 'normal' } ),
       centerX: options.lineWeight / 2 + 10,
       centerY: 0
     } ) );
 
-    thisNode.addChild( new Text( '1', {
+    self.addChild( new Text( '1', {
       font: new PhetFont( { size: 18, weight: 'normal' } ),
       centerX: -options.lineWeight / 2 - 10,
       centerY: -options.lineHeight / 2
     } ) );
-    thisNode.addChild( new Text( '1', {
+    self.addChild( new Text( '1', {
       font: new PhetFont( { size: 18, weight: 'normal' } ),
       centerX: options.lineWeight / 2 + 10,
       centerY: -options.lineHeight / 2
     } ) );
 
-    thisNode.addChild( new Text( '2', {
+    self.addChild( new Text( '2', {
       font: new PhetFont( { size: 18, weight: 'normal' } ),
       centerX: -options.lineWeight / 2 - 10,
       centerY: -options.lineHeight
     } ) );
-    thisNode.addChild( new Text( '2', {
+    self.addChild( new Text( '2', {
       font: new PhetFont( { size: 18, weight: 'normal' } ),
       centerX: options.lineWeight / 2 + 10,
       centerY: -options.lineHeight
@@ -184,11 +184,11 @@ define( function( require ) {
     } );
 
 
-    thisNode.addChild( rectLeft );
-    thisNode.addChild( rectRight );
-    thisNode.addChild( less );
-    thisNode.addChild( eq );
-    thisNode.addChild( more );
+    self.addChild( rectLeft );
+    self.addChild( rectRight );
+    self.addChild( less );
+    self.addChild( eq );
+    self.addChild( more );
 
     // function for comparing shapes on scales
     var rectLeftTween = new TWEEN.Tween( rectLeft ).easing( TWEEN.Easing.Cubic.InOut );

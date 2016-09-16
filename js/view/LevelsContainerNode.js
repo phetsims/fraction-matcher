@@ -37,7 +37,7 @@ define( function( require ) {
     var margin = 15;
     this.model = model;
 
-    var thisNode = this;
+    var self = this;
     var i;
     var j;
     Node.call( this );
@@ -46,28 +46,28 @@ define( function( require ) {
     this.answerRects = [];
     for ( i = 0; i < 6; i++ ) {
       this.answerRects.push( new Rectangle( margin + i * 125, margin, 115, 70, 10, 10, { fill: '#C0C0C0' } ) );
-      thisNode.addChild( this.answerRects[ i ] );
+      self.addChild( this.answerRects[ i ] );
     }
 
     //My matches string
-    thisNode.addChild( new Text( myMatchesString, { font: new PhetFont( { size: 14, weight: 'bold' } ), x: 15, y: 100 } ) );
+    self.addChild( new Text( myMatchesString, { font: new PhetFont( { size: 14, weight: 'bold' } ), x: 15, y: 100 } ) );
 
     //right buttons, reset and toLevelSelection
     var backButton = new BackButton( { listener: function() {model.currentLevel = 0;}, y: 120, left: margin } );
-    thisNode.addChild( backButton );
+    self.addChild( backButton );
 
     var refreshButton = new RefreshButton( {
       listener: function() {
         if ( model.levels[ model.currentLevel - 1 ] ) {
           model.levels[ model.currentLevel - 1 ].reset();
         }
-        if ( thisNode.levelNodes[ model.currentLevel - 1 ] ) {
-          thisNode.levelNodes[ model.currentLevel - 1 ].generateNewLevel();
+        if ( self.levelNodes[ model.currentLevel - 1 ] ) {
+          self.levelNodes[ model.currentLevel - 1 ].generateNewLevel();
         }
       },
       y: backButton.bottom + 8, left: margin
     } );
-    thisNode.addChild( refreshButton );
+    self.addChild( refreshButton );
 
     //scales
     var scalesMarginFromCenter = 150;
@@ -75,15 +75,15 @@ define( function( require ) {
     var scalePositionY = 222;
     this.scales[ 0 ] = new Image( scaleImage, { centerX: model.width / 2 - scalesMarginFromCenter, y: scalePositionY, scale: 0.33 } );
     this.scales[ 1 ] = new Image( scaleImage, { centerX: model.width / 2 + scalesMarginFromCenter, y: scalePositionY, scale: 0.33 } );
-    thisNode.addChild( this.scales[ 0 ] );
-    thisNode.addChild( this.scales[ 1 ] );
+    self.addChild( this.scales[ 0 ] );
+    self.addChild( this.scales[ 1 ] );
 
     //source rectangles
     this.sourceRectangles = [];
     for ( i = 0; i < 6; i++ ) {
       for ( j = 0; j < 2; j++ ) {
         this.sourceRectangles.push( new Rectangle( 85 + i * 96, 315 + j * 90, 96, 90, 0, 0, { stroke: '#C0C0C0', lineWidth: 1 } ) );
-        thisNode.addChild( this.sourceRectangles[ this.sourceRectangles.length - 1 ] );
+        self.addChild( this.sourceRectangles[ this.sourceRectangles.length - 1 ] );
       }
     }
 
@@ -92,18 +92,18 @@ define( function( require ) {
     model.currentLevelProperty.link( function( newLevel ) {
       if ( newLevel > 0 ) {
         //generate each node levelNode on demand, to make loading faster
-        if ( !thisNode.levelNodes[ newLevel - 1 ] ) {
-          thisNode.levelNodes[ newLevel - 1 ] = new LevelNode( model.levels[ newLevel - 1 ], thisNode, layoutBounds, thisNode.model );
+        if ( !self.levelNodes[ newLevel - 1 ] ) {
+          self.levelNodes[ newLevel - 1 ] = new LevelNode( model.levels[ newLevel - 1 ], self, layoutBounds, self.model );
         }
 
         //if we keep it in memory - append to dom
-        if ( !thisNode.levelNodes[ newLevel - 1 ].getParent() ) {
-          thisNode.addChild( thisNode.levelNodes[ newLevel - 1 ] );
+        if ( !self.levelNodes[ newLevel - 1 ].getParent() ) {
+          self.addChild( self.levelNodes[ newLevel - 1 ] );
         }
 
         //if shapes not drawn, draw shapes then show level. Made this to not generate all levels at once as it freeze simulation for 1-2 seconds
         if ( !model.levels[ newLevel - 1 ].shapes[ 0 ].view ) {
-          thisNode.levelNodes[ newLevel - 1 ].generateNewLevel();
+          self.levelNodes[ newLevel - 1 ].generateNewLevel();
         }
 
       }
