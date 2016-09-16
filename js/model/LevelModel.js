@@ -167,6 +167,8 @@ define( function( require ) {
         case 'showAnswer' :
           this.buttonStatus = 'ok';
           break;
+        default:
+          throw new Error( 'invalid buttonName: ' + buttonName );
       }
     },
     isShapesEqual: function( shape1, shape2 ) {
