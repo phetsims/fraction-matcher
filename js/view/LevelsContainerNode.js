@@ -10,6 +10,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var FontAwesomeNode = require( 'SUN/FontAwesomeNode' );
   var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -18,7 +19,7 @@ define( function( require ) {
   var Image = require( 'SCENERY/nodes/Image' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var BackButton = require( 'SCENERY_PHET/buttons/BackButton' );
-  var RefreshButton = require( 'SCENERY_PHET/buttons/RefreshButton' );
+  var RectangularPushButton = require( 'SUN/buttons/RectangularPushButton' );
   var LevelNode = require( 'FRACTION_MATCHER/view/LevelNode' );
 
   // strings
@@ -56,7 +57,11 @@ define( function( require ) {
     var backButton = new BackButton( { listener: function() {model.currentLevel = 0;}, y: 120, left: margin } );
     self.addChild( backButton );
 
-    var refreshButton = new RefreshButton( {
+    var refreshButton = new RectangularPushButton( {
+      content: new FontAwesomeNode( 'refresh', { scale: 0.7 } ),
+      baseColor: 'rgb( 242, 233, 22 )',
+      xMargin: 9,
+      yMargin: 7,
       listener: function() {
         if ( model.levels[ model.currentLevel - 1 ] ) {
           model.levels[ model.currentLevel - 1 ].reset();
@@ -65,7 +70,8 @@ define( function( require ) {
           self.levelNodes[ model.currentLevel - 1 ].generateNewLevel();
         }
       },
-      y: backButton.bottom + 8, left: margin
+      left: margin,
+      y: backButton.bottom + 8
     } );
     self.addChild( refreshButton );
 
