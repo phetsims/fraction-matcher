@@ -12,10 +12,10 @@ define( function( require ) {
   var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
 
   /**
-   *  @param {String}  type of shape (PIES, HORIZONTAL_BARS, etc)
+   *  @param {string}  type of shape (PIES, HORIZONTAL_BARS, etc)
    *  @param {Fraction} fraction of shape
-   *  @param {Number} scaleFactor multiply numerator and denominator by scaleFactor
-   *  @param {String} fill color of shape
+   *  @param {number} scaleFactor multiply numerator and denominator by scaleFactor
+   *  @param {string} fill color of shape
    *  @param {FillType} fillType of filling piece(SEQUENTIAL, MIXED, etc)
    *  @param {boolean} toSimplify whether we must show shape in form of 13/5 or 2 3/5
    */

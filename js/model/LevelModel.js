@@ -17,7 +17,7 @@ define( function( require ) {
   /**
    * @param gameModel
    * @param levelDescription
-   * @param {Number} levelNumber 1-based level that is displayed to the user (starts at 1, not zero)
+   * @param {number} levelNumber 1-based level that is displayed to the user (starts at 1, not zero)
    * @constructor
    */
   function LevelModel( gameModel, levelDescription, levelNumber ) {
