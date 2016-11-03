@@ -17,7 +17,7 @@ define( function( require ) {
    *  @param {Number} scaleFactor multiply numerator and denominator by scaleFactor
    *  @param {String} fill color of shape
    *  @param {FillType} fillType of filling piece(SEQUENTIAL, MIXED, etc)
-   *  @param {Boolean} toSimplify whether we must show shape in form of 13/5 or 2 3/5
+   *  @param {boolean} toSimplify whether we must show shape in form of 13/5 or 2 3/5
    */
   function SingleShapeModel( type, fraction, scaleFactor, fill, fillType, toSimplify ) {
     this.x = 0;

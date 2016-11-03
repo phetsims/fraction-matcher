@@ -25,7 +25,7 @@ define( function( require ) {
    * @param height
    * @param game
    * @param {Constants} constants
-   * @param {Boolean} toSimplify flag for simplifying number shapes,
+   * @param {boolean} toSimplify flag for simplifying number shapes,
    * @param {boolean} isMixedNumbers
    * @constructor
    */
