@@ -13,6 +13,7 @@ define( function( require ) {
   var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var FillType = require( 'FRACTION_MATCHER/model/FillType' );
   var Fraction = require( 'PHETCOMMON/model/Fraction' );
+  var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
 
   //colors
   var COLORS = {
@@ -21,7 +22,7 @@ define( function( require ) {
     LIGHT_RED: 'rgb(233,69,69)',
     LIGHT_PINK: 'rgb(255,175,175)',
     ORANGE: 'rgb(255,200,0)',
-    YELLOW: '#f2e916',//to match the PhET Logo
+    YELLOW: PhetColorScheme.PHET_YELLOW,//to match the PhET Logo
     GREEN: 'rgb(0,255,0)',
     PINK: 'rgb(255,0,255)'
   };
