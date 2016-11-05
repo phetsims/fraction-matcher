@@ -21,6 +21,7 @@ define( function( require ) {
   var BackButton = require( 'SCENERY_PHET/buttons/BackButton' );
   var RectangularPushButton = require( 'SUN/buttons/RectangularPushButton' );
   var LevelNode = require( 'FRACTION_MATCHER/view/LevelNode' );
+  var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
 
   // strings
   var myMatchesString = require( 'string!FRACTION_MATCHER/myMatches' );
@@ -59,7 +60,7 @@ define( function( require ) {
 
     var refreshButton = new RectangularPushButton( {
       content: new FontAwesomeNode( 'refresh', { scale: 0.7 } ),
-      baseColor: 'rgb( 242, 233, 22 )',
+      baseColor: PhetColorScheme.PHET_YELLOW,
       xMargin: 9,
       yMargin: 7,
       listener: function() {
