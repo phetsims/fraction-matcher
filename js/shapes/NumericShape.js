@@ -57,7 +57,9 @@ define( function( require ) {
       integralPartLength = integralPart.toString().length;
       offsetX = (integralPartWidth - integralPartWidth / integralPartLength) / 4;
       integralPartNode.centerX = -offsetX - spaceX;
-      fractionNode.centerX = spaceX + offsetX;
+      if ( numerator % denominator ) {
+        fractionNode.centerX = spaceX + offsetX;
+      }
 
       // common alignment
       if ( isFinite( fractionNode.getWidth() ) ) {
