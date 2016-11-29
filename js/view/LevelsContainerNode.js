@@ -60,7 +60,7 @@ define( function( require ) {
 
     var refreshButton = new RectangularPushButton( {
       content: new FontAwesomeNode( 'refresh', { scale: 0.7 } ),
-      baseColor: PhetColorScheme.PHET_YELLOW,
+      baseColor: PhetColorScheme.PHET_LOGO_YELLOW,
       xMargin: 9,
       yMargin: 7,
       listener: function() {

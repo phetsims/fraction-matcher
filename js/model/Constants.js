@@ -22,7 +22,7 @@ define( function( require ) {
     LIGHT_RED: 'rgb(233,69,69)',
     LIGHT_PINK: 'rgb(255,175,175)',
     ORANGE: 'rgb(255,200,0)',
-    YELLOW: PhetColorScheme.PHET_YELLOW,//to match the PhET Logo
+    YELLOW: PhetColorScheme.PHET_LOGO_YELLOW,//to match the PhET Logo
     GREEN: 'rgb(0,255,0)',
     PINK: 'rgb(255,0,255)'
   };
