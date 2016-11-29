@@ -18,11 +18,11 @@ define( function( require ) {
   //colors
   var COLORS = {
     LIGHT_GREEN: 'rgb(140,198,63)',
-    LIGHT_BLUE: '#6acef5',//to match the PhET Logo
+    LIGHT_BLUE: PhetColorScheme.PHET_LOGO_BLUE, //to match the PhET Logo
     LIGHT_RED: 'rgb(233,69,69)',
     LIGHT_PINK: 'rgb(255,175,175)',
     ORANGE: 'rgb(255,200,0)',
-    YELLOW: PhetColorScheme.PHET_LOGO_YELLOW,//to match the PhET Logo
+    YELLOW: PhetColorScheme.PHET_LOGO_YELLOW, //to match the PhET Logo
     GREEN: 'rgb(0,255,0)',
     PINK: 'rgb(255,0,255)'
   };
