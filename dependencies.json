@@ -1,5 +1,5 @@
 {
-  "comment": "# fraction-matcher 1.1.6 Thu Apr 13 2017 12:57:45 GMT-0600 (MDT)",
+  "comment": "# fraction-matcher 1.1.6 Thu Apr 13 2017 16:21:34 GMT-0600 (MDT)",
   "assert": {
     "sha": "7d27130a4d27da15aa7f8a21bbfb9245288c1b44",
     "branch": "HEAD"
@@ -10,18 +10,18 @@
   },
   "brand": {
     "sha": "f541724200f6d20009ad960847c362456ac9da1b",
-    "branch": "fraction-matcher-1.1"
+    "branch": "HEAD"
   },
   "chipper": {
     "sha": "b3a8a3c24b598badc3b1089aa0eb28c812c47fa0",
-    "branch": "fraction-matcher-1.1"
+    "branch": "HEAD"
   },
   "dot": {
     "sha": "da78031b6f080d20bc8346beaa1d37148188371e",
     "branch": "HEAD"
   },
   "fraction-matcher": {
-    "sha": "19f1d0738e9436f2c2e524d6c5da50be0c24cf0e",
+    "sha": "244f02a0a69a239b9f6e7086bcfa171759a06442",
     "branch": "1.1"
   },
   "joist": {
@@ -38,7 +38,7 @@
   },
   "phetcommon": {
     "sha": "4d7dcf9e4d2cf2a645e6cc91e34fb3caa7c7fd25",
-    "branch": "fraction-matcher-1.1"
+    "branch": "HEAD"
   },
   "scenery": {
     "sha": "4ab9fc738e721e9e293042205c48a6d31505db98",
@@ -65,7 +65,7 @@
     "branch": "HEAD"
   },
   "vibe": {
-    "sha": "c84b3c41d026d31e208243de7b5852e2d6df69a0",
-    "branch": "HEAD"
+    "sha": "51cf879a48270639bc0db99f9dbcbfcbd9f106a7",
+    "branch": "fraction-matcher-1.1"
   }
 }
