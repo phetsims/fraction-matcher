@@ -465,7 +465,7 @@ define( function( require ) {
             var star = new StarNode();
             rewardNodes = RewardNode.createRandomNodes( rewardNodes, 100 ).concat( _.times( 6, _.constant( face ) ), _.times( 6, _.constant( star ) ) );
             this.rewardNode = new RewardNode( {
-              stepSource: this.stepSource,
+              stepEmitter: this.stepSource.stepEmitter,
               nodes: rewardNodes
             } );
             this.addChild( this.rewardNode );
@@ -486,14 +486,14 @@ define( function( require ) {
               new Plane( { fill: 'black', opacity: 0, pickable: true } ),
 
               //Show the dialog with scores
-              new LevelCompletedNode( this.model.levelNumber - 1, this.model.score, 12, 3, this.model.gameModel.isTimer, completedTime, lastBestForThisLevel, newBestTime,
+              new LevelCompletedNode( this.model.levelNumber - 1, this.model.score, 12, 3, this.model.gameModel.isTimerProperty.get(), completedTime, lastBestForThisLevel, newBestTime,
                 function() {
                   var model = self.model;
                   model.gameModel.highScores[ model.levelNumber - 1 ].set( Math.max( model.gameModel.highScores[ model.levelNumber - 1 ].get(), model.score ) );
-                  model.gameModel.currentLevel = 0;
+                  model.gameModel.currentLevelProperty.set( 0 );
                   model.reset();
                   self.generateNewLevel();
-                  self.rewardNode.stop();
+                  self.rewardNode && self.rewardNode.stop();
 
                   //TODO: only detach after animation transition away complete?
                   self.rewardNode.detach();

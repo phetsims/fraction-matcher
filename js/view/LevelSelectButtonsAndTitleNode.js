@@ -120,8 +120,8 @@ define( function( require ) {
           function() {
 
             //Switch to the selected level, but only if the user was on the level selection screen, see #66
-            if ( model.currentLevel === 0 ) {
-              model.currentLevel = (index + 1);
+            if ( model.currentLevelProperty.get() === 0 ) {
+              model.currentLevelProperty.set( index + 1 );
             }
           },
           model.highScores[ index ],

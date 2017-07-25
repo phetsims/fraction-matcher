@@ -70,7 +70,7 @@ define( function( require ) {
       levelsContainerNode.visible = (levelsContainerNode.x === 0);
 
       //remove LevelNode from scene graph to keep it simple and fast
-      if ( fromLevelNumber && fromLevelNumber !== model.currentLevel ) {
+      if ( fromLevelNumber && fromLevelNumber !== model.currentLevelProperty.get() ) {
         var parentNode = levelsContainerNode.levelNodes[ fromLevelNumber - 1 ].getParent();
         if ( parentNode ) {
           levelsContainerNode.levelNodes[ fromLevelNumber - 1 ].getParent().removeChild( levelsContainerNode.levelNodes[ fromLevelNumber - 1 ] );

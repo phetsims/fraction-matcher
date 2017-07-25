@@ -55,7 +55,11 @@ define( function( require ) {
     self.addChild( new Text( myMatchesString, { font: new PhetFont( { size: 14, weight: 'bold' } ), x: 15, y: 100 } ) );
 
     //right buttons, reset and toLevelSelection
-    var backButton = new BackButton( { listener: function() {model.currentLevel = 0;}, y: 120, left: margin } );
+    var backButton = new BackButton( {
+      listener: function() {model.currentLevelProperty.set( 0 );},
+      y: 120,
+      left: margin
+    } );
     self.addChild( backButton );
 
     var refreshButton = new RectangularPushButton( {
@@ -64,11 +68,11 @@ define( function( require ) {
       xMargin: 9,
       yMargin: 7,
       listener: function() {
-        if ( model.levels[ model.currentLevel - 1 ] ) {
-          model.levels[ model.currentLevel - 1 ].reset();
+        if ( model.levels[ model.currentLevelProperty.get() - 1 ] ) {
+          model.levels[ model.currentLevelProperty.get() - 1 ].reset();
         }
-        if ( self.levelNodes[ model.currentLevel - 1 ] ) {
-          self.levelNodes[ model.currentLevel - 1 ].generateNewLevel();
+        if ( self.levelNodes[ model.currentLevelProperty.get() - 1 ] ) {
+          self.levelNodes[ model.currentLevelProperty.get() - 1 ].generateNewLevel();
         }
       },
       left: margin,
@@ -80,8 +84,16 @@ define( function( require ) {
     var scalesMarginFromCenter = 150;
     this.scales = [];
     var scalePositionY = 222;
-    this.scales[ 0 ] = new Image( scaleImage, { centerX: model.width / 2 - scalesMarginFromCenter, y: scalePositionY, scale: 0.33 } );
-    this.scales[ 1 ] = new Image( scaleImage, { centerX: model.width / 2 + scalesMarginFromCenter, y: scalePositionY, scale: 0.33 } );
+    this.scales[ 0 ] = new Image( scaleImage, {
+      centerX: model.width / 2 - scalesMarginFromCenter,
+      y: scalePositionY,
+      scale: 0.33
+    } );
+    this.scales[ 1 ] = new Image( scaleImage, {
+      centerX: model.width / 2 + scalesMarginFromCenter,
+      y: scalePositionY,
+      scale: 0.33
+    } );
     self.addChild( this.scales[ 0 ] );
     self.addChild( this.scales[ 1 ] );
 
@@ -89,7 +101,10 @@ define( function( require ) {
     this.sourceRectangles = [];
     for ( i = 0; i < 6; i++ ) {
       for ( j = 0; j < 2; j++ ) {
-        this.sourceRectangles.push( new Rectangle( 85 + i * 96, 315 + j * 90, 96, 90, 0, 0, { stroke: '#C0C0C0', lineWidth: 1 } ) );
+        this.sourceRectangles.push( new Rectangle( 85 + i * 96, 315 + j * 90, 96, 90, 0, 0, {
+          stroke: '#C0C0C0',
+          lineWidth: 1
+        } ) );
         self.addChild( this.sourceRectangles[ this.sourceRectangles.length - 1 ] );
       }
     }

@@ -11,8 +11,8 @@ define( function( require ) {
   // modules
   var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var PropertySet = require( 'AXON/PropertySet' );
   var Property = require( 'AXON/Property' );
+  var Emitter = require( 'AXON/Emitter' );
   var LevelModel = require( 'FRACTION_MATCHER/model/LevelModel' );
   var Sound = require( 'VIBE/Sound' );
 
@@ -54,26 +54,29 @@ define( function( require ) {
     this.highScores = [];
     this.bestTimes = [];
 
-    PropertySet.call( this, {
-      currentLevel: 0,
-      isTimer: false
-    } );
+    this.currentLevelProperty = new Property( 0 );
+    this.isTimerProperty = new Property( false );
+
+    this.stepEmitter = new Emitter();
+
+    Property.preventGetSet( this, 'currentLevel' );
+    Property.preventGetSet( this, 'isTimer' );
 
     this.constants.LEVEL_DESCRIPTION.forEach( function( levelDescription, index ) {
       self.levels.push( new LevelModel( self, levelDescription, index + 1 ) );
       self.highScores.push( new Property( 0 ) );
       self.bestTimes.push( new Property( null ) );
     } );
-
   }
 
   fractionMatcher.register( 'FractionMatcherModel', FractionMatcherModel );
 
-  return inherit( PropertySet, FractionMatcherModel, {
+  return inherit( Object, FractionMatcherModel, {
 
     // Resets all model elements
     reset: function() {
-      PropertySet.prototype.reset.call( this );
+      this.currentLevelProperty.reset();
+      this.isTimerProperty.reset();
       this.highScores.forEach( function( highScore ) {
         highScore.reset();
       } );
@@ -87,12 +90,12 @@ define( function( require ) {
     },
 
     step: function( dt ) {
-      if ( this.currentLevel > 0 ) {
-        this.levels[ this.currentLevel - 1 ].step( dt );
+      if ( this.currentLevelProperty.get() > 0 ) {
+        this.levels[ this.currentLevelProperty.get() - 1 ].step( dt );
       }
 
       //Signify that a step occurred: used in animating the RewardNodes
-      this.trigger1( 'step', dt );
+      this.stepEmitter.emit1( dt );
     }
   } );
 } );
