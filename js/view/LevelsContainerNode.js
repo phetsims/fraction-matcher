@@ -124,7 +124,7 @@ define( function( require ) {
         }
 
         //if shapes not drawn, draw shapes then show level. Made this to not generate all levels at once as it freeze simulation for 1-2 seconds
-        if ( !model.levels[ newLevel - 1 ].shapes[ 0 ].view ) {
+        if ( !model.levels[ newLevel - 1 ].shapesProperty.value[ 0 ].view ) {
           self.levelNodes[ newLevel - 1 ].generateNewLevel();
         }
 

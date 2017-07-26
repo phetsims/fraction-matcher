@@ -176,7 +176,7 @@ define( function( require ) {
     //drag handler for shapes
     var offsetCursor = {};
     var startDrag = function( event ) {
-      if ( model.canDrag ) {
+      if ( model.canDragProperty.value ) {
         event.currentTarget.moveToFront();
         offsetCursor = {
           x: self.globalToParentPoint( event.pointer.point ).x - event.currentTarget.x,
@@ -187,35 +187,35 @@ define( function( require ) {
         if ( platform.mobileSafari || platform.android ) {
           offsetCursor.y += 50;
         }
-        model.dropZone[ model.shapes[ event.currentTarget.indexShape ].dropZone ] = -1;
-        if ( model.lastChangedZone === model.shapes[ event.currentTarget.indexShape ].dropZone ) {
-          model.lastChangedZone = -1;
+        model.dropZone[ model.shapesProperty.value[ event.currentTarget.indexShape ].dropZone ] = -1;
+        if ( model.lastChangedZoneProperty.value === model.shapesProperty.value[ event.currentTarget.indexShape ].dropZone ) {
+          model.lastChangedZoneProperty.value = -1;
         }
       }
     };
     var moveDrag = function( event ) {
-      if ( model.canDrag ) {
+      if ( model.canDragProperty.value ) {
         event.currentTarget.x = self.globalToParentPoint( event.pointer.point ).x - offsetCursor.x;
         event.currentTarget.y = self.globalToParentPoint( event.pointer.point ).y - offsetCursor.y;
       }
     };
     var endDrag = function( event ) {
-      if ( model.canDrag ) {
+      if ( model.canDragProperty.value ) {
         var zone = self.getClosestDropZone( event.currentTarget.center, true );
         if ( zone >= 12 && model.dropZone[ zone ] >= 0 ) { //if scale and scale not empty
-          var zone2 = self.getClosestDropZone( model.shapes[ model.dropZone[ zone ] ].view.center, false ); //get free zone, not scale
-          self.dropShapeToZone( model.shapes[ model.dropZone[ zone ] ], zone2 );
+          var zone2 = self.getClosestDropZone( model.shapesProperty.value[ model.dropZone[ zone ] ].view.center, false ); //get free zone, not scale
+          self.dropShapeToZone( model.shapesProperty.value[ model.dropZone[ zone ] ], zone2 );
         }
         if ( zone === 12 || zone === 13 ) {
-          model.lastChangedZone = zone;
+          model.lastChangedZoneProperty.value = zone;
         }
-        self.dropShapeToZone( model.shapes[ event.currentTarget.indexShape ], zone );
-        if ( model.buttonStatus === 'check' || model.buttonStatus === 'none' || model.buttonStatus === 'tryAgain' ) {
-          if ( model.dropZone[ 12 ] >= 0 && model.dropZone[ 13 ] >= 0 && (model.dropZone[ 12 ] !== model.lastPair[ 0 ] || model.dropZone[ 13 ] !== model.lastPair[ 1 ]) ) {
-            model.buttonStatus = 'check';
+        self.dropShapeToZone( model.shapesProperty.value[ event.currentTarget.indexShape ], zone );
+        if ( model.buttonStatusProperty.value === 'check' || model.buttonStatusProperty.value === 'none' || model.buttonStatusProperty.value === 'tryAgain' ) {
+          if ( model.dropZone[ 12 ] >= 0 && model.dropZone[ 13 ] >= 0 && (model.dropZone[ 12 ] !== model.lastPairProperty.value[ 0 ] || model.dropZone[ 13 ] !== model.lastPairProperty.value[ 1 ]) ) {
+            model.buttonStatusProperty.value = 'check';
           }
           else {
-            model.buttonStatus = 'none';
+            model.buttonStatusProperty.value = 'none';
           }
         }
       }
@@ -238,8 +238,8 @@ define( function( require ) {
       var singleShapeModel;
       shapeNode.removeAllChildren();
 
-      for ( i = 0; i < model.shapes.length; i++ ) {
-        singleShapeModel = model.shapes[ i ];
+      for ( i = 0; i < model.shapesProperty.value.length; i++ ) {
+        singleShapeModel = model.shapesProperty.value[ i ];
         //new shapeView
         if ( singleShapeModel.view === undefined ) {
           singleShapeModel.view = ShapeNode.create( singleShapeModel );
@@ -273,18 +273,18 @@ define( function( require ) {
       buttonCheck.setVisible( value === 'check' );
       buttonTryAgain.setVisible( value === 'tryAgain' );
       buttonShowAnswer.setVisible( value === 'showAnswer' );
-      if ( model.buttonStatus === 'ok' ) {
-        smile.setPoints( model.stepScore );
-        smile.visible = model.stepScore > 0;
+      if ( model.buttonStatusProperty.value === 'ok' ) {
+        smile.setPoints( model.stepScoreProperty.value );
+        smile.visible = model.stepScoreProperty.value > 0;
       }
       else {
         smile.setPoints( 0 );
         smile.visible = false;
       }
-      if ( model.buttonStatus !== 'none' ) {
+      if ( model.buttonStatusProperty.value !== 'none' ) {
         self.comparisonChart.reset();
-        if ( model.buttonStatus !== 'check' ) {
-          self.comparisonChart.compare( model.shapes[ model.dropZone[ 12 ] ], model.shapes[ model.dropZone[ 13 ] ] );
+        if ( model.buttonStatusProperty.value !== 'check' ) {
+          self.comparisonChart.compare( model.shapesProperty.value[ model.dropZone[ 12 ] ], model.shapesProperty.value[ model.dropZone[ 13 ] ] );
         }
       }
       else {
@@ -312,7 +312,7 @@ define( function( require ) {
 
     model.canDragProperty.lazyLink( function( canDrag ) {
       var cursor = canDrag ? 'pointer' : 'default';
-      model.shapes.forEach( function( shape ) {
+      model.shapesProperty.value.forEach( function( shape ) {
         shape.view.cursor = cursor;
       } );
     } );
@@ -388,28 +388,28 @@ define( function( require ) {
       showCorrectAnswer: function() {
         var self = this;
         //the unchanged shape on scale
-        var correctShape = this.model.shapes[ this.model.dropZone[ this.model.lastChangedZone === 12 ? 13 : 12 ] ];
+        var correctShape = this.model.shapesProperty.value[ this.model.dropZone[ this.model.lastChangedZoneProperty.value === 12 ? 13 : 12 ] ];
         var secondCorrectShape;
         for ( var i = 0; i < this.model.dropZone.length; i++ ) {
-          if ( this.model.dropZone[ i ] !== -1 && self.model.isShapesEqual( correctShape, this.model.shapes[ this.model.dropZone[ i ] ] ) ) {
-            secondCorrectShape = this.model.shapes[ this.model.dropZone[ i ] ];
+          if ( this.model.dropZone[ i ] !== -1 && self.model.isShapesEqual( correctShape, this.model.shapesProperty.value[ this.model.dropZone[ i ] ] ) ) {
+            secondCorrectShape = this.model.shapesProperty.value[ this.model.dropZone[ i ] ];
             break;
           }
         }
-        var lastShapeOnScale = this.model.shapes[ this.model.dropZone[ this.model.lastChangedZone ] ];
+        var lastShapeOnScale = this.model.shapesProperty.value[ this.model.dropZone[ this.model.lastChangedZoneProperty.value ] ];
         this.model.dropZone[ secondCorrectShape.dropZone ] = -1;
-        this.dropShapeToZone( secondCorrectShape, this.model.lastChangedZone );
+        this.dropShapeToZone( secondCorrectShape, this.model.lastChangedZoneProperty.value );
         this.dropShapeToZone( lastShapeOnScale, this.getClosestDropZone( lastShapeOnScale.view.center, false ) );
         secondCorrectShape.view.moveToFront();
-        self.comparisonChart.compare( self.model.shapes[ self.model.dropZone[ 12 ] ], self.model.shapes[ self.model.dropZone[ 13 ] ] );
+        self.comparisonChart.compare( self.model.shapesProperty.value[ self.model.dropZone[ 12 ] ], self.model.shapesProperty.value[ self.model.dropZone[ 13 ] ] );
       },
       //move shapes from scales to answer zone and disable them
       moveShapesOnScalesToAnswer: function() {
         var self = this;
-        self.equallyAnswerSymbol[ self.model.answers.length / 2 ].setVisible( true );
+        self.equallyAnswerSymbol[ self.model.answersProperty.value.length / 2 ].setVisible( true );
         [ 0, 1 ].forEach( function( i ) {
-          var shape = self.model.shapes[ self.model.dropZone[ self.model.gameModel.MAXIMUM_PAIRS * 2 + i ] ];
-          var newPosition = self.getShapeAnswerPosition( self.model.answers.length );
+          var shape = self.model.shapesProperty.value[ self.model.dropZone[ self.model.gameModel.MAXIMUM_PAIRS * 2 + i ] ];
+          var newPosition = self.getShapeAnswerPosition( self.model.answersProperty.value.length );
           var initialScale = shape.view.matrix.scaleVector.x;
           var targetScale = initialScale / 2;
           var linearFunction = new LinearFunction( 0, 1, initialScale, targetScale );
@@ -426,22 +426,22 @@ define( function( require ) {
             shape.view.centerX = this.centerX;
             shape.view.centerY = this.centerY;
           } ).start( phet.joist.elapsedTime );
-          self.model.answers.push( self.model.dropZone[ self.model.gameModel.MAXIMUM_PAIRS * 2 + i ] );
+          self.model.answersProperty.value.push( self.model.dropZone[ self.model.gameModel.MAXIMUM_PAIRS * 2 + i ] );
           self.model.dropZone[ self.model.gameModel.MAXIMUM_PAIRS * 2 + i ] = -1;
           shape.view.removeInputListener( shape.view.getInputListeners()[ 0 ] );
         } );
-        if ( this.model.answers.length === this.model.gameModel.MAXIMUM_PAIRS * 2 || debugRewards ) {
+        if ( this.model.answersProperty.value.length === this.model.gameModel.MAXIMUM_PAIRS * 2 || debugRewards ) {
 
-          var completedTime = this.model.time;
+          var completedTime = this.model.timeProperty.value;
           var lastBestForThisLevel = this.model.gameModel.bestTimes[ this.model.levelNumber - 1 ].get();
           var newBestTime = false;
-          if ( this.model.score === 12 && (lastBestForThisLevel === null || completedTime < lastBestForThisLevel) ) {
+          if ( this.model.scoreProperty.value === 12 && (lastBestForThisLevel === null || completedTime < lastBestForThisLevel) ) {
             newBestTime = true;
             this.model.gameModel.bestTimes[ this.model.levelNumber - 1 ].set( completedTime );
           }
 
           //If a perfect score, show the reward node
-          if ( this.model.score === 12 || debugRewards ) {
+          if ( this.model.scoreProperty.value === 12 || debugRewards ) {
 
             //Play the "cheer" sound for a perfect score
             cheerSound.play();
@@ -450,7 +450,7 @@ define( function( require ) {
             this.rewardNode && this.rewardNode.detach();
 
             //Use the shapes from the level in the RewardNode
-            var rewardNodes = this.model.shapes.map( function( shape ) {return shape.view;} );
+            var rewardNodes = this.model.shapesProperty.value.map( function( shape ) {return shape.view;} );
 
             //Set the scale for each node to be the same, since some may not have animated to the "my matches" boxes yet, and may be a different size
             var scale = 0.9;
@@ -486,10 +486,10 @@ define( function( require ) {
               new Plane( { fill: 'black', opacity: 0, pickable: true } ),
 
               //Show the dialog with scores
-              new LevelCompletedNode( this.model.levelNumber - 1, this.model.score, 12, 3, this.model.gameModel.isTimerProperty.get(), completedTime, lastBestForThisLevel, newBestTime,
+              new LevelCompletedNode( this.model.levelNumber - 1, this.model.scoreProperty.value, 12, 3, this.model.gameModel.isTimerProperty.get(), completedTime, lastBestForThisLevel, newBestTime,
                 function() {
                   var model = self.model;
-                  model.gameModel.highScores[ model.levelNumber - 1 ].set( Math.max( model.gameModel.highScores[ model.levelNumber - 1 ].get(), model.score ) );
+                  model.gameModel.highScores[ model.levelNumber - 1 ].set( Math.max( model.gameModel.highScores[ model.levelNumber - 1 ].get(), model.scoreProperty.value ) );
                   model.gameModel.currentLevelProperty.set( 0 );
                   model.reset();
                   self.generateNewLevel();

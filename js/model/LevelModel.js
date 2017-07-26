@@ -1,4 +1,4 @@
-// Copyright 2013-2015, University of Colorado Boulder
+// Copyright 2013-2017, University of Colorado Boulder
 
 /**
  * Model container for the level screen.
@@ -11,8 +11,8 @@ define( function( require ) {
   // modules
   var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var PropertySet = require( 'AXON/PropertySet' );
   var SingleShapeModel = require( 'FRACTION_MATCHER/model/SingleShapeModel' );
+  var Property = require( 'AXON/Property' );
 
   /**
    * @param gameModel
@@ -25,17 +25,25 @@ define( function( require ) {
     this.levelNumber = levelNumber;
     this.levelDescription = levelDescription;
 
-    PropertySet.call( this, {
-      score: 0,
-      time: 0,
-      stepScore: 2,
-      answers: [], //shapes, which moved to answer zone
-      lastPair: [ -1, -1 ], //pair of shapes on scales, user can't compare the same pair two times
-      lastChangedZone: -1, //when showing correct answer, change only last dragged shape position
-      shapes: [], //array of SingleShapeModels
-      canDrag: true,
-      buttonStatus: 'none' // ['none','ok','check','tryAgain','showAnswer']
-    } );
+    this.scoreProperty = new Property( 0 );
+    this.timeProperty = new Property( 0 );
+    this.stepScoreProperty = new Property( 2 );
+    this.answersProperty = new Property( [] );//shapes, which moved to answer zone
+    this.lastPairProperty = new Property( [ -1, -1 ] );//pair of shapes on scales, user can't compare the same pair two times
+    this.lastChangedZoneProperty = new Property( -1 );//when showing correct answer, change only last dragged shape position
+    this.shapesProperty = new Property( [] ); //array of SingleShapeModels
+    this.canDragProperty = new Property( true );
+    this.buttonStatusProperty = new Property( 'none' );// ['none','ok','check','tryAgain','showAnswer']
+
+    Property.preventGetSet( this, 'score' );
+    Property.preventGetSet( this, 'time' );
+    Property.preventGetSet( this, 'stepScore' );
+    Property.preventGetSet( this, 'answers' );
+    Property.preventGetSet( this, 'lastPair' );
+    Property.preventGetSet( this, 'lastChangedZone' );
+    Property.preventGetSet( this, 'shapes' );
+    Property.preventGetSet( this, 'canDrag' );
+    Property.preventGetSet( this, 'buttonStatus' );
 
     this.dropZone = []; //contains indexes of shapes, which are placed in current zone, -1 if empty
 
@@ -52,20 +60,28 @@ define( function( require ) {
 
   fractionMatcher.register( 'LevelModel', LevelModel );
 
-  inherit( PropertySet, LevelModel, {
+  inherit( Object, LevelModel, {
     reset: function() {
-      PropertySet.prototype.reset.call( this );
+      this.scoreProperty.reset();
+      this.timeProperty.reset();
+      this.stepScoreProperty.reset();
+      this.answersProperty.reset();
+      this.lastPairProperty.reset();
+      this.lastChangedZoneProperty.reset();
+      this.shapesProperty.reset();
+      this.canDragProperty.reset();
+      this.buttonStatusProperty.reset();
       this.generateLevel();
       for ( var i = 0; i < this.dropZone.length; i++ ) {
         this.dropZone[ i ] = -1;
       }
-      this.answers = [];
-      this.lastPair = [ -1, -1 ];
+      this.answersProperty.value = [];
+      this.lastPairProperty.value = [ -1, -1 ];
     },
     step: function( dt ) {
 
       //Always increase time, even when the timer is hidden because the timer should be shown at any time, see https://github.com/phetsims/fraction-matcher/issues/57
-      this.time += dt;
+      this.timeProperty.value += dt;
     },
     // return filtered shapes set for the selected denominator, from java model
     filterShapes: function( shapes, d ) {
@@ -129,43 +145,43 @@ define( function( require ) {
         newShapes[ i ].dropZone = i;
       }
 
-      this.shapes = newShapes;
+      this.shapesProperty.value = newShapes;
     },
     answerButton: function( buttonName ) {
       var self = this;
       switch( buttonName ) { //['none','ok','check','tryAgain','showAnswer']
         case 'ok':
-          this.lastChangedZone = -1;
-          self.stepScore = 2;
-          this.canDrag = true;
-          this.buttonStatus = 'none';
-          if ( self.answers.length === self.gameModel.MAXIMUM_PAIRS ) {
-            self.hiScore = Math.max( self.hiScore, self.score );
+          this.lastChangedZoneProperty.value = -1;
+          self.stepScoreProperty.value = 2;
+          this.canDragProperty.value = true;
+          this.buttonStatusProperty.value = 'none';
+          if ( self.answersProperty.value.length === self.gameModel.MAXIMUM_PAIRS ) {
+            self.hiScore = Math.max( self.hiScore, self.scoreProperty.value );
           }
           break;
         case 'check':
-          if ( self.isShapesEqual( self.shapes[ this.dropZone[ 12 ] ], self.shapes[ this.dropZone[ 13 ] ] ) ) {
+          if ( self.isShapesEqual( self.shapesProperty.value[ this.dropZone[ 12 ] ], self.shapesProperty.value[ this.dropZone[ 13 ] ] ) ) {
             //answer correct
-            this.buttonStatus = 'ok';
-            self.score += self.stepScore;
+            this.buttonStatusProperty.value = 'ok';
+            self.scoreProperty.value += self.stepScoreProperty.value;
             self.gameModel.sounds.correct.play();
-            this.canDrag = false;
+            this.canDragProperty.value = false;
           }
           else {
             //answer incorrect
             self.gameModel.sounds.incorrect.play();
-            self.stepScore--;
-            this.buttonStatus = (self.stepScore) ? 'tryAgain' : 'showAnswer';
-            this.canDrag = this.buttonStatus === 'tryAgain';
-            this.lastPair = [ this.dropZone[ 12 ], this.dropZone[ 13 ] ];
+            self.stepScoreProperty.value--;
+            this.buttonStatusProperty.value = (self.stepScoreProperty.value) ? 'tryAgain' : 'showAnswer';
+            this.canDragProperty.value = this.buttonStatusProperty.value === 'tryAgain';
+            this.lastPairProperty.value = [ this.dropZone[ 12 ], this.dropZone[ 13 ] ];
           }
           break;
         case 'tryAgain' :
-          this.canDrag = true;
-          this.buttonStatus = 'none';
+          this.canDragProperty.value = true;
+          this.buttonStatusProperty.value = 'none';
           break;
         case 'showAnswer' :
-          this.buttonStatus = 'ok';
+          this.buttonStatusProperty.value = 'ok';
           break;
         default:
           throw new Error( 'invalid buttonName: ' + buttonName );
