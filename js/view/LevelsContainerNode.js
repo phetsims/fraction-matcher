@@ -115,7 +115,7 @@ define( function( require ) {
       if ( newLevel > 0 ) {
         //generate each node levelNode on demand, to make loading faster
         if ( !self.levelNodes[ newLevel - 1 ] ) {
-          self.levelNodes[ newLevel - 1 ] = new LevelNode( model.levels[ newLevel - 1 ], self, layoutBounds, self.model );
+          self.levelNodes[ newLevel - 1 ] = new LevelNode( model.levels[ newLevel - 1 ], self, layoutBounds, self.model.stepEmitter );
         }
 
         //if we keep it in memory - append to dom

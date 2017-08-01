@@ -57,14 +57,15 @@ define( function( require ) {
    * @param {LevelModel} model
    * @param levelsContainer
    * @param layoutBounds
-   * @param {Events} stepSource used for animating the RewardNode
+   * @param {Emitter} stepEmitter - used for animating the RewardNode
    * @param {Object} [options]
    * @constructor
    */
-  function LevelNode( model, levelsContainer, layoutBounds, stepSource, options ) {
+  function LevelNode( model, levelsContainer, layoutBounds, stepEmitter, options ) {
+    assert && assert( stepEmitter, 'stepEmitter should be provided' );
     var margin = 15;
     var self = this;
-    this.stepSource = stepSource;
+    this.stepEmitter = stepEmitter;
     Node.call( this );
 
     this.levelsContainer = levelsContainer;
@@ -465,7 +466,7 @@ define( function( require ) {
             var star = new StarNode();
             rewardNodes = RewardNode.createRandomNodes( rewardNodes, 100 ).concat( _.times( 6, _.constant( face ) ), _.times( 6, _.constant( star ) ) );
             this.rewardNode = new RewardNode( {
-              stepEmitter: this.stepSource.stepEmitter,
+              stepEmitter: this.stepEmitter,
               nodes: rewardNodes
             } );
             this.addChild( this.rewardNode );
