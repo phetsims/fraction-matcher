@@ -18,7 +18,7 @@ define( function( require ) {
   var ShapeNode = require( 'FRACTION_MATCHER/shapes/ShapeNode' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
-  var LevelSelectionButton = require( 'VEGAS/LevelSelectionButton' );
+  var LevelSelectionItemNode = require( 'VEGAS/LevelSelectionItemNode' );
   var HomeScreenView = require( 'JOIST/HomeScreenView' );
 
   // strings
@@ -114,7 +114,7 @@ define( function( require ) {
     var hBoxChildren = [];
     shapes.forEach( function( shape, index ) {
       hBoxChildren.push(
-        new LevelSelectionButton(
+        new LevelSelectionItemNode(
           createButtonContent( shape, index ),
           NUM_STARS_ON_BUTTON,
           function() {
