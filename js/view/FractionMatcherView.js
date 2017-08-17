@@ -105,10 +105,6 @@ define( function( require ) {
         animateFromLevels();
       }
     } );
-
-    if ( FractionMatcherQueryParameters.displayAllShapes ) {
-      // this.children = [new AllShapesNode()];
-    }
   }
 
   fractionMatcher.register( 'FractionMatcherView', FractionMatcherView );

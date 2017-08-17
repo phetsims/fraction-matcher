@@ -9,10 +9,11 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var SingleShapeModel = require( 'FRACTION_MATCHER/model/SingleShapeModel' );
   var Property = require( 'AXON/Property' );
+  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
+  var FractionMatcherQueryParameters = require( 'FRACTION_MATCHER/FractionMatcherQueryParameters' );
+  var SingleShapeModel = require( 'FRACTION_MATCHER/model/SingleShapeModel' );
+  var inherit = require( 'PHET_CORE/inherit' );
 
   /**
    * @param gameModel
@@ -119,7 +120,9 @@ define( function( require ) {
       var newShapes = [];
 
       var shapesAll = this.levelDescription.shapes.slice( 0 ); // get possible shapes for selected level
-      shapesAll.push( numberType ); // add fractions to possible shapes
+
+      // add fractions to possible shapes unless overridden by query parameter
+      FractionMatcherQueryParameters.testDenominator === 0 && shapesAll.push( numberType );
 
       // add shapes
       for ( var i = 0; i < this.gameModel.MAXIMUM_PAIRS; i++ ) {
@@ -131,6 +134,12 @@ define( function( require ) {
 
         // first 3 fractions - number, last 3 fractions - shapes with different colors (3 numbers and 3 shapes at least)
         var type = (i < this.gameModel.MAXIMUM_PAIRS / 2) ? numberType : shapes[ i % (shapes.length - 1) ];
+
+        // With query parameter, override number types and only allow shapes
+        if ( FractionMatcherQueryParameters.testDenominator !== 0 ) {
+          type = shapes[ i % (shapes.length - 1) ];
+        }
+
         var color = (type === numberType) ? 'rgb(0,0,0)' : this.gameModel.colorScheme[ i % 3 ];
         newShapes.push( new SingleShapeModel( type, fraction, scaleFactor, color, fillType, this.gameModel.toSimplify ) );
 

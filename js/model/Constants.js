@@ -14,6 +14,7 @@ define( function( require ) {
   var FillType = require( 'FRACTION_MATCHER/model/FillType' );
   var Fraction = require( 'PHETCOMMON/model/Fraction' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
+  var FractionMatcherQueryParameters = require( 'FRACTION_MATCHER/FractionMatcherQueryParameters' );
 
   //colors
   var COLORS = {
@@ -42,32 +43,34 @@ define( function( require ) {
     this.SHAPES = SHAPES;
 
     this.LEVEL_DESCRIPTION = [
-    /**
-     * Level 1
-     * No mixed numbers
-     * Only “exact” matches will be present. So for instance if there is a 3/6  and a pie with 6 divisions and 3 shaded slices, there will not be a ½  present .  In other words, the numerical representation on this level will exactly match the virtual manipulative.
-     * Only numbers/representations ≦ 1 possible on this level
-     * “Easy” shapes on this level (not some of the more abstract representations)
-     */
+      /**
+       * Level 1
+       * No mixed numbers
+       * Only “exact” matches will be present. So for instance if there is a 3/6  and a pie with 6 divisions and 3 shaded slices, there will not be a ½  present .  In other words, the numerical representation on this level will exactly match the virtual manipulative.
+       * Only numbers/representations ≦ 1 possible on this level
+       * “Easy” shapes on this level (not some of the more abstract representations)
+       *
+       * Can be hacked by FractionMatcherQueryParameters.testDenominator, see query parameter documentation for details.
+       */
       {
-        fractions: [
+        fractions: FractionMatcherQueryParameters.testDenominator === 0 ? [
           new Fraction( 1, 2 ),
           new Fraction( 1, 3 ),
           new Fraction( 2, 3 ),
           new Fraction( 1, 4 ),
           new Fraction( 3, 4 ),
           new Fraction( 1, 1 )
-        ],
+        ] : _.times( 6, function(index) { return new Fraction( index+1, FractionMatcherQueryParameters.testDenominator ); } ),
         numericScaleFactors: [ 1 ],
         fillType: [ FillType.SEQUENTIAL ],
-        shapes: SHAPES.slice( 0, 3 )
+        shapes: FractionMatcherQueryParameters.testDenominator === 0 ? SHAPES.slice( 0, 3 ) : SHAPES
       },
-    /**
-     * Level 2
-     * Reduced fractions possible on this level. So, for instance 3/6 and ½  could both be present.  Or a virtual representation of 3/6 could have the numerical of ½ be its only possible match
-     * Still only numbers/representations ≦ 1 possible
-     * More shapes can be introduced
-     */
+      /**
+       * Level 2
+       * Reduced fractions possible on this level. So, for instance 3/6 and ½  could both be present.  Or a virtual representation of 3/6 could have the numerical of ½ be its only possible match
+       * Still only numbers/representations ≦ 1 possible
+       * More shapes can be introduced
+       */
       {
         fractions: [
           new Fraction( 1, 2 ),
@@ -82,12 +85,12 @@ define( function( require ) {
         fillType: [ FillType.SEQUENTIAL ],
         shapes: SHAPES.slice( 0 )
       },
-    /**
-     * Level 3:
-     * Reduced fractions possible on this level. So, for instance 3/6 and ½  could both be present.  Or a virtual representation of 3/6 could have the numerical of ½ be its only possible match
-     * Still only numbers/representations ≦ 1 possible
-     * More shapes can be introduced
-     */
+      /**
+       * Level 3:
+       * Reduced fractions possible on this level. So, for instance 3/6 and ½  could both be present.  Or a virtual representation of 3/6 could have the numerical of ½ be its only possible match
+       * Still only numbers/representations ≦ 1 possible
+       * More shapes can be introduced
+       */
       {
         fractions: [
           new Fraction( 3, 2 ),
@@ -111,10 +114,10 @@ define( function( require ) {
         fillType: [ FillType.SEQUENTIAL ],
         shapes: SHAPES.slice( 0 )
       },
-    /**
-     * Level 4:
-     * All representations possible as well as complicated mixed/improper numbers
-     */
+      /**
+       * Level 4:
+       * All representations possible as well as complicated mixed/improper numbers
+       */
       {
         fractions: [
           new Fraction( 13, 7 ),
@@ -134,10 +137,10 @@ define( function( require ) {
         fillType: [ FillType.SEQUENTIAL ],
         shapes: SHAPES.slice( 0 )
       },
-    /**
-     * Level 5:
-     * All representations possible as well as complicated mixed/improper numbers.  Same fractions as level 4 but different representations.
-     */
+      /**
+       * Level 5:
+       * All representations possible as well as complicated mixed/improper numbers.  Same fractions as level 4 but different representations.
+       */
       {
         fractions: [
           new Fraction( 13, 7 ),
@@ -157,10 +160,10 @@ define( function( require ) {
         fillType: [ FillType.SEQUENTIAL, FillType.MIXED ],
         shapes: SHAPES.slice( 0 )
       },
-    /**
-     * Level 6:
-     * All representations possible as well as complicated mixed/improper numbers
-     */
+      /**
+       * Level 6:
+       * All representations possible as well as complicated mixed/improper numbers
+       */
       {
         fractions: [
           new Fraction( 6, 5 ),
@@ -187,10 +190,10 @@ define( function( require ) {
         fillType: [ FillType.SEQUENTIAL, FillType.RANDOM ],
         shapes: SHAPES.slice( 0 )
       },
-    /**
-     * Level 7:
-     * All representations possible as well as complicated mixed/improper numbers
-     */
+      /**
+       * Level 7:
+       * All representations possible as well as complicated mixed/improper numbers
+       */
       {
         fractions: [
           new Fraction( 3, 2 ),
@@ -209,10 +212,10 @@ define( function( require ) {
         fillType: [ FillType.SEQUENTIAL, FillType.RANDOM ],
         shapes: SHAPES.slice( 0 )
       },
-    /**
-     * Level 8:
-     * All representations possible as well as complicated mixed/improper numbers
-     */
+      /**
+       * Level 8:
+       * All representations possible as well as complicated mixed/improper numbers
+       */
       {
         fractions: [
           new Fraction( 8, 7 ),

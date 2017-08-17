@@ -14,9 +14,16 @@ define( function( require ) {
 
   var FractionMatcherQueryParameters = window.QueryStringMachine.getAll( {
 
-    // Show all of the shapes side by side for size comparison, see https://github.com/phetsims/fraction-matcher/issues/101
-    displayAllShapes: {
-      type: 'flag'
+    /**
+     * Hack level one on the fractions screen to only show shapes, and only show shapes that can be displayed with the
+     * denominator given by this query parameter. The numerator is between 1 and 6 (see Level 1 in model/Constants.js).
+     * For example ?testDenominator=5 will show a variety of shapes that are able to be drawn when fractions
+     * have that denominator,
+     * see https://github.com/phetsims/fraction-matcher/issues/101
+     */
+    testDenominator: {
+      type: 'number',
+      defaultValue: 0
     }
   } );
 
