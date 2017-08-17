@@ -22,7 +22,6 @@ define( function( require ) {
   var LevelSelectButtonsAndTitleNode = require( 'FRACTION_MATCHER/view/LevelSelectButtonsAndTitleNode' );
   var HBox = require( 'SCENERY/nodes/HBox' );
   var Sound = require( 'VIBE/Sound' );
-  var FractionMatcherQueryParameters = require( 'FRACTION_MATCHER/FractionMatcherQueryParameters' );
 
   // constants
   var LAYOUT_BOUNDS = new Bounds2( 0, 0, 768, 504 );
