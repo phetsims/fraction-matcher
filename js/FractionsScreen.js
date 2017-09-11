@@ -11,14 +11,14 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var Constants = require( 'FRACTION_MATCHER/model/Constants' );
   var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
-  var Screen = require( 'JOIST/Screen' );
   var FractionMatcherModel = require( 'FRACTION_MATCHER/model/FractionMatcherModel' );
   var FractionMatcherView = require( 'FRACTION_MATCHER/view/FractionMatcherView' );
-  var Constants = require( 'FRACTION_MATCHER/model/Constants' );
+  var inherit = require( 'PHET_CORE/inherit' );
   var IntroHomeScreenIcon = require( 'FRACTION_MATCHER/view/IntroHomeScreenIcon' );
   var IntroNavigationBarIcon = require( 'FRACTION_MATCHER/view/IntroNavigationBarIcon' );
-  var inherit = require( 'PHET_CORE/inherit' );
+  var Screen = require( 'JOIST/Screen' );
 
   // strings
   var fractionsTitleString = require( 'string!FRACTION_MATCHER/fractionsTitle' );

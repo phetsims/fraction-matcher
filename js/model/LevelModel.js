@@ -9,11 +9,11 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var Property = require( 'AXON/Property' );
   var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var FractionMatcherQueryParameters = require( 'FRACTION_MATCHER/FractionMatcherQueryParameters' );
-  var SingleShapeModel = require( 'FRACTION_MATCHER/model/SingleShapeModel' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var Property = require( 'AXON/Property' );
+  var SingleShapeModel = require( 'FRACTION_MATCHER/model/SingleShapeModel' );
 
   /**
    * @param gameModel

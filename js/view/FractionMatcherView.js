@@ -10,18 +10,18 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var Bounds2 = require( 'DOT/Bounds2' );
+  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
+  var HBox = require( 'SCENERY/nodes/HBox' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var ScreenView = require( 'JOIST/ScreenView' );
-  var Node = require( 'SCENERY/nodes/Node' );
   var LevelsContainerNode = require( 'FRACTION_MATCHER/view/LevelsContainerNode' );
+  var LevelSelectButtonsAndTitleNode = require( 'FRACTION_MATCHER/view/LevelSelectButtonsAndTitleNode' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
+  var ScreenView = require( 'JOIST/ScreenView' );
+  var Sound = require( 'VIBE/Sound' );
   var SoundToggleButton = require( 'SCENERY_PHET/buttons/SoundToggleButton' );
   var TimerToggleButton = require( 'SCENERY_PHET/buttons/TimerToggleButton' );
-  var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
-  var LevelSelectButtonsAndTitleNode = require( 'FRACTION_MATCHER/view/LevelSelectButtonsAndTitleNode' );
-  var HBox = require( 'SCENERY/nodes/HBox' );
-  var Sound = require( 'VIBE/Sound' );
 
   // constants
   var LAYOUT_BOUNDS = new Bounds2( 0, 0, 768, 504 );

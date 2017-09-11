@@ -12,13 +12,13 @@ define( function( require ) {
 
   // modules
   var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
-  var Screen = require( 'JOIST/Screen' );
   var FractionMatcherModel = require( 'FRACTION_MATCHER/model/FractionMatcherModel' );
   var FractionMatcherView = require( 'FRACTION_MATCHER/view/FractionMatcherView' );
+  var inherit = require( 'PHET_CORE/inherit' );
   var MixedNumbersConstants = require( 'FRACTION_MATCHER/model/MixedNumbersConstants' );
   var MixedNumbersHomeScreenIcon = require( 'FRACTION_MATCHER/view/MixedNumbersHomeScreenIcon' );
   var MixedNumbersNavigationBarIcon = require( 'FRACTION_MATCHER/view/MixedNumbersNavigationBarIcon' );
-  var inherit = require( 'PHET_CORE/inherit' );
+  var Screen = require( 'JOIST/Screen' );
 
   // strings
   var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );

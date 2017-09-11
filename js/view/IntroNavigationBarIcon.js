@@ -9,11 +9,11 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var Constants = require( 'FRACTION_MATCHER/model/Constants' );
   var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var ShapeNode = require( 'FRACTION_MATCHER/shapes/ShapeNode' );
-  var Constants = require( 'FRACTION_MATCHER/model/Constants' );
 
   /**
    * @constructor

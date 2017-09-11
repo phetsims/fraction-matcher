@@ -9,13 +9,13 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var FillType = require( 'FRACTION_MATCHER/model/FillType' );
   var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
+  var HBox = require( 'SCENERY/nodes/HBox' );
+  var HStrut = require( 'SCENERY/nodes/HStrut' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var HBox = require( 'SCENERY/nodes/HBox' );
-  var FillType = require( 'FRACTION_MATCHER/model/FillType' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var HStrut = require( 'SCENERY/nodes/HStrut' );
 
   function GraphicShape( options ) {
     options = _.extend( {

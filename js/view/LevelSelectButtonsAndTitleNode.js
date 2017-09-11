@@ -11,20 +11,20 @@ define( function( require ) {
 
   // modules
   var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var VBox = require( 'SCENERY/nodes/VBox' );
   var HBox = require( 'SCENERY/nodes/HBox' );
-  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  var ShapeNode = require( 'FRACTION_MATCHER/shapes/ShapeNode' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var LevelSelectionItemNode = require( 'VEGAS/LevelSelectionItemNode' );
   var HomeScreenView = require( 'JOIST/HomeScreenView' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var LevelSelectionItemNode = require( 'VEGAS/LevelSelectionItemNode' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var ShapeNode = require( 'FRACTION_MATCHER/shapes/ShapeNode' );
+  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  var Text = require( 'SCENERY/nodes/Text' );
+  var VBox = require( 'SCENERY/nodes/VBox' );
 
   // strings
+  var fractionsChooseYourLevelString = require( 'string!FRACTION_MATCHER/fractionsChooseYourLevel' );
   var levelNumberString = require( 'string!FRACTION_MATCHER/levelNumber' );
   var mixedNumbersChooseYourLevelString = require( 'string!FRACTION_MATCHER/mixedNumbersChooseYourLevel' );
-  var fractionsChooseYourLevelString = require( 'string!FRACTION_MATCHER/fractionsChooseYourLevel' );
 
   //constants
   var NUM_STARS_ON_BUTTON = 3; //number of stars on StartLevelButton

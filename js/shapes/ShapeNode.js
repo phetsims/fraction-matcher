@@ -10,11 +10,11 @@ define( function( require ) {
 
   // modules
   var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
+  var GraphicShape = require( 'FRACTION_MATCHER/shapes/GraphicShape' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var NumericShape = require( 'FRACTION_MATCHER/shapes/NumericShape' );
   var Pattern = require( 'FRACTION_MATCHER/shapes/Pattern' );
-  var GraphicShape = require( 'FRACTION_MATCHER/shapes/GraphicShape' );
 
   function ShapeNode() {
   }

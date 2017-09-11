@@ -9,9 +9,9 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
-  var Fraction = require( 'PHETCOMMON/model/Fraction' );
   var Constants = require( 'FRACTION_MATCHER/model/Constants' );
+  var Fraction = require( 'PHETCOMMON/model/Fraction' );
+  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var inherit = require( 'PHET_CORE/inherit' );
 
   function MixedNumbersConstants() {

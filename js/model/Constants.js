@@ -10,11 +10,11 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var FillType = require( 'FRACTION_MATCHER/model/FillType' );
   var Fraction = require( 'PHETCOMMON/model/Fraction' );
-  var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
+  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var FractionMatcherQueryParameters = require( 'FRACTION_MATCHER/FractionMatcherQueryParameters' );
+  var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
 
   //colors
   var COLORS = {

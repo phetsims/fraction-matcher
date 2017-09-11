@@ -9,11 +9,11 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var Emitter = require( 'AXON/Emitter' );
   var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Property = require( 'AXON/Property' );
-  var Emitter = require( 'AXON/Emitter' );
   var LevelModel = require( 'FRACTION_MATCHER/model/LevelModel' );
+  var Property = require( 'AXON/Property' );
   var Sound = require( 'VIBE/Sound' );
 
   // audio

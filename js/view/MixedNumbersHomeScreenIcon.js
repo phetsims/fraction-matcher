@@ -9,15 +9,15 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var Constants = require( 'FRACTION_MATCHER/model/Constants' );
   var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
+  var HBox = require( 'SCENERY/nodes/HBox' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var NumericShape = require( 'FRACTION_MATCHER/shapes/NumericShape' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var ShapeNode = require( 'FRACTION_MATCHER/shapes/ShapeNode' );
-  var NumericShape = require( 'FRACTION_MATCHER/shapes/NumericShape' );
-  var Constants = require( 'FRACTION_MATCHER/model/Constants' );
-  var HBox = require( 'SCENERY/nodes/HBox' );
   var Text = require( 'SCENERY/nodes/Text' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
   /**
    * @constructor

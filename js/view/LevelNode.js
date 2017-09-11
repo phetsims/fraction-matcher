@@ -10,41 +10,41 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var ComparisonChartNode = require( 'FRACTION_MATCHER/view/ComparisonChartNode' );
+  var FaceNode = require( 'SCENERY_PHET/FaceNode' );
+  var FaceWithPointsNode = require( 'SCENERY_PHET/FaceWithPointsNode' );
   var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var LevelCompletedNode = require( 'VEGAS/LevelCompletedNode' );
+  var LinearFunction = require( 'DOT/LinearFunction' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var NumericShape = require( 'FRACTION_MATCHER/shapes/NumericShape' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var Plane = require( 'SCENERY/nodes/Plane' );
+  var platform = require( 'PHET_CORE/platform' );
+  var RewardNode = require( 'VEGAS/RewardNode' );
+  var ShapeNode = require( 'FRACTION_MATCHER/shapes/ShapeNode' );
+  var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var Sound = require( 'VIBE/Sound' );
   var StarNode = require( 'SCENERY_PHET/StarNode' );
-  var FaceNode = require( 'SCENERY_PHET/FaceNode' );
-  var RewardNode = require( 'VEGAS/RewardNode' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var ShapeNode = require( 'FRACTION_MATCHER/shapes/ShapeNode' );
-  var TextPushButton = require( 'SUN/buttons/TextPushButton' );
-  var FaceWithPointsNode = require( 'SCENERY_PHET/FaceWithPointsNode' );
-  var ComparisonChartNode = require( 'FRACTION_MATCHER/view/ComparisonChartNode' );
-  var LevelCompletedNode = require( 'VEGAS/LevelCompletedNode' );
-  var Plane = require( 'SCENERY/nodes/Plane' );
-  var VBox = require( 'SCENERY/nodes/VBox' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  var Text = require( 'SCENERY/nodes/Text' );
+  var TextPushButton = require( 'SUN/buttons/TextPushButton' );
   var Util = require( 'DOT/Util' );
+  var VBox = require( 'SCENERY/nodes/VBox' );
   var Vector2 = require( 'DOT/Vector2' );
-  var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
-  var platform = require( 'PHET_CORE/platform' );
-  var LinearFunction = require( 'DOT/LinearFunction' );
-  var NumericShape = require( 'FRACTION_MATCHER/shapes/NumericShape' );
 
   // audio
   var cheerAudio = require( 'audio!VEGAS/cheer' );
 
   // strings
   var checkString = require( 'string!FRACTION_MATCHER/check' );
-  var okString = require( 'string!FRACTION_MATCHER/ok' );
-  var tryAgainString = require( 'string!FRACTION_MATCHER/tryAgain' );
   var levelNumberString = require( 'string!FRACTION_MATCHER/levelNumber' );
+  var okString = require( 'string!FRACTION_MATCHER/ok' );
   var scoreNumberString = require( 'string!FRACTION_MATCHER/scoreNumber' );
-  var timeNumberSecString = require( 'string!FRACTION_MATCHER/timeNumberSec' );
   var showAnswerString = require( 'string!FRACTION_MATCHER/showAnswer' );
+  var timeNumberSecString = require( 'string!FRACTION_MATCHER/timeNumberSec' );
+  var tryAgainString = require( 'string!FRACTION_MATCHER/tryAgain' );
 
   //Toggle this to true to make the rewards show after any shape comparison, for debugging
   var debugRewards = false;

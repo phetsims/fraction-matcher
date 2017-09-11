@@ -10,18 +10,18 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var BackButton = require( 'SCENERY_PHET/buttons/BackButton' );
   var FontAwesomeNode = require( 'SUN/FontAwesomeNode' );
   var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Image = require( 'SCENERY/nodes/Image' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var BackButton = require( 'SCENERY_PHET/buttons/BackButton' );
-  var RectangularPushButton = require( 'SUN/buttons/RectangularPushButton' );
+  var inherit = require( 'PHET_CORE/inherit' );
   var LevelNode = require( 'FRACTION_MATCHER/view/LevelNode' );
+  var Node = require( 'SCENERY/nodes/Node' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var RectangularPushButton = require( 'SUN/buttons/RectangularPushButton' );
+  var Text = require( 'SCENERY/nodes/Text' );
 
   // strings
   var myMatchesString = require( 'string!FRACTION_MATCHER/myMatches' );
