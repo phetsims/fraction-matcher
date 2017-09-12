@@ -59,9 +59,6 @@ define( function( require ) {
 
     this.stepEmitter = new Emitter();
 
-    Property.preventGetSet( this, 'currentLevel' );
-    Property.preventGetSet( this, 'isTimer' );
-
     this.constants.LEVEL_DESCRIPTION.forEach( function( levelDescription, index ) {
       self.levels.push( new LevelModel( self, levelDescription, index + 1 ) );
       self.highScores.push( new Property( 0 ) );

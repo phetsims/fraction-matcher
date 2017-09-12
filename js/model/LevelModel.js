@@ -36,16 +36,6 @@ define( function( require ) {
     this.canDragProperty = new Property( true );
     this.buttonStatusProperty = new Property( 'none' );// ['none','ok','check','tryAgain','showAnswer']
 
-    Property.preventGetSet( this, 'score' );
-    Property.preventGetSet( this, 'time' );
-    Property.preventGetSet( this, 'stepScore' );
-    Property.preventGetSet( this, 'answers' );
-    Property.preventGetSet( this, 'lastPair' );
-    Property.preventGetSet( this, 'lastChangedZone' );
-    Property.preventGetSet( this, 'shapes' );
-    Property.preventGetSet( this, 'canDrag' );
-    Property.preventGetSet( this, 'buttonStatus' );
-
     this.dropZone = []; //contains indexes of shapes, which are placed in current zone, -1 if empty
 
     for ( var i = 0; i < 2 * this.gameModel.MAXIMUM_PAIRS; i++ ) {
