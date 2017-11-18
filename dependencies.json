@@ -1,5 +1,5 @@
 {
-  "comment": "# fraction-matcher 1.1.7 Fri Nov 17 2017 12:05:09 GMT-0700 (MST)",
+  "comment": "# fraction-matcher 1.1.8-rc.1 Fri Nov 17 2017 18:48:17 GMT-0700 (MST)",
   "assert": {
     "sha": "7d27130a4d27da15aa7f8a21bbfb9245288c1b44",
     "branch": "HEAD"
@@ -14,19 +14,19 @@
   },
   "chipper": {
     "sha": "7a027af91e085143c7e137bffee40e66d524b811",
-    "branch": "fraction-matcher-1.1"
+    "branch": "HEAD"
   },
   "dot": {
     "sha": "da78031b6f080d20bc8346beaa1d37148188371e",
     "branch": "HEAD"
   },
   "fraction-matcher": {
-    "sha": "7590fbcad5850a88681d0631d9d50d0bd37a3151",
+    "sha": "bd94500c4428d8134802baa5ee8bee712558124e",
     "branch": "1.1"
   },
   "joist": {
     "sha": "e87f502c7d71271c37ac6de2bed1853d96249299",
-    "branch": "fraction-matcher-1.1"
+    "branch": "HEAD"
   },
   "kite": {
     "sha": "10ca8bf2b2712307ff528352de8451c0c8afe093",
