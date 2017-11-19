@@ -20,7 +20,7 @@ define( function( require ) {
   var fractionMatcherTitleString = require( 'string!FRACTION_MATCHER/fraction-matcher.title' );
 
   // constants
-  var tandem = Tandem.createRootTandem();
+  var tandem = Tandem.rootTandem;
 
   var simOptions = {
     credits: {
