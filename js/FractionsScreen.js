@@ -23,14 +23,14 @@ define( function( require ) {
   // strings
   var fractionsTitleString = require( 'string!FRACTION_MATCHER/fractionsTitle' );
 
-  function FractionsScreen( tandem ) {
+  function FractionsScreen( tandem, options ) {
 
-    var options = {
+    options = _.extend( {
       name: fractionsTitleString,
       homeScreenIcon: new IntroHomeScreenIcon(),
       navigationBarIcon: new IntroNavigationBarIcon(),
       tandem: tandem
-    };
+    }, options );
 
     Screen.call( this,
       function() { return new FractionMatcherModel( FractionMatcherView.LAYOUT_BOUNDS.width, FractionMatcherView.LAYOUT_BOUNDS.height, fractionsTitleString, new Constants(), false, false ); },
