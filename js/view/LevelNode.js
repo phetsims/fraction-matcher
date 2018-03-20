@@ -35,7 +35,7 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
 
   // audio
-  var cheerAudio = require( 'audio!VEGAS/cheer' );
+  var cheerAudio = require( 'audio!VEGAS/cheer.mp3' );
 
   // strings
   var checkString = require( 'string!FRACTION_MATCHER/check' );
