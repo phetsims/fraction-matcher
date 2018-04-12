@@ -11,16 +11,14 @@ define( function( require ) {
 
   // modules
   var BackButton = require( 'SCENERY_PHET/buttons/BackButton' );
-  var FontAwesomeNode = require( 'SUN/FontAwesomeNode' );
   var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var LevelNode = require( 'FRACTION_MATCHER/view/LevelNode' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var RectangularPushButton = require( 'SUN/buttons/RectangularPushButton' );
+  var RefreshButton = require( 'SCENERY_PHET/buttons/RefreshButton' );
   var Text = require( 'SCENERY/nodes/Text' );
 
   // strings
@@ -62,9 +60,8 @@ define( function( require ) {
     } );
     self.addChild( backButton );
 
-    var refreshButton = new RectangularPushButton( {
-      content: new FontAwesomeNode( 'refresh', { scale: 0.7 } ),
-      baseColor: PhetColorScheme.BUTTON_YELLOW,
+    var refreshButton = new RefreshButton( {
+      iconScale: 0.7,
       xMargin: 9,
       yMargin: 7,
       listener: function() {
