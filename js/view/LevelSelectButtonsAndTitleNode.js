@@ -14,7 +14,7 @@ define( function( require ) {
   var HBox = require( 'SCENERY/nodes/HBox' );
   var HomeScreenView = require( 'JOIST/HomeScreenView' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var LevelSelectionItemNodeDeprecated = require( 'VEGAS/LevelSelectionItemNodeDeprecated' );
+  var LevelSelectionItemNode = require( 'VEGAS/LevelSelectionItemNode' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var ShapeNode = require( 'FRACTION_MATCHER/shapes/ShapeNode' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
@@ -114,7 +114,7 @@ define( function( require ) {
     var hBoxChildren = [];
     shapes.forEach( function( shape, index ) {
       hBoxChildren.push(
-        new LevelSelectionItemNodeDeprecated(
+        new LevelSelectionItemNode(
           createButtonContent( shape, index ),
           NUM_STARS_ON_BUTTON,
           function() {
