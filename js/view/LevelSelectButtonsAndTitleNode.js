@@ -14,7 +14,7 @@ define( function( require ) {
   var HBox = require( 'SCENERY/nodes/HBox' );
   var HomeScreenView = require( 'JOIST/HomeScreenView' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var LevelSelectionItemNode = require( 'VEGAS/LevelSelectionItemNode' );
+  var LevelSelectionButton = require( 'VEGAS/LevelSelectionButton' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var ShapeNode = require( 'FRACTION_MATCHER/shapes/ShapeNode' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
@@ -43,13 +43,6 @@ define( function( require ) {
       } ),
       maxWidth: 618
     } ) );
-
-    var START_BUTTON_OPTIONS = {
-      buttonWidth: 90,
-      buttonHeight: 150,
-      backgroundColor: 'rgb( 242, 242, 242)',
-      highlightedBackgroundColor: 'rgb( 242, 242, 242)'
-    };
 
     var colors = model.constants.COLORS;
     var shapes = [
@@ -114,20 +107,21 @@ define( function( require ) {
     var hBoxChildren = [];
     shapes.forEach( function( shape, index ) {
       hBoxChildren.push(
-        new LevelSelectionItemNode(
-          createButtonContent( shape, index ),
-          NUM_STARS_ON_BUTTON,
-          function() {
-
+        new LevelSelectionButton( createButtonContent( shape, index ), model.highScores[ index ], {
+          scoreDisplayOptions: {
+            numberOfStars: NUM_STARS_ON_BUTTON,
+            perfectScore: model.MAX_POINTS_PER_GAME_LEVEL
+          },
+          buttonWidth: 90,
+          buttonHeight: 150,
+          baseColor: 'rgb(242, 242, 242)',
+          listener: function() {
             //Switch to the selected level, but only if the user was on the level selection screen, see #66
             if ( model.currentLevelProperty.get() === 0 ) {
               model.currentLevelProperty.set( index + 1 );
             }
-          },
-          model.highScores[ index ],
-          model.MAX_POINTS_PER_GAME_LEVEL,
-          START_BUTTON_OPTIONS
-        ) );
+          }
+        } ) );
 
       if ( index % BUTTONS_PER_LINE === BUTTONS_PER_LINE - 1 || index === shapes.length - 1 ) { //end of row
         vBoxChildren.push( new HBox( { resize: false, children: hBoxChildren, spacing: 45 } ) );
