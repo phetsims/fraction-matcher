@@ -487,7 +487,7 @@ define( function( require ) {
               new Plane( { fill: 'black', opacity: 0, pickable: true } ),
 
               //Show the dialog with scores
-              new LevelCompletedNode( this.model.levelNumber - 1, this.model.scoreProperty.value, 12, 3, this.model.gameModel.isTimerProperty.get(), completedTime, lastBestForThisLevel, newBestTime,
+              new LevelCompletedNode( this.model.levelNumber, this.model.scoreProperty.value, 12, 3, this.model.gameModel.isTimerProperty.get(), completedTime, lastBestForThisLevel, newBestTime,
                 function() {
                   var model = self.model;
                   model.gameModel.highScores[ model.levelNumber - 1 ].set( Math.max( model.gameModel.highScores[ model.levelNumber - 1 ].get(), model.scoreProperty.value ) );
