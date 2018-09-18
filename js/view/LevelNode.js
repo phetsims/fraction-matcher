@@ -34,7 +34,7 @@ define( function( require ) {
   var VBox = require( 'SCENERY/nodes/VBox' );
   var Vector2 = require( 'DOT/Vector2' );
 
-  // audio
+  // sounds
   var cheerAudio = require( 'sound!VEGAS/cheer.mp3' );
 
   // strings
@@ -49,7 +49,7 @@ define( function( require ) {
   //Toggle this to true to make the rewards show after any shape comparison, for debugging
   var debugRewards = false;
 
-  // audio
+  // sounds
   var cheerSound = new Sound( cheerAudio );
 
   /**

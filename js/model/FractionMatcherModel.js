@@ -16,7 +16,7 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
   var Sound = require( 'VIBE/Sound' );
 
-  // audio
+  // sounds
   var correctAudio = require( 'sound!VEGAS/ding.mp3' );
   var wrongAudio = require( 'sound!VEGAS/boing.mp3' );
 
