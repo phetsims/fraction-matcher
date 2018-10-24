@@ -11,13 +11,12 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var Constants = require( 'FRACTION_MATCHER/model/Constants' );
   var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
-  var FractionMatcherModel = require( 'FRACTION_MATCHER/model/FractionMatcherModel' );
-  var FractionMatcherView = require( 'FRACTION_MATCHER/view/FractionMatcherView' );
+  var FractionMatcherModel = require( 'FRACTIONS_COMMON/matcher/model/FractionMatcherModel' );
+  var FractionMatcherView = require( 'FRACTIONS_COMMON/matcher/view/FractionMatcherView' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var IntroHomeScreenIcon = require( 'FRACTION_MATCHER/view/IntroHomeScreenIcon' );
-  var IntroNavigationBarIcon = require( 'FRACTION_MATCHER/view/IntroNavigationBarIcon' );
+  var IntroHomeScreenIcon = require( 'FRACTIONS_COMMON/matcher/view/IntroHomeScreenIcon' );
+  var IntroNavigationBarIcon = require( 'FRACTIONS_COMMON/matcher/view/IntroNavigationBarIcon' );
   var Screen = require( 'JOIST/Screen' );
 
   // strings
@@ -33,7 +32,7 @@ define( function( require ) {
     }, options );
 
     Screen.call( this,
-      function() { return new FractionMatcherModel( FractionMatcherView.LAYOUT_BOUNDS.width, FractionMatcherView.LAYOUT_BOUNDS.height, fractionsTitleString, new Constants(), false, false ); },
+      function() { return new FractionMatcherModel( fractionsTitleString, false ); },
       function( model ) { return new FractionMatcherView( model ); },
       options );
   }

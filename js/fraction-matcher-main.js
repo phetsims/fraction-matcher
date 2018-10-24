@@ -10,8 +10,8 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var FractionsScreen = require( 'FRACTION_MATCHER/FractionsScreen' );
-  var MixedNumbersScreen = require( 'FRACTION_MATCHER/MixedNumbersScreen' );
+  var FractionsScreen = require( 'FRACTION_MATCHER/view/FractionsScreen' );
+  var MixedNumbersScreen = require( 'FRACTION_MATCHER/view/MixedNumbersScreen' );
   var Sim = require( 'JOIST/Sim' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
   var Tandem = require( 'TANDEM/Tandem' );

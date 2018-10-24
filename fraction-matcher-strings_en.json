@@ -7,35 +7,5 @@
   },
   "mixedNumbersTitle": {
     "value": "Mixed Numbers"
-  },
-  "levelNumber": {
-    "value": "Level {0}"
-  },
-  "scoreNumber": {
-    "value": "Score: {0}"
-  },
-  "myMatches": {
-    "value": "My Matches"
-  },
-  "check": {
-    "value": "Check"
-  },
-  "ok": {
-    "value": "OK"
-  },
-  "tryAgain": {
-    "value": "Try Again"
-  },
-  "showAnswer": {
-    "value": "Show Answer"
-  },
-  "timeNumberSec": {
-    "value": "Time: {0} sec"
-  },
-  "mixedNumbersChooseYourLevel": {
-    "value": "Mixed Numbers: Choose your level!"
-  },
-  "fractionsChooseYourLevel": {
-    "value": "Fractions: Choose your level!"
   }
 }
