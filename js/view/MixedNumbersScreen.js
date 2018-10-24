@@ -32,7 +32,7 @@ define( function( require ) {
     };
 
     Screen.call( this,
-      function() { return new FractionMatcherModel( mixedNumbersTitleString, true ); },
+      function() { return new FractionMatcherModel( true ); },
       function( model ) { return new FractionMatcherView( model ); },
       options );
   }
