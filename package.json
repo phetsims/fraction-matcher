@@ -12,6 +12,7 @@
   "phet": {
     "requirejsNamespace": "FRACTION_MATCHER",
     "phetLibs": [
+      "fractions-common",
       "vegas",
       "vibe"
     ],
