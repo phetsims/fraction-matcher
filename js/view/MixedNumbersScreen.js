@@ -11,33 +11,32 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
-  var FractionMatcherModel = require( 'FRACTIONS_COMMON/matcher/model/FractionMatcherModel' );
-  var FractionMatcherView = require( 'FRACTIONS_COMMON/matcher/view/FractionMatcherView' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var MixedNumbersHomeScreenIcon = require( 'FRACTIONS_COMMON/matcher/view/MixedNumbersHomeScreenIcon' );
-  var MixedNumbersNavigationBarIcon = require( 'FRACTIONS_COMMON/matcher/view/MixedNumbersNavigationBarIcon' );
-  var Screen = require( 'JOIST/Screen' );
+  const fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
+  const FractionMatcherModel = require( 'FRACTIONS_COMMON/matcher/model/FractionMatcherModel' );
+  const FractionMatcherView = require( 'FRACTIONS_COMMON/matcher/view/FractionMatcherView' );
+  const Screen = require( 'JOIST/Screen' );
 
   // strings
-  var mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
+  const mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
 
-  function MixedNumbersScreen( tandem ) {
+  class MixedNumbersScreen extends Screen {
+    /**
+     * @param {Tandem} tandem
+     * @param {Object} [options]
+     */
+    constructor( tandem, options ) {
+      options = _.extend( {
+        name: mixedNumbersTitleString,
+        homeScreenIcon: FractionMatcherView.createMixedHomeIcon(),
+        navigationBarIcon: FractionMatcherView.createMixedNavbarIcon(),
+        tandem: tandem
+      }, options );
 
-    var options = {
-      name: mixedNumbersTitleString,
-      homeScreenIcon: new MixedNumbersHomeScreenIcon(),
-      navigationBarIcon: new MixedNumbersNavigationBarIcon(),
-      tandem: tandem
-    };
-
-    Screen.call( this,
-      function() { return new FractionMatcherModel( true ); },
-      function( model ) { return new FractionMatcherView( model ); },
-      options );
+      super( () => new FractionMatcherModel( true ),
+             model => new FractionMatcherView( model ),
+             options );
+    }
   }
 
-  fractionMatcher.register( 'MixedNumbersScreen', MixedNumbersScreen );
-
-  return inherit( Screen, MixedNumbersScreen );
+  return fractionMatcher.register( 'MixedNumbersScreen', MixedNumbersScreen );
 } );

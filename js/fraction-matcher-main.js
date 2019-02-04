@@ -10,19 +10,19 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var FractionsScreen = require( 'FRACTION_MATCHER/view/FractionsScreen' );
-  var MixedNumbersScreen = require( 'FRACTION_MATCHER/view/MixedNumbersScreen' );
-  var Sim = require( 'JOIST/Sim' );
-  var SimLauncher = require( 'JOIST/SimLauncher' );
-  var Tandem = require( 'TANDEM/Tandem' );
+  const FractionsScreen = require( 'FRACTION_MATCHER/view/FractionsScreen' );
+  const MixedNumbersScreen = require( 'FRACTION_MATCHER/view/MixedNumbersScreen' );
+  const Sim = require( 'JOIST/Sim' );
+  const SimLauncher = require( 'JOIST/SimLauncher' );
+  const Tandem = require( 'TANDEM/Tandem' );
 
   // strings
-  var fractionMatcherTitleString = require( 'string!FRACTION_MATCHER/fraction-matcher.title' );
+  const fractionMatcherTitleString = require( 'string!FRACTION_MATCHER/fraction-matcher.title' );
 
   // constants
-  var tandem = Tandem.rootTandem;
+  const tandem = Tandem.rootTandem;
 
-  var simOptions = {
+  const simOptions = {
     credits: {
       leadDesign: 'Ariel Paul',
       softwareDevelopment: 'Sam Reid',
@@ -31,7 +31,7 @@ define( function( require ) {
     }
   };
 
-  SimLauncher.launch( function() {
+  SimLauncher.launch( () => {
     // create and start the sim
     new Sim( fractionMatcherTitleString, [
       new FractionsScreen( tandem.createTandem( 'fractionsScreen' ) ),
