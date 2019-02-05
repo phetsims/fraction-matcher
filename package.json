@@ -13,6 +13,7 @@
     "requirejsNamespace": "FRACTION_MATCHER",
     "phetLibs": [
       "fractions-common",
+      "twixt",
       "vegas",
       "vibe"
     ],
