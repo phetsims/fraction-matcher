@@ -1,7 +1,7 @@
 {
   "name": "fraction-matcher",
   "version": "1.2.0-dev.4",
-  "license": "GPL-3.0",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/phetsims/fraction-matcher.git"
