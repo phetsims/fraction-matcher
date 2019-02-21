@@ -11,9 +11,7 @@ define( function( require ) {
 
   // modules
   const FractionsScreen = require( 'FRACTION_MATCHER/view/FractionsScreen' );
-  const FractionsScreen2 = require( 'FRACTION_MATCHER/view/FractionsScreen2' );
   const MixedNumbersScreen = require( 'FRACTION_MATCHER/view/MixedNumbersScreen' );
-  const MixedNumbersScreen2 = require( 'FRACTION_MATCHER/view/MixedNumbersScreen2' );
   const Sim = require( 'JOIST/Sim' );
   const SimLauncher = require( 'JOIST/SimLauncher' );
   const Tandem = require( 'TANDEM/Tandem' );
@@ -37,9 +35,7 @@ define( function( require ) {
     // create and start the sim
     new Sim( fractionMatcherTitleString, [
       new FractionsScreen( tandem.createTandem( 'fractionsScreen' ) ),
-      new MixedNumbersScreen( tandem.createTandem( 'mixedNumbersScreen' ) ),
-      new FractionsScreen2( tandem.createTandem( 'fractionsScreen2' ) ),
-      new MixedNumbersScreen2( tandem.createTandem( 'mixedNumbersScreen2' ) )
+      new MixedNumbersScreen( tandem.createTandem( 'mixedNumbersScreen' ) )
     ], simOptions ).start();
   } );
 } );

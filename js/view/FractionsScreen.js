@@ -12,8 +12,8 @@ define( function( require ) {
 
   // modules
   const fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
-  const FractionMatcherModel = require( 'FRACTIONS_COMMON/matcher/model/FractionMatcherModel' );
-  const FractionMatcherView = require( 'FRACTIONS_COMMON/matcher/view/FractionMatcherView' );
+  const MatchingGameModel = require( 'FRACTIONS_COMMON/matching/model/MatchingGameModel' );
+  const MatchingGameScreenView = require( 'FRACTIONS_COMMON/matching/view/MatchingGameScreenView' );
   const Screen = require( 'JOIST/Screen' );
 
   // strings
@@ -27,13 +27,13 @@ define( function( require ) {
     constructor( tandem, options ) {
       options = _.extend( {
         name: fractionsTitleString,
-        homeScreenIcon: FractionMatcherView.createIntroHomeIcon(),
-        navigationBarIcon: FractionMatcherView.createIntroNavbarIcon(),
+        homeScreenIcon: MatchingGameScreenView.createIntroHomeIcon(),
+        navigationBarIcon: MatchingGameScreenView.createIntroNavbarIcon(),
         tandem: tandem
       }, options );
 
-      super( () => new FractionMatcherModel( false ),
-             model => new FractionMatcherView( model ),
+      super( () => new MatchingGameModel( false ),
+             model => new MatchingGameScreenView( model ),
              options );
     }
   }
