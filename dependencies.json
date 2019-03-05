@@ -1,11 +1,11 @@
 {
-  "comment": "# fraction-matcher 1.2.0-dev.9 Wed Feb 27 2019 15:16:06 GMT-0700 (Mountain Standard Time)",
+  "comment": "# fraction-matcher 1.2.0-dev.10 Tue Mar 05 2019 10:13:51 GMT-0700 (Mountain Standard Time)",
   "assert": {
     "sha": "d8a2e8992420327ff72a6fc4bb93ec76549ded0e",
     "branch": "master"
   },
   "axon": {
-    "sha": "66483a4a2297bd921a1afcc0fe52d2d284d906f9",
+    "sha": "67a5a28b0ccae45cd8f79b7bee5adc62c78440cd",
     "branch": "master"
   },
   "brand": {
@@ -13,35 +13,35 @@
     "branch": "master"
   },
   "chipper": {
-    "sha": "d991dc2c882c1c4fef1918790ab9bf46e9b3588a",
+    "sha": "562fd32bf0cec942fbd253e1630e1c27d578fae0",
     "branch": "master"
   },
   "dot": {
-    "sha": "6d2cd0cdbd272cffac72973fc747ebc92adade16",
+    "sha": "4d9194dca0c51d478289d00438300a713763a0fc",
     "branch": "master"
   },
   "fraction-matcher": {
-    "sha": "7a094c6a6361a978b3a3af0f0013966a59bffe2b",
+    "sha": "07f564a8aa276018335c015e29e94a75ad25a1d7",
     "branch": "master"
   },
   "fractions-common": {
-    "sha": "cb0607bcefe4a3c80cc1e50acbc5582defcd7805",
+    "sha": "898f5a129b0d53ddbf9e25419033068e75c1486b",
     "branch": "master"
   },
   "joist": {
-    "sha": "aa31c4ff95ccffdb67abe7bf6d75e86069cabcc4",
+    "sha": "a7080dd640113f882507009fdc103ab123893d4f",
     "branch": "master"
   },
   "kite": {
-    "sha": "f1ee7d3df61b86d38cf0f01df7adb85bb36c9704",
+    "sha": "a0b91252bf1f1a6038075219190f888e29e62b5c",
     "branch": "master"
   },
   "phet-core": {
-    "sha": "1b59320b815f153109e012c6ebb83f17f1ab8a24",
+    "sha": "79f337d24887ba2edc14b204eb40133d6d30aca2",
     "branch": "master"
   },
   "phet-io": {
-    "sha": "f59e11b4047ad0b347124d367709df90e2b53456",
+    "sha": "40736eeab9d2fd8a477b425b6dd8445d05ce08dd",
     "branch": "master"
   },
   "phet-io-wrapper-classroom-activity": {
@@ -57,7 +57,7 @@
     "branch": "master"
   },
   "phet-io-wrappers": {
-    "sha": "c6932dcbc8d897d0124f0d141e4e4cef97b82b01",
+    "sha": "77bb43e04e8b747d7cdff815fac5e091badeaf24",
     "branch": "master"
   },
   "phetcommon": {
@@ -69,11 +69,11 @@
     "branch": "master"
   },
   "scenery": {
-    "sha": "efa4002f47e19d585d8b7a89c9f1b4ed8ea3959d",
+    "sha": "1d53b0e16ad9fc898c0e6ccabc3d2e20bd01e502",
     "branch": "master"
   },
   "scenery-phet": {
-    "sha": "47ccf9718180164f604d405a33e83430f690cc4c",
+    "sha": "cfba10942940d943b90647b79ba3ec5001cbdaab",
     "branch": "master"
   },
   "sherpa": {
@@ -81,15 +81,15 @@
     "branch": "master"
   },
   "sun": {
-    "sha": "4654f4803226c54ac9d00fe57f70fe6d74a21ea3",
+    "sha": "0baaac9b333b8f0ebd8cb0d80e66f7209f210541",
     "branch": "master"
   },
   "tambo": {
-    "sha": "06d155079730ce3a204ec6f9724b78e8623ae158",
+    "sha": "755fcadc0ae327c3be77d6696914564606f06c5b",
     "branch": "master"
   },
   "tandem": {
-    "sha": "ec4fdf20ce0a296ea9fcc119fc8f229a2f4a0e2d",
+    "sha": "a5799caeb25900add70adb9ca28b399af59040b0",
     "branch": "master"
   },
   "twixt": {
