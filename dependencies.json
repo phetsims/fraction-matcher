@@ -1,5 +1,5 @@
 {
-  "comment": "# fraction-matcher 1.1.14 Wed Apr 17 2019 13:39:59 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# fraction-matcher 1.1.15-rc.1 Thu Apr 18 2019 09:32:11 GMT-0800 (Alaskan Daylight Time)",
   "assert": {
     "sha": "7d27130a4d27da15aa7f8a21bbfb9245288c1b44",
     "branch": "HEAD"
@@ -14,14 +14,14 @@
   },
   "chipper": {
     "sha": "d98c4b30044a9ebab909c6dabb5aab0da6d2ec5d",
-    "branch": "fraction-matcher-1.1"
+    "branch": "HEAD"
   },
   "dot": {
     "sha": "da78031b6f080d20bc8346beaa1d37148188371e",
     "branch": "HEAD"
   },
   "fraction-matcher": {
-    "sha": "01a774f16607a7eef019cd7c8a79527ef37d18b9",
+    "sha": "3015c85cec3c7f5ed010ecf87120d8a2b4547403",
     "branch": "1.1"
   },
   "joist": {
