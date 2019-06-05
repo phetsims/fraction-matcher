@@ -1,95 +1,95 @@
 {
-  "comment": "# fraction-matcher 1.2.0-rc.0 Wed Jun 05 2019 14:21:35 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# fraction-matcher 1.2.0-rc.1 Wed Jun 05 2019 14:22:32 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "d8a2e8992420327ff72a6fc4bb93ec76549ded0e",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "axon": {
     "sha": "656e24d23d68bfc28739d97ad0de6ac7000bcf12",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "brand": {
     "sha": "40dd405ec950d10e15e957cbda3d97362e925bef",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "chipper": {
     "sha": "0a0249adbf6d8fb8e717cb35a28574424e5fccd2",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "dot": {
     "sha": "2074cc6c441c8438af4256231c9b092bbef4d3e5",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "fraction-matcher": {
-    "sha": "9ae5917d08c85efd659bc151e6bad1623f08186d",
+    "sha": "18ff6b7ff0d6778ad3f0bc3c4f6de0888faa598f",
     "branch": "1.2"
   },
   "fractions-common": {
     "sha": "d03be58d564a5a48bf7412ad88f50909c1406c81",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "joist": {
     "sha": "159f6b671e2f3700fbcc649850d6bd8ce5547988",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "kite": {
     "sha": "4ec082deba698c64bba483ba6cfb9a6adcf70150",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "phet-core": {
     "sha": "9c28f8db3681e85a4e5779b758bb34e1a6d05c10",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "phet-io": {
     "sha": "362a5e485cadf9c562b4627e1936203b6df6b29c",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "phet-io-wrappers": {
     "sha": "5ea16f46d6311b76ac8c3c780b4007baa465ceec",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "phetcommon": {
     "sha": "ea3bd75fec8a3ba5afe2f6df23cf4be18d767cec",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "phetmarks": {
     "sha": "01cbbd71ad4ca7d29bf68de518e0d3215acf3528",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "query-string-machine": {
     "sha": "922f2aa3cf7c3250abe70ef949a4ce539530f902",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "scenery": {
     "sha": "6a58f5060a42e78fa86e218b1ac130318dbad6c8",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "scenery-phet": {
     "sha": "96020107486f51e3ee435abf9e972faec3e95ac7",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "sherpa": {
     "sha": "2a32165bfe80cf50a85af442ff7073333418bd70",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "sun": {
     "sha": "7f26ea56b155c26d3154cfe62acf89031c51479c",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "tambo": {
     "sha": "c41965192cce13537777af17f98d3f3e37b5ed2e",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "tandem": {
     "sha": "c2a8917242dba2c42abc1ac7e0e65a7e543c2f75",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "twixt": {
     "sha": "bbffb639dd798fccd395d1d41c4919396a22172a",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "vegas": {
     "sha": "7003185382eb15209c6ce3053315ca069f573428",
-    "branch": "master"
+    "branch": "HEAD"
   }
 }
