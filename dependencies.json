@@ -1,5 +1,5 @@
 {
-  "comment": "# fraction-matcher 1.2.0-rc.1 Wed Jun 05 2019 14:22:32 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# fraction-matcher 1.2.0-rc.1 Tue Jun 18 2019 17:34:23 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "d8a2e8992420327ff72a6fc4bb93ec76549ded0e",
     "branch": "HEAD"
@@ -21,12 +21,12 @@
     "branch": "HEAD"
   },
   "fraction-matcher": {
-    "sha": "18ff6b7ff0d6778ad3f0bc3c4f6de0888faa598f",
+    "sha": "d0ff05daf247d562203f89103e281bf7daf47027",
     "branch": "1.2"
   },
   "fractions-common": {
-    "sha": "d03be58d564a5a48bf7412ad88f50909c1406c81",
-    "branch": "HEAD"
+    "sha": "f58356a2c3f36497cbc368f26f372bcf8340366f",
+    "branch": "fraction-matcher-1.2"
   },
   "joist": {
     "sha": "159f6b671e2f3700fbcc649850d6bd8ce5547988",
