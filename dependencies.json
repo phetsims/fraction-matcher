@@ -1,5 +1,5 @@
 {
-  "comment": "# fraction-matcher 1.2.0-rc.2 Thu Aug 15 2019 01:55:09 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# fraction-matcher 1.2.0-rc.2 Mon Aug 19 2019 13:40:40 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "d8a2e8992420327ff72a6fc4bb93ec76549ded0e",
     "branch": "HEAD"
@@ -21,16 +21,16 @@
     "branch": "HEAD"
   },
   "fraction-matcher": {
-    "sha": "cf6c7a43d26c0fba8f1e35c2a83415fa5436d238",
+    "sha": "d7cd3885c8567ac845dacd038f32c8c54c5596e5",
     "branch": "1.2"
   },
   "fractions-common": {
     "sha": "bb2f764c56701ee7e7306e4baf32c014eb9ad489",
-    "branch": "fraction-matcher-1.2"
+    "branch": "HEAD"
   },
   "joist": {
-    "sha": "159f6b671e2f3700fbcc649850d6bd8ce5547988",
-    "branch": "HEAD"
+    "sha": "7957cc1921d9bd4172f72135a72af8b2fe7b18bf",
+    "branch": "fraction-matcher-1.2"
   },
   "kite": {
     "sha": "4ec082deba698c64bba483ba6cfb9a6adcf70150",
@@ -61,12 +61,12 @@
     "branch": "HEAD"
   },
   "scenery": {
-    "sha": "6a58f5060a42e78fa86e218b1ac130318dbad6c8",
-    "branch": "HEAD"
+    "sha": "00bd1dae1659146bdfd42bcf31fa2ed133d8ec5b",
+    "branch": "fraction-matcher-1.2"
   },
   "scenery-phet": {
-    "sha": "96020107486f51e3ee435abf9e972faec3e95ac7",
-    "branch": "HEAD"
+    "sha": "9bf36af763e0160632ca1792caa0fda2cda44104",
+    "branch": "fraction-matcher-1.2"
   },
   "sherpa": {
     "sha": "2a32165bfe80cf50a85af442ff7073333418bd70",
