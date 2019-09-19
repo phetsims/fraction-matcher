@@ -6,7 +6,7 @@
  * @author Anton Ulyanov
  * @author Andrew Zelenkov (Mlearner)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules

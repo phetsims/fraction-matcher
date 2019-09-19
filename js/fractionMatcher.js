@@ -3,7 +3,7 @@
 /**
  * Creates the namespace for this simulation.
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
