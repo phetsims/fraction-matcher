@@ -1,5 +1,5 @@
 {
-  "comment": "# fraction-matcher 1.2.0-rc.3 Mon Sep 09 2019 12:00:20 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# fraction-matcher 1.2.0-rc.3 Mon Sep 23 2019 15:34:33 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "d8a2e8992420327ff72a6fc4bb93ec76549ded0e",
     "branch": "HEAD"
@@ -21,7 +21,7 @@
     "branch": "HEAD"
   },
   "fraction-matcher": {
-    "sha": "be8f9aba8cd405c647d473acdc295bc6c57114bd",
+    "sha": "526a9cfd6dd2d331bd65e952fbbc3afd0a561fd4",
     "branch": "1.2"
   },
   "fractions-common": {
@@ -30,7 +30,7 @@
   },
   "joist": {
     "sha": "e010166c78f4903c048a095d7c6c9115deeefeed",
-    "branch": "fraction-matcher-1.2"
+    "branch": "HEAD"
   },
   "kite": {
     "sha": "4ec082deba698c64bba483ba6cfb9a6adcf70150",
@@ -61,8 +61,8 @@
     "branch": "HEAD"
   },
   "scenery": {
-    "sha": "00bd1dae1659146bdfd42bcf31fa2ed133d8ec5b",
-    "branch": "HEAD"
+    "sha": "bbe7c3da66fd5e014f7e096384dfdf2ae6018e0c",
+    "branch": "fraction-matcher-1.2"
   },
   "scenery-phet": {
     "sha": "9bf36af763e0160632ca1792caa0fda2cda44104",
