@@ -14,6 +14,7 @@ define( require => {
   const fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
   const MatchingGameModel = require( 'FRACTIONS_COMMON/matching/model/MatchingGameModel' );
   const MatchingGameScreenView = require( 'FRACTIONS_COMMON/matching/view/MatchingGameScreenView' );
+  const merge = require( 'PHET_CORE/merge' );
   const Screen = require( 'JOIST/Screen' );
 
   // strings
@@ -25,7 +26,7 @@ define( require => {
      * @param {Object} [options]
      */
     constructor( tandem, options ) {
-      options = _.extend( {
+      options = merge( {
         name: fractionsTitleString,
         homeScreenIcon: MatchingGameScreenView.createIntroHomeIcon(),
         navigationBarIcon: MatchingGameScreenView.createIntroNavbarIcon(),
