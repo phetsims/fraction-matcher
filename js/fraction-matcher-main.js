@@ -28,8 +28,7 @@ define( require => {
       softwareDevelopment: 'Sam Reid',
       team: 'Michael Dubson, Karina K. R. Hensberry, Patricia Loeblein, Kathy Perkins, Noah Podolefsky',
       thanks: 'Thanks to Mobile Learner Labs for working with the PhET development team to convert this simulation to HTML5.'
-    },
-    supportsSound: true
+    }
   };
 
   SimLauncher.launch( () => {
