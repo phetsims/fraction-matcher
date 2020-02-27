@@ -7,37 +7,34 @@
  * @author Andrew Zelenkov (Mlearner)
  * @author Sam Reid (PhET Interactive Simulations)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
-  const MatchingGameModel = require( 'FRACTIONS_COMMON/matching/model/MatchingGameModel' );
-  const MatchingGameScreenView = require( 'FRACTIONS_COMMON/matching/view/MatchingGameScreenView' );
-  const merge = require( 'PHET_CORE/merge' );
-  const Screen = require( 'JOIST/Screen' );
+import MatchingGameModel from '../../../fractions-common/js/matching/model/MatchingGameModel.js';
+import MatchingGameScreenView from '../../../fractions-common/js/matching/view/MatchingGameScreenView.js';
+import Screen from '../../../joist/js/Screen.js';
+import merge from '../../../phet-core/js/merge.js';
+import fractionMatcherStrings from '../fraction-matcher-strings.js';
+import fractionMatcher from '../fractionMatcher.js';
 
-  // strings
-  const fractionsTitleString = require( 'string!FRACTION_MATCHER/fractionsTitle' );
+const fractionsTitleString = fractionMatcherStrings.fractionsTitle;
 
-  class FractionsScreen extends Screen {
-    /**
-     * @param {Tandem} tandem
-     * @param {Object} [options]
-     */
-    constructor( tandem, options ) {
-      options = merge( {
-        name: fractionsTitleString,
-        homeScreenIcon: MatchingGameScreenView.createIntroHomeIcon(),
-        navigationBarIcon: MatchingGameScreenView.createIntroNavbarIcon(),
-        tandem: tandem
-      }, options );
+class FractionsScreen extends Screen {
+  /**
+   * @param {Tandem} tandem
+   * @param {Object} [options]
+   */
+  constructor( tandem, options ) {
+    options = merge( {
+      name: fractionsTitleString,
+      homeScreenIcon: MatchingGameScreenView.createIntroHomeIcon(),
+      navigationBarIcon: MatchingGameScreenView.createIntroNavbarIcon(),
+      tandem: tandem
+    }, options );
 
-      super( () => new MatchingGameModel( false ),
-             model => new MatchingGameScreenView( model ),
-             options );
-    }
+    super( () => new MatchingGameModel( false ),
+      model => new MatchingGameScreenView( model ),
+      options );
   }
+}
 
-  return fractionMatcher.register( 'FractionsScreen', FractionsScreen );
-} );
+fractionMatcher.register( 'FractionsScreen', FractionsScreen );
+export default FractionsScreen;

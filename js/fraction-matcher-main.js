@@ -6,36 +6,32 @@
  * @author Anton Ulyanov
  * @author Andrew Zelenkov (Mlearner)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const FractionsScreen = require( 'FRACTION_MATCHER/view/FractionsScreen' );
-  const MixedNumbersScreen = require( 'FRACTION_MATCHER/view/MixedNumbersScreen' );
-  const Sim = require( 'JOIST/Sim' );
-  const SimLauncher = require( 'JOIST/SimLauncher' );
-  const Tandem = require( 'TANDEM/Tandem' );
+import Sim from '../../joist/js/Sim.js';
+import SimLauncher from '../../joist/js/SimLauncher.js';
+import Tandem from '../../tandem/js/Tandem.js';
+import fractionMatcherStrings from './fraction-matcher-strings.js';
+import FractionsScreen from './view/FractionsScreen.js';
+import MixedNumbersScreen from './view/MixedNumbersScreen.js';
 
-  // strings
-  const fractionMatcherTitleString = require( 'string!FRACTION_MATCHER/fraction-matcher.title' );
+const fractionMatcherTitleString = fractionMatcherStrings[ 'fraction-matcher' ].title;
 
-  // constants
-  const tandem = Tandem.ROOT;
+// constants
+const tandem = Tandem.ROOT;
 
-  const simOptions = {
-    credits: {
-      leadDesign: 'Ariel Paul',
-      softwareDevelopment: 'Sam Reid',
-      team: 'Michael Dubson, Karina K. R. Hensberry, Patricia Loeblein, Kathy Perkins, Noah Podolefsky',
-      thanks: 'Thanks to Mobile Learner Labs for working with the PhET development team to convert this simulation to HTML5.'
-    }
-  };
+const simOptions = {
+  credits: {
+    leadDesign: 'Ariel Paul',
+    softwareDevelopment: 'Sam Reid',
+    team: 'Michael Dubson, Karina K. R. Hensberry, Patricia Loeblein, Kathy Perkins, Noah Podolefsky',
+    thanks: 'Thanks to Mobile Learner Labs for working with the PhET development team to convert this simulation to HTML5.'
+  }
+};
 
-  SimLauncher.launch( () => {
-    // create and start the sim
-    new Sim( fractionMatcherTitleString, [
-      new FractionsScreen( tandem.createTandem( 'fractionsScreen' ) ),
-      new MixedNumbersScreen( tandem.createTandem( 'mixedNumbersScreen' ) )
-    ], simOptions ).start();
-  } );
+SimLauncher.launch( () => {
+  // create and start the sim
+  new Sim( fractionMatcherTitleString, [
+    new FractionsScreen( tandem.createTandem( 'fractionsScreen' ) ),
+    new MixedNumbersScreen( tandem.createTandem( 'mixedNumbersScreen' ) )
+  ], simOptions ).start();
 } );

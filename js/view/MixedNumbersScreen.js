@@ -7,37 +7,34 @@
  * @author Andrew Zelenkov (Mlearner)
  * @author Sam Reid (PhET Interactive Simulations)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const fractionMatcher = require( 'FRACTION_MATCHER/fractionMatcher' );
-  const MatchingGameModel = require( 'FRACTIONS_COMMON/matching/model/MatchingGameModel' );
-  const MatchingGameScreenView = require( 'FRACTIONS_COMMON/matching/view/MatchingGameScreenView' );
-  const merge = require( 'PHET_CORE/merge' );
-  const Screen = require( 'JOIST/Screen' );
+import MatchingGameModel from '../../../fractions-common/js/matching/model/MatchingGameModel.js';
+import MatchingGameScreenView from '../../../fractions-common/js/matching/view/MatchingGameScreenView.js';
+import Screen from '../../../joist/js/Screen.js';
+import merge from '../../../phet-core/js/merge.js';
+import fractionMatcherStrings from '../fraction-matcher-strings.js';
+import fractionMatcher from '../fractionMatcher.js';
 
-  // strings
-  const mixedNumbersTitleString = require( 'string!FRACTION_MATCHER/mixedNumbersTitle' );
+const mixedNumbersTitleString = fractionMatcherStrings.mixedNumbersTitle;
 
-  class MixedNumbersScreen extends Screen {
-    /**
-     * @param {Tandem} tandem
-     * @param {Object} [options]
-     */
-    constructor( tandem, options ) {
-      options = merge( {
-        name: mixedNumbersTitleString,
-        homeScreenIcon: MatchingGameScreenView.createMixedHomeIcon(),
-        navigationBarIcon: MatchingGameScreenView.createMixedNavbarIcon(),
-        tandem: tandem
-      }, options );
+class MixedNumbersScreen extends Screen {
+  /**
+   * @param {Tandem} tandem
+   * @param {Object} [options]
+   */
+  constructor( tandem, options ) {
+    options = merge( {
+      name: mixedNumbersTitleString,
+      homeScreenIcon: MatchingGameScreenView.createMixedHomeIcon(),
+      navigationBarIcon: MatchingGameScreenView.createMixedNavbarIcon(),
+      tandem: tandem
+    }, options );
 
-      super( () => new MatchingGameModel( true ),
-             model => new MatchingGameScreenView( model ),
-             options );
-    }
+    super( () => new MatchingGameModel( true ),
+      model => new MatchingGameScreenView( model ),
+      options );
   }
+}
 
-  return fractionMatcher.register( 'MixedNumbersScreen', MixedNumbersScreen );
-} );
+fractionMatcher.register( 'MixedNumbersScreen', MixedNumbersScreen );
+export default MixedNumbersScreen;
