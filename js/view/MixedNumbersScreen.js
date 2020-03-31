@@ -12,7 +12,7 @@ import MatchingGameModel from '../../../fractions-common/js/matching/model/Match
 import MatchingGameScreenView from '../../../fractions-common/js/matching/view/MatchingGameScreenView.js';
 import Screen from '../../../joist/js/Screen.js';
 import merge from '../../../phet-core/js/merge.js';
-import fractionMatcherStrings from '../fraction-matcher-strings.js';
+import fractionMatcherStrings from '../fractionMatcherStrings.js';
 import fractionMatcher from '../fractionMatcher.js';
 
 const mixedNumbersTitleString = fractionMatcherStrings.mixedNumbersTitle;

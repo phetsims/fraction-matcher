@@ -10,7 +10,7 @@
 import Sim from '../../joist/js/Sim.js';
 import SimLauncher from '../../joist/js/SimLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
-import fractionMatcherStrings from './fraction-matcher-strings.js';
+import fractionMatcherStrings from './fractionMatcherStrings.js';
 import FractionsScreen from './view/FractionsScreen.js';
 import MixedNumbersScreen from './view/MixedNumbersScreen.js';
 
