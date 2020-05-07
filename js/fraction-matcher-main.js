@@ -8,7 +8,7 @@
  */
 
 import Sim from '../../joist/js/Sim.js';
-import SimLauncher from '../../joist/js/SimLauncher.js';
+import simLauncher from '../../joist/js/simLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
 import fractionMatcherStrings from './fractionMatcherStrings.js';
 import FractionsScreen from './view/FractionsScreen.js';
@@ -28,7 +28,7 @@ const simOptions = {
   }
 };
 
-SimLauncher.launch( () => {
+simLauncher.launch( () => {
   // create and start the sim
   new Sim( fractionMatcherTitleString, [
     new FractionsScreen( tandem.createTandem( 'fractionsScreen' ) ),
