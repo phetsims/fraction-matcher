@@ -11,9 +11,10 @@
 import MatchingGameModel from '../../../fractions-common/js/matching/model/MatchingGameModel.js';
 import MatchingGameScreenView from '../../../fractions-common/js/matching/view/MatchingGameScreenView.js';
 import Screen from '../../../joist/js/Screen.js';
+import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import merge from '../../../phet-core/js/merge.js';
-import fractionMatcherStrings from '../fractionMatcherStrings.js';
 import fractionMatcher from '../fractionMatcher.js';
+import fractionMatcherStrings from '../fractionMatcherStrings.js';
 
 const mixedNumbersTitleString = fractionMatcherStrings.mixedNumbersTitle;
 
@@ -25,8 +26,14 @@ class MixedNumbersScreen extends Screen {
   constructor( tandem, options ) {
     options = merge( {
       name: mixedNumbersTitleString,
-      homeScreenIcon: MatchingGameScreenView.createMixedHomeIcon(),
-      navigationBarIcon: MatchingGameScreenView.createMixedNavbarIcon(),
+      homeScreenIcon: new ScreenIcon( MatchingGameScreenView.createMixedHomeIcon(), {
+        maxIconWidthProportion: 1,
+        maxIconHeightProportion: 1
+      } ),
+      navigationBarIcon: new ScreenIcon( MatchingGameScreenView.createMixedNavbarIcon(), {
+        maxIconWidthProportion: 1,
+        maxIconHeightProportion: 1
+      } ),
       tandem: tandem
     }, options );
 
