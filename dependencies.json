@@ -21,7 +21,7 @@
     "branch": "HEAD"
   },
   "fraction-matcher": {
-    "sha": "ff280cd8938d826a8aea360ba93b076122f09123",
+    "sha": "8594359fdcf3ddd4b3581c73841820e582d1d497",
     "branch": "1.2"
   },
   "fractions-common": {
@@ -61,7 +61,7 @@
     "branch": "HEAD"
   },
   "scenery": {
-    "sha": "4b6649ae6dc88c2beb887a3b473d554fe468920d",
+    "sha": "d07669d0fd9b3e3927856dedb9d9d35f0081c5d3",
     "branch": "fraction-matcher-1.2"
   },
   "scenery-phet": {
