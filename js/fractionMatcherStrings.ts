@@ -3,11 +3,19 @@
 /**
  * Auto-generated from modulify, DO NOT manually modify.
  */
-
+/* eslint-disable */
 import getStringModule from '../../chipper/js/getStringModule.js';
 import fractionMatcher from './fractionMatcher.js';
 
-const fractionMatcherStrings = getStringModule( 'FRACTION_MATCHER' );
+type StringsType = {
+  'fraction-matcher': {
+    'title': string
+  },
+  'fractionsTitle': string,
+  'mixedNumbersTitle': string
+};
+
+const fractionMatcherStrings = getStringModule( 'FRACTION_MATCHER' ) as StringsType;
 
 fractionMatcher.register( 'fractionMatcherStrings', fractionMatcherStrings );
 
