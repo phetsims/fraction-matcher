@@ -9,10 +9,10 @@ import fractionMatcher from './fractionMatcher.js';
 
 type StringsType = {
   'fraction-matcher': {
-    'title': string
-  },
-  'fractionsTitle': string,
-  'mixedNumbersTitle': string
+    'title': string;
+  };
+  'fractionsTitle': string;
+  'mixedNumbersTitle': string;
 };
 
 const fractionMatcherStrings = getStringModule( 'FRACTION_MATCHER' ) as StringsType;
