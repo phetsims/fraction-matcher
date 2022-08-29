@@ -11,12 +11,12 @@ import fractionMatcher from './fractionMatcher.js';
 type StringsType = {
   'fraction-matcher': {
     'title': string;
-    'titleProperty': TReadOnlyProperty<string>;
+    'titleStringProperty': TReadOnlyProperty<string>;
   };
   'fractionsTitle': string;
-  'fractionsTitleProperty': TReadOnlyProperty<string>;
+  'fractionsTitleStringProperty': TReadOnlyProperty<string>;
   'mixedNumbersTitle': string;
-  'mixedNumbersTitleProperty': TReadOnlyProperty<string>;
+  'mixedNumbersTitleStringProperty': TReadOnlyProperty<string>;
 };
 
 const fractionMatcherStrings = getStringModule( 'FRACTION_MATCHER' ) as StringsType;
