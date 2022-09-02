@@ -14,7 +14,7 @@ import fractionMatcherStrings from './fractionMatcherStrings.js';
 import FractionsScreen from './view/FractionsScreen.js';
 import MixedNumbersScreen from './view/MixedNumbersScreen.js';
 
-const fractionMatcherTitleString = fractionMatcherStrings[ 'fraction-matcher' ].title;
+const fractionMatcherTitleStringProperty = fractionMatcherStrings[ 'fraction-matcher' ].titleStringProperty;
 
 // constants
 const tandem = Tandem.ROOT;
@@ -30,7 +30,7 @@ const simOptions = {
 
 simLauncher.launch( () => {
   // create and start the sim
-  new Sim( fractionMatcherTitleString, [
+  new Sim( fractionMatcherTitleStringProperty, [
     new FractionsScreen( tandem.createTandem( 'fractionsScreen' ) ),
     new MixedNumbersScreen( tandem.createTandem( 'mixedNumbersScreen' ) )
   ], simOptions ).start();
