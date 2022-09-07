@@ -14,9 +14,9 @@ import Screen from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import merge from '../../../phet-core/js/merge.js';
 import fractionMatcher from '../fractionMatcher.js';
-import fractionMatcherStrings from '../fractionMatcherStrings.js';
+import FractionMatcherStrings from '../FractionMatcherStrings.js';
 
-const mixedNumbersTitleString = fractionMatcherStrings.mixedNumbersTitle;
+const mixedNumbersTitleString = FractionMatcherStrings.mixedNumbersTitle;
 
 class MixedNumbersScreen extends Screen {
   /**

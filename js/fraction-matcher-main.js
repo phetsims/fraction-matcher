@@ -10,11 +10,11 @@
 import Sim from '../../joist/js/Sim.js';
 import simLauncher from '../../joist/js/simLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
-import fractionMatcherStrings from './fractionMatcherStrings.js';
+import FractionMatcherStrings from './FractionMatcherStrings.js';
 import FractionsScreen from './view/FractionsScreen.js';
 import MixedNumbersScreen from './view/MixedNumbersScreen.js';
 
-const fractionMatcherTitleStringProperty = fractionMatcherStrings[ 'fraction-matcher' ].titleStringProperty;
+const fractionMatcherTitleStringProperty = FractionMatcherStrings[ 'fraction-matcher' ].titleStringProperty;
 
 // constants
 const tandem = Tandem.ROOT;

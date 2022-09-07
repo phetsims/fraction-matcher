@@ -19,8 +19,8 @@ type StringsType = {
   'mixedNumbersTitleStringProperty': TReadOnlyProperty<string>;
 };
 
-const fractionMatcherStrings = getStringModule( 'FRACTION_MATCHER' ) as StringsType;
+const FractionMatcherStrings = getStringModule( 'FRACTION_MATCHER' ) as StringsType;
 
-fractionMatcher.register( 'fractionMatcherStrings', fractionMatcherStrings );
+fractionMatcher.register( 'FractionMatcherStrings', FractionMatcherStrings );
 
-export default fractionMatcherStrings;
+export default FractionMatcherStrings;
