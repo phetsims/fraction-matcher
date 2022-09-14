@@ -16,8 +16,6 @@ import merge from '../../../phet-core/js/merge.js';
 import fractionMatcher from '../fractionMatcher.js';
 import FractionMatcherStrings from '../FractionMatcherStrings.js';
 
-const fractionsTitleString = FractionMatcherStrings.fractionsTitle;
-
 class FractionsScreen extends Screen {
   /**
    * @param {Tandem} tandem
@@ -25,7 +23,7 @@ class FractionsScreen extends Screen {
    */
   constructor( tandem, options ) {
     options = merge( {
-      name: fractionsTitleString,
+      name: FractionMatcherStrings.fractionsTitleStringProperty,
       homeScreenIcon: new ScreenIcon( MatchingGameScreenView.createIntroHomeIcon(), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1

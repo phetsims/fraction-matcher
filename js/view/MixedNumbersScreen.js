@@ -16,8 +16,6 @@ import merge from '../../../phet-core/js/merge.js';
 import fractionMatcher from '../fractionMatcher.js';
 import FractionMatcherStrings from '../FractionMatcherStrings.js';
 
-const mixedNumbersTitleString = FractionMatcherStrings.mixedNumbersTitle;
-
 class MixedNumbersScreen extends Screen {
   /**
    * @param {Tandem} tandem
@@ -25,7 +23,7 @@ class MixedNumbersScreen extends Screen {
    */
   constructor( tandem, options ) {
     options = merge( {
-      name: mixedNumbersTitleString,
+      name: FractionMatcherStrings.mixedNumbersTitleStringProperty,
       homeScreenIcon: new ScreenIcon( MatchingGameScreenView.createMixedHomeIcon(), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
