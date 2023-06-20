@@ -5,18 +5,18 @@
  */
 /* eslint-disable */
 import getStringModule from '../../chipper/js/getStringModule.js';
-import LinkableProperty from '../../axon/js/LinkableProperty.js';
+import type LocalizedStringProperty from '../../chipper/js/LocalizedStringProperty.js';
 import fractionMatcher from './fractionMatcher.js';
 
 type StringsType = {
   'fraction-matcher': {
     'title': string;
-    'titleStringProperty': LinkableProperty<string>;
+    'titleStringProperty': LocalizedStringProperty;
   };
   'fractionsTitle': string;
-  'fractionsTitleStringProperty': LinkableProperty<string>;
+  'fractionsTitleStringProperty': LocalizedStringProperty;
   'mixedNumbersTitle': string;
-  'mixedNumbersTitleStringProperty': LinkableProperty<string>;
+  'mixedNumbersTitleStringProperty': LocalizedStringProperty;
 };
 
 const FractionMatcherStrings = getStringModule( 'FRACTION_MATCHER' ) as StringsType;
