@@ -21,7 +21,7 @@
     "branch": "HEAD"
   },
   "fraction-matcher": {
-    "sha": "417def06bba4cf85138b8fef281f7e5b68d1aa58",
+    "sha": "e2169916fa9fabf4c5b40a5f5726257db9cd7141",
     "branch": "1.2"
   },
   "fractions-common": {
@@ -49,7 +49,7 @@
     "branch": "HEAD"
   },
   "phetcommon": {
-    "sha": "910e1b3c21ca50b81c5643a16b480a28c3360406",
+    "sha": "50cbcff84109c16109d6cbd860d564ff88ad9656",
     "branch": "HEAD"
   },
   "phetmarks": {
