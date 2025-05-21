@@ -13,7 +13,7 @@
     "branch": "HEAD"
   },
   "chipper": {
-    "sha": "b7b241a3a6131f03f2b1a5c0bcd1c06c3d52d516",
+    "sha": "dcf325f9050e287c3a5e119865665a8e7bf439a2",
     "branch": "HEAD"
   },
   "dot": {
@@ -21,7 +21,7 @@
     "branch": "HEAD"
   },
   "fraction-matcher": {
-    "sha": "2f100f5164e17c670d481b5a6f30c1454866fc9c",
+    "sha": "4942984dfda8ce016687de303d4d80abb8a0f344",
     "branch": "1.2"
   },
   "fractions-common": {
