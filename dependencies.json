@@ -21,7 +21,7 @@
     "branch": "HEAD"
   },
   "fraction-matcher": {
-    "sha": "36ffb65e0bac6693b4744812e6d056c308a63f56",
+    "sha": "5e72d5c555bcda9f1f48c1d68160a8ffed7b0d92",
     "branch": "1.2"
   },
   "fractions-common": {
@@ -29,7 +29,7 @@
     "branch": "HEAD"
   },
   "joist": {
-    "sha": "68c340f93572dab7caf7d2c5663a082603e78f4c",
+    "sha": "75e4122274db9791833b7f497ee779b92158775d",
     "branch": "HEAD"
   },
   "kite": {
