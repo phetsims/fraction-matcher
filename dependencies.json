@@ -9,7 +9,7 @@
     "branch": "HEAD"
   },
   "brand": {
-    "sha": "89e20f0ad6bf7b6e557ebd5053dd7d10743746d9",
+    "sha": "b019b9456a20bc2b608a1f8927ff92cddaacabfe",
     "branch": "HEAD"
   },
   "chipper": {
@@ -21,7 +21,7 @@
     "branch": "HEAD"
   },
   "fraction-matcher": {
-    "sha": "ad03576bd1822f6a29fa2080f79c6e3153c2e87e",
+    "sha": "c273318e107093d27d60fcbca0560a876c53f28e",
     "branch": "1.2"
   },
   "fractions-common": {
