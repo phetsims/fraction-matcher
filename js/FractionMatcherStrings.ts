@@ -24,4 +24,6 @@ type StringsType = {
 
 const FractionMatcherStrings = getStringModule( 'FRACTION_MATCHER' ) as StringsType;
 
+fractionMatcher.register( 'FractionMatcherStrings', FractionMatcherStrings );
+
 export default FractionMatcherStrings;
