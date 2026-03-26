@@ -1,5 +1,5 @@
 {
-  "comment": "# fraction-matcher 1.2.20-rc.1 Sat Mar 21 2026 00:00:49 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# fraction-matcher 1.2.20-rc.2 Thu Mar 26 2026 10:50:03 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "d8a2e8992420327ff72a6fc4bb93ec76549ded0e",
     "branch": "HEAD"
@@ -21,7 +21,7 @@
     "branch": "HEAD"
   },
   "fraction-matcher": {
-    "sha": "8595db8730fc03512b3143c0f7bd94402e1a1acd",
+    "sha": "58da9a5f0994c7d6911178634cfd3b3c935b2038",
     "branch": "1.2"
   },
   "fractions-common": {
